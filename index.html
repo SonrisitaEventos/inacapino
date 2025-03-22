@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>El Inacapino Puerto Montt</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body, html {
       height: 100%;
       font-family: Arial, sans-serif;
@@ -29,12 +25,10 @@
       min-height: 100%;
       object-fit: cover;
       z-index: -1;
-      opacity: 0.2;
+      opacity: 0.25;
+      filter: brightness(0.8) blur(1px);
     }
-    .logo {
-      max-width: 200px;
-      margin: 20px auto;
-    }
+    .logo { max-width: 200px; margin: 20px auto; }
     .titulo {
       color: #fff;
       font-size: 28px;
@@ -69,16 +63,9 @@
       justify-content: center;
       transition: background-color 0.3s;
     }
-    .botones a:hover {
-      background-color: #a50000;
-    }
-    .botones img {
-      width: 20px;
-      height: 20px;
-    }
-    section {
-      margin-top: 60px;
-    }
+    .botones a:hover { background-color: #a50000; }
+    .botones img { width: 20px; height: 20px; }
+    section { margin-top: 60px; }
     h2 {
       color: #fff;
       margin-bottom: 20px;
@@ -122,23 +109,21 @@
       border-radius: 8px;
       text-align: left;
     }
-    .concurso-card strong {
-      color: #d40000;
-    }
+    .concurso-card strong { color: #d40000; }
   </style>
 </head>
 <body>
 
-  <iframe src="https://1drv.ms/v/c/73ca530bfe85108f/IQRZHW60RA35Qo22mRooHdmJAYTublGA1AIuWxvr2fb29nk" width="1920" height="1080" frameborder="0" scrolling="no" allowfullscreen></iframe>
+  <video class="bg-video" autoplay loop muted playsinline>
+    <source src="https://res.cloudinary.com/duis1z4tc/video/upload/v1742664647/fondo_para_radio_online_ocxsge.mp4" type="video/mp4">
+    Tu navegador no soporta video en segundo plano.
+  </video>
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1 class="titulo">El Inacapino Puerto Montt</h1>
   <p>🎥 ¡Estamos transmitiendo en vivo desde Twitch!</p>
 
-  <iframe
-    src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io"
-    allowfullscreen>
-  </iframe>
+  <iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
 
   <div class="botones">
     <a href="https://wa.me/+56956596228" target="_blank"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"/> WhatsApp</a>
@@ -191,3 +176,4 @@
 
 </body>
 </html>
+
