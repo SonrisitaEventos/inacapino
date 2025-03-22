@@ -5,21 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>El Inacapino Puerto Montt</title>
   <style>
-    body {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #ffe0e0, #fff8f0);
+      overflow-x: hidden;
+    }
+    body {
+      color: #fff;
+      position: relative;
       text-align: center;
       padding: 20px;
-      margin: 0;
+    }
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.2;
     }
     .logo {
       max-width: 200px;
-      margin-bottom: 20px;
+      margin: 20px auto;
     }
     .titulo {
-      color: #d40000;
+      color: #fff;
       font-size: 28px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px #000;
     }
     iframe {
       width: 100%;
@@ -38,7 +58,7 @@
     .botones a {
       text-decoration: none;
       color: white;
-      background-color: #d40000;
+      background-color: #d40000cc;
       padding: 10px 15px;
       border-radius: 10px;
       font-weight: bold;
@@ -56,12 +76,13 @@
       width: 20px;
       height: 20px;
     }
-    .rebobinando, .encuesta, .concursos {
+    section {
       margin-top: 60px;
     }
     h2 {
-      color: #d40000;
+      color: #fff;
       margin-bottom: 20px;
+      text-shadow: 1px 1px 2px #000;
     }
     .carrusel {
       display: flex;
@@ -76,7 +97,8 @@
       scroll-snap-align: start;
       width: 320px;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      background-color: #fff;
     }
     .video-card iframe {
       width: 100%;
@@ -87,9 +109,11 @@
       background-color: #f5f5f5;
       padding: 10px;
       font-weight: bold;
+      color: #000;
     }
     .concurso-card {
-      background-color: #fbe9e7;
+      background-color: rgba(255,255,255,0.8);
+      color: #000;
       border-left: 5px solid #d40000;
       padding: 15px;
       margin: 10px auto;
@@ -104,6 +128,11 @@
   </style>
 </head>
 <body>
+
+  <video class="bg-video" autoplay loop muted playsinline>
+    <source src="https://www.videvo.net/videvo_files/converted/2022_11/preview/221014_02_DanceHall_4k_010.mp463436.webm" type="video/webm">
+    Tu navegador no soporta video en segundo plano.
+  </video>
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1 class="titulo">El Inacapino Puerto Montt</h1>
@@ -122,47 +151,5 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><img src="https://img.icons8.com/color/48/000000/youtube-play.png"/> YouTube</a>
   </div>
 
-  <div class="rebobinando">
-    <h2>🔁 Rebobinando la Señal</h2>
-    <p>¡Revive los mejores momentos de nuestras transmisiones!</p>
-    <div class="carrusel">
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
-        <div class="video-title">Episodio 1</div>
-      </div>
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
-        <div class="video-title">Episodio 2</div>
-      </div>
-      <div class="video-card">
-        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
-        <div class="video-title">Episodio 3</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="encuesta">
-    <h2>🗳️ ¡Queremos escucharte!</h2>
-    <p>Responde esta breve encuesta y ayúdanos a mejorar tu experiencia en la radio.</p>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-QyBP3NOBXk_ANgyLomcoVYtg52uEQcztvn4Pn9brdFr0bw/viewform?embedded=true" width="640" height="1188" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-  </div>
-
-  <div class="concursos">
-    <h2>🎉 Participa en nuestros Concursos</h2>
-    <div class="concurso-card">
-      <strong>🔥 Concurso en vivo:</strong> Durante la transmisión de este viernes, responde en el chat de Twitch la pregunta sorpresa y gana un delicioso <strong>completo o salchipapa</strong> en el Casino INACAP Puerto Montt. ¡Solo para los más rápidos!
-    </div>
-    <div class="concurso-card">
-      <strong>🕵️‍♂️ Búsqueda del Tesoro:</strong> ¡Revisa nuestras redes! Cada semana escondemos una pista secreta para que descubras la palabra mágica. Si la dices en vivo, ¡te llevas premio doble!
-    </div>
-    <div class="concurso-card">
-      <strong>🌟 Fans N° 1:</strong> ¿Comentas, compartes y reaccionas todo lo que hacemos? Cada mes elegimos al fan más activo de nuestras redes y lo premiamos con sorpresas exclusivas.
-    </div>
-    <div class="concurso-card">
-      <strong>📢 ¡Cambia el nombre de la radio!</strong> Participa con tu propuesta para renombrar “El Inacapino Puerto Montt”. ¿Se te ocurre algo épico? ¡Podría quedar en la historia!
-    </div>
-  </div>
-
 </body>
 </html>
-
