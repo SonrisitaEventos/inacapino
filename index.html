@@ -74,15 +74,18 @@
     .carrusel {
       display: flex;
       overflow-x: auto;
-      gap: 20px;
-      padding: 10px;
-      justify-content: center;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
       scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 10px 0 30px 10px;
+      justify-content: flex-start;
     }
     .video-card {
       flex: 0 0 auto;
       scroll-snap-align: start;
       width: 320px;
+      margin-right: 10px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.4);
       background-color: #fff;
@@ -176,4 +179,3 @@
 
 </body>
 </html>
-
