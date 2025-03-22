@@ -7,9 +7,10 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #ffffff;
+      background: linear-gradient(to right, #ffe0e0, #fff8f0);
       text-align: center;
       padding: 20px;
+      margin: 0;
     }
     .logo {
       max-width: 200px;
@@ -17,7 +18,7 @@
     }
     .titulo {
       color: #d40000;
-      font-size: 24px;
+      font-size: 28px;
       margin-bottom: 10px;
     }
     iframe {
@@ -29,28 +30,36 @@
     }
     .botones {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
       margin-bottom: 40px;
     }
     .botones a {
       text-decoration: none;
       color: white;
       background-color: #d40000;
-      padding: 10px 20px;
-      border-radius: 8px;
+      padding: 10px 15px;
+      border-radius: 10px;
       font-weight: bold;
-      width: 220px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 180px;
+      justify-content: center;
       transition: background-color 0.3s;
     }
     .botones a:hover {
       background-color: #a50000;
     }
-    .rebobinando {
-      margin-top: 50px;
+    .botones img {
+      width: 20px;
+      height: 20px;
     }
-    .rebobinando h2 {
+    .rebobinando, .encuesta, .concursos {
+      margin-top: 60px;
+    }
+    h2 {
       color: #d40000;
       margin-bottom: 20px;
     }
@@ -79,20 +88,6 @@
       padding: 10px;
       font-weight: bold;
     }
-    .encuesta {
-      margin-top: 60px;
-    }
-    .encuesta h2 {
-      color: #d40000;
-      margin-bottom: 20px;
-    }
-    .concursos {
-      margin-top: 60px;
-    }
-    .concursos h2 {
-      color: #d40000;
-      margin-bottom: 10px;
-    }
     .concurso-card {
       background-color: #fbe9e7;
       border-left: 5px solid #d40000;
@@ -120,17 +115,16 @@
   </iframe>
 
   <div class="botones">
-    <a href="https://wa.me/+56956596228" target="_blank">📲 Contactar por WhatsApp</a>
-    <a href="https://www.facebook.com/RyCSolucionesPV" target="_blank">🌐 Facebook</a>
-    <a href="https://www.instagram.com/cristian_riffo_araya/" target="_blank">📸 Instagram</a>
-    <a href="https://www.twitch.tv/xtian_alejandro" target="_blank">🎮 Twitch</a>
-    <a href="https://www.youtube.com/@rycsoluciones" target="_blank">▶️ YouTube</a>
+    <a href="https://wa.me/+56956596228" target="_blank"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"/> WhatsApp</a>
+    <a href="https://www.facebook.com/RyCSolucionesPV" target="_blank"><img src="https://img.icons8.com/color/48/000000/facebook.png"/> Facebook</a>
+    <a href="https://www.instagram.com/cristian_riffo_araya/" target="_blank"><img src="https://img.icons8.com/color/48/000000/instagram-new.png"/> Instagram</a>
+    <a href="https://www.twitch.tv/xtian_alejandro" target="_blank"><img src="https://img.icons8.com/color/48/000000/twitch--v1.png"/> Twitch</a>
+    <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><img src="https://img.icons8.com/color/48/000000/youtube-play.png"/> YouTube</a>
   </div>
 
   <div class="rebobinando">
     <h2>🔁 Rebobinando la Señal</h2>
     <p>¡Revive los mejores momentos de nuestras transmisiones!</p>
-
     <div class="carrusel">
       <div class="video-card">
         <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
@@ -171,5 +165,4 @@
 
 </body>
 </html>
-
 
