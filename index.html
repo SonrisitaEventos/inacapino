@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -55,9 +54,30 @@
       color: #d40000;
       margin-bottom: 20px;
     }
-    .audio-player {
-      margin-top: 10px;
-      margin-bottom: 10px;
+    .carrusel {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px;
+      justify-content: center;
+      scroll-snap-type: x mandatory;
+    }
+    .video-card {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      width: 320px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .video-card iframe {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px 10px 0 0;
+    }
+    .video-title {
+      background-color: #f5f5f5;
+      padding: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -82,30 +102,25 @@
 
   <div class="rebobinando">
     <h2>🔁 Rebobinando la Señal</h2>
-    <p>Muy pronto podrás volver a escuchar nuestros programas grabados aquí mismo.</p>
+    <p>¡Revive los mejores momentos de nuestras transmisiones!</p>
 
-    <div class="audio-player">
-      <audio controls>
-        <source src="" type="audio/mpeg">
-        Tu navegador no soporta el reproductor de audio.
-      </audio>
-    </div>
-
-    <div class="audio-player">
-      <audio controls>
-        <source src="" type="audio/mpeg">
-        Tu navegador no soporta el reproductor de audio.
-      </audio>
-    </div>
-
-    <div class="audio-player">
-      <audio controls>
-        <source src="" type="audio/mpeg">
-        Tu navegador no soporta el reproductor de audio.
-      </audio>
+    <div class="carrusel">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+        <div class="video-title">Episodio 1</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+        <div class="video-title">Episodio 2</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+        <div class="video-title">Episodio 3</div>
+      </div>
     </div>
   </div>
 
 </body>
 </html>
+
 
