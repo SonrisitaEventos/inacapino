@@ -83,52 +83,38 @@
     section { margin-top: 40px; }
     h2 { margin-bottom: 10px; font-size: 20px; }
     .carrusel, .capsulas, .postales { padding: 10px; }
-    .carrusel {
-      display: flex;
-      overflow-x: auto;
-      gap: 20px;
-      padding: 10px 0;
-      scroll-snap-type: x mandatory;
-      scroll-padding: 10px;
+    .encuesta iframe {
+      width: 100%;
+      max-width: 640px;
+      height: 600px;
+      border: none;
     }
-    .video-card {
-      flex: 0 0 auto;
-      scroll-snap-align: start;
-      width: 320px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
-      background: #fff;
-      color: #000;
+    .concurso-card {
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      margin: 10px auto;
+      max-width: 600px;
+      padding: 15px;
+      border-left: 5px solid #d40000;
+      border-radius: 5px;
       text-align: left;
     }
-    .thumb-container {
-      position: relative;
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #aaa;
     }
-    .thumb-container img {
+    .clima-container {
+      margin-bottom: 20px;
+    }
+    .clima-container iframe {
       width: 100%;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-    .thumb-container:hover img {
-      transform: scale(1.05);
-    }
-    .play-icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 32px;
-      color: white;
-      text-shadow: 0 0 5px #000;
-    }
-    .video-title {
-      padding: 10px;
-      font-weight: bold;
-      background: #f0f0f0;
+      max-width: 300px;
+      height: 170px;
+      border: none;
     }
     @media screen and (max-width: 600px) {
-      .video-card { width: 280px; }
+      .encuesta iframe { height: 800px; }
     }
   </style>
 </head>
@@ -163,32 +149,9 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
 
-  <section id="rebobinando">
-    <h2>🔁 Rebobinando la Señal</h2>
-    <div class="carrusel">
-      <a href="https://www.youtube.com/watch?v=R6bZrK0mDUs" class="video-card" target="_blank">
-        <div class="thumb-container">
-          <img src="https://img.youtube.com/vi/R6bZrK0mDUs/hqdefault.jpg" alt="Episodio 1">
-          <span class="play-icon">▶️</span>
-        </div>
-        <div class="video-title">Episodio 1</div>
-      </a>
-      <a href="https://www.youtube.com/watch?v=0lNJ-IeYZ9Y" class="video-card" target="_blank">
-        <div class="thumb-container">
-          <img src="https://img.youtube.com/vi/0lNJ-IeYZ9Y/hqdefault.jpg" alt="Episodio 2">
-          <span class="play-icon">▶️</span>
-        </div>
-        <div class="video-title">Episodio 2</div>
-      </a>
-      <a href="https://www.youtube.com/watch?v=KFEP9G3Qq70" class="video-card" target="_blank">
-        <div class="thumb-container">
-          <img src="https://img.youtube.com/vi/KFEP9G3Qq70/hqdefault.jpg" alt="Episodio 3">
-          <span class="play-icon">▶️</span>
-        </div>
-        <div class="video-title">Episodio 3</div>
-      </a>
-    </div>
-  </section>
+  <div class="clima-container">
+    <iframe src="https://www.meteoblue.com/en/weather/widget/three/san-pablo_chile_1692559?geoloc=fixed&nocurrent=0&noforecast=0&days=3&tempunit=CELSIUS&windunit=KMH&layout=bright" allowtransparency="true"></iframe>
+  </div>
 
   <script>
     function actualizarReloj() {
