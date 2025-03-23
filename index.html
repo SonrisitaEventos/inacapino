@@ -166,6 +166,57 @@
       padding: 10px;
       font-weight: bold;
     }
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+.gallery-item img {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.gallery-item img:hover {
+  transform: scale(1.05);
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.95);
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+}
+.prev { left: 0; }
+.next { right: 0; }
   </style>
 </head>
 <body>
@@ -285,7 +336,27 @@
   </div>
 </section>
 
+<section id="postales">
+  <h2>📸 Postales Inacapinas</h2>
+  <p>¡Momentos que nos conectan y nos inspiran!</p>
+  <div class="gallery-container">
+    <!-- Repite esta estructura para cada imagen -->
+    <div class="gallery-item" onclick="openModal(0)">
+      <img src="imagenes/postales_1.jpg" alt="Postal 1">
+    </div>
+    <div class="gallery-item" onclick="openModal(1)">
+      <img src="imagenes/postales_2.jpg" alt="Postal 2">
+    </div>
+    <!-- Agrega más postales aquí -->
+  </div>
 
+  <div class="modal" id="imgModal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+    <a class="next" onclick="changeImage(1)">&#10095;</a>
+  </div>
+</section>
 
   <script>
     function actualizarReloj() {
@@ -309,6 +380,30 @@
       document.getElementById('frase').textContent = frases[fraseActual];
     }, 7000);
 
-  
+  <script>
+const images = [
+  "postales_1.jpg", "postales_2.jpg", "postales_3.jpg", "postales_4.jpg",
+  "postales_5.jpg", "postales_6.jpg", "postales_7.jpg", "postales_8.jpg",
+  "postales_9.jpg", "postales_10.jpg"
+];
+
+let currentIndex = 0;
+
+function openModal(index) {
+  currentIndex = index;
+  document.getElementById("imgModal").style.display = "flex";
+  document.getElementById("modalImg").src = "imagenes/" + images[currentIndex];
+}
+
+function closeModal() {
+  document.getElementById("imgModal").style.display = "none";
+}
+
+function changeImage(step) {
+  currentIndex = (currentIndex + step + images.length) % images.length;
+  document.getElementById("modalImg").src = "imagenes/" + images[currentIndex];
+}
+</script>
+
 </body>
 </html>
