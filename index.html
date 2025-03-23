@@ -1,120 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>El Inacapino Puerto Montt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-      color: #fff;
-      background: #000;
-    }
-
+    body, html { height: 100%; font-family: Arial, sans-serif; overflow-x: hidden; background: #000; }
+    body { color: #fff; position: relative; text-align: center; padding: 20px; }
     video.bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      opacity: 0.25;
-      filter: brightness(0.8) blur(1px);
+      position: fixed; top: 0; left: 0;
+      min-width: 100%; min-height: 100%;
+      object-fit: cover; z-index: -1;
+      opacity: 0.25; filter: brightness(0.8) blur(1px);
     }
-
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      z-index: 1000;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px; margin-bottom: 30px;
     }
-
-    .logo-header {
-      max-height: 60px;
-    }
-
-    .live-indicator {
-      background-color: #d40000;
-      color: #fff;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-weight: bold;
-      font-size: 14px;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .clock {
-      font-size: 16px;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    .container {
-      padding-top: 100px;
-      text-align: center;
-    }
-
+    .logo { max-width: 150px; }
     .titulo {
-      color: #fff;
-      font-size: 28px;
-      margin: 20px 0 10px;
-      text-shadow: 1px 1px 2px #000;
+      font-size: 28px; font-weight: bold; text-shadow: 1px 1px 2px #000;
     }
+    .live {
+      display: flex; align-items: center; gap: 8px;
+      background-color: #d40000cc; padding: 5px 15px;
+      border-radius: 20px; font-weight: bold;
+      box-shadow: 0 0 8px #d40000;
+    }
+    .live span { color: #fff; }
+    .reloj { font-family: 'Orbitron', monospace; font-size: 16px; color: #fff; margin-top: 5px; }
 
-    iframe {
-      width: 100%;
-      max-width: 720px;
-      height: 405px;
-      border: none;
-      margin: 20px auto;
-      display: block;
+    /* Redes Sociales */
+    .botones {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 15px; margin: 30px 0;
     }
+    .botones a {
+      text-decoration: none; color: white;
+      background-color: #d40000cc;
+      padding: 10px 15px; border-radius: 10px;
+      font-weight: bold; display: flex;
+      align-items: center; gap: 8px;
+      min-width: 180px; justify-content: center;
+      transition: background-color 0.3s;
+    }
+    .botones a:hover { background-color: #a50000; }
+    .botones img { width: 20px; height: 20px; }
   </style>
 </head>
 <body>
 
   <video class="bg-video" autoplay loop muted playsinline>
-    <source src="https://res.cloudinary.com/duis1z4tc/video/upload/v1742664647/fondo_para_radio_online_ocxsge.mp4" type="video/mp4">
+    <source src="https://res.cloudinary.com/duis1z4tc/video/upload/v1742664647/fondo_para_radio_online_ocxsge.mp4" type="video/mp4" />
     Tu navegador no soporta video en segundo plano.
   </video>
 
   <header>
-    <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo-header">
-    <div class="live-indicator">🔴 EN VIVO</div>
-    <div class="clock" id="clock">00:00:00</div>
+    <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo" />
+    <h1 class="titulo">El Inacapino Puerto Montt</h1>
+    <div class="live">
+      <span>🔴 EN VIVO</span>
+    </div>
+    <div class="reloj" id="reloj">00:00:00</div>
   </header>
 
-  <div class="container">
-    <h1 class="titulo">El Inacapino Puerto Montt</h1>
-    <h2>🎥 ¡Estamos transmitiendo en vivo desde Twitch!</h2>
-    <iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
-  </div>
-
-  <script>
-    function updateClock() {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-  </script>
+  <iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen
+    style="width:100%; max-width:720px; height:405px; border:none; margin-bottom:30px;"></iframe>
 
   <div class="botones">
     <a href="https://wa.me/+56956596228" target="_blank"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"/> WhatsApp</a>
@@ -123,358 +76,18 @@
     <a href="https://www.twitch.tv/xtian_alejandro" target="_blank"><img src="https://img.icons8.com/color/48/000000/twitch--v1.png"/> Twitch</a>
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><img src="https://img.icons8.com/color/48/000000/youtube-play.png"/> YouTube</a>
   </div>
-  
-<style>
-  .carrusel {
-    display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    gap: 20px;
-    padding: 10px 0 30px 10px;
-    justify-content: flex-start;
-  }
-  .video-card {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    width: 320px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    background-color: #fff;
-    text-decoration: none;
-  }
-  .thumb-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px 10px 0 0;
-  }
-  .thumb-container img {
-    width: 100%;
-    transition: transform 0.3s ease, filter 0.3s ease;
-  }
-  .thumb-container:hover img {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-  }
-  .play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 36px;
-    color: white;
-    text-shadow: 0 0 10px #000;
-  }
-  .video-title {
-    background-color: #f5f5f5;
-    padding: 10px;
-    font-weight: bold;
-    color: #000;
-    text-align: center;
-  }
-</style>
-
-<section class="rebobinando">
-  <h2>🔁 Rebobinando la Señal</h2>
-  <h2>¡Revive los mejores momentos de nuestras transmisiones!</h2>
-  <div class="carrusel">
-    
-    <a href="https://www.youtube.com/watch?v=R6bZrK0mDUs" target="_blank" class="video-card">
-      <div class="thumb-container">
-        <img src="https://img.youtube.com/vi/R6bZrK0mDUs/hqdefault.jpg" alt="Episodio 1">
-        <span class="play-icon">▶️</span>
-      </div>
-      <div class="video-title">Episodio 1</div>
-    </a>
-    
-    <a href="https://www.youtube.com/watch?v=0lNJ-IeYZ9Y" target="_blank" class="video-card">
-      <div class="thumb-container">
-        <img src="https://img.youtube.com/vi/0lNJ-IeYZ9Y/hqdefault.jpg" alt="Episodio 2">
-        <span class="play-icon">▶️</span>
-      </div>
-      <div class="video-title">Episodio 2</div>
-    </a>
-    
-    <a href="https://www.youtube.com/watch?v=KFEP9G3Qq70" target="_blank" class="video-card">
-      <div class="thumb-container">
-        <img src="https://img.youtube.com/vi/KFEP9G3Qq70/hqdefault.jpg" alt="Episodio 3">
-        <span class="play-icon">▶️</span>
-      </div>
-      <div class="video-title">Episodio 3</div>
-    </a>
-    
-  </div>
-</section>
-
-<section class="capsulas">
-  <h2>📺 Cápsulas Inacapinas</h2>
-  <h2>Videos cortos con historias, datos y mensajes importantes</h2>
-  <div class="carrusel">
-    
-    <a href="https://www.youtube.com/watch?v=vTzQPA5vL4g" target="_blank" class="video-card">
-      <div class="thumb-container">
-        <img src="https://img.youtube.com/vi/vTzQPA5vL4g/hqdefault.jpg" alt="Cápsula 1">
-        <span class="play-icon">▶️</span>
-      </div>
-      <div class="video-title">Cápsula 1</div>
-    </a>
-    
-    <a href="https://www.youtube.com/watch?v=JxjTKUeNSmE" target="_blank" class="video-card">
-      <div class="thumb-container">
-        <img src="https://img.youtube.com/vi/JxjTKUeNSmE/hqdefault.jpg" alt="Cápsula 2">
-        <span class="play-icon">▶️</span>
-      </div>
-      <div class="video-title">Cápsula 2</div>
-    </a>
-    
-    <a href="https://www.youtube.com/watch?v=ZB5l6_KoB9g" target="_blank" class="video-card">
-      <div class="thumb-container">
-        <img src="https://img.youtube.com/vi/ZB5l6_KoB9g/hqdefault.jpg" alt="Cápsula 3">
-        <span class="play-icon">▶️</span>
-      </div>
-      <div class="video-title">Cápsula 3</div>
-    </a>
-    
-  </div>
-</section>
-<section class="encuesta">
-    <h2>🗳️ ¡Queremos escucharte!</h2>
-    <h2>Responde esta breve encuesta y ayúdanos a mejorar tu experiencia en la radio.</h2>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-QyBP3NOBXk_ANgyLomcoVYtg52uEQcztvn4Pn9brdFr0bw/viewform?embedded=true" width="640" height="1188" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-  </section>
-
-  <section class="concursos">
-    <h2>🎉 Participa en nuestros Concursos</h2>
-    <div class="concurso-card">
-      <strong>🔥 Concurso en vivo:</strong> Durante la transmisión de este viernes, responde en el chat de Twitch la pregunta sorpresa y gana un delicioso <strong>completo o salchipapa</strong> en el Casino INACAP Puerto Montt. ¡Solo para los más rápidos!
-    </div>
-    <div class="concurso-card">
-      <strong>🕵️‍♂️ Búsqueda del Tesoro:</strong> ¡Revisa nuestras redes! Cada semana escondemos una pista secreta para que descubras la palabra mágica. Si la dices en vivo, ¡te llevas premio doble!
-    </div>
-    <div class="concurso-card">
-      <strong>🌟 Fans N° 1:</strong> ¿Comentas, compartes y reaccionas todo lo que hacemos? Cada mes elegimos al fan más activo de nuestras redes y lo premiamos con sorpresas exclusivas.
-    </div>
-    <div class="concurso-card">
-      <strong>📢 ¡Cambia el nombre de la radio!</strong> Participa con tu propuesta para renombrar “El Inacapino Puerto Montt”. ¿Se te ocurre algo épico? ¡Podría quedar en la historia!
-    </div>
-  </section>
-
-
-
-
-<style>
-  .galeria {
-    margin-top: 60px;
-    color: #fff;
-    text-align: center;
-  }
-  .gallery-container {
-    display: flex;
-    overflow-x: auto;
-    padding: 20px;
-    gap: 15px;
-    scroll-snap-type: x mandatory;
-  }
-  .gallery-item {
-    scroll-snap-align: start;
-    flex: 0 0 auto;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-  .gallery-item img {
-    height: 200px;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-  }
-  .gallery-item:hover img {
-    transform: scale(1.1);
-  }
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.9);
-    align-items: center;
-    justify-content: center;
-  }
-  .modal-content {
-    margin: auto;
-    display: block;
-    max-width: 90%;
-    max-height: 80%;
-  }
-  .close {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-</style>
-
-<script>
-  function openModal(src) {
-    const modal = document.getElementById("imgModal");
-    const modalImg = document.getElementById("modalImg");
-    modal.style.display = "flex";
-    modalImg.src = src;
-  }
-</script>
-
-
-<section class="galeria">
-  <h2>📷 Postales Inacapinas</h2>
-  <h3>¡Momentos que nos conectan y nos inspiran!</h3>
-  <div class="gallery-container">
-    
-    <div class="gallery-item">
-      <img src="imagenes/postales_1.jpg" alt="Postales Inacapinas" onclick="openModal(0)">
-    </div>
-    
-    <div class="gallery-item">
-      <img src="imagenes/postales_2.jpg" alt="Postales Inacapinas" onclick="openModal(1)">
-    </div>
-    
-    <div class="gallery-item">
-      <img src="imagenes/postales_3.jpg" alt="Postales Inacapinas" onclick="openModal(2)">
-    </div>
-    
-    <div class="gallery-item">
-      <img src="imagenes/postales_4.jpg" alt="Postales Inacapinas" onclick="openModal(3)">
-    </div>
-    
-    <div class="gallery-item">
-      <img src="imagenes/postales_5.jpg" alt="Postales Inacapinas" onclick="openModal(4)">
-    </div>
-    
-    <div class="gallery-item">
-      <img src="imagenes/postales_6.jpg" alt="Postales Inacapinas" onclick="openModal(5)">
-    </div>
-    
-    <div class="gallery-item">
-      <img src="imagenes/postales_7.jpg" alt="Postales Inacapinas" onclick="openModal(6)">
-    </div>
-    
-    <div class="gallery-item">
-      <img src="imagenes/postales_8.jpg" alt="Postales Inacapinas" onclick="openModal(7)">
-    </div>
-    
-    <div class="gallery-item">
-      <img src="imagenes/postales_9.jpg" alt="Postales Inacapinas" onclick="openModal(8)">
-    </div>
-    
-    <div class="gallery-item">
-      <img src="imagenes/postales_10.jpg" alt="Postales Inacapinas" onclick="openModal(9)">
-    </div>
-    
-  </div>
-
-  <div class="modal" id="imgModal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImg">
-    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
-    <a class="next" onclick="changeImage(1)">&#10095;</a>
-  </div>
-
-  <style>
-    .gallery-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-    .gallery-item img {
-      width: 200px;
-      height: auto;
-      border-radius: 8px;
-      transition: transform 0.3s;
-      cursor: pointer;
-    }
-    .gallery-item img:hover {
-      transform: scale(1.05);
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      padding-top: 60px;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.95);
-    }
-    .modal-content {
-      margin: auto;
-      display: block;
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 10px;
-    }
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: #fff;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      width: auto;
-      padding: 16px;
-      margin-top: -22px;
-      color: white;
-      font-weight: bold;
-      font-size: 30px;
-      user-select: none;
-    }
-    .prev { left: 0; }
-    .next { right: 0; }
-    .prev:hover, .next:hover {
-      background-color: rgba(0,0,0,0.8);
-    }
-  </style>
 
   <script>
-    const images = ['postales_1.jpg', 'postales_2.jpg', 'postales_3.jpg', 'postales_4.jpg', 'postales_5.jpg', 'postales_6.jpg', 'postales_7.jpg', 'postales_8.jpg', 'postales_9.jpg', 'postales_10.jpg'];
-    let currentImage = 0;
-
-    function openModal(index) {
-      currentImage = index;
-      document.getElementById("imgModal").style.display = "block";
-      document.getElementById("modalImg").src = "imagenes/" + images[currentImage];
+    function actualizarReloj() {
+      const ahora = new Date();
+      const horas = String(ahora.getHours()).padStart(2, '0');
+      const minutos = String(ahora.getMinutes()).padStart(2, '0');
+      const segundos = String(ahora.getSeconds()).padStart(2, '0');
+      document.getElementById('reloj').textContent = horas + ':' + minutos + ':' + segundos;
     }
-
-    function closeModal() {
-      document.getElementById("imgModal").style.display = "none";
-    }
-
-    function changeImage(step) {
-      currentImage += step;
-      if (currentImage < 0) {
-        currentImage = images.length - 1;
-      } else if (currentImage >= images.length) {
-        currentImage = 0;
-      }
-      document.getElementById("modalImg").src = "imagenes/" + images[currentImage];
-    }
+    setInterval(actualizarReloj, 1000);
+    actualizarReloj();
   </script>
-</section>
 
 </body>
 </html>
-
