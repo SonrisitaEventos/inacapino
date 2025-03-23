@@ -82,32 +82,31 @@
     }
     section { margin-top: 40px; }
     h2 { margin-bottom: 10px; font-size: 20px; }
-    .encuesta iframe {
+    .capsulas .capsula {
+      display: inline-block;
+      width: 200px;
+      margin: 10px;
+      background: #222;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      transition: transform 0.3s;
+    }
+    .capsulas .capsula:hover {
+      transform: scale(1.05);
+    }
+    .capsulas iframe {
       width: 100%;
-      max-width: 640px;
-      height: 600px;
+      height: 355px;
       border: none;
     }
-    .concurso-card {
-      background: rgba(255, 255, 255, 0.9);
-      color: black;
-      margin: 10px auto;
-      max-width: 600px;
-      padding: 15px;
-      border-left: 5px solid #d40000;
-      border-radius: 5px;
-      text-align: left;
-    }
-    .footer {
-      margin-top: 40px;
-      font-size: 12px;
-      color: #aaa;
-    }
-    .clima-widget {
-      margin-top: 20px;
+    .capsulas .titulo {
+      padding: 10px;
+      font-weight: bold;
+      background-color: #111;
     }
     @media screen and (max-width: 600px) {
-      .encuesta iframe { height: 800px; }
+      .capsulas iframe { height: 240px; }
     }
   </style>
 </head>
@@ -123,6 +122,7 @@
     </nav>
     <div class="top-info">
       <span id="reloj">00:00</span>
+      <span id="clima">🌤️ 11°C</span>
       <span class="live-indicator">EN VIVO</span>
     </div>
   </header>
@@ -141,11 +141,22 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
 
-  <div class="clima-widget">
-    <iframe src="https://www.meteoblue.com/en/weather/widget/three/santiago_chile_3871336?geoloc=fixed&nocurrent=0&noforecast=0&days=3&tempunit=CELSIUS" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 100%; max-width: 720px; height: 250px"></iframe>
-  </div>
-
-  <!-- A partir de aquí seguiremos agregando las secciones -->
+  <section class="capsulas" id="capsulas">
+    <h2>📺 Cápsulas Inacapinas</h2>
+    <p>Videos cortos con historias, datos y mensajes importantes</p>
+    <div class="capsula">
+      <iframe src="https://www.youtube.com/embed/vTzQPA5vL4g" allowfullscreen></iframe>
+      <div class="titulo">Cápsula 1</div>
+    </div>
+    <div class="capsula">
+      <iframe src="https://www.youtube.com/embed/JxjTKUeNSmE" allowfullscreen></iframe>
+      <div class="titulo">Cápsula 2</div>
+    </div>
+    <div class="capsula">
+      <iframe src="https://www.youtube.com/embed/ZB5l6_KoB9g" allowfullscreen></iframe>
+      <div class="titulo">Cápsula 3</div>
+    </div>
+  </section>
 
   <script>
     function actualizarReloj() {
