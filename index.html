@@ -140,28 +140,137 @@
     <h2>🔁 Rebobinando la Señal</h2>
     <h2>¡Revive los mejores momentos de nuestras transmisiones!</h2>
     <div class="carrusel">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+        <div class="video-title">Episodio 1</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+        <div class="video-title">Episodio 2</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+        <div class="video-title">Episodio 3</div>
+      </div>
+    </div>
+  </section>
+
   
+<style>
+  .carrusel {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 10px 0 30px 10px;
+    justify-content: flex-start;
+  }
+  .video-card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    background-color: #fff;
+    text-decoration: none;
+  }
+  .thumb-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+  }
+  .thumb-container img {
+    width: 100%;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .thumb-container:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+  .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    color: white;
+    text-shadow: 0 0 10px #000;
+  }
+  .video-title {
+    background-color: #f5f5f5;
+    padding: 10px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+  }
+</style>
+
+<section class="rebobinando">
+  <h2>🔁 Rebobinando la Señal</h2>
+  <h2>¡Revive los mejores momentos de nuestras transmisiones!</h2>
+  <div class="carrusel">
+    
     <a href="https://www.youtube.com/watch?v=R6bZrK0mDUs" target="_blank" class="video-card">
-      <img src="https://img.youtube.com/vi/R6bZrK0mDUs/hqdefault.jpg" alt="Episodio 1" style="width:100%; border-radius:10px 10px 0 0;">
+      <div class="thumb-container">
+        <img src="https://img.youtube.com/vi/R6bZrK0mDUs/hqdefault.jpg" alt="Episodio 1">
+        <span class="play-icon">▶️</span>
+      </div>
       <div class="video-title">Episodio 1</div>
     </a>
     
     <a href="https://www.youtube.com/watch?v=0lNJ-IeYZ9Y" target="_blank" class="video-card">
-      <img src="https://img.youtube.com/vi/0lNJ-IeYZ9Y/hqdefault.jpg" alt="Episodio 2" style="width:100%; border-radius:10px 10px 0 0;">
+      <div class="thumb-container">
+        <img src="https://img.youtube.com/vi/0lNJ-IeYZ9Y/hqdefault.jpg" alt="Episodio 2">
+        <span class="play-icon">▶️</span>
+      </div>
       <div class="video-title">Episodio 2</div>
     </a>
     
     <a href="https://www.youtube.com/watch?v=KFEP9G3Qq70" target="_blank" class="video-card">
-      <img src="https://img.youtube.com/vi/KFEP9G3Qq70/hqdefault.jpg" alt="Episodio 3" style="width:100%; border-radius:10px 10px 0 0;">
+      <div class="thumb-container">
+        <img src="https://img.youtube.com/vi/KFEP9G3Qq70/hqdefault.jpg" alt="Episodio 3">
+        <span class="play-icon">▶️</span>
+      </div>
       <div class="video-title">Episodio 3</div>
     </a>
     
-</div>
+  </div>
+</section>
 
-    </div>
-  </section>
-
-  <section class="encuesta">
+<section class="capsulas">
+  <h2>📺 Cápsulas Inacapinas</h2>
+  <h2>Videos cortos con historias, datos y mensajes importantes</h2>
+  <div class="carrusel">
+    
+    <a href="https://www.youtube.com/watch?v=vTzQPA5vL4g" target="_blank" class="video-card">
+      <div class="thumb-container">
+        <img src="https://img.youtube.com/vi/vTzQPA5vL4g/hqdefault.jpg" alt="Cápsula 1">
+        <span class="play-icon">▶️</span>
+      </div>
+      <div class="video-title">Cápsula 1</div>
+    </a>
+    
+    <a href="https://www.youtube.com/watch?v=JxjTKUeNSmE" target="_blank" class="video-card">
+      <div class="thumb-container">
+        <img src="https://img.youtube.com/vi/JxjTKUeNSmE/hqdefault.jpg" alt="Cápsula 2">
+        <span class="play-icon">▶️</span>
+      </div>
+      <div class="video-title">Cápsula 2</div>
+    </a>
+    
+    <a href="https://www.youtube.com/watch?v=ZB5l6_KoB9g" target="_blank" class="video-card">
+      <div class="thumb-container">
+        <img src="https://img.youtube.com/vi/ZB5l6_KoB9g/hqdefault.jpg" alt="Cápsula 3">
+        <span class="play-icon">▶️</span>
+      </div>
+      <div class="video-title">Cápsula 3</div>
+    </a>
+    
+  </div>
+</section>
+<section class="encuesta">
     <h2>🗳️ ¡Queremos escucharte!</h2>
     <h2>Responde esta breve encuesta y ayúdanos a mejorar tu experiencia en la radio.</h2>
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-QyBP3NOBXk_ANgyLomcoVYtg52uEQcztvn4Pn9brdFr0bw/viewform?embedded=true" width="640" height="1188" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
@@ -185,3 +294,4 @@
 
 </body>
 </html>
+
