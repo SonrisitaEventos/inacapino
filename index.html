@@ -82,7 +82,6 @@
     }
     section { margin-top: 40px; }
     h2 { margin-bottom: 10px; font-size: 20px; }
-    .carrusel, .capsulas, .postales { padding: 10px; }
     .encuesta iframe {
       width: 100%;
       max-width: 640px;
@@ -104,14 +103,8 @@
       font-size: 12px;
       color: #aaa;
     }
-    .clima-container {
-      margin-bottom: 20px;
-    }
-    .clima-container iframe {
-      width: 100%;
-      max-width: 300px;
-      height: 170px;
-      border: none;
+    .clima-widget {
+      margin-top: 20px;
     }
     @media screen and (max-width: 600px) {
       .encuesta iframe { height: 800px; }
@@ -130,7 +123,6 @@
     </nav>
     <div class="top-info">
       <span id="reloj">00:00</span>
-      <span id="clima">🌤️ 11°C</span>
       <span class="live-indicator">EN VIVO</span>
     </div>
   </header>
@@ -149,9 +141,11 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
 
-  <div class="clima-container">
-    <iframe src="https://www.meteoblue.com/en/weather/widget/three/san-pablo_chile_1692559?geoloc=fixed&nocurrent=0&noforecast=0&days=3&tempunit=CELSIUS&windunit=KMH&layout=bright" allowtransparency="true"></iframe>
+  <div class="clima-widget">
+    <iframe src="https://www.meteoblue.com/en/weather/widget/three/santiago_chile_3871336?geoloc=fixed&nocurrent=0&noforecast=0&days=3&tempunit=CELSIUS" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 100%; max-width: 720px; height: 250px"></iframe>
   </div>
+
+  <!-- A partir de aquí seguiremos agregando las secciones -->
 
   <script>
     function actualizarReloj() {
