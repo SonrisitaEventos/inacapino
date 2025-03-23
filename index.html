@@ -28,7 +28,7 @@
     }
     .logo {
       max-width: 180px;
-      margin: 40px auto 20px;
+      margin: 20px auto 10px;
       display: block;
     }
     .titulo {
@@ -36,11 +36,11 @@
       font-weight: bold;
       text-shadow: 1px 1px 2px #000;
     }
-    .subtitulo {
-      font-size: 18px;
-      margin-top: 10px;
-      margin-bottom: 40px;
-      color: #ddd;
+    .frase {
+      font-style: italic;
+      font-size: 16px;
+      color: #ccc;
+      margin: 10px 0 30px;
     }
     .botones {
       display: flex;
@@ -125,85 +125,156 @@
       font-weight: bold;
       text-align: center;
     }
+    .encuesta, .concursos {
+      margin-top: 60px;
+      padding: 0 20px;
+    }
+    .encuesta h2, .concursos h2 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .encuesta p {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+    .concurso-card {
+      background-color: rgba(255,255,255,0.1);
+      border-left: 5px solid #d40000;
+      padding: 15px;
+      margin: 10px auto;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 8px;
+      text-align: left;
+      color: #fff;
+    }
+    .concurso-card strong { color: #ff9999; }
+    .postales {
+      margin-top: 60px;
+      padding: 20px;
+    }
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .gallery-item img {
+      width: 200px;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .gallery-item img:hover {
+      transform: scale(1.05);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.95);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 30px;
+      user-select: none;
+    }
+    .prev { left: 0; }
+    .next { right: 0; }
   </style>
 </head>
 <body>
-
   <video class="bg-video" autoplay loop muted playsinline>
     <source src="https://res.cloudinary.com/duis1z4tc/video/upload/v1742664647/fondo_para_radio_online_ocxsge.mp4" type="video/mp4">
-    Tu navegador no soporta video en segundo plano.
   </video>
-
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1 class="titulo">El Inacapino Puerto Montt</h1>
-  <p class="subtitulo"><i class="fa-solid fa-video"></i> ¡Estamos transmitiendo en vivo desde Twitch!</p>
+  <div class="frase" id="fraseRotativa">Aprender es crecer, crecer es transformar.</div>
 
-  <iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
+  <!-- Twitch + Botones + Secciones previas aquí... -->
 
-  <div class="botones">
-    <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-    <a href="https://www.facebook.com/RyCSolucionesPV" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-    <a href="https://www.instagram.com/cristian_riffo_araya/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-    <a href="https://www.twitch.tv/xtian_alejandro" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
-    <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+  <section class="postales">
+    <h2>📷 Postales Inacapinas</h2>
+    <h3 style="color: #ccc">¡Momentos que nos conectan y nos inspiran!</h3>
+    <div class="gallery-container">
+      <div class="gallery-item"><img src="imagenes/postales_1.jpg" onclick="openModal(0)"></div>
+      <div class="gallery-item"><img src="imagenes/postales_2.jpg" onclick="openModal(1)"></div>
+      <div class="gallery-item"><img src="imagenes/postales_3.jpg" onclick="openModal(2)"></div>
+      <div class="gallery-item"><img src="imagenes/postales_4.jpg" onclick="openModal(3)"></div>
+      <div class="gallery-item"><img src="imagenes/postales_5.jpg" onclick="openModal(4)"></div>
+      <div class="gallery-item"><img src="imagenes/postales_6.jpg" onclick="openModal(5)"></div>
+      <div class="gallery-item"><img src="imagenes/postales_7.jpg" onclick="openModal(6)"></div>
+      <div class="gallery-item"><img src="imagenes/postales_8.jpg" onclick="openModal(7)"></div>
+      <div class="gallery-item"><img src="imagenes/postales_9.jpg" onclick="openModal(8)"></div>
+      <div class="gallery-item"><img src="imagenes/postales_10.jpg" onclick="openModal(9)"></div>
+    </div>
+  </section>
+
+  <div class="modal" id="imgModal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+    <a class="next" onclick="changeImage(1)">&#10095;</a>
   </div>
 
-  <section class="rebobinando">
-    <h2 style="color: #fff; margin-bottom: 10px;">🔁 Rebobinando la Señal</h2>
-    <h3 style="color: #ccc; margin-bottom: 20px;">¡Revive los mejores momentos de nuestras transmisiones!</h3>
-    <div class="carrusel">
-      <a href="https://www.youtube.com/watch?v=R6bZrK0mDUs" target="_blank" class="video-card">
-        <div class="thumb-container">
-          <img src="https://img.youtube.com/vi/R6bZrK0mDUs/hqdefault.jpg" alt="Episodio 1">
-          <span class="play-icon">▶️</span>
-        </div>
-        <div class="video-title">Episodio 1</div>
-      </a>
-      <a href="https://www.youtube.com/watch?v=0lNJ-IeYZ9Y" target="_blank" class="video-card">
-        <div class="thumb-container">
-          <img src="https://img.youtube.com/vi/0lNJ-IeYZ9Y/hqdefault.jpg" alt="Episodio 2">
-          <span class="play-icon">▶️</span>
-        </div>
-        <div class="video-title">Episodio 2</div>
-      </a>
-      <a href="https://www.youtube.com/watch?v=KFEP9G3Qq70" target="_blank" class="video-card">
-        <div class="thumb-container">
-          <img src="https://img.youtube.com/vi/KFEP9G3Qq70/hqdefault.jpg" alt="Episodio 3">
-          <span class="play-icon">▶️</span>
-        </div>
-        <div class="video-title">Episodio 3</div>
-      </a>
-    </div>
-  </section>
+  <script>
+    const frases = [
+      "Aprender es crecer, crecer es transformar.",
+      "La educación es el pasaporte al futuro.",
+      "Hoy es un buen día para comenzar algo nuevo.",
+      "Tu actitud determina tu altitud.",
+      "Nunca dejes de soñar, ni de estudiar."
+    ];
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % frases.length;
+      document.getElementById("fraseRotativa").textContent = frases[index];
+    }, 5000);
 
-  <section class="capsulas">
-    <h2 style="color: #fff; margin-top: 60px;">📺 Cápsulas Inacapinas</h2>
-    <h3 style="color: #ccc; margin-bottom: 20px;">Videos cortos con historias, datos y mensajes importantes</h3>
-    <div class="carrusel">
-      <a href="https://www.youtube.com/watch?v=vTzQPA5vL4g" target="_blank" class="video-card">
-        <div class="thumb-container">
-          <img src="https://img.youtube.com/vi/vTzQPA5vL4g/hqdefault.jpg" alt="Cápsula 1">
-          <span class="play-icon">▶️</span>
-        </div>
-        <div class="video-title">Cápsula 1</div>
-      </a>
-      <a href="https://www.youtube.com/watch?v=JxjTKUeNSmE" target="_blank" class="video-card">
-        <div class="thumb-container">
-          <img src="https://img.youtube.com/vi/JxjTKUeNSmE/hqdefault.jpg" alt="Cápsula 2">
-          <span class="play-icon">▶️</span>
-        </div>
-        <div class="video-title">Cápsula 2</div>
-      </a>
-      <a href="https://www.youtube.com/watch?v=ZB5l6_KoB9g" target="_blank" class="video-card">
-        <div class="thumb-container">
-          <img src="https://img.youtube.com/vi/ZB5l6_KoB9g/hqdefault.jpg" alt="Cápsula 3">
-          <span class="play-icon">▶️</span>
-        </div>
-        <div class="video-title">Cápsula 3</div>
-      </a>
-    </div>
-  </section>
-
+    const images = ['postales_1.jpg','postales_2.jpg','postales_3.jpg','postales_4.jpg','postales_5.jpg','postales_6.jpg','postales_7.jpg','postales_8.jpg','postales_9.jpg','postales_10.jpg'];
+    let currentImage = 0;
+    function openModal(i) {
+      currentImage = i;
+      document.getElementById("imgModal").style.display = "flex";
+      document.getElementById("modalImg").src = "imagenes/" + images[currentImage];
+    }
+    function closeModal() {
+      document.getElementById("imgModal").style.display = "none";
+    }
+    function changeImage(step) {
+      currentImage = (currentImage + step + images.length) % images.length;
+      document.getElementById("modalImg").src = "imagenes/" + images[currentImage];
+    }
+  </script>
 </body>
 </html>
 
