@@ -227,29 +227,6 @@
       </a>
     </div>
   </section>
-
-  <script>
-    function actualizarReloj() {
-      const ahora = new Date();
-      let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      document.getElementById('reloj').textContent = hora;
-    }
-    setInterval(actualizarReloj, 1000);
-
-    const frases = [
-      "La educación es el pasaporte al futuro.",
-      "Cada paso cuenta, sigue avanzando.",
-      "El conocimiento es poder.",
-      "Nunca dejes de aprender.",
-      "Tu esfuerzo de hoy es tu éxito de mañana.",
-      "La actitud es tan importante como la habilidad."
-    ];
-    let fraseActual = 0;
-    setInterval(() => {
-      fraseActual = (fraseActual + 1) % frases.length;
-      document.getElementById('frase').textContent = frases[fraseActual];
-    }, 7000);
-
   <section id="capsulas">
     <h2>🎬 Cápsulas Inacapinas</h2>
     <p>Historias, datos y mensajes breves para toda la comunidad</p>
@@ -277,5 +254,29 @@
     </div>
   </section>
 
+
+  <script>
+    function actualizarReloj() {
+      const ahora = new Date();
+      let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('reloj').textContent = hora;
+    }
+    setInterval(actualizarReloj, 1000);
+
+    const frases = [
+      "La educación es el pasaporte al futuro.",
+      "Cada paso cuenta, sigue avanzando.",
+      "El conocimiento es poder.",
+      "Nunca dejes de aprender.",
+      "Tu esfuerzo de hoy es tu éxito de mañana.",
+      "La actitud es tan importante como la habilidad."
+    ];
+    let fraseActual = 0;
+    setInterval(() => {
+      fraseActual = (fraseActual + 1) % frases.length;
+      document.getElementById('frase').textContent = frases[fraseActual];
+    }, 7000);
+
+  
 </body>
 </html>
