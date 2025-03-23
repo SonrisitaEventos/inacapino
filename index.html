@@ -82,31 +82,30 @@
     }
     section { margin-top: 40px; }
     h2 { margin-bottom: 10px; font-size: 20px; }
-    .capsulas .capsula {
-      display: inline-block;
-      width: 200px;
-      margin: 10px;
-      background: #222;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
-      transition: transform 0.3s;
-    }
-    .capsulas .capsula:hover {
-      transform: scale(1.05);
-    }
-    .capsulas iframe {
+    .carrusel, .capsulas, .postales { padding: 10px; }
+    .encuesta iframe {
       width: 100%;
-      height: 355px;
+      max-width: 640px;
+      height: 600px;
       border: none;
     }
-    .capsulas .titulo {
-      padding: 10px;
-      font-weight: bold;
-      background-color: #111;
+    .concurso-card {
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      margin: 10px auto;
+      max-width: 600px;
+      padding: 15px;
+      border-left: 5px solid #d40000;
+      border-radius: 5px;
+      text-align: left;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #aaa;
     }
     @media screen and (max-width: 600px) {
-      .capsulas iframe { height: 240px; }
+      .encuesta iframe { height: 800px; }
     }
   </style>
 </head>
@@ -141,20 +140,25 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
 
-  <section class="capsulas" id="capsulas">
-    <h2>📺 Cápsulas Inacapinas</h2>
-    <p>Videos cortos con historias, datos y mensajes importantes</p>
-    <div class="capsula">
-      <iframe src="https://www.youtube.com/embed/vTzQPA5vL4g" allowfullscreen></iframe>
-      <div class="titulo">Cápsula 1</div>
+  <section id="encuesta">
+    <h2>🗳️ ¡Queremos escucharte!</h2>
+    <p>Responde esta breve encuesta y ayúdanos a mejorar tu experiencia en la radio.</p>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-QyBP3NOBXk_ANgyLomcoVYtg52uEQcztvn4Pn9brdFr0bw/viewform?embedded=true">Cargando…</iframe>
+  </section>
+
+  <section id="concursos">
+    <h2>🎉 Participa en nuestros Concursos</h2>
+    <div class="concurso-card">
+      <strong>🔥 Concurso en vivo:</strong> Durante la transmisión de este viernes, responde en el chat de Twitch la pregunta sorpresa y gana un delicioso <strong>completo o salchipapa</strong> en el Casino INACAP Puerto Montt. ¡Solo para los más rápidos!
     </div>
-    <div class="capsula">
-      <iframe src="https://www.youtube.com/embed/JxjTKUeNSmE" allowfullscreen></iframe>
-      <div class="titulo">Cápsula 2</div>
+    <div class="concurso-card">
+      <strong>🕵️‍♂️ Búsqueda del Tesoro:</strong> ¡Revisa nuestras redes! Cada semana escondemos una pista secreta para que descubras la palabra mágica. Si la dices en vivo, ¡te llevas premio doble!
     </div>
-    <div class="capsula">
-      <iframe src="https://www.youtube.com/embed/ZB5l6_KoB9g" allowfullscreen></iframe>
-      <div class="titulo">Cápsula 3</div>
+    <div class="concurso-card">
+      <strong>🌟 Fans N° 1:</strong> ¿Comentas, compartes y reaccionas todo lo que hacemos? Cada mes elegimos al fan más activo de nuestras redes y lo premiamos con sorpresas exclusivas.
+    </div>
+    <div class="concurso-card">
+      <strong>📢 ¡Cambia el nombre de la radio!</strong> Participa con tu propuesta para renombrar “El Inacapino Puerto Montt”. ¿Se te ocurre algo épico? ¡Podría quedar en la historia!
     </div>
   </section>
 
