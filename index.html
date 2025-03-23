@@ -26,227 +26,114 @@
       opacity: 0.25;
       filter: brightness(0.8) blur(1px);
     }
-    .logo {
-      max-width: 180px;
-      margin: 20px auto 10px;
-      display: block;
-    }
-    .titulo {
-      font-size: 30px;
-      font-weight: bold;
-      text-shadow: 1px 1px 2px #000;
-    }
-    .frase {
-      font-style: italic;
-      font-size: 16px;
-      color: #ccc;
-      margin: 10px 0 30px;
-    }
-    .botones {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 40px;
-    }
-    .botones a {
-      background-color: #d40000cc;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: background 0.3s;
-    }
-    .botones a:hover {
-      background-color: #a50000;
-    }
-    .botones i {
-      font-size: 20px;
-    }
-    iframe {
-      width: 100%;
-      max-width: 720px;
-      height: 405px;
-      border: none;
-      margin: 0 auto 40px;
-      display: block;
-    }
-    .carrusel {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 20px;
-      padding: 20px 10px;
-      justify-content: flex-start;
-    }
-    .video-card {
-      flex: 0 0 auto;
-      scroll-snap-align: start;
-      width: 320px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-      background-color: #111;
-      text-decoration: none;
-      color: #fff;
-      transition: transform 0.3s ease;
-    }
-    .video-card:hover {
-      transform: scale(1.05);
-    }
-    .thumb-container {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px 10px 0 0;
-    }
-    .thumb-container img {
-      width: 100%;
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-    .thumb-container:hover img {
-      transform: scale(1.05);
-      filter: brightness(1.1);
-    }
-    .play-icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 36px;
-      color: white;
-      text-shadow: 0 0 10px #000;
-    }
-    .video-title {
-      background-color: #222;
+    .top-bar {
+      background: rgba(0,0,0,0.6);
       padding: 10px;
-      font-weight: bold;
-      text-align: center;
-    }
-    .encuesta, .concursos {
-      margin-top: 60px;
-      padding: 0 20px;
-    }
-    .encuesta h2, .concursos h2 {
-      color: #fff;
-      margin-bottom: 10px;
-    }
-    .encuesta p {
-      color: #ccc;
-      margin-bottom: 20px;
-    }
-    .concurso-card {
-      background-color: rgba(255,255,255,0.1);
-      border-left: 5px solid #d40000;
-      padding: 15px;
-      margin: 10px auto;
-      width: 90%;
-      max-width: 600px;
-      border-radius: 8px;
-      text-align: left;
-      color: #fff;
-    }
-    .concurso-card strong { color: #ff9999; }
-    .postales {
-      margin-top: 60px;
-      padding: 20px;
-    }
-    .gallery-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-    .gallery-item img {
-      width: 200px;
-      border-radius: 8px;
-      transition: transform 0.3s;
-      cursor: pointer;
-    }
-    .gallery-item img:hover {
-      transform: scale(1.05);
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.95);
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
+      flex-wrap: wrap;
     }
-    .modal-content {
-      margin: auto;
-      display: block;
-      max-width: 90%;
-      max-height: 80%;
-      border-radius: 10px;
-    }
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 35px;
+    .menu-toggle {
+      font-size: 26px;
+      cursor: pointer;
       color: #fff;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
     }
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      padding: 16px;
-      margin-top: -22px;
+    nav {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(0,0,0,0.9);
+      padding: 10px 0;
+    }
+    nav a {
       color: white;
-      font-weight: bold;
-      font-size: 30px;
-      user-select: none;
+      text-decoration: none;
+      margin: 10px;
+      font-size: 16px;
     }
-    .prev { left: 0; }
-    .next { right: 0; }
+    nav a:hover {
+      color: #d40000;
+    }
+    .clock-weather {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      font-size: 14px;
+    }
+    .live-indicator {
+      background: red;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: bold;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    @media (min-width: 768px) {
+      nav {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
   <video class="bg-video" autoplay loop muted playsinline>
     <source src="https://res.cloudinary.com/duis1z4tc/video/upload/v1742664647/fondo_para_radio_online_ocxsge.mp4" type="video/mp4">
   </video>
+
+  <div class="top-bar">
+    <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="clock-weather">
+      <span id="clock"></span>
+      <span id="weather"></span>
+      <span class="live-indicator">EN VIVO</span>
+    </div>
+  </div>
+  <nav id="navMenu">
+    <a href="#">Inicio</a>
+    <a href="#rebobinando">Rebobinando</a>
+    <a href="#capsulas">Cápsulas</a>
+    <a href="#encuesta">Encuesta</a>
+    <a href="#concursos">Concursos</a>
+    <a href="#postales">Postales</a>
+  </nav>
+
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1 class="titulo">El Inacapino Puerto Montt</h1>
   <div class="frase" id="fraseRotativa">Aprender es crecer, crecer es transformar.</div>
 
-  <!-- Twitch + Botones + Secciones previas aquí... -->
-
-  <section class="postales">
-    <h2>📷 Postales Inacapinas</h2>
-    <h3 style="color: #ccc">¡Momentos que nos conectan y nos inspiran!</h3>
-    <div class="gallery-container">
-      <div class="gallery-item"><img src="imagenes/postales_1.jpg" onclick="openModal(0)"></div>
-      <div class="gallery-item"><img src="imagenes/postales_2.jpg" onclick="openModal(1)"></div>
-      <div class="gallery-item"><img src="imagenes/postales_3.jpg" onclick="openModal(2)"></div>
-      <div class="gallery-item"><img src="imagenes/postales_4.jpg" onclick="openModal(3)"></div>
-      <div class="gallery-item"><img src="imagenes/postales_5.jpg" onclick="openModal(4)"></div>
-      <div class="gallery-item"><img src="imagenes/postales_6.jpg" onclick="openModal(5)"></div>
-      <div class="gallery-item"><img src="imagenes/postales_7.jpg" onclick="openModal(6)"></div>
-      <div class="gallery-item"><img src="imagenes/postales_8.jpg" onclick="openModal(7)"></div>
-      <div class="gallery-item"><img src="imagenes/postales_9.jpg" onclick="openModal(8)"></div>
-      <div class="gallery-item"><img src="imagenes/postales_10.jpg" onclick="openModal(9)"></div>
-    </div>
-  </section>
-
-  <div class="modal" id="imgModal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImg">
-    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
-    <a class="next" onclick="changeImage(1)">&#10095;</a>
-  </div>
-
   <script>
+    function toggleMenu() {
+      const menu = document.getElementById("navMenu");
+      if (menu.style.display === "flex") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "flex";
+      }
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString();
+      document.getElementById("clock").textContent = time;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=-41.4717&longitude=-72.9369&current_weather=true")
+      .then(res => res.json())
+      .then(data => {
+        const temp = data.current_weather.temperature;
+        const weatherIcon = data.current_weather.weathercode;
+        document.getElementById("weather").innerHTML = `${temp}°C <i class='fas fa-cloud'></i>`;
+      });
+
     const frases = [
       "Aprender es crecer, crecer es transformar.",
       "La educación es el pasaporte al futuro.",
@@ -259,21 +146,6 @@
       index = (index + 1) % frases.length;
       document.getElementById("fraseRotativa").textContent = frases[index];
     }, 5000);
-
-    const images = ['postales_1.jpg','postales_2.jpg','postales_3.jpg','postales_4.jpg','postales_5.jpg','postales_6.jpg','postales_7.jpg','postales_8.jpg','postales_9.jpg','postales_10.jpg'];
-    let currentImage = 0;
-    function openModal(i) {
-      currentImage = i;
-      document.getElementById("imgModal").style.display = "flex";
-      document.getElementById("modalImg").src = "imagenes/" + images[currentImage];
-    }
-    function closeModal() {
-      document.getElementById("imgModal").style.display = "none";
-    }
-    function changeImage(step) {
-      currentImage = (currentImage + step + images.length) % images.length;
-      document.getElementById("modalImg").src = "imagenes/" + images[currentImage];
-    }
   </script>
 </body>
 </html>
