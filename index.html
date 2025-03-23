@@ -82,22 +82,30 @@
     }
     section { margin-top: 40px; }
     h2 { margin-bottom: 10px; font-size: 20px; }
-    .carrusel, .capsulas, .postales { padding: 10px; }
-    .encuesta iframe {
-      width: 100%;
-      max-width: 640px;
-      height: 600px;
-      border: none;
+    .carrusel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 10px;
     }
-    .concurso-card {
-      background: rgba(255, 255, 255, 0.9);
-      color: black;
-      margin: 10px auto;
-      max-width: 600px;
-      padding: 15px;
-      border-left: 5px solid #d40000;
-      border-radius: 5px;
-      text-align: left;
+    .video-card {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      width: 300px;
+      border-radius: 10px;
+      background: #111;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    }
+    .video-card iframe {
+      width: 100%;
+      height: 170px;
+      border-radius: 10px 10px 0 0;
+    }
+    .video-title {
+      padding: 10px;
+      font-weight: bold;
+      font-size: 14px;
     }
     .footer {
       margin-top: 40px;
@@ -140,7 +148,24 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
 
-  <!-- A partir de aquí seguirán las secciones de carruseles, encuesta, concursos, postales -->
+  <section id="capsulas">
+    <h2>📺 Cápsulas Estilo Shorts</h2>
+    <p>Videos breves con historias, mensajes o datos relevantes para la comunidad Inacapina.</p>
+    <div class="carrusel">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/vTzQPA5vL4g" allowfullscreen></iframe>
+        <div class="video-title">Cápsula 1: Bienvenida a INACAP</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/JxjTKUeNSmE" allowfullscreen></iframe>
+        <div class="video-title">Cápsula 2: Tips para nuevos estudiantes</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/ZB5l6_KoB9g" allowfullscreen></iframe>
+        <div class="video-title">Cápsula 3: Actividades estudiantiles</div>
+      </div>
+    </div>
+  </section>
 
   <script>
     function actualizarReloj() {
