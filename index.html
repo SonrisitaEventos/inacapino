@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>El Inacapino Puerto Montt</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -82,7 +82,6 @@
     }
     section { margin-top: 40px; }
     h2 { margin-bottom: 10px; font-size: 20px; }
-    .carrusel, .capsulas, .postales, .noticias { padding: 10px; }
     .encuesta iframe {
       width: 100%;
       max-width: 640px;
@@ -99,34 +98,13 @@
       border-radius: 5px;
       text-align: left;
     }
-    .galeria, .noticias {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #aaa;
     }
-    .gallery-item, .news-card {
-      flex: 0 1 calc(100% - 30px);
-      max-width: 300px;
-      background-color: #222;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .gallery-item img, .news-card img {
-      width: 100%;
-      height: auto;
-    }
-    .news-content {
-      padding: 10px;
-    }
-    .news-title {
-      font-weight: bold;
-      font-size: 14px;
-    }
-    @media (min-width: 600px) {
-      .gallery-item, .news-card {
-        flex: 0 1 calc(33% - 30px);
-      }
+    @media screen and (max-width: 600px) {
+      .encuesta iframe { height: 800px; }
     }
   </style>
 </head>
@@ -139,18 +117,17 @@
       <a href="#encuesta">Encuesta</a>
       <a href="#concursos">Concursos</a>
       <a href="#postales">Postales</a>
-      <a href="#noticias">Noticias</a>
     </nav>
     <div class="top-info">
       <span id="reloj">00:00</span>
-      <span>🌤️ 11°C</span>
+      <span id="clima">🌤️ 11°C</span>
       <span class="live-indicator">EN VIVO</span>
     </div>
   </header>
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1>El Inacapino Puerto Montt</h1>
-  <p class="frase-motivacional" id="frase">El conocimiento es poder.</p>
+  <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
 
   <iframe class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
 
@@ -162,35 +139,7 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
 
-  <section id="noticias">
-    <h2>📰 Noticias y Destacados</h2>
-    <div class="noticias">
-      <div class="news-card">
-        <img src="https://carolina.cl/wp-content/uploads/2023/10/noticia1.jpg" alt="Noticia 1">
-        <div class="news-content">
-          <div class="news-title">EMPRESA SAUDITA ADQUIERE POKÉMON GO POR MÁS DE 3 MIL MILLONES DE DÓLARES</div>
-        </div>
-      </div>
-      <div class="news-card">
-        <img src="https://carolina.cl/wp-content/uploads/2023/10/noticia2.jpg" alt="Noticia 2">
-        <div class="news-content">
-          <div class="news-title">FALLECE DAVID STEVEN COHEN, GUIONISTA PRINCIPAL DE “CORAJE, EL PERRO COBARDE”</div>
-        </div>
-      </div>
-      <div class="news-card">
-        <img src="https://carolina.cl/wp-content/uploads/2023/10/noticia3.jpg" alt="Noticia 3">
-        <div class="news-content">
-          <div class="news-title">PESCADOR PERUANO SOBREVIVE 95 DÍAS EN ALTA MAR ALIMENTÁNDOSE DE ANIMALES SILVESTRES</div>
-        </div>
-      </div>
-      <div class="news-card">
-        <img src="https://carolina.cl/wp-content/uploads/2023/10/noticia4.jpg" alt="Noticia 4">
-        <div class="news-content">
-          <div class="news-title">CARABINERO LE TIRÓ SPRAY A UN PERRO POR LADRARLE</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
 
   <script>
     function actualizarReloj() {
@@ -206,11 +155,7 @@
       "El conocimiento es poder.",
       "Nunca dejes de aprender.",
       "Tu esfuerzo de hoy es tu éxito de mañana.",
-      "La actitud es tan importante como la habilidad.",
-      "Cree en ti mismo y todo será posible.",
-      "Tu potencial es infinito, no te limites.",
-      "El éxito comienza con la voluntad de intentarlo.",
-      "El futuro pertenece a quienes creen en la belleza de sus sueños."
+      "La actitud es tan importante como la habilidad."
     ];
     let fraseActual = 0;
     setInterval(() => {
