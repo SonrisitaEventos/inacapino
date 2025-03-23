@@ -22,17 +22,6 @@
       background-color: #111;
       flex-wrap: wrap;
     }
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .menu-toggle span {
-      background: white;
-      height: 3px;
-      width: 25px;
-      margin: 4px 0;
-    }
     nav {
       display: flex;
       gap: 15px;
@@ -63,6 +52,14 @@
     }
     h1 { font-size: 24px; margin-bottom: 5px; }
     .frase-motivacional { font-style: italic; font-size: 14px; margin-bottom: 20px; }
+    iframe.twitch {
+      width: 100%;
+      max-width: 720px;
+      height: 405px;
+      border: none;
+      margin: 0 auto 30px;
+      display: block;
+    }
     .botones {
       display: flex;
       flex-wrap: wrap;
@@ -85,36 +82,36 @@
     }
     section { margin-top: 40px; }
     h2 { margin-bottom: 10px; font-size: 20px; }
+    .carrusel, .capsulas, .postales { padding: 10px; }
+    .encuesta iframe {
+      width: 100%;
+      max-width: 640px;
+      height: 600px;
+      border: none;
+    }
+    .concurso-card {
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      margin: 10px auto;
+      max-width: 600px;
+      padding: 15px;
+      border-left: 5px solid #d40000;
+      border-radius: 5px;
+      text-align: left;
+    }
     .footer {
       margin-top: 40px;
       font-size: 12px;
       color: #aaa;
     }
-    @media screen and (max-width: 768px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #222;
-        padding: 10px;
-      }
-      nav.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: flex;
-      }
+    @media screen and (max-width: 600px) {
+      .encuesta iframe { height: 800px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <nav id="mainMenu">
+    <nav>
       <a href="#">Inicio</a>
       <a href="#rebobinando">Rebobinando</a>
       <a href="#capsulas">Cápsulas</a>
@@ -124,7 +121,7 @@
     </nav>
     <div class="top-info">
       <span id="reloj">00:00</span>
-      <span>🌤️ 11°C</span>
+      <span id="clima">🌤️ 11°C</span>
       <span class="live-indicator">EN VIVO</span>
     </div>
   </header>
@@ -133,12 +130,19 @@
   <h1>El Inacapino Puerto Montt</h1>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("mainMenu");
-      menu.classList.toggle("active");
-    }
+  <iframe class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
 
+  <div class="botones">
+    <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="https://www.facebook.com/RyCSolucionesPV" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+    <a href="https://www.instagram.com/cristian_riffo_araya/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://www.twitch.tv/xtian_alejandro" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
+    <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+  </div>
+
+  <!-- A partir de aquí seguirán las secciones de carruseles, encuesta, concursos, postales -->
+
+  <script>
     function actualizarReloj() {
       const ahora = new Date();
       let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
