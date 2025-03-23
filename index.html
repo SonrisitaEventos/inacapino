@@ -6,17 +6,13 @@
   <title>El Inacapino Puerto Montt</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html {
-      height: 100%;
+    html, body {
       font-family: Arial, sans-serif;
       overflow-x: hidden;
-    }
-    body {
       color: #fff;
-      position: relative;
-      text-align: center;
-      padding: 20px;
+      background: #000;
     }
+
     video.bg-video {
       position: fixed;
       top: 0;
@@ -28,91 +24,65 @@
       opacity: 0.25;
       filter: brightness(0.8) blur(1px);
     }
-    .logo { max-width: 200px; margin: 20px auto; }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      z-index: 1000;
+    }
+
+    .logo-header {
+      max-height: 60px;
+    }
+
+    .live-indicator {
+      background-color: #d40000;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 14px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .clock {
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .container {
+      padding-top: 100px;
+      text-align: center;
+    }
+
     .titulo {
       color: #fff;
       font-size: 28px;
-      margin-bottom: 20px;
+      margin: 20px 0 10px;
       text-shadow: 1px 1px 2px #000;
     }
+
     iframe {
       width: 100%;
       max-width: 720px;
       height: 405px;
       border: none;
-      margin-bottom: 30px;
+      margin: 20px auto;
+      display: block;
     }
-    .botones {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 40px;
-    }
-    .botones a {
-      text-decoration: none;
-      color: white;
-      background-color: #d40000cc;
-      padding: 10px 15px;
-      border-radius: 10px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 180px;
-      justify-content: center;
-      transition: background-color 0.3s;
-    }
-    .botones a:hover { background-color: #a50000; }
-    .botones img { width: 20px; height: 20px; }
-    section { margin-top: 60px; }
-    h2 {
-      color: #fff;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 2px #000;
-    }
-    .carrusel {
-      display: flex;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
-      scroll-snap-type: x mandatory;
-      gap: 20px;
-      padding: 10px 0 30px 10px;
-      justify-content: flex-start;
-    }
-    .video-card {
-      flex: 0 0 auto;
-      scroll-snap-align: start;
-      width: 320px;
-      margin-right: 10px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-      background-color: #fff;
-    }
-    .video-card iframe {
-      width: 100%;
-      height: 180px;
-      border-radius: 10px 10px 0 0;
-    }
-    .video-title {
-      background-color: #f5f5f5;
-      padding: 10px;
-      font-weight: bold;
-      color: #000;
-    }
-    .concurso-card {
-      background-color: rgba(255,255,255,0.8);
-      color: #000;
-      border-left: 5px solid #d40000;
-      padding: 15px;
-      margin: 10px auto;
-      width: 90%;
-      max-width: 600px;
-      border-radius: 8px;
-      text-align: left;
-    }
-    .concurso-card strong { color: #d40000; }
   </style>
 </head>
 <body>
@@ -122,11 +92,29 @@
     Tu navegador no soporta video en segundo plano.
   </video>
 
-  <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
-  <h1 class="titulo">El Inacapino Puerto Montt</h1>
-  <h2>🎥 ¡Estamos transmitiendo en vivo desde Twitch!</h2>
+  <header>
+    <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo-header">
+    <div class="live-indicator">🔴 EN VIVO</div>
+    <div class="clock" id="clock">00:00:00</div>
+  </header>
 
-  <iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
+  <div class="container">
+    <h1 class="titulo">El Inacapino Puerto Montt</h1>
+    <h2>🎥 ¡Estamos transmitiendo en vivo desde Twitch!</h2>
+    <iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
 
   <div class="botones">
     <a href="https://wa.me/+56956596228" target="_blank"><img src="https://img.icons8.com/color/48/000000/whatsapp.png"/> WhatsApp</a>
