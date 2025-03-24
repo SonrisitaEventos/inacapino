@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muro de los Buenos Deseos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #2e2e2e, #121212);
+      color: white;
+      margin: 0;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    h1 {
+      text-align: center;
+      font-size: 3em;
+      margin-bottom: 5px;
+      color: #ffd700;
+    }
+    h2 {
+      text-align: center;
+      font-weight: normal;
+      font-style: italic;
+      color: #aaa;
+      margin-bottom: 40px;
+    }
+    .formulario {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .formulario input,
+    .formulario textarea,
+    .formulario select,
+    .formulario button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: none;
+    }
+    .formulario input,
+    .formulario textarea {
+      width: 300px;
+    }
+    .formulario button {
+      background-color: #00c853;
+      color: white;
+      cursor: pointer;
+    }
+    .muro {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .tarjeta {
+      padding: 10px;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+      position: relative;
+      transform: rotate(var(--rotation));
+    }
+    .tarjeta p {
+      margin: 5px 0;
+      font-size: 0.95em;
+    }
+    .tarjeta .fecha {
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+      font-size: 0.75em;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <h1>Muro de los Buenos Deseos</h1>
+  <h2>"INACAP haciendo comunidad"</h2>
+
+  <div class="formulario">
+    <input type="text" id="nombre" placeholder="Tu nombre" required>
+    <textarea id="mensaje" placeholder="Tu mensaje..." rows="4" required></textarea>
+    <select id="color">
+      <option value="#f8bbd0">Rosa</option>
+      <option value="#ffecb3">Amarillo</option>
+      <option value="#b2dfdb">Aqua</option>
+      <option value="#c5cae9">Lavanda</option>
+      <option value="#dcedc8">Verde claro</option>
+    </select>
+    <button onclick="agregarDeseo()">Enviar Mensaje</button>
+  </div>
+
+  <div class="muro" id="muro"></div>
+
+  <script>
+    function agregarDeseo() {
+      const nombre = document.getElementById('nombre').value;
+      const mensaje = document.getElementById('mensaje').value;
+      const color = document.getElementById('color').value;
+      const fecha = new Date().toLocaleDateString();
+      const rotacion = (Math.random() * 10 - 5).toFixed(2) + 'deg';
+
+      if (nombre && mensaje) {
+        const tarjeta = document.createElement('div');
+        tarjeta.className = 'tarjeta';
+        tarjeta.style.backgroundColor = color;
+        tarjeta.style.setProperty('--rotation', rotacion);
+        tarjeta.innerHTML = `
+          <p><strong>${nombre}</strong></p>
+          <p>${mensaje}</p>
+          <p class="fecha">${fecha}</p>
+        `;
+        document.getElementById('muro').appendChild(tarjeta);
+
+        // Limpiar campos
+        document.getElementById('nombre').value = '';
+        document.getElementById('mensaje').value = '';
+      }
+    }
+  </script>
+</body>
+</html>
 
