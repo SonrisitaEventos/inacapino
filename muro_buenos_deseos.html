@@ -131,8 +131,7 @@
 
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbxANMU3BFjgXmS3z18VIocmhiKTwsKvVX-DE-2NzgxCEZsS8DDGXbIk5OqMBGQHWLne/exec";
-
-    function actualizarReloj() {
+      function actualizarReloj() {
       const ahora = new Date();
       let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
       document.getElementById('reloj').textContent = hora;
