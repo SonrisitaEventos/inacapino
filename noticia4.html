@@ -1,34 +1,89 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Noticia 4 - Spray a perro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f9f9f9; color: #333; }
-    .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #6e2cf1; padding-bottom: 10px; margin-bottom: 20px; }
-    .header .fecha { font-size: 0.9em; color: #555; }
-    .img-portada, video { width: 100%; max-width: 800px; margin: 0 auto 20px; display: block; border-radius: 8px; }
-    .contenido { max-width: 800px; margin: auto; }
-    .compartir { margin-top: 10px; }
-    .compartir a { margin-right: 10px; text-decoration: none; font-weight: bold; color: #6e2cf1; }
-    h1 { color: #6e2cf1; }
-    p { line-height: 1.6; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #111;
+      color: #333;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #6e2cf1;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .header .fecha {
+      font-size: 0.9em;
+      color: #555;
+    }
+    .img-portada {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      display: block;
+      border-radius: 8px;
+    }
+    .contenido {
+      max-width: 800px;
+      margin: auto;
+    }
+    .contenido strong {
+      color: #00d4ff;
+    }
+    .compartir {
+      margin-top: 10px;
+    }
+    .compartir a {
+      margin-right: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #6e2cf1;
+    }
+    h1 {
+      color: #ffffff;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #ffffff;
+    }
+    .fecha-redes {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .redes a {
+      color: white;
+      margin-right: 15px;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
   <div class="contenido">
+    <h1>Carabinero le tiró spray a un perro por ladrarle</h1>
     <img src="imagenes/noticia_4_0.jpg" alt="Carabinero y perro" class="img-portada">
     <div class="header">
-      <div class="compartir">
-        <a href="#">📘 Facebook</a>
-        <a href="index.html">❌ Cerrar</a>
+      <div class="redes">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/noticia2.html" target="_blank"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://twitter.com/intent/tweet?url=https://sonrisitaeventos.github.io/inacapino/noticia2.html&text=Mira esta noticia sobre Coraje, el perro cobarde!" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://api.whatsapp.com/send?text=Mira esta noticia: https://sonrisitaeventos.github.io/inacapino/noticia2.html" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://sonrisitaeventos.github.io/inacapino/#noticias">❌</a>
       </div>
-      <div class="fecha">22 de Marzo de 2025</div>
-    </div>
-    <h1>Carabinero le tiró spray a un perro por ladrarle</h1>
-    <p>Una situación registrada en video ha generado controversia en redes sociales, donde se observa a un carabinero rociando spray a un perro callejero por ladrarle.</p>
+      <div class="fecha">📅 22 de Marzo de 2025</div>
+    </div> 
+    <p>Una situación registrada en video ha generado controversia en redes sociales, donde se observa a <strong>un carabinero rociando spray a un perro callejero</strong> por ladrarle.</p>
     <video controls src="imagenes/noticia_4_1.mp4"></video>
     <p>La institución informó que está revisando el procedimiento y recalcó la importancia del buen trato animal, comprometiéndose a investigar los hechos a fondo.</p>
   </div>
