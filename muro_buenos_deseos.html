@@ -2,17 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Muro de los Buenos Deseos</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
+      background-color: #111;
+      color: white;
+      padding: 20px;
       text-align: center;
-      padding: 10px;
     }
     header {
       display: flex;
@@ -22,22 +21,16 @@
       background-color: #111;
       flex-wrap: wrap;
     }
-    nav {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
     nav a {
       color: white;
+      margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 14px;
     }
     .top-info {
       display: flex;
-      gap: 10px;
       align-items: center;
-      font-size: 14px;
+      gap: 10px;
     }
     .live-indicator {
       background-color: red;
@@ -50,123 +43,96 @@
       max-width: 150px;
       margin: 20px auto;
     }
-    h1 { font-size: 24px; margin-bottom: 5px; }
-    .frase-motivacional { font-style: italic; font-size: 14px; margin-bottom: 20px; }
-    iframe.twitch {
-      width: 100%;
-      max-width: 720px;
-      height: 405px;
-      border: none;
-      margin: 0 auto 30px;
-      display: block;
+    h1 {
+      font-size: 26px;
+      margin: 20px 0 5px;
     }
-    .botones {
+    .frase {
+      font-style: italic;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+    .formulario {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-inline: auto;
+    }
+    .formulario input, .formulario textarea, .formulario select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+    }
+    .formulario button {
+      background-color: #00d4ff;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .muro {
       display: flex;
       flex-wrap: wrap;
+      gap: 10px;
       justify-content: center;
-      gap: 15px;
-      margin: 30px 0;
     }
-    .botones a {
-      text-decoration: none;
-      color: white;
-      background-color: #d40000;
-      padding: 10px 15px;
+    .mensaje {
+      padding: 10px;
       border-radius: 10px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 120px;
-      justify-content: center;
-    }
-    section { margin-top: 40px; }
-    h2 { margin-bottom: 10px; font-size: 20px; }
-    .carrusel, .capsulas, .postales { padding: 10px; }
-    .encuesta iframe {
-      width: 100%;
-      max-width: 640px;
-      height: 600px;
-      border: none;
-    }
-    .concurso-card {
-      background: rgba(255, 255, 255, 0.9);
+      width: 180px;
       color: black;
-      margin: 10px auto;
-      max-width: 600px;
-      padding: 15px;
-      border-left: 5px solid #d40000;
-      border-radius: 5px;
-      text-align: left;
-    }
-    .footer {
-      margin-top: 40px;
-      font-size: 12px;
-      color: #aaa;
-    }
-    @media screen and (max-width: 600px) {
-      .encuesta iframe { height: 800px; }
+      font-weight: bold;
+      box-shadow: 2px 2px 5px #000;
     }
   </style>
 </head>
 <body>
   <header>
     <nav>
-      <a href="#">Inicio</a>
-      <a href="#rebobinando">Rebobinando</a>
-      <a href="#capsulas">Cápsulas</a>
-      <a href="#encuesta">Encuesta</a>
-      <a href="#concursos">Concursos</a>
-      <a href="#postales">Postales</a>
-      <a href="#noticias">Noticias</a>
-      <a href="muro_buenos_deseos.html">Muro de Deseos</a>
+      <a href="index.html">Inicio</a>
+      <a href="index.html#rebobinando">Rebobinando</a>
+      <a href="index.html#capsulas">Cápsulas</a>
+      <a href="index.html#encuesta">Encuesta</a>
+      <a href="index.html#concursos">Concursos</a>
+      <a href="index.html#postales">Postales</a>
+      <a href="index.html#noticias">Noticias</a>
+      <a href="muro_buenos_deseos.html">Muro</a>
     </nav>
     <div class="top-info">
       <span id="reloj">00:00</span>
-      <span id="clima">🌤️ 11°C</span>
+      <span>🌤️ 11°C</span>
       <span class="live-indicator">EN VIVO</span>
     </div>
   </header>
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
-  <h1>El Inacapino Puerto Montt</h1>
-  <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p
   <h1>Muro de los Buenos Deseos</h1>
-  <p>INACAP haciendo comunidad ✨</p>
+  <p class="frase">INACAP haciendo comunidad 💬✨</p>
 
-  <form onsubmit="agregarDeseo(); return false;">
-    <input type="text" id="nombre" placeholder="Tu nombre" required><br>
-    <textarea id="mensaje" placeholder="Tu mensaje" required></textarea><br>
+  <div class="formulario">
+    <input type="text" id="nombre" placeholder="Tu nombre">
+    <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..."></textarea>
+    <input type="date" id="fecha">
     <select id="color">
-      <option value="#ffec99">Amarillo</option>
-      <option value="#ffc0cb">Rosado</option>
-      <option value="#add8e6">Celeste</option>
+      <option value="#ffd700">Amarillo</option>
       <option value="#90ee90">Verde</option>
-      <option value="#ffffff">Blanco</option>
-    </select><br>
-    <button type="submit">Enviar Deseo</button>
-  </form>
+      <option value="#ffcccb">Rosa</option>
+      <option value="#add8e6">Celeste</option>
+      <option value="#ffa500">Naranjo</option>
+    </select>
+    <button onclick="agregarMensaje()">Enviar</button>
+  </div>
 
-  <div class="wish-board" id="mural"></div>
+  <div class="muro" id="muro"></div>
 
   <script>
-    function agregarDeseo() {
-      const nombre = document.getElementById('nombre').value;
-      const mensaje = document.getElementById('mensaje').value;
-      const color = document.getElementById('color').value;
-      const fecha = new Date().toLocaleDateString();
-
-      const tarjeta = document.createElement('div');
-      tarjeta.className = 'wish';
-      tarjeta.style.backgroundColor = color;
-      tarjeta.innerHTML = `<strong>${nombre}</strong><br>${mensaje}<br><small>${fecha}</small>`;
-
-      document.getElementById('mural').appendChild(tarjeta);
-
-      // Limpiar
-      document.getElementById('nombre').value = '';
-      document.getElementById('mensaje').value = '';
-    }
     function actualizarReloj() {
       const ahora = new Date();
       let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -174,19 +140,26 @@
     }
     setInterval(actualizarReloj, 1000);
 
-    const frases = [
-      "La educación es el pasaporte al futuro.",
-      "Cada paso cuenta, sigue avanzando.",
-      "El conocimiento es poder.",
-      "Nunca dejes de aprender.",
-      "Tu esfuerzo de hoy es tu éxito de mañana.",
-      "La actitud es tan importante como la habilidad."
-    ];
-    let fraseActual = 0;
-    setInterval(() => {
-      fraseActual = (fraseActual + 1) % frases.length;
-      document.getElementById('frase').textContent = frases[fraseActual];
-    }, 7000);
+    function agregarMensaje() {
+      const nombre = document.getElementById("nombre").value;
+      const mensaje = document.getElementById("mensaje").value;
+      const fecha = document.getElementById("fecha").value;
+      const color = document.getElementById("color").value;
+
+      if (nombre && mensaje && fecha) {
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "mensaje";
+        tarjeta.style.backgroundColor = color;
+        tarjeta.innerHTML = `<strong>${nombre}</strong><br>${mensaje}<br><small>${fecha}</small>`;
+        document.getElementById("muro").appendChild(tarjeta);
+
+        document.getElementById("nombre").value = "";
+        document.getElementById("mensaje").value = "";
+        document.getElementById("fecha").value = "";
+      } else {
+        alert("Por favor completa todos los campos.");
+      }
+    }
   </script>
 </body>
 </html>
