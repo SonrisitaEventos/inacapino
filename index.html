@@ -269,6 +269,47 @@
     font-size: 13px;
     color: white;
   }
+.titulo {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .fecha-redes {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 2px solid #8000ff;
+      border-bottom: 2px solid #8000ff;
+      padding: 10px 0;
+      margin: 20px 0;
+    }
+    .redes a {
+      margin-right: 15px;
+      text-decoration: none;
+      font-size: 18px;
+      color: black;
+    }
+    .redes a:hover {
+      color: #8000ff;
+    }
+    .fecha {
+      font-size: 14px;
+      color: #555;
+    }
+    img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    p {
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+    strong {
+      font-weight: bold;
+    }
+
   </style>
 </head>
 <body>
@@ -457,8 +498,13 @@
   <p style="margin-bottom: 30px;">¡Entérate de lo último en nuestra sede, eventos y colaboraciones!</p>
   <div class="noticias-container">
     <div class="noticia-card">
-      <img src="https://cdn.carolina.cl/uploads/2024/03/pokemon-go.jpg" alt="Noticia 1">
-      <div class="noticia-info">
+      <a href="noticia1.html" target="_blank" class="noticia-card">
+  <img src="imagenes/pokemon.jpg" alt="Pokémon GO" class="noticia-img">
+  <div class="noticia-info">
+    <h3 class="noticia-titulo">Empresa Saudita adquiere Pokémon GO</h3>
+    <p class="noticia-resumen">Arabia Saudita adquiere Niantic por más de 3 mil millones de dólares.</p>
+  </div>
+</a>
         <h3>NOTICIAS</h3>
         <p>Empresa Saudita adquiere Pokémon Go por más de 3 mil millones de dólares</p>
       </div>
@@ -559,6 +605,19 @@ function changeImage(step) {
   }, 300);
 }
 </script>
+<div class="titulo">Empresa saudita adquiere Pokémon GO por más de 3 mil millones de dólares</div>
+  <img src="imagenes/pokemon.jpg" alt="Pokémon Go adquirido">
+  <div class="fecha-redes">
+    <div class="redes">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/noticia1.html" target="_blank">🔵 Facebook</a>
+      <a href="https://twitter.com/intent/tweet?text=Empresa+Saudita+adquiere+Pok%C3%A9mon+GO+por+m%C3%A1s+de+3+mil+millones+de+d%C3%B3lares&url=https://sonrisitaeventos.github.io/inacapino/noticia1.html" target="_blank">🐦 X (Twitter)</a>
+    </div>
+    <div class="fecha">📅 22 de Marzo de 2025</div>
+  </div>
+
+  <p>La empresa Scopely, vinculada al gobierno de Arabia Saudita, ha concretado la adquisición del desarrollador Niantic por más de 3 mil millones de dólares. <strong>Con esta transacción, la compañía saudita se hace con <em>Pokémon GO</em></strong>, junto a otros títulos de realidad aumentada como <em>Pikmin Bloom</em> y <em>Monster Hunter Now</em>, reforzando su presencia en la industria del gaming móvil.</p>
+
+  <p><strong>Como parte de este plan, el país ha destinado 38 mil millones de dólares para fortalecer el sector, alineándose con su iniciativa de diversificación económica hacia 2030.</strong></p>
 
 </body>
 </html>
