@@ -141,6 +141,21 @@
     }
     setInterval(actualizarReloj, 1000);
 
+    const frases = [
+      "🎉La educación es el pasaporte al futuro. ✨",
+      "🎉Cada paso cuenta, sigue avanzando.🌟",
+      "🎉El conocimiento es poder.🌟",
+      "✨Nunca dejes de aprender.",
+      "✨Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
+      "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
+      "🌟La actitud es tan importante como la habilidad.🎉"
+    ];
+    let fraseActual = 0;
+    setInterval(() => {
+      fraseActual = (fraseActual + 1) % frases.length;
+      document.getElementById('frase').textContent = frases[fraseActual];
+    }, 7000);
+
     function agregarMensaje() {
       const nombre = document.getElementById("nombre").value;
       const mensaje = document.getElementById("mensaje").value;
@@ -154,6 +169,17 @@
         tarjeta.innerHTML = `<strong>${nombre}</strong><br>${mensaje}<br><small>${fecha}</small>`;
         document.getElementById("muro").appendChild(tarjeta);
 
+        // Enviar a Google Sheets vía webhook
+        fetch("https://script.google.com/macros/s/AKfycbxANMU3BFjgXmS3z18VIocmhiKTwsKvVX-DE-2NzgxCEZsS8DDGXbIk5OqMBGQHWLne/exec
+", {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ nombre, mensaje, fecha, color })
+        });
+
         document.getElementById("nombre").value = "";
         document.getElementById("mensaje").value = "";
         document.getElementById("fecha").value = "";
@@ -161,28 +187,6 @@
         alert("Por favor completa todos los campos.");
       }
     }
-    function actualizarReloj() {
-      const ahora = new Date();
-      let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      document.getElementById('reloj').textContent = hora;
-    }
-    setInterval(actualizarReloj, 1000);
-
-    const frases = [
-      "🎉La educación es el pasaporte al futuro. ✨",
-      "🎉Cada paso cuenta, sigue avanzando.🌟",
-      "🎉El conocimiento es poder.🌟",
-      "✨Nunca dejes de aprender.",
-      "✨ Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
-      "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
-      "🌟La actitud es tan importante como la habilidad.🎉"
-    ];
-    let fraseActual = 0;
-    setInterval(() => {
-      fraseActual = (fraseActual + 1) % frases.length;
-      document.getElementById('frase').textContent = frases[fraseActual];
-    }, 7000);
-
   </script>
 </body>
 </html>
