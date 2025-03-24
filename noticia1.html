@@ -2,71 +2,91 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Empresa Saudita adquiere Pokémon GO</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
       margin: 0;
       padding: 20px;
-    }
-    .noticia {
-      max-width: 800px;
-      margin: auto;
       background-color: #111;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      color: #333;
     }
-    .noticia h1 {
-      color: #ffcc00;
-      margin-bottom: 10px;
-    }
-    .noticia p.fecha {
-      font-size: 0.9em;
-      color: #ccc;
-      margin-bottom: 20px;
-    }
-    .noticia p {
-      font-size: 1.1em;
-      line-height: 1.6;
-    }
-    .noticia b {
-      color: #ffffff;
-    }
-    .compartir {
+    .header {
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
+      align-items: center;
+      border-bottom: 2px solid #6e2cf1;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .header .fecha {
       font-size: 0.9em;
-      color: #aaa;
+      color: #555;
+    }
+    .img-portada {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      display: block;
+      border-radius: 8px;
+    }
+    .contenido {
+      max-width: 800px;
+      margin: auto;
+    }
+    .contenido strong {
+      color: #00d4ff;
+    }
+    .compartir {
+      margin-top: 10px;
+    }
+    .compartir a {
+      margin-right: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #6e2cf1;
+    }
+    h1 {
+      color: #ffffff;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #ffffff;
+    }
+    .fecha-redes {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 20px;
     }
     .redes a {
-      margin-right: 10px;
-      color: #ffcc00;
-      text-decoration: none;
+      color: white;
+      margin-right: 15px;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-  <div class="noticia">
+  <div class="contenido">
     <h1>Empresa Saudita adquiere Pokémon GO por más de 3 mil millones de dólares</h1>
-    <p class="fecha">📅 22 de Marzo de 2025</p>
-    <p><b>La empresa Scopely</b>, vinculada al gobierno de Arabia Saudita, ha concretado la adquisición del desarrollador <b>Niantic</b> por más de <b>3 mil millones de dólares</b>.</p>
-    <p>Con esta transacción, la compañía saudita se hace con <b>Pokémon GO</b>, junto a otros títulos de realidad aumentada como <b>Pikmin Bloom</b> y <b>Monster Hunter Now</b>, reforzando su presencia en la industria del gaming móvil.</p>
-    <p>Como parte de este plan, el país ha destinado <b>38 mil millones de dólares</b> para fortalecer el sector, alineándose con su iniciativa de <b>diversificación económica hacia 2030</b>.</p>
-    <div class="compartir">
+    <img src="imagenes/pokemon.jpg" alt="Pokémon Go adquirido" class="img-portada">
+     <div class="header">
       <div class="redes">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/noticia1.html" target="_blank">Compartir en Facebook</a>
-        <a href="https://twitter.com/intent/tweet?url=https://sonrisitaeventos.github.io/inacapino/noticia1.html" target="_blank">Compartir en X</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/noticia2.html" target="_blank"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://twitter.com/intent/tweet?url=https://sonrisitaeventos.github.io/inacapino/noticia2.html&text=Mira esta noticia sobre Coraje, el perro cobarde!" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://api.whatsapp.com/send?text=Mira esta noticia: https://sonrisitaeventos.github.io/inacapino/noticia2.html" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://sonrisitaeventos.github.io/inacapino/#noticias">❌</a>
       </div>
-      <div class="fecha-pub">
-        Publicado el 22/03/2025
-      </div>
+      <div class="fecha">📅 22 de Marzo de 2025</div>
     </div>
-  </div>
+    <p><strong>La empresa Scopely</strong>, vinculada al gobierno de Arabia Saudita, ha concretado la adquisición del desarrollador <strong>Niantic</strong> por más de <strong>3 mil millones de dólares</strong>.</p>
+    <p>Con esta transacción, la compañía saudita se hace con <strong>Pokémon GO</strong>, junto a otros títulos de realidad aumentada como <strong>Pikmin Bloom</strong> y <strong>Monster Hunter Now</strong>, reforzando su presencia en la industria del gaming móvil.</p>
+    <p>Como parte de este plan, el país ha destinado <strong>38 mil millones de dólares</strong> para fortalecer el sector, alineándose con su iniciativa de <strong>diversificación económica hacia 2030</strong>.</p>
+    </div>
 </body>
 </html>
 
