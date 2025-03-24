@@ -113,6 +113,7 @@
   </header>
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
+  <p class="frase-motivacional" id="frase">🌟La educación es el pasaporte al futuro.🌟</p>
   <h1>Muro de los Buenos Deseos</h1>
   <p class="frase">INACAP haciendo comunidad 💬✨</p>
 
@@ -160,6 +161,28 @@
         alert("Por favor completa todos los campos.");
       }
     }
+    function actualizarReloj() {
+      const ahora = new Date();
+      let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('reloj').textContent = hora;
+    }
+    setInterval(actualizarReloj, 1000);
+
+    const frases = [
+      "🎉La educación es el pasaporte al futuro. ✨",
+      "🎉Cada paso cuenta, sigue avanzando.🌟",
+      "🎉El conocimiento es poder.🌟",
+      "✨Nunca dejes de aprender.",
+      "✨ Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
+      "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
+      "🌟La actitud es tan importante como la habilidad.🎉"
+    ];
+    let fraseActual = 0;
+    setInterval(() => {
+      fraseActual = (fraseActual + 1) % frases.length;
+      document.getElementById('frase').textContent = frases[fraseActual];
+    }, 7000);
+
   </script>
 </body>
 </html>
