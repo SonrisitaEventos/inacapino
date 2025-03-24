@@ -108,6 +108,28 @@
     <p>Con esta transacción, la compañía saudita se hace con <strong>Pokémon GO</strong>, junto a otros títulos de realidad aumentada como <strong>Pikmin Bloom</strong> y <strong>Monster Hunter Now</strong>, reforzando su presencia en la industria del gaming móvil.</p>
     <p>Como parte de este plan, el país ha destinado <strong>38 mil millones de dólares</strong> para fortalecer el sector, alineándose con su iniciativa de <strong>diversificación económica hacia 2030</strong>.</p>
     </div>
+  <script>
+  function actualizarReloj() {
+    const ahora = new Date();
+    let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    document.getElementById('reloj').textContent = hora;
+  }
+  setInterval(actualizarReloj, 1000);
+
+  const frases = [
+    "La educación es el pasaporte al futuro.",
+    "Cada desafío es una oportunidad para crecer.",
+    "Cree en ti mismo y todo será posible.",
+    "Tu potencial es infinito, no te limites.",
+    "El futuro pertenece a quienes creen en la belleza de sus sueños."
+  ];
+  let fraseActual = 0;
+  setInterval(() => {
+    fraseActual = (fraseActual + 1) % frases.length;
+    document.getElementById('frase').textContent = frases[fraseActual];
+  }, 7000);
+</script>
+
 </body>
 </html>
 
