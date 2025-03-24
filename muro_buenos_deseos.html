@@ -180,18 +180,23 @@
       }
     }
 
-    function cargarMensajes() {
-      fetch(scriptURL)
-        .then(response => response.json())
-        .then(data => {
-          const muro = document.getElementById("muro");
-          muro.innerHTML = "";
-          data.forEach(msg => {
-            const tarjeta = document.createElement("div");
-            tarjeta.className = "mensaje";
-            tarjeta.style.backgroundColor = msg.color;
-            tarjeta.innerHTML = `<strong>${msg.nombre}</strong><br>${msg.mensaje}<br><small>${msg.fecha}</small>`;
-            muro.appendChild(tarjeta);
+    function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    
+    var nombre = e.parameter.nombre;
+    var mensaje = e.parameter.mensaje;
+    var fecha = e.parameter.fecha;
+    var color = e.parameter.color;
+
+    sheet.appendRow([nombre, mensaje, fecha, color]);
+
+    return ContentService.createTextOutput("Mensaje guardado");
+  } catch (error) {
+    return ContentService.createTextOutput("Error: " + error.message);
+  }
+}
+
           });
         });
     }
