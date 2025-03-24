@@ -231,7 +231,44 @@
 .modal.fade-in .modal-content {
   opacity: 1;
 }
-
+  .noticias-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+  }
+  .noticia-card {
+    background-color: #111;
+    border: 3px solid #7e2ce4;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 240px;
+    box-shadow: 0 0 10px rgba(126, 44, 228, 0.7);
+    transition: transform 0.3s ease;
+  }
+  .noticia-card:hover {
+    transform: scale(1.03);
+  }
+  .noticia-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  .noticia-info {
+    background: #000;
+    padding: 10px;
+    text-align: left;
+  }
+  .noticia-info h3 {
+    color: #a05bff;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .noticia-info p {
+    font-size: 13px;
+    color: white;
+  }
   </style>
 </head>
 <body>
@@ -414,7 +451,42 @@
     <a class="next" onclick="changeImage(1)">&#10095;</a>
   </div>
 </section>
-
+<!-- Sección Noticias y Destacados -->
+<section id="noticias" style="margin-top: 60px; text-align: center; color: white;">
+  <h2>📰 Noticias y Destacados</h2>
+  <p style="margin-bottom: 30px;">¡Entérate de lo último en nuestra sede, eventos y colaboraciones!</p>
+  <div class="noticias-container">
+    <div class="noticia-card">
+      <img src="https://cdn.carolina.cl/uploads/2024/03/pokemon-go.jpg" alt="Noticia 1">
+      <div class="noticia-info">
+        <h3>NOTICIAS</h3>
+        <p>Empresa Saudita adquiere Pokémon Go por más de 3 mil millones de dólares</p>
+      </div>
+    </div>
+    <div class="noticia-card">
+      <img src="https://cdn.carolina.cl/uploads/2024/03/coraje-el-perro-cobarde.jpg" alt="Noticia 2">
+      <div class="noticia-info">
+        <h3>NOTICIAS</h3>
+        <p>Fallece David Steven Cohen, guionista de "Coraje, el perro cobarde"</p>
+      </div>
+    </div>
+    <div class="noticia-card">
+      <img src="https://cdn.carolina.cl/uploads/2024/03/pescador-peruano.jpg" alt="Noticia 3">
+      <div class="noticia-info">
+        <h3>NOTICIAS</h3>
+        <p>Pescador peruano sobrevive 95 días en alta mar alimentándose de animales silvestres</p>
+      </div>
+    </div>
+    <div class="noticia-card">
+      <img src="https://cdn.carolina.cl/uploads/2024/03/carabineros-spray.jpg" alt="Noticia 4">
+      <div class="noticia-info">
+        <h3>NOTICIAS</h3>
+        <p>Carabinero le tiró spray a un perro por ladrarle</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Sección Noticias y Destacados -->
   <script>
     function actualizarReloj() {
       const ahora = new Date();
