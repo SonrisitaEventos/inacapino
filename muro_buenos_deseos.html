@@ -1,87 +1,177 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muro de los Buenos Deseos</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Inacapino Puerto Montt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #111;
-      color: white;
       font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
       text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2.5em;
-      color: #ffd700;
-    }
-    p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-      color: #ccc;
-    }
-    form {
-      margin-bottom: 40px;
-    }
-    input, textarea, select {
       padding: 10px;
-      margin: 5px;
-      font-size: 1em;
-      width: 250px;
     }
-    .wish-board {
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #111;
+      flex-wrap: wrap;
+    }
+    nav {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .top-info {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 14px;
+    }
+    .live-indicator {
+      background-color: red;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+    .logo {
+      max-width: 150px;
+      margin: 20px auto;
+    }
+    h1 { font-size: 24px; margin-bottom: 5px; }
+    .frase-motivacional { font-style: italic; font-size: 14px; margin-bottom: 20px; }
+    iframe.twitch {
+      width: 100%;
+      max-width: 720px;
+      height: 405px;
+      border: none;
+      margin: 0 auto 30px;
+      display: block;
+    }
+    .botones {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 15px;
+      margin: 30px 0;
+    }
+    .botones a {
+      text-decoration: none;
+      color: white;
+      background-color: #d40000;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 120px;
       justify-content: center;
     }
-    .wish {
-      width: 200px;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    section { margin-top: 40px; }
+    h2 { margin-bottom: 10px; font-size: 20px; }
+    .carrusel, .capsulas, .postales { padding: 10px; }
+    .encuesta iframe {
+      width: 100%;
+      max-width: 640px;
+      height: 600px;
+      border: none;
+    }
+    .concurso-card {
+      background: rgba(255, 255, 255, 0.9);
       color: black;
+      margin: 10px auto;
+      max-width: 600px;
+      padding: 15px;
+      border-left: 5px solid #d40000;
+      border-radius: 5px;
+      text-align: left;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #aaa;
+    }
+    @media screen and (max-width: 600px) {
+      .encuesta iframe { height: 800px; }
     }
   </style>
 </head>
 <body>
-  <h1>Muro de los Buenos Deseos</h1>
-  <p>INACAP haciendo comunidad ✨</p>
+  <header>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#rebobinando">Rebobinando</a>
+      <a href="#capsulas">Cápsulas</a>
+      <a href="#encuesta">Encuesta</a>
+      <a href="#concursos">Concursos</a>
+      <a href="#postales">Postales</a>
+      <a href="#noticias">Noticias</a>
+      <a href="muro_buenos_deseos.html">Muro de Deseos</a>
+    </nav>
+    <div class="top-info">
+      <span id="reloj">00:00</span>
+      <span id="clima">🌤️ 11°C</span>
+      <span class="live-indicator">EN VIVO</span>
+    </div>
+  </header>
 
-  <form onsubmit="agregarDeseo(); return false;">
-    <input type="text" id="nombre" placeholder="Tu nombre" required><br>
-    <textarea id="mensaje" placeholder="Tu mensaje" required></textarea><br>
-    <select id="color">
-      <option value="#ffec99">Amarillo</option>
-      <option value="#ffc0cb">Rosado</option>
-      <option value="#add8e6">Celeste</option>
-      <option value="#90ee90">Verde</option>
-      <option value="#ffffff">Blanco</option>
-    </select><br>
-    <button type="submit">Enviar Deseo</button>
-  </form>
+  <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
+  <h1>El Inacapino Puerto Montt</h1>
+  <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
 
-  <div class="wish-board" id="mural"></div>
+  <iframe class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
+
+  <div class="botones">
+    <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="https://www.facebook.com/RyCSolucionesPV" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+    <a href="https://www.instagram.com/cristian_riffo_araya/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://www.twitch.tv/xtian_alejandro" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
+    <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+  </div>
+
+  <!-- Sección Muro de Deseos -->
+  <section id="muro-deseos" style="margin-top: 40px;">
+    <h2>🌟 Muro de los Buenos Deseos</h2>
+    <p style="margin: 10px auto; max-width: 600px;">
+      Te invitamos a que puedas aportar tu mensaje de buenos deseos para los alumnos, docentes o personal de nuestra Sede Puerto Montt. Puedes hacerlo en el siguiente enlace:
+    </p>
+    <a href="muro_buenos_deseos.html" style="display:inline-block; margin-top: 15px; padding: 10px 20px; background-color: #d40000; color: white; border-radius: 10px; text-decoration: none; font-weight: bold;">Deja tu mensaje</a>
+  </section>
 
   <script>
-    function agregarDeseo() {
-      const nombre = document.getElementById('nombre').value;
-      const mensaje = document.getElementById('mensaje').value;
-      const color = document.getElementById('color').value;
-      const fecha = new Date().toLocaleDateString();
-
-      const tarjeta = document.createElement('div');
-      tarjeta.className = 'wish';
-      tarjeta.style.backgroundColor = color;
-      tarjeta.innerHTML = `<strong>${nombre}</strong><br>${mensaje}<br><small>${fecha}</small>`;
-
-      document.getElementById('mural').appendChild(tarjeta);
-
-      // Limpiar
-      document.getElementById('nombre').value = '';
-      document.getElementById('mensaje').value = '';
+    function actualizarReloj() {
+      const ahora = new Date();
+      let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('reloj').textContent = hora;
     }
+    setInterval(actualizarReloj, 1000);
+
+    const frases = [
+      "La educación es el pasaporte al futuro.",
+      "Cada paso cuenta, sigue avanzando.",
+      "El conocimiento es poder.",
+      "Nunca dejes de aprender.",
+      "Tu esfuerzo de hoy es tu éxito de mañana.",
+      "La actitud es tan importante como la habilidad."
+    ];
+    let fraseActual = 0;
+    setInterval(() => {
+      fraseActual = (fraseActual + 1) % frases.length;
+      document.getElementById('frase').textContent = frases[fraseActual];
+    }, 7000);
   </script>
 </body>
 </html>
