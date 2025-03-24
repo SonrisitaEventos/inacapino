@@ -43,10 +43,6 @@
       max-width: 150px;
       margin: 20px auto;
     }
-    h1 {
-      font-size: 26px;
-      margin: 20px 0 5px;
-    }
     .frase {
       font-style: italic;
       margin-bottom: 20px;
@@ -128,12 +124,14 @@
       <option value="#add8e6">Celeste</option>
       <option value="#ffa500">Naranjo</option>
     </select>
-    <button onclick="agregarMensaje()">Enviar</button>
+    <button onclick="enviarMensaje()">Enviar</button>
   </div>
 
   <div class="muro" id="muro"></div>
 
   <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxANMU3BFjgXmS3z18VIocmhiKTwsKvVX-DE-2NzgxCEZsS8DDGXbIk5OqMBGQHWLne/exec';
+
     function actualizarReloj() {
       const ahora = new Date();
       let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -146,7 +144,7 @@
       "🎉Cada paso cuenta, sigue avanzando.🌟",
       "🎉El conocimiento es poder.🌟",
       "✨Nunca dejes de aprender.",
-      "✨Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
+      "✨ Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
       "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
       "🌟La actitud es tan importante como la habilidad.🎉"
     ];
@@ -156,37 +154,50 @@
       document.getElementById('frase').textContent = frases[fraseActual];
     }, 7000);
 
-    function agregarMensaje() {
+    function enviarMensaje() {
       const nombre = document.getElementById("nombre").value;
       const mensaje = document.getElementById("mensaje").value;
       const fecha = document.getElementById("fecha").value;
       const color = document.getElementById("color").value;
 
       if (nombre && mensaje && fecha) {
-        const tarjeta = document.createElement("div");
-        tarjeta.className = "mensaje";
-        tarjeta.style.backgroundColor = color;
-        tarjeta.innerHTML = `<strong>${nombre}</strong><br>${mensaje}<br><small>${fecha}</small>`;
-        document.getElementById("muro").appendChild(tarjeta);
+        const formData = new FormData();
+        formData.append("nombre", nombre);
+        formData.append("mensaje", mensaje);
+        formData.append("fecha", fecha);
+        formData.append("color", color);
 
-        // Enviar a Google Sheets vía webhook
-        fetch("https://script.google.com/macros/s/AKfycbxANMU3BFjgXmS3z18VIocmhiKTwsKvVX-DE-2NzgxCEZsS8DDGXbIk5OqMBGQHWLne/exec
-", {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ nombre, mensaje, fecha, color })
-        });
-
-        document.getElementById("nombre").value = "";
-        document.getElementById("mensaje").value = "";
-        document.getElementById("fecha").value = "";
+        fetch(scriptURL, { method: 'POST', body: formData })
+          .then(response => {
+            alert("¡Mensaje enviado con éxito!");
+            document.getElementById("nombre").value = "";
+            document.getElementById("mensaje").value = "";
+            document.getElementById("fecha").value = "";
+            cargarMensajes();
+          })
+          .catch(error => alert("Hubo un error al enviar el mensaje."));
       } else {
         alert("Por favor completa todos los campos.");
       }
     }
+
+    function cargarMensajes() {
+      fetch(scriptURL)
+        .then(response => response.json())
+        .then(data => {
+          const muro = document.getElementById("muro");
+          muro.innerHTML = "";
+          data.forEach(msg => {
+            const tarjeta = document.createElement("div");
+            tarjeta.className = "mensaje";
+            tarjeta.style.backgroundColor = msg.color;
+            tarjeta.innerHTML = `<strong>${msg.nombre}</strong><br>${msg.mensaje}<br><small>${msg.fecha}</small>`;
+            muro.appendChild(tarjeta);
+          });
+        });
+    }
+
+    cargarMensajes();
   </script>
 </body>
 </html>
