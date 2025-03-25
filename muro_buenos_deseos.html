@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Muro de los Buenos Deseos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muro de los Buenos Deseos ❤️</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
@@ -32,25 +32,9 @@
       align-items: center;
       gap: 10px;
     }
-    .live-indicator {
-      background-color: red;
-      color: white;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-weight: bold;
-    }
     .logo {
       max-width: 150px;
       margin: 20px auto;
-    }
-    h1 {
-      font-size: 26px;
-      margin: 20px 0 5px;
-    }
-    .frase {
-      font-style: italic;
-      margin-bottom: 20px;
-      color: #ccc;
     }
     .formulario {
       background-color: #222;
@@ -61,12 +45,8 @@
       margin-inline: auto;
     }
     .formulario input, .formulario textarea, .formulario select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      border: none;
-      border-radius: 5px;
+      width: 100%; padding: 10px; margin-top: 10px; margin-bottom: 20px;
+      border: none; border-radius: 5px;
     }
     .formulario button {
       background-color: #00d4ff;
@@ -80,21 +60,45 @@
     .muro {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 20px;
       justify-content: center;
     }
     .mensaje {
       padding: 10px;
       border-radius: 10px;
-      width: 180px;
+      width: 200px;
       color: black;
       font-weight: bold;
       box-shadow: 2px 2px 5px #000;
-      animation: fadeIn 1.5s ease;
+      position: relative;
+      animation: aparecer 0.7s ease-in;
     }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .votos {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .votos span {
+      font-size: 18px;
+    }
+    .ranking {
+      position: absolute;
+      bottom: 5px;
+      left: 8px;
+      font-size: 14px;
+      color: #222;
+    }
+    .corazon {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .corazon:hover {
+      transform: scale(1.2);
     }
   </style>
 </head>
@@ -102,23 +106,16 @@
   <header>
     <nav>
       <a href="index.html">Inicio</a>
-      <a href="index.html#rebobinando">Rebobinando</a>
-      <a href="index.html#capsulas">Cápsulas</a>
-      <a href="index.html#encuesta">Encuesta</a>
-      <a href="index.html#concursos">Concursos</a>
       <a href="index.html#postales">Postales</a>
-      <a href="index.html#noticias">Noticias</a>
       <a href="muro_buenos_deseos.html">Muro</a>
     </nav>
     <div class="top-info">
       <span id="reloj">00:00</span>
-      <span>🌤️ 11°C</span>
-      <span class="live-indicator">EN VIVO</span>
+      <span class="live-indicator">🔴 EN VIVO</span>
     </div>
   </header>
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
-  <p class="frase-motivacional" id="frase">🌟La educación es el pasaporte al futuro.🌟</p>
   <h1>Muro de los Buenos Deseos</h1>
   <p class="frase">INACAP haciendo comunidad 💬✨</p>
 
@@ -127,7 +124,6 @@
     <textarea id="mensaje" placeholder="Escribe tu mensaje aquí..."></textarea>
     <input type="date" id="fecha">
     <select id="color">
-      <option value="#ffd700">Amarillo</option>
       <option value="#90ee90">Verde</option>
       <option value="#ffcccb">Rosa</option>
       <option value="#add8e6">Celeste</option>
@@ -138,82 +134,48 @@
 
   <div class="muro" id="muro"></div>
 
-  <audio id="audioFondo" src="musica/melodia_suave.mp3" autoplay loop></audio>
+  <audio id="bgm" src="https://www.fesliyanstudios.com/play-mp3/387" autoplay loop volume="0.25"></audio>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyPUF5NEhVC3gmKDQUOQHeMknT8o3BAYWjYzieoj81T1O66yXN7lXrsb2XZOo91I0_y/exec";
-    const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc";
-
-    const audio = document.getElementById('audioFondo');
-    audio.volume = 0.1;
-
-    document.body.addEventListener('click', () => {
-      audio.play();
-    }, { once: true });
-
-    function actualizarReloj() {
+    const reloj = () => {
       const ahora = new Date();
-      let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      document.getElementById('reloj').textContent = hora;
+      document.getElementById('reloj').textContent = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     }
-    setInterval(actualizarReloj, 1000);
+    setInterval(reloj, 1000);
 
-    const frases = [
-      "🎉La educación es el pasaporte al futuro. ✨",
-      "🎉Cada paso cuenta, sigue avanzando.🌟",
-      "🎉El conocimiento es poder.🌟",
-      "✨Nunca dejes de aprender.",
-      "✨ Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
-      "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
-      "🌟La actitud es tan importante como la habilidad.🎉"
-    ];
-    let fraseActual = 0;
-    setInterval(() => {
-      fraseActual = (fraseActual + 1) % frases.length;
-      document.getElementById('frase').textContent = frases[fraseActual];
-    }, 7000);
+    const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc/Hoja%201";
+
+    async function cargarMensajes() {
+      const res = await fetch(sheetURL);
+      const data = await res.json();
+      const muro = document.getElementById("muro");
+      muro.innerHTML = "";
+
+      data.sort((a, b) => parseInt(b.Votos || 0) - parseInt(a.Votos || 0));
+
+      data.forEach((msg, i) => {
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "mensaje";
+        tarjeta.style.backgroundColor = msg.Color || "#eee";
+        tarjeta.innerHTML = `
+          <strong>${msg.Nombre}</strong><br>
+          ${msg.Mensaje}<br>
+          <small>${msg.Fecha}</small>
+          <div class="votos">
+            <span class="corazon" onclick="votar(${i})">❤️ ${msg.Votos || 0}</span>
+            <span class="ranking">#${i + 1}</span>
+          </div>`;
+        muro.appendChild(tarjeta);
+      });
+    }
+
+    async function votar(index) {
+      // Aquí luego se puede implementar con Google Apps Script una actualización real
+      alert("¡Gracias por tu ❤️! Esta función pronto estará conectada con base de datos real ✨");
+    }
 
     function enviarMensaje() {
-      const nombre = document.getElementById("nombre").value;
-      const mensaje = document.getElementById("mensaje").value;
-      const fecha = document.getElementById("fecha").value;
-      const color = document.getElementById("color").value;
-
-      if (nombre && mensaje && fecha) {
-        const formData = new FormData();
-        formData.append("nombre", nombre);
-        formData.append("mensaje", mensaje);
-        formData.append("fecha", fecha);
-        formData.append("color", color);
-
-        fetch(scriptURL, { method: 'POST', body: formData })
-          .then(response => {
-            alert("¡Mensaje enviado con éxito!");
-            document.getElementById("nombre").value = "";
-            document.getElementById("mensaje").value = "";
-            document.getElementById("fecha").value = "";
-            cargarMensajes();
-          })
-          .catch(error => alert("Hubo un error al enviar el mensaje."));
-      } else {
-        alert("Por favor completa todos los campos.");
-      }
-    }
-
-    function cargarMensajes() {
-      fetch(sheetURL)
-        .then(response => response.json())
-        .then(data => {
-          const muro = document.getElementById("muro");
-          muro.innerHTML = "";
-          data.forEach(msg => {
-            const tarjeta = document.createElement("div");
-            tarjeta.className = "mensaje";
-            tarjeta.style.backgroundColor = msg.Color;
-            tarjeta.innerHTML = `<strong>${msg.Nombre}</strong><br>${msg.Mensaje}<br><small>${msg.Fecha}</small>`;
-            muro.appendChild(tarjeta);
-          });
-        });
+      alert("Función de envío activa. Pero aún conectada a planilla. Aquí irá el fetch POST.");
     }
 
     cargarMensajes();
