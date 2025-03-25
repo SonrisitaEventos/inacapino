@@ -167,7 +167,7 @@
   <div class="muro" id="muro"></div>
 
   <audio id="audio" autoplay loop>
-    <source src="motivacion.mp3" type="audio/mp3">
+    <source src="hipjazz.mp3" type="audio/mp3">
   </audio>
 
   <script>
@@ -231,47 +231,48 @@
           action: "votar",
           index: index
         })
-      }).then(() => cargarMensajes());
+      })
+      .then(() => cargarMensajes());
     }
 
     function cargarMensajes() {
-  fetch(sheetURL)
-    .then(r => r.json())
-    .then(data => {
-      const muro = document.getElementById("muro");
-      muro.innerHTML = "";
-      data
-        .map((msg, i) => {
-          return {
-            nombre: msg.Nombre || msg.nombre || "Desconocido",
-            mensaje: msg.Mensaje || msg.mensaje || "Sin mensaje",
-            fecha: msg.Fecha || msg.fecha || "",
-            color: msg.Color || msg.color || "#ffffff",
-            votos: parseInt(msg.Votos || msg.votos) || 0,
-            index: i
-          };
-        })
-        .sort((a, b) => b.votos - a.votos)
-        .forEach((msg, i) => {
-          const tarjeta = document.createElement("div");
-          tarjeta.className = "mensaje";
-          tarjeta.style.backgroundColor = msg.color || "#eee";
-          tarjeta.innerHTML = `
-            <div class="ranking-numero">${i + 1}</div>
-            <div class="corazon" onclick="votar(${msg.index})">
-              <i class="fa-solid fa-heart"></i>
-              <div>${msg.votos}</div>
-            </div>
-            <strong>${msg.nombre}</strong><br>
-            ${msg.mensaje}<br>
-            <small>${msg.fecha}</small>
-          `;
-          muro.appendChild(tarjeta);
+      fetch(sheetURL)
+        .then(r => r.json())
+        .then(data => {
+          const muro = document.getElementById("muro");
+          muro.innerHTML = "";
+
+          data
+            .map((msg, i) => ({
+              nombre: msg.Nombre || msg.nombre,
+              mensaje: msg.Mensaje || msg.mensaje,
+              fecha: msg.Fecha || msg.fecha,
+              color: msg.Color || msg.color || "#eeeeee",
+              votos: parseInt(msg.Votos || msg.votos) || 0,
+              index: i
+            }))
+            .sort((a, b) => b.votos - a.votos)
+            .forEach((msg, i) => {
+              const tarjeta = document.createElement("div");
+              tarjeta.className = "mensaje";
+              tarjeta.style.backgroundColor = msg.color;
+              tarjeta.innerHTML = `
+                <div class="ranking-numero">${i + 1}</div>
+                <div class="corazon" onclick="votar(${msg.index})">
+                  <i class="fa-solid fa-heart"></i>
+                  <div>${msg.votos}</div>
+                </div>
+                <strong>${msg.nombre}</strong><br>
+                ${msg.mensaje}<br>
+                <small>${msg.fecha}</small>
+              `;
+              muro.appendChild(tarjeta);
+            });
         });
-    });
-}
+    }
 
     cargarMensajes();
   </script>
 </body>
 </html>
+
