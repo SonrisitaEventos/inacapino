@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Muro de los Buenos Deseos</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
@@ -10,16 +10,16 @@
       font-family: Arial, sans-serif;
       background-color: #111;
       color: white;
-      padding: 20px;
       text-align: center;
+      padding: 20px;
     }
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
-      background-color: #111;
       flex-wrap: wrap;
+      background-color: #111;
+      padding: 10px 20px;
     }
     nav a {
       color: white;
@@ -43,10 +43,6 @@
       max-width: 150px;
       margin: 20px auto;
     }
-    h1 {
-      font-size: 26px;
-      margin: 20px 0 5px;
-    }
     .frase {
       font-style: italic;
       margin-bottom: 20px;
@@ -63,69 +59,75 @@
     .formulario input, .formulario textarea, .formulario select {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
-      margin-bottom: 20px;
-      border: none;
+      margin: 10px 0;
       border-radius: 5px;
+      border: none;
     }
     .formulario button {
       background-color: #00d4ff;
       color: black;
-      padding: 10px 20px;
-      border: none;
       font-weight: bold;
+      border: none;
       border-radius: 5px;
+      padding: 10px 20px;
       cursor: pointer;
     }
     .muro {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
       justify-content: center;
+      gap: 15px;
     }
     .mensaje {
-      padding: 10px;
-      border-radius: 10px;
-      width: 200px;
+      width: 220px;
+      min-height: 120px;
+      padding: 15px;
+      border-radius: 12px;
+      font-weight: bold;
+      color: black;
+      position: relative;
+      animation: flotar 0.5s ease;
+      box-shadow: 2px 2px 5px #000;
+    }
+    .ranking-numero {
+      position: absolute;
+      bottom: 5px;
+      left: 10px;
+      background-color: rgba(255,255,255,0.7);
       color: black;
       font-weight: bold;
-      box-shadow: 2px 2px 5px #000;
-      position: relative;
-      animation: aparecer 0.6s ease-in-out;
-    }
-    @keyframes aparecer {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
     }
     .corazon {
       position: absolute;
-      bottom: 8px;
-      left: 10px;
-      font-size: 18px;
+      bottom: 5px;
+      right: 10px;
       cursor: pointer;
-      color: white;
+      font-size: 18px;
+      color: gray;
     }
-    .corazon.votado {
+    .corazon.activo {
       color: red;
-      animation: latido 0.5s ease;
+      animation: latido 0.4s;
+    }
+    @keyframes flotar {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     @keyframes latido {
       0% { transform: scale(1); }
       50% { transform: scale(1.3); }
       100% { transform: scale(1); }
     }
-    .contador-votos {
-      position: absolute;
-      bottom: 8px;
-      right: 10px;
-      font-size: 14px;
-      color: #333;
-    }
   </style>
 </head>
 <body>
-  <audio id="bgm" src="hipjazz.mp3" autoplay loop></audio>
-
   <header>
     <nav>
       <a href="index.html">Inicio</a>
@@ -143,9 +145,8 @@
       <span class="live-indicator">EN VIVO</span>
     </div>
   </header>
-
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
-  <p class="frase-motivacional" id="frase">🌟La educación es el pasaporte al futuro.🌟</p>
+  <p class="frase" id="frase">✨La educación es el pasaporte al futuro.✨</p>
   <h1>Muro de los Buenos Deseos</h1>
   <p class="frase">INACAP haciendo comunidad 💬✨</p>
 
@@ -165,28 +166,28 @@
 
   <div class="muro" id="muro"></div>
 
+  <audio id="audio" autoplay loop>
+    <source src="hipjazz.mp3" type="audio/mp3">
+  </audio>
+
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbwbxhiLiJHCgycwqynYDPsGdSDx1JCF6Q7wkohyEF4HWqmJOKIs593F56oL5QfuSM-s/exec";
+    const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc";
 
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("bgm").volume = 0.35;
-      actualizarReloj();
-      setInterval(actualizarReloj, 1000);
-      cargarMensajes();
-    });
+    document.getElementById("audio").volume = 0.35;
 
     function actualizarReloj() {
       const ahora = new Date();
-      let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      document.getElementById('reloj').textContent = hora;
+      document.getElementById('reloj').textContent = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     }
+    setInterval(actualizarReloj, 1000);
 
     const frases = [
       "🎉La educación es el pasaporte al futuro. ✨",
       "🎉Cada paso cuenta, sigue avanzando.🌟",
       "🎉El conocimiento es poder.🌟",
       "✨Nunca dejes de aprender.",
-      "✨Todo lo que puedas imaginar, lo puedes crear. 🎉",
+      "✨ Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
       "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
       "🌟La actitud es tan importante como la habilidad.🎉"
     ];
@@ -210,7 +211,6 @@
         formData.append("color", color);
 
         fetch(scriptURL, { method: 'POST', body: formData })
-          .then(response => response.text())
           .then(() => {
             alert("¡Mensaje enviado con éxito!");
             document.getElementById("nombre").value = "";
@@ -224,46 +224,45 @@
       }
     }
 
-    async function cargarMensajes() {
-      const res = await fetch("https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc/Hoja%201");
-      const datos = await res.json();
-      const muro = document.getElementById("muro");
-      muro.innerHTML = "";
+    function votar(index) {
+      const row = index + 2;
+      fetch(scriptURL, {
+        method: "POST",
+        body: new URLSearchParams({ voto: row })
+      })
+      .then(() => cargarMensajes());
+    }
 
-      datos
-        .filter(m => m.Nombre && m.Mensaje)
-        .sort((a, b) => (parseInt(b.Votos || 0)) - (parseInt(a.Votos || 0)))
-        .forEach((m, index) => {
-          const tarjeta = document.createElement("div");
-          tarjeta.className = "mensaje";
-          tarjeta.style.backgroundColor = m.Color;
-          tarjeta.innerHTML = `
-            <strong>${m.Nombre}</strong><br>
-            ${m.Mensaje}<br>
-            <small>${m.Fecha}</small>
-            <div class="corazon" onclick="votar(${index}, this)"><i class="fa-regular fa-heart"></i></div>
-            <div class="contador-votos">${m.Votos || 0}</div>
-          `;
-          muro.appendChild(tarjeta);
+    function cargarMensajes() {
+      fetch(sheetURL)
+        .then(r => r.json())
+        .then(data => {
+          const muro = document.getElementById("muro");
+          muro.innerHTML = "";
+
+          data
+            .map((msg, i) => ({...msg, index: i, votos: parseInt(msg.Votos) || 0}))
+            .sort((a, b) => b.votos - a.votos)
+            .forEach((msg, i) => {
+              const tarjeta = document.createElement("div");
+              tarjeta.className = "mensaje";
+              tarjeta.style.backgroundColor = msg.Color;
+              tarjeta.innerHTML = `
+                <div class="ranking-numero">${i + 1}</div>
+                <div class="corazon" onclick="votar(${msg.index})">
+                  <i class="fa-solid fa-heart"></i>
+                  <div>${msg.votos}</div>
+                </div>
+                <strong>${msg.Nombre}</strong><br>
+                ${msg.Mensaje}<br>
+                <small>${msg.Fecha}</small>
+              `;
+              muro.appendChild(tarjeta);
+            });
         });
     }
 
-    async function votar(index, icono) {
-      const formData = new FormData();
-      formData.append("action", "votar");
-      formData.append("index", index);
-
-      try {
-        const res = await fetch(scriptURL, { method: 'POST', body: formData });
-        const text = await res.text();
-        icono.classList.add("votado");
-        icono.innerHTML = '<i class="fa-solid fa-heart"></i>';
-        cargarMensajes();
-      } catch {
-        alert("Error al votar");
-      }
-    }
+    cargarMensajes();
   </script>
 </body>
 </html>
-
