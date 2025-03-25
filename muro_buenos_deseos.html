@@ -225,13 +225,15 @@
     }
 
     function votar(index) {
-      const row = index + 2;
-      fetch(scriptURL, {
-        method: "POST",
-        body: new URLSearchParams({ voto: row })
-      })
-      .then(() => cargarMensajes());
-    }
+  fetch(scriptURL, {
+    method: "POST",
+    body: new URLSearchParams({
+      action: "votar",
+      index: index
+    })
+  })
+  .then(() => cargarMensajes());
+}
 
     function cargarMensajes() {
       fetch(sheetURL)
