@@ -128,80 +128,75 @@
   </div>
 
   <div class="muro" id="muro"></div>
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxANMU3BFjgXmS3z18VIocmhiKTwsKvVX-DE-2NzgxCEZsS8DDGXbIk5OqMBGQHWLne/exec";
 
-  <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxANMU3BFjgXmS3z18VIocmhiKTwsKvVX-DE-2NzgxCEZsS8DDGXbIk5OqMBGQHWLne/exec";
-      function actualizarReloj() {
-      const ahora = new Date();
-      let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      document.getElementById('reloj').textContent = hora;
-    }
-    setInterval(actualizarReloj, 1000);
-
-    const frases = [
-      "🎉La educación es el pasaporte al futuro. ✨",
-      "🎉Cada paso cuenta, sigue avanzando.🌟",
-      "🎉El conocimiento es poder.🌟",
-      "✨Nunca dejes de aprender.",
-      "✨ Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
-      "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
-      "🌟La actitud es tan importante como la habilidad.🎉"
-    ];
-    let fraseActual = 0;
-    setInterval(() => {
-      fraseActual = (fraseActual + 1) % frases.length;
-      document.getElementById('frase').textContent = frases[fraseActual];
-    }, 7000);
-
-    function enviarMensaje() {
-      const nombre = document.getElementById("nombre").value;
-      const mensaje = document.getElementById("mensaje").value;
-      const fecha = document.getElementById("fecha").value;
-      const color = document.getElementById("color").value;
-
-      if (nombre && mensaje && fecha) {
-        const formData = new FormData();
-        formData.append("nombre", nombre);
-        formData.append("mensaje", mensaje);
-        formData.append("fecha", fecha);
-        formData.append("color", color);
-
-        fetch(scriptURL, { method: 'POST', body: formData })
-          .then(response => {
-            alert("¡Mensaje enviado con éxito!");
-            document.getElementById("nombre").value = "";
-            document.getElementById("mensaje").value = "";
-            document.getElementById("fecha").value = "";
-            cargarMensajes();
-          })
-          .catch(error => alert("Hubo un error al enviar el mensaje."));
-      } else {
-        alert("Por favor completa todos los campos.");
-      }
-    }
-
-    function doPost(e) {
-  try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    
-    var nombre = e.parameter.nombre;
-    var mensaje = e.parameter.mensaje;
-    var fecha = e.parameter.fecha;
-    var color = e.parameter.color;
-
-    sheet.appendRow([nombre, mensaje, fecha, color]);
-
-    return ContentService.createTextOutput("Mensaje guardado");
-  } catch (error) {
-    return ContentService.createTextOutput("Error: " + error.message);
+  function actualizarReloj() {
+    const ahora = new Date();
+    let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    document.getElementById('reloj').textContent = hora;
   }
-}
+  setInterval(actualizarReloj, 1000);
 
-          });
-        });
+  const frases = [
+    "🎉La educación es el pasaporte al futuro. ✨",
+    "🎉Cada paso cuenta, sigue avanzando.🌟",
+    "🎉El conocimiento es poder.🌟",
+    "✨Nunca dejes de aprender.",
+    "✨ Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
+    "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
+    "🌟La actitud es tan importante como la habilidad.🎉"
+  ];
+  let fraseActual = 0;
+  setInterval(() => {
+    fraseActual = (fraseActual + 1) % frases.length;
+    document.getElementById('frase').textContent = frases[fraseActual];
+  }, 7000);
+
+  function enviarMensaje() {
+    const nombre = document.getElementById("nombre").value;
+    const mensaje = document.getElementById("mensaje").value;
+    const fecha = document.getElementById("fecha").value;
+    const color = document.getElementById("color").value;
+
+    if (nombre && mensaje && fecha) {
+      const formData = new FormData();
+      formData.append("nombre", nombre);
+      formData.append("mensaje", mensaje);
+      formData.append("fecha", fecha);
+      formData.append("color", color);
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => {
+          alert("¡Mensaje enviado con éxito!");
+          document.getElementById("nombre").value = "";
+          document.getElementById("mensaje").value = "";
+          document.getElementById("fecha").value = "";
+          cargarMensajes();
+        })
+        .catch(error => alert("Hubo un error al enviar el mensaje."));
+    } else {
+      alert("Por favor completa todos los campos.");
     }
+  }
 
-    cargarMensajes();
-  </script>
+  function cargarMensajes() {
+    fetch(scriptURL)
+      .then(response => response.json())
+      .then(data => {
+        const muro = document.getElementById("muro");
+        muro.innerHTML = "";
+        data.forEach(msg => {
+          const tarjeta = document.createElement("div");
+          tarjeta.className = "mensaje";
+          tarjeta.style.backgroundColor = msg.color;
+          tarjeta.innerHTML = `<strong>${msg.nombre}</strong><br>${msg.mensaje}<br><small>${msg.fecha}</small>`;
+          muro.appendChild(tarjeta);
+        });
+      });
+  }
+
+  cargarMensajes();
+</script>
 </body>
 </html>
