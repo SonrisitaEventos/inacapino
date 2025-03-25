@@ -43,6 +43,10 @@
       max-width: 150px;
       margin: 20px auto;
     }
+    h1 {
+      font-size: 26px;
+      margin: 20px 0 5px;
+    }
     .frase {
       font-style: italic;
       margin-bottom: 20px;
@@ -74,20 +78,40 @@
       cursor: pointer;
     }
     .muro {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 20px;
-}
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
     .mensaje {
-  padding: 10px;
-  border-radius: 10px;
-  width: 180px;
-  color: black;
-  font-weight: bold;
-  box-shadow: 2px 2px 5px #000;
-}
+      padding: 10px;
+      border-radius: 10px;
+      width: 180px;
+      color: black;
+      font-weight: bold;
+      box-shadow: 2px 2px 5px #000;
+      animation: aparecer 0.8s ease-in-out forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    @keyframes aparecer {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .share-btn {
+      margin-top: 20px;
+    }
+    .share-btn a {
+      color: white;
+      margin: 0 10px;
+      font-size: 22px;
+      text-decoration: none;
+    }
+    .audio {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -128,78 +152,19 @@
     <button onclick="enviarMensaje()">Enviar</button>
   </div>
 
+  <div class="share-btn">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/muro_buenos_deseos.html" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://twitter.com/intent/tweet?url=https://sonrisitaeventos.github.io/inacapino/muro_buenos_deseos.html&text=Deja tu mensaje en el Muro de los Buenos Deseos!" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://api.whatsapp.com/send?text=Muro de los buenos deseos en INACAP Puerto Montt ✨ https://sonrisitaeventos.github.io/inacapino/muro_buenos_deseos.html" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <div class="audio">
+    <audio controls autoplay loop>
+      <source src="musica_fondo.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio HTML5.
+    </audio>
+  </div>
+
   <div class="muro" id="muro"></div>
-  
-<script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycbyPUF5NEhVC3gmKDQUOQHeMknT8o3BAYWjYzieoj81T1O66yXN7lXrsb2XZOo91I0_y/exec";
-  const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc/Hoja%201";
-
-  function actualizarReloj() {
-    const ahora = new Date();
-    let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    document.getElementById('reloj').textContent = hora;
-  }
-  setInterval(actualizarReloj, 1000);
-
-  const frases = [
-    "🎉La educación es el pasaporte al futuro. ✨",
-    "🎉Cada paso cuenta, sigue avanzando.🌟",
-    "🎉El conocimiento es poder.🌟",
-    "✨Nunca dejes de aprender.",
-    "✨Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
-    "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
-    "🌟La actitud es tan importante como la habilidad.🎉"
-  ];
-  let fraseActual = 0;
-  setInterval(() => {
-    fraseActual = (fraseActual + 1) % frases.length;
-    document.getElementById('frase').textContent = frases[fraseActual];
-  }, 7000);
-
-  function enviarMensaje() {
-    const nombre = document.getElementById("nombre").value;
-    const mensaje = document.getElementById("mensaje").value;
-    const fecha = document.getElementById("fecha").value;
-    const color = document.getElementById("color").value;
-
-    if (nombre && mensaje && fecha) {
-      const formData = new FormData();
-      formData.append("nombre", nombre);
-      formData.append("mensaje", mensaje);
-      formData.append("fecha", fecha);
-      formData.append("color", color);
-
-      fetch(scriptURL, { method: 'POST', body: formData })
-        .then(response => {
-          alert("¡Mensaje enviado con éxito!");
-          document.getElementById("nombre").value = "";
-          document.getElementById("mensaje").value = "";
-          document.getElementById("fecha").value = "";
-          cargarMensajes(); // recarga el muro
-        })
-        .catch(error => alert("Hubo un error al enviar el mensaje."));
-    } else {
-      alert("Por favor completa todos los campos.");
-    }
-  }
-
-  function cargarMensajes() {
-    fetch(sheetURL)
-      .then(response => response.json())
-      .then(data => {
-        const muro = document.getElementById("muro");
-        muro.innerHTML = "";
-        data.forEach(msg => {
-          const tarjeta = document.createElement("div");
-          tarjeta.className = "mensaje";
-          tarjeta.style.backgroundColor = msg.Color;
-          tarjeta.innerHTML = `<strong>${msg.Nombre}</strong><br>${msg.Mensaje}<br><small>${msg.Fecha}</small>`;
-          muro.appendChild(tarjeta);
-        });
-      });
-  }
-
-  window.addEventListener("load", cargarMensajes);
-</script>
 </body>
 </html>
