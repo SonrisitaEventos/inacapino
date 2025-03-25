@@ -151,23 +151,11 @@
     </select>
     <button onclick="enviarMensaje()">Enviar</button>
   </div>
-
-  <div class="share-btn">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/muro_buenos_deseos.html" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://twitter.com/intent/tweet?url=https://sonrisitaeventos.github.io/inacapino/muro_buenos_deseos.html&text=Deja tu mensaje en el Muro de los Buenos Deseos!" target="_blank"><i class="fab fa-x-twitter"></i></a>
-    <a href="https://api.whatsapp.com/send?text=Muro de los buenos deseos en INACAP Puerto Montt ✨ https://sonrisitaeventos.github.io/inacapino/muro_buenos_deseos.html" target="_blank"><i class="fab fa-whatsapp"></i></a>
-  </div>
-
-  <div class="audio">
-    <audio controls autoplay loop>
-      <source src="hipjazz.mp3" type="audio/mpeg">
-      Tu navegador no soporta audio HTML5.
-    </audio>
-  </div>
-<script>
+ <div class="muro" id="muro"></div>
+  <script>
   const scriptURL = "https://script.google.com/macros/s/AKfycbyPUF5NEhVC3gmKDQUOQHeMknT8o3BAYWjYzieoj81T1O66yXN7lXrsb2XZOo91I0_y/exec";
   const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc/Hoja%201";
-  <div class="muro" id="muro"></div>
+ 
     function actualizarReloj() {
     const ahora = new Date();
     let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -232,6 +220,19 @@
         });
       });
   }
+
+  <div class="share-btn">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/muro_buenos_deseos.html" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://twitter.com/intent/tweet?url=https://sonrisitaeventos.github.io/inacapino/muro_buenos_deseos.html&text=Deja tu mensaje en el Muro de los Buenos Deseos!" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://api.whatsapp.com/send?text=Muro de los buenos deseos en INACAP Puerto Montt ✨ https://sonrisitaeventos.github.io/inacapino/muro_buenos_deseos.html" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <div class="audio">
+    <audio controls autoplay loop>
+      <source src="musica_fondo.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio HTML5.
+    </audio>
+  </div>
 
   window.addEventListener("load", cargarMensajes);
   </script>
