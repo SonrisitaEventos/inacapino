@@ -242,14 +242,16 @@
           const muro = document.getElementById("muro");
           muro.innerHTML = "";
             data
-     .map((msg, i) => ({
-    nombre: msg.Nombre || msg.nombre,
-    mensaje: msg.Mensaje || msg.mensaje,
-    fecha: msg.Fecha || msg.fecha,
-    color: msg.Color || msg.color,
-    votos: parseInt(msg.Votos || msg.votos) || 0,
-    index: i
-  }))
+     .map((msg, i) => {
+  const nombre = msg["Nombre"] || msg["nombre"] || "Desconocido";
+  const mensaje = msg["Mensaje"] || msg["mensaje"] || "Sin mensaje";
+  const fecha = msg["Fecha"] || msg["fecha"] || "";
+  const color = msg["Color"] || msg["color"] || "#ffffff";
+  const votos = parseInt(msg["Votos"] || msg["votos"] || "0") || 0;
+
+  return { nombre, mensaje, fecha, color, votos, index: i };
+})
+
               .sort((a, b) => b.votos - a.votos)
             .forEach((msg, i) => {
               const tarjeta = document.createElement("div");
