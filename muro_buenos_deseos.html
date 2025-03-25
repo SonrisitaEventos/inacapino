@@ -255,8 +255,7 @@
         .forEach((msg, i) => {
           const tarjeta = document.createElement("div");
           tarjeta.className = "mensaje";
-          tarjeta.style.backgroundColor = msg.color;
-
+          color: msg.Color || msg.color || "#ffffff"
           tarjeta.innerHTML = `
             <div class="ranking-numero">${i + 1}</div>
             <div class="corazon" onclick="votar(${msg.index})">
