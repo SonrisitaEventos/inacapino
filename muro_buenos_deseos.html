@@ -132,6 +132,7 @@
   
 <script>
   const scriptURL = "https://script.google.com/macros/s/AKfycbyPUF5NEhVC3gmKDQUOQHeMknT8o3BAYWjYzieoj81T1O66yXN7lXrsb2XZOo91I0_y/exec";
+  const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc/Hoja%201";
 
   function actualizarReloj() {
     const ahora = new Date();
@@ -145,7 +146,7 @@
     "🎉Cada paso cuenta, sigue avanzando.🌟",
     "🎉El conocimiento es poder.🌟",
     "✨Nunca dejes de aprender.",
-    "✨ Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
+    "✨Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
     "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
     "🌟La actitud es tan importante como la habilidad.🎉"
   ];
@@ -174,7 +175,7 @@
           document.getElementById("nombre").value = "";
           document.getElementById("mensaje").value = "";
           document.getElementById("fecha").value = "";
-          cargarMensajes();
+          cargarMensajes(); // recarga el muro
         })
         .catch(error => alert("Hubo un error al enviar el mensaje."));
     } else {
@@ -183,7 +184,7 @@
   }
 
   function cargarMensajes() {
-    fetch(scriptURL)
+    fetch(sheetURL)
       .then(response => response.json())
       .then(data => {
         const muro = document.getElementById("muro");
@@ -191,13 +192,14 @@
         data.forEach(msg => {
           const tarjeta = document.createElement("div");
           tarjeta.className = "mensaje";
-          tarjeta.style.backgroundColor = msg.color;
-          tarjeta.innerHTML = `<strong>${msg.nombre}</strong><br>${msg.mensaje}<br><small>${msg.fecha}</small>`;
+          tarjeta.style.backgroundColor = msg.Color;
+          tarjeta.innerHTML = `<strong>${msg.Nombre}</strong><br>${msg.Mensaje}<br><small>${msg.Fecha}</small>`;
           muro.appendChild(tarjeta);
         });
       });
   }
-  cargarMensajes();
+
+  window.addEventListener("load", cargarMensajes);
 </script>
 </body>
 </html>
