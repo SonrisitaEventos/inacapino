@@ -167,12 +167,12 @@
   <div class="muro" id="muro"></div>
 
   <audio id="audio" autoplay loop>
-    <source src="hipjazz.mp3" type="audio/mp3">
+    <source src="motivacion.mp3" type="audio/mp3">
   </audio>
 
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbzpaFAHh3aKnHWip5Q5Rd5YLrdVKk2rUwaQ8Yd_RxUr224bPkfa0d4fkqTnI3zG04Xn/exec";
-    const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc";
+    const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc/Hoja%201";
 
     document.getElementById("audio").volume = 0.35;
 
@@ -244,11 +244,11 @@
 
           data
             .map((msg, i) => ({
-              nombre: msg.Nombre || msg.nombre,
-              mensaje: msg.Mensaje || msg.mensaje,
-              fecha: msg.Fecha || msg.fecha,
-              color: msg.Color || msg.color || "#eeeeee",
-              votos: parseInt(msg.Votos || msg.votos) || 0,
+              nombre: msg.nombre || msg.Nombre,
+              mensaje: msg.mensaje || msg.Mensaje,
+              fecha: msg.fecha || msg.Fecha,
+              color: msg.color || msg.Color,
+              votos: parseInt(msg.votos || msg.Votos) || 0,
               index: i
             }))
             .sort((a, b) => b.votos - a.votos)
@@ -275,4 +275,3 @@
   </script>
 </body>
 </html>
-
