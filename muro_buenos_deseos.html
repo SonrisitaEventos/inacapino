@@ -225,15 +225,14 @@
     }
 
     function votar(index) {
-  fetch(scriptURL, {
-    method: "POST",
-    body: new URLSearchParams({
-      action: "votar",
-      index: index
-    })
-  })
-  .then(() => cargarMensajes());
-}
+      fetch(scriptURL, {
+        method: "POST",
+        body: new URLSearchParams({
+          action: "votar",
+          index: index
+        })
+      }).then(() => cargarMensajes());
+    }
 
     function cargarMensajes() {
       fetch(sheetURL)
@@ -241,18 +240,16 @@
         .then(data => {
           const muro = document.getElementById("muro");
           muro.innerHTML = "";
-            data
-     .map((msg, i) => {
-  const nombre = msg["Nombre"] || msg["nombre"] || "Desconocido";
-  const mensaje = msg["Mensaje"] || msg["mensaje"] || "Sin mensaje";
-  const fecha = msg["Fecha"] || msg["fecha"] || "";
-  const color = msg["Color"] || msg["color"] || "#ffffff";
-  const votos = parseInt(msg["Votos"] || msg["votos"] || "0") || 0;
-
-  return { nombre, mensaje, fecha, color, votos, index: i };
-})
-
-              .sort((a, b) => b.votos - a.votos)
+          data
+            .map((msg, i) => {
+              const nombre = msg["Nombre"] || msg["nombre"] || "Desconocido";
+              const mensaje = msg["Mensaje"] || msg["mensaje"] || "Sin mensaje";
+              const fecha = msg["Fecha"] || msg["fecha"] || "";
+              const color = msg["Color"] || msg["color"] || "#ffffff";
+              const votos = parseInt(msg["Votos"] || msg["votos"] || "0") || 0;
+              return { nombre, mensaje, fecha, color, votos, index: i };
+            })
+            .sort((a, b) => b.votos - a.votos)
             .forEach((msg, i) => {
               const tarjeta = document.createElement("div");
               tarjeta.className = "mensaje";
