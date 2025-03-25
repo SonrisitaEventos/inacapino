@@ -241,10 +241,16 @@
         .then(data => {
           const muro = document.getElementById("muro");
           muro.innerHTML = "";
-
-          data
-            .map((msg, i) => ({...msg, index: i, votos: parseInt(msg.Votos) || 0}))
-            .sort((a, b) => b.votos - a.votos)
+            data
+     .map((msg, i) => ({
+    nombre: msg.Nombre || msg.nombre,
+    mensaje: msg.Mensaje || msg.mensaje,
+    fecha: msg.Fecha || msg.fecha,
+    color: msg.Color || msg.color,
+    votos: parseInt(msg.Votos || msg.votos) || 0,
+    index: i
+  }))
+              .sort((a, b) => b.votos - a.votos)
             .forEach((msg, i) => {
               const tarjeta = document.createElement("div");
               tarjeta.className = "mensaje";
@@ -256,8 +262,8 @@
                   <div>${msg.votos}</div>
                 </div>
                 <strong>${msg.nombre}</strong><br>
-                ${msg.Mensaje}<br>
-                <small>${msg.Fecha}</small>
+                ${msg.mensaje}<br>
+                <small>${msg.fecha}</small>
               `;
               muro.appendChild(tarjeta);
             });
