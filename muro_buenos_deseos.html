@@ -115,7 +115,7 @@
   <div class="muro" id="muro"></div>
 
   <audio id="audio" autoplay loop>
-    <source src="hipjazz.mp3" type="audio/mp3">
+    <source src="motivacion.mp3" type="audio/mp3">
   </audio>
 
   <script>
@@ -145,32 +145,31 @@
     }, 7000);
 
     function enviarMensaje() {
-      const nombre = document.getElementById("nombre").value;
-      const mensaje = document.getElementById("mensaje").value;
-      const fecha = document.getElementById("fecha").value;
-      const color = document.getElementById("color").value;
+  const nombre = document.getElementById("nombre").value;
+  const mensaje = document.getElementById("mensaje").value;
+  const fecha = document.getElementById("fecha").value;
+  const color = document.getElementById("color").value;
 
-      if (nombre && mensaje && fecha) {
-        const formData = new FormData();
-        formData.append("nombre", nombre);
-        formData.append("mensaje", mensaje);
-        formData.append("fecha", fecha);
-        formData.append("color", color);
+  if (nombre && mensaje && fecha) {
+    const formData = new FormData();
+    formData.append("nombre", nombre);
+    formData.append("mensaje", mensaje);
+    formData.append("fecha", fecha);
+    formData.append("color", color);
 
-        fetch(scriptURL, { method: 'POST', body: formData })
-          .then(() => {
-            alert("¡Mensaje enviado con éxito!");
-            document.getElementById("nombre").value = "";
-            document.getElementById("mensaje").value = "";
-            document.getElementById("fecha").value = "";
-            cargarMensajes();
-          })
-          .catch(() => alert("Hubo un error al enviar el mensaje."));
-      } else {
-        alert("Por favor completa todos los campos.");
-      }
-    }
-
+    fetch(scriptURL, { method: 'POST', body: formData })
+      .then(() => {
+        alert("¡Mensaje enviado con éxito!");
+        document.getElementById("nombre").value = "";
+        document.getElementById("mensaje").value = "";
+        document.getElementById("fecha").value = "";
+        cargarMensajes();
+      })
+      .catch(() => alert("Hubo un error al enviar el mensaje."));
+  } else {
+    alert("Por favor completa todos los campos.");
+  }
+}
     function votar(nombre, mensaje, fecha) {
       fetch(scriptURL, {
         method: "POST",
@@ -184,38 +183,49 @@
     }
 
     function cargarMensajes() {
-      fetch(sheetURL)
-        .then(r => r.json())
-        .then(data => {
-          const muro = document.getElementById("muro");
-          muro.innerHTML = "";
-          data
-            .map((msg, i) => ({
-              nombre: msg.Nombre || msg.nombre,
-              mensaje: msg.Mensaje || msg.mensaje,
-              fecha: msg.Fecha || msg.fecha,
-              color: msg.Color || msg.color,
-              votos: parseInt(msg.Votos || msg.votos) || 0
-            }))
-            .sort((a, b) => b.votos - a.votos)
-            .forEach((msg, i) => {
-              const tarjeta = document.createElement("div");
-              tarjeta.className = "mensaje";
-              tarjeta.style.backgroundColor = msg.color || msg.Color;
-              tarjeta.innerHTML = `
-                <div class="ranking-numero">${i + 1}</div>
-                <div class='corazon' onclick='votar(${JSON.stringify(msg.nombre)}, ${JSON.stringify(msg.mensaje)}, ${JSON.stringify(msg.fecha)})'>
-                  <i class="fa-solid fa-heart"></i>
-                  <div>${msg.votos}</div>
-                </div>
-                <strong>${msg.nombre}</strong><br>
-                ${msg.mensaje}<br>
-                <small>${msg.fecha}</small>
-              `;
-              muro.appendChild(tarjeta);
-            });
+  fetch(sheetURL)
+    .then(r => r.json())
+    .then(data => {
+      const muro = document.getElementById("muro");
+      muro.innerHTML = "";
+
+      data
+        .map((msg, i) => ({
+          nombre: msg.nombre,
+          mensaje: msg.mensaje,
+          fecha: msg.fecha,
+          color: msg.color,
+          votos: parseInt(msg.votos) || 0,
+          id: msg.id
+        }))
+        .sort((a, b) => b.votos - a.votos)
+        .forEach((msg, i) => {
+          const tarjeta = document.createElement("div");
+          tarjeta.className = "mensaje";
+          tarjeta.style.backgroundColor = msg.color;
+          tarjeta.innerHTML = `
+            <div class="ranking-numero">${i + 1}</div>
+            <div class='corazon' onclick='votar("${msg.id}")'>
+              <i class="fa-solid fa-heart"></i>
+              <div>${msg.votos}</div>
+            </div>
+            <strong>${msg.nombre}</strong><br>
+            ${msg.mensaje}<br>
+            <small>${msg.fecha}</small>
+          `;
+          muro.appendChild(tarjeta);
         });
-    }
+    });
+}
+    function votar(id) {
+  fetch(scriptURL, {
+    method: "POST",
+    body: new URLSearchParams({
+      action: "votar",
+      id: id
+    })
+  }).then(() => cargarMensajes());
+}
 
     cargarMensajes();
   </script>
