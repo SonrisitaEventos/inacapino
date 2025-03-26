@@ -115,7 +115,7 @@
   <div class="muro" id="muro"></div>
 
   <audio id="audio" autoplay loop>
-    <source src="hipjazz.mp3" type="audio/mp3">
+    <source src="motivacion.mp3" type="audio/mp3">
   </audio>
 
   <script>
@@ -145,6 +145,7 @@
     }, 7000);
 
     function enviarMensaje() {
+  console.log("Enviando mensaje con:", nombre, mensaje, fecha, color);
   const nombre = document.getElementById("nombre").value;
   const mensaje = document.getElementById("mensaje").value;
   const fecha = document.getElementById("fecha").value;
@@ -218,6 +219,7 @@
     });
 }
     function votar(id) {
+  console.log("Votando por ID:", id);
   fetch(scriptURL, {
     method: "POST",
     body: new URLSearchParams({
