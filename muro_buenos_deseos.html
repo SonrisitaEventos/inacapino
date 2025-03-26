@@ -66,7 +66,6 @@
       padding: 10px 20px;
       cursor: pointer;
     }
-
     .muro { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
     .mensaje { width: 220px; min-height: 120px; padding: 15px; border-radius: 12px; font-weight: bold; color: black; position: relative; animation: flotar 0.5s ease; box-shadow: 2px 2px 5px #000; }
     .ranking-numero { position: absolute; bottom: 5px; left: 10px; background-color: rgba(255,255,255,0.7); color: black; font-weight: bold; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
@@ -94,7 +93,6 @@
       <span class="live-indicator">EN VIVO</span>
     </div>
   </header>
-
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <p class="frase" id="frase">✨La educación es el pasaporte al futuro.✨</p>
   <h1>Muro de los Buenos Deseos</h1>
@@ -117,13 +115,12 @@
   <div class="muro" id="muro"></div>
 
   <audio id="audio" autoplay loop>
-    <source src="motivacion.mp3" type="audio/mp3">
+    <source src="hipjazz.mp3" type="audio/mp3">
   </audio>
 
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbzpaFAHh3aKnHWip5Q5Rd5YLrdVKk2rUwaQ8Yd_RxUr224bPkfa0d4fkqTnI3zG04Xn/exec";
     const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc";
-
     document.getElementById("audio").volume = 0.35;
 
     function actualizarReloj() {
@@ -186,39 +183,40 @@
       }).then(() => cargarMensajes());
     }
 
-   function cargarMensajes() {
-  fetch(sheetURL)
-    .then(r => r.json())
-    .then(data => {
-      const muro = document.getElementById("muro");
-      muro.innerHTML = "";
-      data
-        .map((msg, i) => ({
-          nombre: msg.Nombre || msg.nombre,
-          mensaje: msg.Mensaje || msg.mensaje,
-          fecha: msg.Fecha || msg.fecha,
-          color: msg.Color || msg.color,
-          votos: parseInt(msg.Votos || msg.votos) || 0
-        }))
-        .sort((a, b) => b.votos - a.votos)
-        .forEach((msg, i) => {
-          const tarjeta = document.createElement("div");
-          tarjeta.className = "mensaje";
-          tarjeta.style.backgroundColor = msg.color || msg.Color;
-          tarjeta.innerHTML = `
-            <div class="ranking-numero">${i + 1}</div>
-            <div class='corazon' onclick='votar(${JSON.stringify(msg.nombre)}, ${JSON.stringify(msg.mensaje)}, ${JSON.stringify(msg.fecha)})'>
-              <i class="fa-solid fa-heart"></i>
-              <div>${msg.votos}</div>
-            </div>
-            <strong>${msg.nombre}</strong><br>
-            ${msg.mensaje}<br>
-            <small>${msg.fecha}</small>
-          `;
-          muro.appendChild(tarjeta);
+    function cargarMensajes() {
+      fetch(sheetURL)
+        .then(r => r.json())
+        .then(data => {
+          const muro = document.getElementById("muro");
+          muro.innerHTML = "";
+          data
+            .map((msg, i) => ({
+              nombre: msg.Nombre || msg.nombre,
+              mensaje: msg.Mensaje || msg.mensaje,
+              fecha: msg.Fecha || msg.fecha,
+              color: msg.Color || msg.color,
+              votos: parseInt(msg.Votos || msg.votos) || 0
+            }))
+            .sort((a, b) => b.votos - a.votos)
+            .forEach((msg, i) => {
+              const tarjeta = document.createElement("div");
+              tarjeta.className = "mensaje";
+              tarjeta.style.backgroundColor = msg.color || msg.Color;
+              tarjeta.innerHTML = `
+                <div class="ranking-numero">${i + 1}</div>
+                <div class='corazon' onclick='votar(${JSON.stringify(msg.nombre)}, ${JSON.stringify(msg.mensaje)}, ${JSON.stringify(msg.fecha)})'>
+                  <i class="fa-solid fa-heart"></i>
+                  <div>${msg.votos}</div>
+                </div>
+                <strong>${msg.nombre}</strong><br>
+                ${msg.mensaje}<br>
+                <small>${msg.fecha}</small>
+              `;
+              muro.appendChild(tarjeta);
+            });
         });
-    });
-}
+    }
+
     cargarMensajes();
   </script>
 </body>
