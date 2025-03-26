@@ -77,9 +77,7 @@
   </style>
 </head>
 <body>
-  <h1>Muro de los Buenos Deseos</h1>
-  <div class="muro" id="muro"></div>
-<header>
+  <header>
     <nav>
       <a href="index.html">Inicio</a>
       <a href="index.html#rebobinando">Rebobinando</a>
@@ -96,6 +94,7 @@
       <span class="live-indicator">EN VIVO</span>
     </div>
   </header>
+
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <p class="frase" id="frase">✨La educación es el pasaporte al futuro.✨</p>
   <h1>Muro de los Buenos Deseos</h1>
@@ -124,7 +123,8 @@
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbzpaFAHh3aKnHWip5Q5Rd5YLrdVKk2rUwaQ8Yd_RxUr224bPkfa0d4fkqTnI3zG04Xn/exec";
     const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc";
-ocument.getElementById("audio").volume = 0.35;
+
+    document.getElementById("audio").volume = 0.35;
 
     function actualizarReloj() {
       const ahora = new Date();
@@ -198,7 +198,7 @@ ocument.getElementById("audio").volume = 0.35;
               mensaje: msg.Mensaje || msg.mensaje,
               fecha: msg.Fecha || msg.fecha,
               color: msg.Color || msg.color,
-              votos: parseInt(msg.Votos || msg.votos) || 0,
+              votos: parseInt(msg.Votos || msg.votos) || 0
             }))
             .sort((a, b) => b.votos - a.votos)
             .forEach((msg, i) => {
@@ -207,7 +207,7 @@ ocument.getElementById("audio").volume = 0.35;
               tarjeta.style.backgroundColor = msg.color;
               tarjeta.innerHTML = `
                 <div class="ranking-numero">${i + 1}</div>
-                <div class="corazon" onclick="votar(\"${msg.nombre}\", \"${msg.mensaje}\", \"${msg.fecha}\")">
+                <div class='corazon' onclick='votar(${JSON.stringify(msg.nombre)}, ${JSON.stringify(msg.mensaje)}, ${JSON.stringify(msg.fecha)})'>
                   <i class="fa-solid fa-heart"></i>
                   <div>${msg.votos}</div>
                 </div>
