@@ -6,7 +6,13 @@
   <title>Muro de los Buenos Deseos</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    body { font-family: Arial, sans-serif; background-color: #111; color: white; text-align: center; padding: 20px; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
     header {
       display: flex;
       justify-content: space-between;
@@ -66,43 +72,78 @@
       padding: 10px 20px;
       cursor: pointer;
     }
-    .muro { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-    .mensaje { width: 220px; min-height: 120px; padding: 15px; border-radius: 12px; font-weight: bold; color: black; position: relative; animation: flotar 0.5s ease; box-shadow: 2px 2px 5px #000; }
-    .ranking-numero { position: absolute; bottom: 5px; left: 10px; background-color: rgba(255,255,255,0.7); color: black; font-weight: bold; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-    .corazon { position: absolute; bottom: 5px; right: 10px; cursor: pointer; font-size: 18px; color: gray; }
-    .corazon.activo { color: red; animation: latido 0.4s; }
-    @keyframes flotar { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes latido { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
+    .muro {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .mensaje {
+      width: 220px;
+      min-height: 120px;
+      padding: 15px;
+      border-radius: 12px;
+      font-weight: bold;
+      color: black;
+      position: relative;
+      animation: flotar 0.5s ease;
+      box-shadow: 2px 2px 5px #000;
+    }
+    .ranking-numero {
+      position: absolute;
+      bottom: 5px;
+      left: 10px;
+      background-color: rgba(255,255,255,0.7);
+      color: black;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    .corazon {
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      color: gray;
+    }
     .corazon.votado {
-  color: red;
-  animation: latido 0.4s;
-}
-
-@keyframes latido {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.3); }
-  100% { transform: scale(1); }
-}
-
-.alerta-voto {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #00d4ff;
-  color: #111;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-weight: bold;
-  box-shadow: 0 0 10px #00d4ff;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  z-index: 1000;
-}
-.alerta-voto.visible {
-  opacity: 1;
-}
-</style>
+      color: red;
+      animation: latido 0.4s;
+    }
+    @keyframes flotar {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes latido {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+    .alerta-voto {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #00d4ff;
+      color: #111;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      box-shadow: 0 0 10px #00d4ff;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 1000;
+    }
+    .alerta-voto.visible {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -122,6 +163,7 @@
       <span class="live-indicator">EN VIVO</span>
     </div>
   </header>
+
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <p class="frase" id="frase">✨La educación es el pasaporte al futuro.✨</p>
   <h1>Muro de los Buenos Deseos</h1>
@@ -143,6 +185,8 @@
 
   <div class="muro" id="muro"></div>
 
+  <div id="alertaVoto" class="alerta-voto">¡Gracias por tu voto! 💖</div>
+
   <audio id="audio" autoplay loop>
     <source src="hipjazz.mp3" type="audio/mp3">
   </audio>
@@ -150,6 +194,7 @@
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbwuNJj_R3myY7Z_Dg3AqrCQrZg5Nv1tJ843LdCKoqG9fpZSoGG7uEHaFidnvfKLRFpk/exec";
     const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc/Hoja%201";
+
     document.getElementById("audio").volume = 0.35;
 
     function actualizarReloj() {
@@ -174,106 +219,91 @@
     }, 7000);
 
     function enviarMensaje() {
-  console.log("Enviando mensaje con:", nombre, mensaje, fecha, color);
-  const nombre = document.getElementById("nombre").value;
-  const mensaje = document.getElementById("mensaje").value;
-  const fecha = document.getElementById("fecha").value;
-  const color = document.getElementById("color").value;
+      const nombre = document.getElementById("nombre").value;
+      const mensaje = document.getElementById("mensaje").value;
+      const fecha = document.getElementById("fecha").value;
+      const color = document.getElementById("color").value;
 
-  if (nombre && mensaje && fecha) {
-    const formData = new FormData();
-    formData.append("nombre", nombre);
-    formData.append("mensaje", mensaje);
-    formData.append("fecha", fecha);
-    formData.append("color", color);
+      if (nombre && mensaje && fecha) {
+        const formData = new FormData();
+        formData.append("nombre", nombre);
+        formData.append("mensaje", mensaje);
+        formData.append("fecha", fecha);
+        formData.append("color", color);
 
-    fetch(scriptURL, { method: 'POST', body: formData })
-      .then(() => {
-        alert("¡Mensaje enviado con éxito!");
-        document.getElementById("nombre").value = "";
-        document.getElementById("mensaje").value = "";
-        document.getElementById("fecha").value = "";
-        cargarMensajes();
-      })
-      .catch(() => alert("Hubo un error al enviar el mensaje."));
-  } else {
-    alert("Por favor completa todos los campos.");
-  }
-}
-    function votar(nombre, mensaje, fecha) {
+        fetch(scriptURL, { method: 'POST', body: formData })
+          .then(() => {
+            alert("¡Mensaje enviado con éxito!");
+            document.getElementById("nombre").value = "";
+            document.getElementById("mensaje").value = "";
+            document.getElementById("fecha").value = "";
+            cargarMensajes();
+          })
+          .catch(() => alert("Hubo un error al enviar el mensaje."));
+      } else {
+        alert("Por favor completa todos los campos.");
+      }
+    }
+
+    function votar(id) {
+      const corazon = document.querySelector(`.corazon[data-id='${id}']`);
+      if (corazon) corazon.classList.add("votado");
+
       fetch(scriptURL, {
         method: "POST",
         body: new URLSearchParams({
           action: "votar",
-          nombre,
-          mensaje,
-          fecha
+          id: id
         })
-      }).then(() => cargarMensajes());
+      }).then(() => {
+        mostrarAlerta();
+        cargarMensajes();
+      });
+    }
+
+    function mostrarAlerta() {
+      const alerta = document.getElementById("alertaVoto");
+      alerta.classList.add("visible");
+      setTimeout(() => alerta.classList.remove("visible"), 2000);
     }
 
     function cargarMensajes() {
-  fetch(sheetURL)
-    .then(r => r.json())
-    .then(data => {
-      const muro = document.getElementById("muro");
-      muro.innerHTML = "";
+      fetch(sheetURL)
+        .then(r => r.json())
+        .then(data => {
+          const muro = document.getElementById("muro");
+          muro.innerHTML = "";
 
-      data
-        .map((msg, i) => ({
-          nombre: msg.nombre,
-          mensaje: msg.mensaje,
-          fecha: msg.fecha,
-          color: msg.color,
-          votos: parseInt(msg.votos) || 0,
-          id: msg.id
-        }))
-        .sort((a, b) => b.votos - a.votos)
-        .forEach((msg, i) => {
-          const tarjeta = document.createElement("div");
-          tarjeta.className = "mensaje";
-          tarjeta.style.backgroundColor = msg.color;
-          tarjeta.innerHTML = `
-            <div class="ranking-numero">${i + 1}</div>
-            <div class='corazon' data-id='${msg.id}' onclick='votar("${msg.id}")'>
-              <i class="fa-solid fa-heart"></i>
-              <div>${msg.votos}</div>
-            </div>
-            <strong>${msg.nombre}</strong><br>
-            ${msg.mensaje}<br>
-            <small>${msg.fecha}</small>
-          `;
-          muro.appendChild(tarjeta);
+          data
+            .map((msg, i) => ({
+              nombre: msg.nombre,
+              mensaje: msg.mensaje,
+              fecha: msg.fecha,
+              color: msg.color,
+              votos: parseInt(msg.votos) || 0,
+              id: msg.id
+            }))
+            .sort((a, b) => b.votos - a.votos)
+            .forEach((msg, i) => {
+              const tarjeta = document.createElement("div");
+              tarjeta.className = "mensaje";
+              tarjeta.style.backgroundColor = msg.color;
+              tarjeta.innerHTML = `
+                <div class="ranking-numero">${i + 1}</div>
+                <div class='corazon' data-id='${msg.id}' onclick='votar("${msg.id}")'>
+                  <i class="fa-solid fa-heart"></i>
+                  <div>${msg.votos}</div>
+                </div>
+                <strong>${msg.nombre}</strong><br>
+                ${msg.mensaje}<br>
+                <small>${msg.fecha}</small>
+              `;
+              muro.appendChild(tarjeta);
+            });
         });
-    });
-}
-    function votar(id) {
-  const corazon = document.querySelector(`.corazon[data-id='${id}']`);
-  if (corazon) {
-    corazon.classList.add("votado");
-  }
+    }
 
-  fetch(scriptURL, {
-    method: "POST",
-    body: new URLSearchParams({
-      action: "votar",
-      id: id
-    })
-  }).then(() => {
-    mostrarAlerta();
-    cargarMensajes(); // recarga la info
-  });
-}
-function mostrarAlerta() {
-  const alerta = document.getElementById("alertaVoto");
-  alerta.classList.add("visible");
-  setTimeout(() => {
-    alerta.classList.remove("visible");
-  }, 2000);
-}
-
-  <div id="alertaVoto" class="alerta-voto">¡Gracias por tu voto! 💖</div>
-
+    cargarMensajes();
   </script>
 </body>
 </html>
