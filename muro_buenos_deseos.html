@@ -73,7 +73,36 @@
     .corazon.activo { color: red; animation: latido 0.4s; }
     @keyframes flotar { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes latido { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
-  </style>
+    .corazon.votado {
+  color: red;
+  animation: latido 0.4s;
+}
+
+@keyframes latido {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.alerta-voto {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #00d4ff;
+  color: #111;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 0 0 10px #00d4ff;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1000;
+}
+.alerta-voto.visible {
+  opacity: 1;
+}
+</style>
 </head>
 <body>
   <header>
@@ -206,7 +235,7 @@
           tarjeta.style.backgroundColor = msg.color;
           tarjeta.innerHTML = `
             <div class="ranking-numero">${i + 1}</div>
-            <div class='corazon' onclick='votar("${msg.id}")'>
+            <div class='corazon' data-id='${msg.id}' onclick='votar("${msg.id}")'>
               <i class="fa-solid fa-heart"></i>
               <div>${msg.votos}</div>
             </div>
@@ -219,17 +248,32 @@
     });
 }
     function votar(id) {
-  console.log("Votando por ID:", id);
+  const corazon = document.querySelector(`.corazon[data-id='${id}']`);
+  if (corazon) {
+    corazon.classList.add("votado");
+  }
+
   fetch(scriptURL, {
     method: "POST",
     body: new URLSearchParams({
       action: "votar",
       id: id
     })
-  }).then(() => cargarMensajes());
+  }).then(() => {
+    mostrarAlerta();
+    cargarMensajes(); // recarga la info
+  });
+}
+function mostrarAlerta() {
+  const alerta = document.getElementById("alertaVoto");
+  alerta.classList.add("visible");
+  setTimeout(() => {
+    alerta.classList.remove("visible");
+  }, 2000);
 }
 
-    cargarMensajes();
+  <div id="alertaVoto" class="alerta-voto">¡Gracias por tu voto! 💖</div>
+
   </script>
 </body>
 </html>
