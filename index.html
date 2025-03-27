@@ -26,14 +26,12 @@
 
     const twitch = document.getElementById('twitchPlayer');
     const youtube = document.getElementById('autoDJYoutube');
-    const spotify = document.getElementById('autoDJSpotify');
 
     onValue(signalRef, (snapshot) => {
       const current = snapshot.val();
       twitch.style.display = current === 'twitch' ? 'block' : 'none';
       youtube.style.display = current === 'youtube' ? 'block' : 'none';
-      spotify.style.display = current === 'spotify' ? 'block' : 'none';
-      mostrarMensaje(`🎵 Ahora suena: ${current === 'twitch' ? 'Transmisión en Vivo' : current === 'youtube' ? 'AutoDJ YouTube' : 'AutoDJ Spotify'}`);
+      mostrarMensaje(`🎵 Ahora suena: ${current === 'twitch' ? 'Transmisión en Vivo' : 'AutoDJ YouTube'}`);
     });
 
     window.activarAutoDJ = (tipo) => set(signalRef, tipo);
@@ -49,6 +47,7 @@
       }
     }
   </script>
+
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -351,11 +350,17 @@
       font-weight: bold;
     }
 .vip-button {
-      position: absolute; top: 10px; right: 10px; background: #8000ff;
-      color: white; border: none; padding: 10px 15px; border-radius: 10px;
-      font-weight: bold; cursor: pointer; z-index: 1000;
+      display: block;
+      margin: 20px auto;
+      background: #8000ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
     }
-
 
     .login-popup {
       display: none; position: fixed; z-index: 2000; left: 0; top: 0;
@@ -422,7 +427,7 @@
 <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
   <!-- Botón de acceso VIP -->
 <!-- Botón VIP -->
-  <button class="vip-button" onclick="document.getElementById('loginPopup').style.display='flex'">🎛️ Acceso VIP</button>
+   <button class="vip-button" onclick="document.getElementById('loginPopup').style.display='flex'">🎛️ Acceso VIP</button>
 
 <!-- Login -->
   <div class="login-popup" id="loginPopup">
@@ -434,19 +439,15 @@
     </div>
   </div>
 
-
 <!-- Reproductores -->
   <div id="player-area">
     <iframe id="twitchPlayer" class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
     <iframe id="autoDJYoutube" class="twitch" src="https://www.youtube.com/embed/videoseries?list=PL4Wr-CjWmBkFv1RbGLmCWpY-qFC7OT9gc&autoplay=1&mute=0&loop=1" style="display:none"></iframe>
-    <iframe id="autoDJSpotify" class="twitch" src="https://open.spotify.com/embed/playlist/51V3wqCwJwxD9QufycVEXZ?utm_source=generator&theme=0" style="display:none" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
   </div>
-
 
 <!-- Controles Admin -->
   <div class="admin-controls">
     <button onclick="activarAutoDJ('youtube')" style="background:#00b894; color:white;">🔁 AutoDJ YouTube</button>
-    <button onclick="activarAutoDJ('spotify')" style="background:#1DB954; color:white;">🎶 AutoDJ Spotify</button>
     <button onclick="activarTwitch()" style="background:#d63031; color:white;">🔴 Volver a En Vivo</button>
   </div>
 
@@ -761,23 +762,22 @@ function verificarAcceso() {
 }
 
   function mostrarMensaje(mensaje) {
-  const aviso = document.createElement('div');
-  aviso.innerText = mensaje;
-  aviso.style.position = 'fixed';
-  aviso.style.top = '20px';
-  aviso.style.left = '50%';
-  aviso.style.transform = 'translateX(-50%)';
-  aviso.style.background = '#8000ff';
-  aviso.style.color = '#fff';
-  aviso.style.padding = '10px 20px';
-  aviso.style.borderRadius = '10px';
-  aviso.style.zIndex = '9999';
-  aviso.style.boxShadow = '0 0 10px #fff';
-  aviso.style.fontWeight = 'bold';
-  document.body.appendChild(aviso);
-  setTimeout(() => aviso.remove(), 3000);
-}
-
+      const aviso = document.createElement('div');
+      aviso.innerText = mensaje;
+      aviso.style.position = 'fixed';
+      aviso.style.top = '20px';
+      aviso.style.left = '50%';
+      aviso.style.transform = 'translateX(-50%)';
+      aviso.style.background = '#8000ff';
+      aviso.style.color = '#fff';
+      aviso.style.padding = '10px 20px';
+      aviso.style.borderRadius = '10px';
+      aviso.style.zIndex = '9999';
+      aviso.style.boxShadow = '0 0 10px #fff';
+      aviso.style.fontWeight = 'bold';
+      document.body.appendChild(aviso);
+      setTimeout(() => aviso.remove(), 3000);
+    }
 </script>
 </body>
 </html>
