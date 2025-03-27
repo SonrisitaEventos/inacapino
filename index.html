@@ -5,64 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>El Inacapino Puerto Montt</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+ <script>
  
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDI-jXMqW5HBMk0OT_dfGtxm7AwGo8gRK0",
-      authDomain: "inacapino-radio.firebaseapp.com",
-      databaseURL: "https://inacapino-radio-default-rtdb.firebaseio.com",
-      projectId: "inacapino-radio",
-      storageBucket: "inacapino-radio.appspot.com",
-      messagingSenderId: "649918235189",
-      appId: "1:649918235189:web:5cbd6fd32921a90ecde77c",
-      measurementId: "G-25C6GSX57L"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const signalRef = ref(db, 'currentSignal');
-
-    const twitch = document.getElementById('twitchPlayer');
-    const autoDJ = document.getElementById('autoDJVideos');
-    const videoPlayer = document.getElementById('player');
-
-    const videos = [
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962",
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4?alt=media&token=ff7fccf3-fc80-4188-a47b-b7fcb5466425",
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FGaming%20Music%202023.mp4?alt=media&token=d3330f02-f47d-4557-9e32-8686bd308e43",
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FJAZZ%20%26%20BLUES%20(conversar%20%2Ccaf%C3%A9%20%2Cestudiar).mp4?alt=media&token=dee26a91-1bc0-4690-aefa-7137d682acdb",
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FMixElectronic.mp4?alt=media&token=15851287-f7b2-4721-b5cf-e1e1d5d6c994",
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FM%C3%BAsica%20Electr%C3%B3nica%20para%20Estudiar%2C%20m%C3%BAsica%20para%20levantar%20el%20animo.mp4?alt=media&token=de6e525f-ced4-4e2a-a34f-37f8c1d2546f",
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FSTREAMING%20GAMER.mp4?alt=media&token=ddcc30aa-9b1c-4ab5-b5e8-eac8e417174c"
-    ];
-
-    let currentIndex = 0;
-
-    function reproducirVideo(index) {
-      videoPlayer.src = videos[index];
-      videoPlayer.load();
-      videoPlayer.play();
-    }
-
-    videoPlayer.addEventListener("ended", () => {
-      currentIndex = (currentIndex + 1) % videos.length;
-      reproducirVideo(currentIndex);
-    });
-
-    onValue(signalRef, (snapshot) => {
-      const current = snapshot.val();
-      const enVivo = current === 'twitch';
-      twitch.style.display = enVivo ? 'block' : 'none';
-      autoDJ.style.display = !enVivo ? 'block' : 'none';
-      if (!enVivo) {
-        currentIndex = 0;
-        reproducirVideo(currentIndex);
-      }
-    });
-
 
     window.activarAutoDJ = (tipo) => set(signalRef, tipo);
     window.activarTwitch = () => set(signalRef, 'twitch');
@@ -425,13 +369,11 @@
     }
 
 .twitch { width: 100%; max-width: 720px; height: 405px; margin: 20px auto; display: block; }
-    .video-overlay-container {
+   .video-overlay-container {
       position: relative;
       width: 100%;
-      max-width: 1430px; /* tamaño del marco negro */
-      height: auto;
+      max-width: 960px;
       margin: 30px auto;
-      display: block;
     }
     .marco-overlay {
       width: 100%;
@@ -439,13 +381,14 @@
     }
     .video-in-marco {
       position: absolute;
-      top: 11.5%; /* ajusta según el marco */
-      left: 6.3%; /* ajusta según el marco */
-      width: 87.4%;  /* ajusta según el marco */
-      height: 76.2%; /* ajusta según el marco */
+      top: 11.5%;
+      left: 6.3%;
+      width: 87.4%;
+      height: 76.2%;
       border: none;
       border-radius: 10px;
     }
+
   </style>
 </head>
 <body>
@@ -499,14 +442,17 @@
   </div>
 
 <!-- Reproductores -->
-  <div id="player-area">
-    <iframe id="twitchPlayer" class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
-    <div class="video-overlay-container">
-    <img src="Overlay INACAP premium.jpg" alt="Marco de video" class="marco-overlay">
-    <video src="tu_video.mp4" autoplay muted loop controls class="video-in-marco"></video>
-  </div>
-  </div>
+ <div class="video-overlay-container">
+    <img src="imagenes/Overlay INACAP premium.jpg" alt="Marco INACAP" class="marco-overlay">
 
+    <!-- Twitch Player -->
+    <iframe id="twitchPlayer" class="video-in-marco"
+      src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io"
+      allowfullscreen></iframe>
+
+    <!-- Firebase Player -->
+    <video id="player" class="video-in-marco" controls autoplay muted style="display:none;"></video>
+  </div>
 
 <!-- Controles Admin -->
   <div class="admin-controls">
@@ -854,33 +800,61 @@ const videos = [
     "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FM%C3%BAsica%20Electr%C3%B3nica%20para%20Estudiar%2C%20m%C3%BAsica%20para%20levantar%20el%20animo.mp4?alt=media&token=de6e525f-ced4-4e2a-a34f-37f8c1d2546f",
     "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FSTREAMING%20GAMER.mp4?alt=media&token=ddcc30aa-9b1c-4ab5-b5e8-eac8e417174c"
   ];
+ <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
+    const firebaseConfig = {
+      apiKey: "AIzaSyDI-jXMqW5HBMk0OT_dfGtxm7AwGo8gRK0",
+      authDomain: "inacapino-radio.firebaseapp.com",
+      databaseURL: "https://inacapino-radio-default-rtdb.firebaseio.com",
+      projectId: "inacapino-radio",
+      storageBucket: "inacapino-radio.appspot.com",
+      messagingSenderId: "649918235189",
+      appId: "1:649918235189:web:5cbd6fd32921a90ecde77c",
+      measurementId: "G-25C6GSX57L"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const signalRef = ref(db, 'currentSignal');
+
+    const twitch = document.getElementById('twitchPlayer');
+    const player = document.getElementById('player');
+
+    const videos = [
+      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962",
+      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4?alt=media&token=ff7fccf3-fc80-4188-a47b-b7fcb5466425",
+      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FGaming%20Music%202023.mp4?alt=media&token=d3330f02-f47d-4557-9e32-8686bd308e43"
+    ];
   let currentIndex = 0;
-  const videoPlayer = document.getElementById("player");
 
-  function reproducirVideo(index) {
-    videoPlayer.src = videos[index];
-    videoPlayer.load();
-    videoPlayer.play();
-  }
-
-  videoPlayer.addEventListener("ended", () => {
-    currentIndex = (currentIndex + 1) % videos.length;
-    reproducirVideo(currentIndex);
-  });
-
-  function activarAutoDJ(tipo) {
-    document.getElementById('twitchPlayer').style.display = 'none';
-    document.getElementById('autoDJYoutube').style.display = 'none';
-    document.getElementById('autoDJSpotify').style.display = 'none';
-    document.getElementById('autoDJVideos').style.display = tipo === 'firebase' ? 'block' : 'none';
-
-    if (tipo === 'firebase') {
-      currentIndex = 0;
-      reproducirVideo(currentIndex);
-      mostrarMensaje("🎧 AutoDJ Firebase activado");
+    function reproducirVideo(index) {
+      player.src = videos[index];
+      player.load();
+      player.play();
     }
-  }
+
+    player.addEventListener("ended", () => {
+      currentIndex = (currentIndex + 1) % videos.length;
+      reproducirVideo(currentIndex);
+    });
+
+    onValue(signalRef, (snapshot) => {
+      const estado = snapshot.val();
+      const esTwitch = estado === 'twitch';
+      twitch.style.display = esTwitch ? 'block' : 'none';
+      player.style.display = !esTwitch ? 'block' : 'none';
+      if (!esTwitch) {
+        currentIndex = 0;
+        reproducirVideo(currentIndex);
+      }
+    });
+
+    // Funciones de control desde el panel VIP
+    window.activarTwitch = () => set(signalRef, 'twitch');
+    window.activarAutoDJ = () => set(signalRef, 'firebase');
+
 <!-- ✅ BOTÓN ADMIN EXTRA -->
   const adminControls = document.querySelector('.admin-controls');
   if (adminControls) {
