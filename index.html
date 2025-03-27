@@ -5,7 +5,7 @@
   <meta name="description" content="RadioTV estudiantil interactiva de INACAP Puerto Montt. Transmisiones, concursos, postales y más. ¡Conéctate con El Inacapino!">
   <title>El Inacapino Puerto Montt</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
- <button onclick="document.body.classList.toggle('modo-dia')">☀️ Modo Día</button>
+
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -408,6 +408,7 @@
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1>El Inacapino Puerto Montt</h1>
+   <button onclick="toggleModo()">☀️ Modo Día</button>
   <p>🎧 ¡Bienvenidos a la RadioTV de nuestra sede! 📻</p>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
     <div class="botones">
@@ -662,6 +663,7 @@
 
 <!-- Sección Noticias y Destacados -->
  <script type="module">
+    let currentIndex = 0;
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
     import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
@@ -683,9 +685,7 @@
     const twitch = document.getElementById('twitchPlayer');
     const player = document.getElementById('player');
 
-    let currentIndex = 0;
-
-    function reproducirVideo(index) {
+      function reproducirVideo(index) {
       player.src = videos[index];
       player.load();
       player.play();
@@ -750,7 +750,7 @@ const images = [
 ];
 
 function openModal(index) {
- currentImage = index;
+  = index;
   const modal = document.getElementById("imgModal");
   const modalImg = document.getElementById("modalImg");
 
@@ -775,18 +775,18 @@ function closeModal() {
 }
 
 function changeImage(step) {
-  currentImage += step;
-  if (currentImage < 0) {
-    currentImage = images.length - 1;
-  } else if (currentImage >= images.length) {
-    currentImage = 0;
+   += step;
+  if ( < 0) {
+     = images.length - 1;
+  } else if ( >= images.length) {
+     = 0;
   }
 
   const modalImg = document.getElementById("modalImg");
   modalImg.style.opacity = 0;
 
   setTimeout(() => {
-    modalImg.src = "imagenes/" + images[currentImage];
+    modalImg.src = "imagenes/" + images[];
     modalImg.style.opacity = 1;
   }, 300);
 }
@@ -804,21 +804,23 @@ if (user === "Inacapino" && pass === "SedePuertoMontt") {
   alert("Usuario o contraseña incorrectos");
 }
     
-
-if (estado === 'firebase') {
-  mostrarMensaje("🎧 AutoDJ activado desde Firebase");
-}
-
-  function activarAutoDJ(tipo) {
-  set(signalRef, 'firebase');
-}
-
-
-
   function activarTwitch() {
   document.getElementById('twitchPlayer').style.display = 'block';
    mostrarMensaje("🔴 Transmisión en vivo activada");
 }
+
+  // Al cargar
+if (localStorage.getItem("modo") === "dia") {
+  document.body.classList.add("modo-dia");
+}
+
+// Al cambiar
+function toggleModo() {
+  document.body.classList.toggle("modo-dia");
+  const esDia = document.body.classList.contains("modo-dia");
+  localStorage.setItem("modo", esDia ? "dia" : "noche");
+}
+
 
   function mostrarMensaje(mensaje) {
       const aviso = document.createElement('div');
