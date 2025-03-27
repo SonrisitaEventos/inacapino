@@ -5,7 +5,8 @@
   <meta name="description" content="RadioTV estudiantil interactiva de INACAP Puerto Montt. Transmisiones, concursos, postales y más. ¡Conéctate con El Inacapino!">
   <title>El Inacapino Puerto Montt</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
- 
+ <button onclick="document.body.classList.toggle('modo-dia')">☀️ Modo Día</button>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -14,6 +15,11 @@
       font-family: sans-serif;
       text-align: center;
     }
+    body.modo-dia {
+  background: white;
+  color: black;
+}
+
     header {
       display: flex;
       justify-content: space-between;
@@ -412,9 +418,6 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
   <!-- 🎧 NUEVO AutoDJ Firebase con playlist de videos en bucle -->
-<div id="autoDJVideos" style="display:none;">
-  <video id="player" controls autoplay width="100%" style="max-width:720px;"></video>
-</div>
 
 <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
   <!-- Botón de acceso VIP -->
@@ -747,7 +750,7 @@ const images = [
 ];
 
 function openModal(index) {
-  let currentImage = 0;
+ currentImage = index;
   const modal = document.getElementById("imgModal");
   const modalImg = document.getElementById("modalImg");
 
@@ -790,33 +793,31 @@ function changeImage(step) {
 function verificarAcceso() {
     const user = document.getElementById('vipUser').value;
     const pass = document.getElementById('vipPass').value;
-    if (user === "Inacapino" && pass === "SedePuertoMontt") {
-      document.getElementById('loginPopup').style.display = 'none';
-      document.querySelector('.admin-controls').style.display = 'flex';
-    } else {
-      alert("Usuario o contraseña incorrectos");
-      if (!user || !pass) {
+  if (!user || !pass) {
   alert("Por favor, completa todos los campos.");
   return;
 }
+if (user === "Inacapino" && pass === "SedePuertoMontt") {
+  document.getElementById('loginPopup').style.display = 'none';
+  document.querySelector('.admin-controls').style.display = 'flex';
+} else {
+  alert("Usuario o contraseña incorrectos");
+}
+    
 
-    }
-  }
 if (estado === 'firebase') {
   mostrarMensaje("🎧 AutoDJ activado desde Firebase");
 }
 
   function activarAutoDJ(tipo) {
-  document.getElementById('twitchPlayer').style.display = 'none';
-  
-  }
+  set(signalRef, 'firebase');
+}
+
 
 
   function activarTwitch() {
   document.getElementById('twitchPlayer').style.display = 'block';
-  document.getElementById('autoDJYoutube').style.display = 'none';
-  document.getElementById('autoDJSpotify').style.display = 'none';
-  mostrarMensaje("🔴 Transmisión en vivo activada");
+   mostrarMensaje("🔴 Transmisión en vivo activada");
 }
 
   function mostrarMensaje(mensaje) {
