@@ -81,7 +81,12 @@
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: black; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
+    body {
+      background: black;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+    }
     header {
       display: flex;
       justify-content: space-between;
@@ -421,26 +426,26 @@
 
 .twitch { width: 100%; max-width: 720px; height: 405px; margin: 20px auto; display: block; }
     .video-overlay-container {
-  position: relative;
-  max-width: 720px; /* Esto es clave, lo dejamos más chico para que no se expanda */
-  margin: 30px auto;
-  display: none;
-}
-
-.marco-overlay {
-  width: 100%;
-  display: block;
-}
-
-.video-in-marco {
-  position: absolute;
-  top: 13%;
-  left: 13%;
-  width: 74%;
-  height: 73%;
-  border: none;
-  border-radius: 10px;
-}
+      position: relative;
+      width: 100%;
+      max-width: 1430px; /* tamaño del marco negro */
+      height: auto;
+      margin: 30px auto;
+      display: block;
+    }
+    .marco-overlay {
+      width: 100%;
+      display: block;
+    }
+    .video-in-marco {
+      position: absolute;
+      top: 13.5%; /* ajusta según el marco */
+      left: 12.5%; /* ajusta según el marco */
+      width: 75%;  /* ajusta según el marco */
+      height: 73.5%; /* ajusta según el marco */
+      border: none;
+      border-radius: 10px;
+    }
   </style>
 </head>
 <body>
@@ -496,10 +501,10 @@
 <!-- Reproductores -->
   <div id="player-area">
     <iframe id="twitchPlayer" class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
-    <div class="video-overlay-container" id="autoDJVideos">
-      <img src="Overlay INACAP premium.jpg" class="marco-overlay" alt="Overlay Radio INACAP">
-      <video id="player" class="video-in-marco" controls autoplay></video>
-    </div>
+    <div class="video-overlay-container">
+    <img src="Overlay INACAP premium.jpg" alt="Marco de video" class="marco-overlay">
+    <video src="tu_video.mp4" autoplay muted loop controls class="video-in-marco"></video>
+  </div>
   </div>
 
 
