@@ -499,7 +499,13 @@
   </div>
 
 <!-- Reproductores -->
- 
+  <div id="player-area">
+    <iframe id="twitchPlayer" class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
+    <div class="video-overlay-container">
+    <img src="Overlay INACAP premium.jpg" alt="Marco de video" class="marco-overlay">
+    <video src="tu_video.mp4" autoplay muted loop controls class="video-in-marco"></video>
+  </div>
+  </div>
 
 
 <!-- Controles Admin -->
@@ -508,10 +514,9 @@
     <button onclick="activarTwitch()" style="background:#d63031; color:white;">🔴 Volver a En Vivo</button>
   </div>
 <!-- Contenedor del marco con video dentro -->
-<div class="video-overlay-container">
-  <img src="imagenes/Overlay INACAP premium.jpg" alt="Marco INACAP" class="marco-overlay">
-  <video id="player" autoplay muted controls loop class="video-in-marco"></video>
-</div>
+
+
+  
   <section id="rebobinando" class="rebobinando-section">
     <h2>🔁 Rebobinando la Señal</h2>
     <p>¡Revive los mejores momentos de nuestras transmisiones!</p>
