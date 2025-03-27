@@ -362,13 +362,13 @@
       font-weight: bold;
     }
     .admin-controls {
-      display: none;
-      margin: 20px auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
+  display: none;
+  margin: 20px auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
 
   </style>
 </head>
@@ -419,7 +419,13 @@
 <!-- Área de reproducción -->
 <div id="player-area">
   <iframe id="twitchPlayer" class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
-  <iframe id="autoDJYoutube" class="twitch" src="https://www.youtube.com/embed/videoseries?list=PLuQY0JleB24Ycg63GwMdV6zWi1p69iyT6&autoplay=1&mute=0&loop=1" style="display:none"></iframe>
+ <iframe id="autoDJYoutube" class="twitch" 
+  src="https://www.youtube.com/embed/videoseries?list=PLuQY0JleB24Ycg63GwMdV6zWi1p69iyT6&autoplay=1&mute=1&loop=1&playlist=PLuQY0JleB24Ycg63GwMdV6zWi1p69iyT6" 
+  style="display:none" 
+  allow="autoplay; encrypted-media"
+  allowfullscreen>
+</iframe>
+
   <iframe id="autoDJSpotify" class="twitch" src="https://open.spotify.com/embed/playlist/51V3wqCwJwxD9QufycVEXZ?utm_source=generator&theme=0" style="display:none" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 </div>
 
@@ -719,22 +725,44 @@ function verificarAcceso() {
   }
 
   function activarAutoDJ(tipo) {
-    document.getElementById('twitchPlayer').style.display = 'none';
-    document.getElementById('autoDJYoutube').style.display = 'none';
-    document.getElementById('autoDJSpotify').style.display = 'none';
+  document.getElementById('twitchPlayer').style.display = 'none';
+  document.getElementById('autoDJYoutube').style.display = 'none';
+  document.getElementById('autoDJSpotify').style.display = 'none';
 
-    if (tipo === 'youtube') {
-      document.getElementById('autoDJYoutube').style.display = 'block';
-    } else if (tipo === 'spotify') {
-      document.getElementById('autoDJSpotify').style.display = 'block';
-    }
+  if (tipo === 'youtube') {
+    document.getElementById('autoDJYoutube').style.display = 'block';
+    mostrarMensaje("🎵 Ahora suena: AutoDJ YouTube");
+  } else if (tipo === 'spotify') {
+    document.getElementById('autoDJSpotify').style.display = 'block';
+    mostrarMensaje("🎶 Ahora suena: AutoDJ Spotify");
   }
+}
+
 
   function activarTwitch() {
-    document.getElementById('twitchPlayer').style.display = 'block';
-    document.getElementById('autoDJYoutube').style.display = 'none';
-    document.getElementById('autoDJSpotify').style.display = 'none';
-  }
+  document.getElementById('twitchPlayer').style.display = 'block';
+  document.getElementById('autoDJYoutube').style.display = 'none';
+  document.getElementById('autoDJSpotify').style.display = 'none';
+  mostrarMensaje("🔴 Transmisión en vivo activada");
+}
+
+  function mostrarMensaje(mensaje) {
+  const aviso = document.createElement('div');
+  aviso.innerText = mensaje;
+  aviso.style.position = 'fixed';
+  aviso.style.top = '20px';
+  aviso.style.left = '50%';
+  aviso.style.transform = 'translateX(-50%)';
+  aviso.style.background = '#8000ff';
+  aviso.style.color = '#fff';
+  aviso.style.padding = '10px 20px';
+  aviso.style.borderRadius = '10px';
+  aviso.style.zIndex = '9999';
+  aviso.style.boxShadow = '0 0 10px #fff';
+  aviso.style.fontWeight = 'bold';
+  document.body.appendChild(aviso);
+  setTimeout(() => aviso.remove(), 3000);
+}
 </script>
 </body>
 </html>
