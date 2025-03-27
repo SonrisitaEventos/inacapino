@@ -9,23 +9,29 @@
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: black;
-      color: white;
-      font-family: sans-serif;
-      text-align: center;
+     :root {
+      --bg-color: #000;
+      --text-color: #fff;
+      --accent-color: #8000ff;
     }
-    body.modo-dia {
-  background: white;
-  color: black;
-}
-
+    body[data-theme='light'] {
+      --bg-color: #fff;
+      --text-color: #000;
+      --accent-color: #d40000;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
     header {
+      background-color: #111;
+      padding: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 20px;
-      background-color: #111;
       flex-wrap: wrap;
     }
     nav {
@@ -34,16 +40,15 @@
       flex-wrap: wrap;
     }
     nav a {
-      color: white;
+      margin: 0 10px;
       text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-    }
+      color: var(--text-color);
+      
     .top-info {
+      font-size: 14px;
       display: flex;
       gap: 10px;
       align-items: center;
-      font-size: 14px;
     }
     .live-indicator {
       background-color: red;
@@ -336,28 +341,36 @@
     }
 
     .login-popup {
-  display: none; 
-  position: fixed; 
-  z-index: 2000; 
-  left: 0; 
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  background-color: rgba(0,0,0,0.85);
-  justify-content: center; 
-  align-items: center;
-}
-
-    .login-box {
-      background: #222; padding: 30px; border-radius: 10px; color: white;
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
-    .login-box input { display: block; margin: 10px auto; padding: 8px; width: 80%; border-radius: 5px; border: none; }
+    .login-box {
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .login-box input {
+      display: block;
+      margin: 10px auto;
+      padding: 8px;
+      width: 80%;
+    }
     .login-box button {
       padding: 10px 20px; background-color: #d40000; color: white;
       border: none; border-radius: 10px; cursor: pointer; font-weight: bold;
     }
-    .admin-controls {
-      display: none; justify-content: center; gap: 10px; margin: 20px auto;
+     .admin-controls {
+      display: none;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px;
     }
     .admin-controls button {
       padding: 10px 20px; border: none; border-radius: 10px; font-weight: bold;
@@ -365,15 +378,14 @@
     }
 
 .twitch { width: 100%; max-width: 720px; height: 405px; margin: 20px auto; display: block; }
-   .video-overlay-container {
+    .video-overlay-container {
       position: relative;
       width: 100%;
       max-width: 960px;
-      margin: 30px auto;
+      margin: 20px auto;
     }
     .marco-overlay {
       width: 100%;
-      display: block;
     }
     .video-in-marco {
       position: absolute;
@@ -381,12 +393,117 @@
       left: 6.3%;
       width: 87.4%;
       height: 76.2%;
-      border: none;
       border-radius: 10px;
+      border: none;
+      display: none;
     }
 
   </style>
 </head>
+  <body data-theme="dark">
+  <header>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#rebobinando">Rebobinando</a>
+      <a href="#encuesta">Encuesta</a>
+    </nav>
+    <div class="top-info">
+      <span id="reloj">00:00</span>
+      <button onclick="toggleTheme()">🌓 Modo Día/Noche</button>
+    </div>
+  </header>
+
+  <div class="video-overlay-container">
+    <img src="imagenes/Overlay INACAP premium.jpg" alt="Marco" class="marco-overlay">
+    <iframe id="twitchPlayer" class="video-in-marco" allowfullscreen></iframe>
+    <video id="player" class="video-in-marco" controls autoplay muted></video>
+  </div>
+
+  <button onclick="document.getElementById('loginPopup').style.display='flex'">🎛️ Acceso VIP</button>
+  <div class="login-popup" id="loginPopup">
+    <div class="login-box">
+      <h3>Acceso VIP</h3>
+      <input id="vipUser" placeholder="Usuario">
+      <input id="vipPass" placeholder="Contraseña" type="password">
+      <button onclick="verificarAcceso()">Ingresar</button>
+    </div>
+  </div>
+
+  <div class="admin-controls">
+    <button onclick="activarTwitch()">🔴 Twitch</button>
+    <button onclick="activarAutoDJ()">🎧 AutoDJ Firebase</button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDI-jXMqW5HBMk0OT_dfGtxm7AwGo8gRK0",
+      authDomain: "inacapino-radio.firebaseapp.com",
+      databaseURL: "https://inacapino-radio-default-rtdb.firebaseio.com",
+      projectId: "inacapino-radio",
+      storageBucket: "inacapino-radio.appspot.com",
+      messagingSenderId: "649918235189",
+      appId: "1:649918235189:web:5cbd6fd32921a90ecde77c"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const signalRef = ref(db, 'currentSignal');
+
+    const twitch = document.getElementById('twitchPlayer');
+    const player = document.getElementById('player');
+
+    const videos = [
+      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4?alt=media"
+    ];
+    let currentIndex = 0;
+
+    function reproducirVideo(index) {
+      player.src = videos[index];
+      player.load();
+      player.play();
+    }
+
+    player.addEventListener("ended", () => {
+      currentIndex = (currentIndex + 1) % videos.length;
+      reproducirVideo(currentIndex);
+    });
+
+    onValue(signalRef, (snapshot) => {
+      const estado = snapshot.val();
+      if (estado === 'twitch') {
+        twitch.src = "https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io";
+        twitch.style.display = 'block';
+        player.style.display = 'none';
+      } else if (estado === 'firebase') {
+        twitch.style.display = 'none';
+        player.style.display = 'block';
+        currentIndex = 0;
+        reproducirVideo(currentIndex);
+      }
+    });
+
+    window.activarTwitch = () => set(signalRef, 'twitch');
+    window.activarAutoDJ = () => set(signalRef, 'firebase');
+
+    window.verificarAcceso = () => {
+      const user = document.getElementById('vipUser').value;
+      const pass = document.getElementById('vipPass').value;
+      if (user === "Inacapino" && pass === "SedePuertoMontt") {
+        document.getElementById('loginPopup').style.display = 'none';
+        document.querySelector('.admin-controls').style.display = 'flex';
+      } else {
+        alert("Usuario o contraseña incorrectos");
+      }
+    }
+
+    window.toggleTheme = () => {
+      const body = document.body;
+      body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    }
 <body>
 <header>
     <nav>
