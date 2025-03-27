@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>El Inacapino Puerto Montt</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Radio online interactiva de INACAP Puerto Montt. Noticias, concursos, videos y participación estudiantil.">
 
-<style>
+  <title>El Inacapino Puerto Montt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: black;
-      color: white;
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
       text-align: center;
+      padding: 10px;
     }
     header {
       display: flex;
@@ -312,357 +313,384 @@
     strong {
       font-weight: bold;
     }
-.vip-button {
-      display: block;
-      margin: 20px auto;
-      background: #8000ff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 1000;
-    }
+#btnTop {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 100;
+  font-size: 22px;
+  background-color: #8000ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
 
-    .login-popup {
-      display: none; position: fixed; z-index: 2000; left: 0; top: 0;
-      width: 100%; height: 100%; background-color: rgba(0,0,0,0.85);
-      justify-content: center; align-items: center;
-    }
+#btnTop:hover {
+  transform: scale(1.1);
+}
 
-    .login-popup {
-      display: none; position: fixed; z-index: 2000; left: 0; top: 0;
-      width: 100%; height: 100%; background-color: rgba(0,0,0,0.85);
-      justify-content: center; align-items: center;
-    }
-    .login-box {
-      background: #222; padding: 30px; border-radius: 10px; color: white;
-    }
-    .login-box input { display: block; margin: 10px auto; padding: 8px; width: 80%; border-radius: 5px; border: none; }
-    .login-box button {
-      padding: 10px 20px; background-color: #d40000; color: white;
-      border: none; border-radius: 10px; cursor: pointer; font-weight: bold;
-    }
-    .admin-controls {
-      display: none; justify-content: center; gap: 10px; margin: 20px auto;
-    }
-    .admin-controls button {
-      padding: 10px 20px; border: none; border-radius: 10px; font-weight: bold;
-      cursor: pointer;
-    }
+#frase {
+  animation: fraseAnimada 1s ease-in-out;
+  transition: opacity 0.5s;
+}
 
-.twitch { width: 100%; max-width: 720px; height: 405px; margin: 20px auto; display: block; }
-   .video-overlay-container {
-      position: relative;
-      width: 100%;
-      max-width: 960px;
-      margin: 30px auto;
-    }
-    .marco-overlay {
-      width: 100%;
-      display: block;
-    }
-    .video-in-marco {
-      position: absolute;
-      top: 11.5%;
-      left: 6.3%;
-      width: 87.4%;
-      height: 76.2%;
-      border: none;
-      border-radius: 10px;
-    }
+@keyframes fraseAnimada {
+  0% { opacity: 0; transform: translateY(-10px); }
+  50% { opacity: 1; transform: translateY(0px); }
+  100% { opacity: 1; }
+}
+
+.fraseAnimada {
+  animation: fraseAnimada 1s ease-in-out;
+}
 
   </style>
 </head>
 <body>
 <header>
-<nav>
-<a href="#">Inicio</a>
-<a href="#rebobinando">Rebobinando</a>
-<a href="#capsulas">Cápsulas</a>
-<a href="#encuesta">Encuesta</a>
-<a href="#concursos">Concursos</a>
-<a href="#postales">Postales</a>
-<a href="#noticias">Noticias</a>
-</nav>
-<div class="top-info">
-<span id="reloj">00:00</span>
-<span id="clima">🌤️ 11°C</span>
-<span class="live-indicator">EN VIVO</span>
-</div>
-</header>
-<img alt="Logo Radio INACAP" class="logo" src="radio inacap.png"/>
-<h1>El Inacapino Puerto Montt</h1>
-<p>🎧 ¡Bienvenidos a la RadioTV de nuestra sede! 📻</p>
-<p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
-<div class="botones">
-<a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-<a href="https://www.facebook.com/RyCSolucionesPV" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-<a href="https://www.instagram.com/cristian_riffo_araya/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-<a href="https://www.twitch.tv/xtian_alejandro" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
-<a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-</div>
-<!-- 🎧 NUEVO AutoDJ Firebase con playlist de videos en bucle -->
-<div id="autoDJVideos" style="display:none;">
-<video autoplay="" controls="" id="player" style="max-width:720px;" width="100%"></video>
-</div>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#rebobinando">Rebobinando</a>
+      <a href="#capsulas">Cápsulas</a>
+      <a href="#encuesta">Encuesta</a>
+      <a href="#concursos">Concursos</a>
+      <a href="#postales">Postales</a>
+      <a href="#noticias">Noticias</a>
+
+    </nav>
+    <div class="top-info">
+      <span id="reloj">00:00</span>
+      <span id="clima">🌤️ 11°C</span>
+      <span class="live-indicator">EN VIVO</span>
+    </div>
+  </header>
+
+  <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
+  <h1>El Inacapino Puerto Montt</h1>
+  <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
+  <iframe class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
+
+  <div class="botones">
+    <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="https://www.facebook.com/RyCSolucionesPV" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+    <a href="https://www.instagram.com/cristian_riffo_araya/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://www.twitch.tv/xtian_alejandro" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
+    <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+  </div>
+  
 <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
-<!-- Botón de acceso VIP -->
-<!-- Botón VIP -->
-<button class="vip-button" onclick="document.getElementById('loginPopup').style.display='flex'">🎛️ Acceso VIP</button>
-<!-- Login -->
-<div class="login-popup" id="loginPopup">
-<div class="login-box">
-<h3>🔐 Acceso VIP</h3>
-<input id="vipUser" placeholder="Usuario" type="text"/>
-<input id="vipPass" placeholder="Contraseña" type="password"/>
-<button onclick="verificarAcceso()">Ingresar</button>
-</div>
-</div>
-<!-- Reproductores -->
-<div class="video-overlay-container">
-<img alt="Marco INACAP" class="marco-overlay" src="imagenes/Overlay INACAP premium.jpg"/>
-<!-- Twitch Player -->
-<iframe allowfullscreen="" class="video-in-marco" id="twitchPlayer" src="https://player.twitch.tv/?channel=xtian_alejandro&amp;parent=sonrisitaeventos.github.io"></iframe>
-<!-- Firebase Player -->
-<video autoplay="" class="video-in-marco" controls="" id="player" muted="" style="display:none;"></video>
-</div>
-<!-- Controles Admin -->
-<div class="admin-controls">
-<button onclick="activarAutoDJ('youtube')" style="background:#00b894; color:white;">🔁 AutoDJ YouTube</button>
-<button onclick="activarTwitch()" style="background:#d63031; color:white;">🔴 Volver a En Vivo</button>
-</div>
-<!-- Contenedor del marco con video dentro -->
-<section class="rebobinando-section" id="rebobinando">
-<h2>🔁 Rebobinando la Señal</h2>
-<p>¡Revive los mejores momentos de nuestras transmisiones!</p>
-<div class="video-carrusel">
-<a class="video-card" href="https://www.youtube.com/watch?v=R6bZrK0mDUs" target="_blank">
-<div class="video-thumb">
-<img alt="Episodio 1" src="https://img.youtube.com/vi/R6bZrK0mDUs/hqdefault.jpg"/>
-<span class="play-icon">▶️</span>
-</div>
-<div class="video-title">Episodio 1</div>
-</a>
-<a class="video-card" href="https://www.youtube.com/watch?v=0lNJ-IeYZ9Y" target="_blank">
-<div class="video-thumb">
-<img alt="Episodio 2" src="https://img.youtube.com/vi/0lNJ-IeYZ9Y/hqdefault.jpg"/>
-<span class="play-icon">▶️</span>
-</div>
-<div class="video-title">Episodio 2</div>
-</a>
-<a class="video-card" href="https://www.youtube.com/watch?v=KFEP9G3Qq70" target="_blank">
-<div class="video-thumb">
-<img alt="Episodio 3" src="https://img.youtube.com/vi/KFEP9G3Qq70/hqdefault.jpg"/>
-<span class="play-icon">▶️</span>
-</div>
-<div class="video-title">Episodio 3</div>
-</a>
-</div>
-</section>
-<section id="capsulas">
-<h2>🎬 Cápsulas Inacapinas</h2>
-<p>Historias, datos y mensajes breves para toda la comunidad</p>
-<div class="carrusel">
-<div class="video-card">
-<iframe allowfullscreen="" src="https://www.instagram.com/reel/DHEcs8NOeSy/embed"></iframe>
-<div class="video-title">Cápsula 1</div>
-</div>
-<div class="video-card">
-<iframe allowfullscreen="" src="https://www.instagram.com/reel/DG3Gyzrus8E/embed"></iframe>
-<div class="video-title">Cápsula 2</div>
-</div>
-<div class="video-card">
-<iframe allowfullscreen="" src="https://www.instagram.com/reel/DGyJYOYRCYQ/embed"></iframe>
-<div class="video-title">Cápsula 3</div>
-</div>
-<div class="video-card">
-<iframe allowfullscreen="" src="https://www.instagram.com/reel/DGyIribROOw/embed"></iframe>
-<div class="video-title">Cápsula 4</div>
-</div>
-<div class="video-card">
-<iframe allowfullscreen="" src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1160584632281917"></iframe>
-<div class="video-title">Cápsula 5</div>
-</div>
-</div>
-</section>
+
+  <section id="rebobinando" class="rebobinando-section">
+    <h2>🔁 Rebobinando la Señal</h2>
+    <p>¡Revive los mejores momentos de nuestras transmisiones!</p>
+    <div class="video-carrusel">
+      <a href="https://www.youtube.com/watch?v=R6bZrK0mDUs" target="_blank" class="video-card">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/R6bZrK0mDUs/hqdefault.jpg" alt="Episodio 1">
+          <span class="play-icon">▶️</span>
+        </div>
+        <div class="video-title">Episodio 1</div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=0lNJ-IeYZ9Y" target="_blank" class="video-card">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/0lNJ-IeYZ9Y/hqdefault.jpg" alt="Episodio 2">
+          <span class="play-icon">▶️</span>
+        </div>
+        <div class="video-title">Episodio 2</div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=KFEP9G3Qq70" target="_blank" class="video-card">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/KFEP9G3Qq70/hqdefault.jpg" alt="Episodio 3">
+          <span class="play-icon">▶️</span>
+        </div>
+        <div class="video-title">Episodio 3</div>
+      </a>
+    </div>
+  </section>
+  <section id="capsulas">
+    <h2>🎬 Cápsulas Inacapinas</h2>
+    <p>Historias, datos y mensajes breves para toda la comunidad</p>
+    <div class="carrusel">
+      <div class="video-card">
+        <iframe src="https://www.instagram.com/reel/DHEcs8NOeSy/embed" allowfullscreen></iframe>
+        <div class="video-title">Cápsula 1</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.instagram.com/reel/DG3Gyzrus8E/embed" allowfullscreen></iframe>
+        <div class="video-title">Cápsula 2</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.instagram.com/reel/DGyJYOYRCYQ/embed" allowfullscreen></iframe>
+        <div class="video-title">Cápsula 3</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.instagram.com/reel/DGyIribROOw/embed" allowfullscreen></iframe>
+        <div class="video-title">Cápsula 4</div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1160584632281917" allowfullscreen></iframe>
+        <div class="video-title">Cápsula 5</div>
+      </div>
+    </div>
+  </section>
 <section id="encuesta">
-<h2>🗳️ ¡Queremos escucharte!</h2>
-<h3>Responde esta breve encuesta y ayúdanos a mejorar tu experiencia en la radio.</h3>
-<div style="max-width: 720px; height: 600px; margin: auto; overflow-y: auto; border-radius: 10px;">
-<iframe frameborder="0" height="100%" marginheight="0" marginwidth="0" src="https://docs.google.com/forms/d/e/1FAIpQLSf-QyBP3NOBXk_ANgyLomcoVYtg52uEQcztvn4Pn9brdFr0bw/viewform?embedded=true" style="border: none;" width="100%">Cargando…</iframe>
-</div>
+  <h2>🗳️ ¡Queremos escucharte!</h2>
+  <h3>Responde esta breve encuesta y ayúdanos a mejorar tu experiencia en la radio.</h3>
+  <div style="max-width: 720px; height: 600px; margin: auto; overflow-y: auto; border-radius: 10px;">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-QyBP3NOBXk_ANgyLomcoVYtg52uEQcztvn4Pn9brdFr0bw/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" style="border: none;">Cargando…</iframe>
+  </div>
 </section>
+
 <section id="concursos">
-<h2>🎉 Participa en nuestros Concursos</h2>
-<div class="concurso-card">
-<strong>🔥 Concurso en vivo:</strong><br/>
+  <h2>🎉 Participa en nuestros Concursos</h2>
+
+  <div class="concurso-card">
+    <strong>🔥 Concurso en vivo:</strong><br>
     Durante la transmisión de este viernes, responde en el chat de Twitch la <strong>pregunta sorpresa</strong> y gana un delicioso <strong>completo o salchipapa</strong> en el Casino INACAP Puerto Montt. ¡Solo para los más rápidos!
   </div>
-<div class="concurso-card">
-<strong>🕵️‍♂️ Búsqueda del Tesoro:</strong><br/>
+
+  <div class="concurso-card">
+    <strong>🕵️‍♂️ Búsqueda del Tesoro:</strong><br>
     ¡Revisa nuestras redes! Cada semana escondemos una <strong>pista secreta</strong> para que descubras la <strong>palabra mágica</strong>. Si la dices en vivo, ¡te llevas <strong>premio doble</strong>!
   </div>
-<div class="concurso-card">
-<strong>🌟 Fans N° 1:</strong><br/>
+
+  <div class="concurso-card">
+    <strong>🌟 Fans N° 1:</strong><br>
     ¿Comentas, compartes y reaccionas todo lo que hacemos? Cada mes elegimos al <strong>fan más activo</strong> de nuestras redes y lo premiamos con <strong>sorpresas exclusivas</strong>.
   </div>
-<div class="concurso-card">
-<strong>📢 ¡Cambia el nombre de la radio!</strong><br/>
+
+  <div class="concurso-card">
+    <strong>📢 ¡Cambia el nombre de la radio!</strong><br>
     Participa con tu propuesta para <strong>renombrar “El Inacapino Puerto Montt”</strong>. ¿Se te ocurre algo épico? ¡Podría quedar en la historia!
   </div>
 </section>
+
 <section id="postales">
-<h2>📸 Postales Inacapinas</h2>
-<p>¡Momentos que nos conectan y nos inspiran!</p>
-<div class="gallery-container">
-<!-- Repite esta estructura para cada imagen -->
-<!-- Imagen 1 -->
+  <h2>📸 Postales Inacapinas</h2>
+  <p>¡Momentos que nos conectan y nos inspiran!</p>
+  <div class="gallery-container">
+    <!-- Repite esta estructura para cada imagen -->
+    <!-- Imagen 1 -->
 <div class="gallery-item" onclick="openModal(0)">
-<img alt="Postal 1" src="imagenes/postales_1.jpg"/>
+  <img src="imagenes/postales_1.jpg" alt="Postal 1">
 </div>
+
 <!-- Imagen 2 -->
 <div class="gallery-item" onclick="openModal(1)">
-<img alt="Postal 2" src="imagenes/postales_2.jpg"/>
+  <img src="imagenes/postales_2.jpg" alt="Postal 2">
 </div>
+
 <!-- Imagen 3 -->
 <div class="gallery-item" onclick="openModal(2)">
-<img alt="Postal 3" src="imagenes/postales_3.jpg"/>
+  <img src="imagenes/postales_3.jpg" alt="Postal 3">
 </div>
+
 <!-- Imagen 4 -->
 <div class="gallery-item" onclick="openModal(3)">
-<img alt="Postal 4" src="imagenes/postales_4.jpg"/>
+  <img src="imagenes/postales_4.jpg" alt="Postal 4">
 </div>
 <!-- Imagen5 -->
 <div class="gallery-item" onclick="openModal(4)">
-<img alt="Postal 5" src="imagenes/postales_5.jpg"/>
+  <img src="imagenes/postales_5.jpg" alt="Postal 5">
 </div>
+
 <!-- Imagen6 -->
 <div class="gallery-item" onclick="openModal(5)">
-<img alt="Postal 6" src="imagenes/postales_6.jpg"/>
+  <img src="imagenes/postales_6.jpg" alt="Postal 6">
 </div>
+
 <!-- Imagen 7 -->
 <div class="gallery-item" onclick="openModal(6)">
-<img alt="Postal 7" src="imagenes/postales_7.jpg"/>
+  <img src="imagenes/postales_7.jpg" alt="Postal 7">
 </div>
+
 <!-- Imagen 8 -->
 <div class="gallery-item" onclick="openModal(7)">
-<img alt="Postal 8" src="imagenes/postales_8.jpg"/>
+  <img src="imagenes/postales_8.jpg" alt="Postal 8">
 </div>
 <!-- Imagen 9 -->
 <div class="gallery-item" onclick="openModal(8)">
-<img alt="Postal 9" src="imagenes/postales_9.jpg"/>
+  <img src="imagenes/postales_9.jpg" alt="Postal 9">
 </div>
+
 <!-- Imagen 10 -->
 <div class="gallery-item" onclick="openModal(9)">
-<img alt="Postal 10" src="imagenes/postales_10.jpg"/>
+  <img src="imagenes/postales_10.jpg" alt="Postal 10">
 </div>
-<!-- Agrega más postales aquí -->
-</div>
-<div class="modal" id="imgModal">
-<span class="close" onclick="closeModal()">×</span>
-<img class="modal-content" id="modalImg"/>
-<a class="prev" onclick="changeImage(-1)">❮</a>
-<a class="next" onclick="changeImage(1)">❯</a>
-</div>
+
+    <!-- Agrega más postales aquí -->
+  </div>
+
+  <div class="modal" id="imgModal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+    <a class="next" onclick="changeImage(1)">&#10095;</a>
+  </div>
 </section>
 <!-- Sección Noticias y Destacados -->
 <section id="noticias" style="margin-top: 60px; text-align: center; color: white;">
-<h2>📰 Noticias y Destacados</h2>
-<p style="margin-bottom: 30px;">¡Entérate de lo último en nuestra sede, eventos y colaboraciones!</p>
-<div class="noticias-container">
-<!-- Noticia 1 -->
-<a class="noticia-card" href="noticia1.html" target="_blank">
-<img alt="Pokémon GO" class="noticia-img" src="imagenes/pokemon.jpg"/>
-<div class="noticia-info">
-<h3 class="noticia-titulo">Empresa Saudita adquiere Pokémon GO</h3>
-<p class="noticia-resumen">Arabia Saudita adquiere Niantic por más de 3 mil millones de dólares.</p>
-</div>
-</a>
-<!-- Noticia 2 -->
-<a class="noticia-card" href="noticia2.html" target="_blank">
-<img alt="David Steven Cohen" class="noticia-img" src="imagenes/noticia_2_0.jpg"/>
-<div class="noticia-info">
-<h3 class="noticia-titulo">Fallece David Steven Cohen</h3>
-<p class="noticia-resumen">Guionista de "Coraje, el perro cobarde" deja un legado en la animación.</p>
-</div>
-</a>
-<!-- Noticia 3 -->
-<a class="noticia-card" href="noticia3.html" target="_blank">
-<img alt="Pescador peruano" class="noticia-img" src="imagenes/noticia_3_0.jpg"/>
-<div class="noticia-info">
-<h3 class="noticia-titulo">Milagro en el mar</h3>
-<p class="noticia-resumen">Pescador peruano sobrevive 95 días alimentándose de animales silvestres.</p>
-</div>
-</a>
-<!-- Noticia 4 -->
-<a class="noticia-card" href="noticia4.html" target="_blank">
-<img alt="Carabinero con perro" class="noticia-img" src="imagenes/noticia_4_0.jpg"/>
-<div class="noticia-info">
-<h3 class="noticia-titulo">Polémica en redes</h3>
-<p class="noticia-resumen">Carabinero le tiró spray a un perro por ladrarle en la calle.</p>
-</div>
-</a>
-</div>
-<!-- Sección Noticias 5 -->
+  <h2>📰 Noticias y Destacados</h2>
+  <p style="margin-bottom: 30px;">¡Entérate de lo último en nuestra sede, eventos y colaboraciones!</p>
+
+  <div class="noticias-container">
+
+    <!-- Noticia 1 -->
+    <a href="noticia1.html" target="_blank" class="noticia-card">
+      <img src="imagenes/pokemon.jpg" alt="Pokémon GO" class="noticia-img">
+      <div class="noticia-info">
+        <h3 class="noticia-titulo">Empresa Saudita adquiere Pokémon GO</h3>
+        <p class="noticia-resumen">Arabia Saudita adquiere Niantic por más de 3 mil millones de dólares.</p>
+      </div>
+    </a>
+
+    <!-- Noticia 2 -->
+    <a href="noticia2.html" target="_blank" class="noticia-card">
+      <img src="imagenes/noticia_2_0.jpg" alt="David Steven Cohen" class="noticia-img">
+      <div class="noticia-info">
+        <h3 class="noticia-titulo">Fallece David Steven Cohen</h3>
+        <p class="noticia-resumen">Guionista de "Coraje, el perro cobarde" deja un legado en la animación.</p>
+      </div>
+    </a>
+
+    <!-- Noticia 3 -->
+    <a href="noticia3.html" target="_blank" class="noticia-card">
+      <img src="imagenes/noticia_3_0.jpg" alt="Pescador peruano" class="noticia-img">
+      <div class="noticia-info">
+        <h3 class="noticia-titulo">Milagro en el mar</h3>
+        <p class="noticia-resumen">Pescador peruano sobrevive 95 días alimentándose de animales silvestres.</p>
+      </div>
+    </a>
+
+    <!-- Noticia 4 -->
+    <a href="noticia4.html" target="_blank" class="noticia-card">
+      <img src="imagenes/noticia_4_0.jpg" alt="Carabinero con perro" class="noticia-img">
+      <div class="noticia-info">
+        <h3 class="noticia-titulo">Polémica en redes</h3>
+        <p class="noticia-resumen">Carabinero le tiró spray a un perro por ladrarle en la calle.</p>
+      </div>
+    </a>
+
+  </div>
+    <!-- Sección Noticias 5 -->
+  
 </section>
-<!-- Sección Muro de Deseos -->
-<section id="muro-deseos" style="margin-top: 40px;">
-<h2>🌟 Muro de los Buenos Deseos</h2>
-<p style="margin: 10px auto; max-width: 600px;">
+  <!-- Sección Muro de Deseos -->
+  <section id="muro-deseos" style="margin-top: 40px;">
+    <h2>🌟 Muro de los Buenos Deseos</h2>
+    <p style="margin: 10px auto; max-width: 600px;">
       Te invitamos a que puedas aportar tu mensaje de buenos deseos para los alumnos, docentes o personal de nuestra Sede Puerto Montt. Puedes hacerlo en el siguiente enlace:
     </p>
-<a href="muro_buenos_deseos.html" style="display:inline-block; margin-top: 15px; padding: 10px 20px; background-color: #d40000; color: white; border-radius: 10px; text-decoration: none; font-weight: bold;">Deja tu mensaje</a>
-</section>
-<!-- Sección Noticias y Destacados -->
+    <a href="muro_buenos_deseos.html" style="display:inline-block; margin-top: 15px; padding: 10px 20px; background-color: #d40000; color: white; border-radius: 10px; text-decoration: none; font-weight: bold;">Deja tu mensaje</a>
+  </section>
 
-<script>
-    const reloj = document.getElementById('reloj');
-    setInterval(() => {
+<!-- Sección Noticias y Destacados -->
+  <script>
+let currentImage = 0;
+
+    function actualizarReloj() {
       const ahora = new Date();
-      reloj.textContent = ahora.toLocaleTimeString();
-    }, 1000);
+      let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      document.getElementById('reloj').textContent = hora;
+    }
+    setInterval(actualizarReloj, 1000);
 
     const frases = [
       "🎉La educación es el pasaporte al futuro. ✨",
       "🎉Cada paso cuenta, sigue avanzando.🌟",
-      "🎉El conocimiento es poder.🌟"
+      "🎉El conocimiento es poder.🌟",
+      "✨Nunca dejes de aprender.",
+      "✨ Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
+      "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
+      "🌟La actitud es tan importante como la habilidad.🎉"
     ];
     let fraseActual = 0;
     setInterval(() => {
-      fraseActual = (fraseActual + 1) % frases.length;
-      document.getElementById('frase').textContent = frases[fraseActual];
-    }, 7000);
+  fraseActual = (fraseActual + 1) % frases.length;
+  const fraseEl = document.getElementById('frase');
+  fraseEl.style.opacity = 0;
 
-    function verificarAcceso() {
-      const user = document.getElementById('vipUser').value;
-      const pass = document.getElementById('vipPass').value;
-      if (user === 'Inacapino' && pass === 'SedePuertoMontt') {
-        document.getElementById('loginPopup').style.display = 'none';
-        document.querySelector('.admin-controls').style.display = 'flex';
-      } else {
-        alert('Usuario o contraseña incorrectos');
-      }
-    }
+  setTimeout(() => {
+    fraseEl.textContent = frases[fraseActual];
+    fraseEl.style.opacity = 1;
+    fraseEl.classList.remove("fraseAnimada");
+    void fraseEl.offsetWidth; // Reiniciar animación
+    fraseEl.classList.add("fraseAnimada");
+  }, 300);
+}, 7000);
 
-    function cargarSeccion(nombre) {
-      fetch(`secciones/${nombre}.html`)
-        .then(res => res.text())
-        .then(html => document.getElementById('contenido').innerHTML = html)
-        .catch(() => document.getElementById('contenido').innerHTML = '<p>Error al cargar la sección.</p>');
-    }
 
-    function activarTwitch() {
-      document.getElementById('twitchPlayer').src = "https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io";
-      document.getElementById('twitchPlayer').style.display = 'block';
-      document.getElementById('player').style.display = 'none';
-    }
+const images = [
+  "postales_1.jpg", "postales_2.jpg", "postales_3.jpg", "postales_4.jpg",
+  "postales_5.jpg", "postales_6.jpg", "postales_7.jpg", "postales_8.jpg",
+  "postales_9.jpg", "postales_10.jpg"
+];
 
-    function activarAutoDJ() {
-      document.getElementById('twitchPlayer').style.display = 'none';
-      document.getElementById('player').style.display = 'block';
-      document.getElementById('player').src = "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962";
-    }
-  </script></body>
+function openModal(index) {
+  currentImage = index;
+  const modal = document.getElementById("imgModal");
+  const modalImg = document.getElementById("modalImg");
+
+  modalImg.style.opacity = 0;
+  modal.style.display = "block";
+
+  // Le damos un poquito de tiempo antes de mostrar el efecto
+  setTimeout(() => {
+    modal.classList.add("fade-in");
+    modalImg.src = "imagenes/" + images[currentImage];
+  }, 50);
+
+  setTimeout(() => {
+    modalImg.style.opacity = 1;
+  }, 100);
+}
+
+function closeModal() {
+  const modal = document.getElementById("imgModal");
+  modal.classList.remove("fade-in");
+  modal.style.display = "none";
+}
+
+function changeImage(step) {
+  currentImage += step;
+  if (currentImage < 0) {
+    currentImage = images.length - 1;
+  } else if (currentImage >= images.length) {
+    currentImage = 0;
+  }
+
+  const modalImg = document.getElementById("modalImg");
+  modalImg.style.opacity = 0;
+
+  setTimeout(() => {
+    modalImg.src = "imagenes/" + images[currentImage];
+    modalImg.style.opacity = 1;
+  }, 300);
+}
+
+// Mostrar/ocultar botón al hacer scroll
+window.onscroll = function () {
+  const btn = document.getElementById("btnTop");
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+
+// Función para volver arriba
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+</script>
+<button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
+
+</body>
 </html>
+
