@@ -311,6 +311,64 @@
     strong {
       font-weight: bold;
     }
+.vip-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #8000ff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .login-popup {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+    .login-box {
+      background: #222;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+    }
+    .login-box input {
+      display: block;
+      margin: 10px auto;
+      padding: 8px;
+      width: 80%;
+      border-radius: 5px;
+      border: none;
+    }
+    .login-box button {
+      padding: 10px 20px;
+      background-color: #d40000;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .admin-controls {
+      display: none;
+      margin: 20px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
 
   </style>
 </head>
@@ -347,6 +405,32 @@
   </div>
   
 <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
+  <!-- Botón de acceso VIP -->
+<button class="vip-button" onclick="document.getElementById('loginPopup').style.display='flex'">🎛️ Acceso VIP</button>
+
+<!-- Ventana emergente de login -->
+<div class="login-popup" id="loginPopup">
+  <div class="login-box">
+    <h3>🔐 Acceso VIP</h3>
+    <input type="text" id="vipUser" placeholder="Usuario">
+    <input type="password" id="vipPass" placeholder="Contraseña">
+    <button onclick="verificarAcceso()">Ingresar</button>
+  </div>
+</div>
+
+<!-- Área de reproducción -->
+<div id="player-area">
+  <iframe id="twitchPlayer" class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
+  <iframe id="autoDJYoutube" class="twitch" src="https://www.youtube.com/embed/videoseries?list=PLuQY0JleB24Ycg63GwMdV6zWi1p69iyT6&autoplay=1&mute=0&loop=1" style="display:none"></iframe>
+  <iframe id="autoDJSpotify" class="twitch" src="https://open.spotify.com/embed/playlist/51V3wqCwJwxD9QufycVEXZ?utm_source=generator&theme=0" style="display:none" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+</div>
+
+<!-- Botones de control para el administrador -->
+<div class="admin-controls">
+  <button onclick="activarAutoDJ('youtube')" style="background:#00b894; color:white; padding:10px 20px; border-radius:10px; font-weight:bold;">🔁 AutoDJ YouTube</button>
+  <button onclick="activarAutoDJ('spotify')" style="background:#1DB954; color:white; padding:10px 20px; border-radius:10px; font-weight:bold;">🎶 AutoDJ Spotify</button>
+  <button onclick="activarTwitch()" style="background:#d63031; color:white; padding:10px 20px; border-radius:10px; font-weight:bold;">🔴 Volver a En Vivo</button>
+</div>
 
   <section id="rebobinando" class="rebobinando-section">
     <h2>🔁 Rebobinando la Señal</h2>
@@ -625,6 +709,34 @@ function changeImage(step) {
     modalImg.style.opacity = 1;
   }, 300);
 }
+function verificarAcceso() {
+    const user = document.getElementById('vipUser').value;
+    const pass = document.getElementById('vipPass').value;
+    if (user === "Inacapino" && pass === "SedePuertoMontt") {
+      document.getElementById('loginPopup').style.display = 'none';
+      document.querySelector('.admin-controls').style.display = 'flex';
+    } else {
+      alert("Usuario o contraseña incorrectos");
+    }
+  }
+
+  function activarAutoDJ(tipo) {
+    document.getElementById('twitchPlayer').style.display = 'none';
+    document.getElementById('autoDJYoutube').style.display = 'none';
+    document.getElementById('autoDJSpotify').style.display = 'none';
+
+    if (tipo === 'youtube') {
+      document.getElementById('autoDJYoutube').style.display = 'block';
+    } else if (tipo === 'spotify') {
+      document.getElementById('autoDJSpotify').style.display = 'block';
+    }
+  }
+
+  function activarTwitch() {
+    document.getElementById('twitchPlayer').style.display = 'block';
+    document.getElementById('autoDJYoutube').style.display = 'none';
+    document.getElementById('autoDJSpotify').style.display = 'none';
+  }
 </script>
 </body>
 </html>
