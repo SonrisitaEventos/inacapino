@@ -421,25 +421,26 @@
 
 .twitch { width: 100%; max-width: 720px; height: 405px; margin: 20px auto; display: block; }
     .video-overlay-container {
-      position: relative;
-      max-width: 800px;
-      margin: 30px auto;
-      display: none; /* oculto por defecto */
-    }
-    .marco-overlay {
-      width: 100%;
-      display: block;
-    }
-    .video-in-marco {
-      position: absolute;
-      top: 13.5%;
-      left: 8.5%;
-      width: 83%;
-      height: 72%;
-      border: none;
-      border-radius: 5px;
-    }
-  
+  position: relative;
+  max-width: 720px; /* Esto es clave, lo dejamos más chico para que no se expanda */
+  margin: 30px auto;
+  display: none;
+}
+
+.marco-overlay {
+  width: 100%;
+  display: block;
+}
+
+.video-in-marco {
+  position: absolute;
+  top: 13%;
+  left: 13%;
+  width: 74%;
+  height: 73%;
+  border: none;
+  border-radius: 10px;
+}
   </style>
 </head>
 <body>
