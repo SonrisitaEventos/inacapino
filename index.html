@@ -7,13 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-    }
+    body { background: black; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
     header {
       display: flex;
       justify-content: space-between;
@@ -312,64 +306,41 @@
       font-weight: bold;
     }
 .vip-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: #8000ff;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 1000;
+      position: absolute; top: 10px; right: 10px; background: #8000ff;
+      color: white; border: none; padding: 10px 15px; border-radius: 10px;
+      font-weight: bold; cursor: pointer; z-index: 1000;
+    }
+
+
+    .login-popup {
+      display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+      width: 100%; height: 100%; background-color: rgba(0,0,0,0.85);
+      justify-content: center; align-items: center;
     }
 
     .login-popup {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.85);
-      justify-content: center;
-      align-items: center;
+      display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+      width: 100%; height: 100%; background-color: rgba(0,0,0,0.85);
+      justify-content: center; align-items: center;
     }
     .login-box {
-      background: #222;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      color: white;
+      background: #222; padding: 30px; border-radius: 10px; color: white;
     }
-    .login-box input {
-      display: block;
-      margin: 10px auto;
-      padding: 8px;
-      width: 80%;
-      border-radius: 5px;
-      border: none;
-    }
+    .login-box input { display: block; margin: 10px auto; padding: 8px; width: 80%; border-radius: 5px; border: none; }
     .login-box button {
-      padding: 10px 20px;
-      background-color: #d40000;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
+      padding: 10px 20px; background-color: #d40000; color: white;
+      border: none; border-radius: 10px; cursor: pointer; font-weight: bold;
     }
     .admin-controls {
-  display: none;
-  margin: 20px auto;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
+      display: none; justify-content: center; gap: 10px; margin: 20px auto;
+    }
+    .admin-controls button {
+      padding: 10px 20px; border: none; border-radius: 10px; font-weight: bold;
+      cursor: pointer;
+    }
 
-
+.twitch { width: 100%; max-width: 720px; height: 405px; margin: 20px auto; display: block; }
+   
   </style>
 </head>
 <body>
@@ -393,6 +364,7 @@
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1>El Inacapino Puerto Montt</h1>
+  <p>🎧 ¡Bienvenidos a la RadioTV de nuestra sede! 📻</p>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
     <div class="botones">
     <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -404,37 +376,34 @@
   
 <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
   <!-- Botón de acceso VIP -->
-<button class="vip-button" onclick="document.getElementById('loginPopup').style.display='flex'">🎛️ Acceso VIP</button>
+<!-- Botón VIP -->
+  <button class="vip-button" onclick="document.getElementById('loginPopup').style.display='flex'">🎛️ Acceso VIP</button>
 
-<!-- Ventana emergente de login -->
-<div class="login-popup" id="loginPopup">
-  <div class="login-box">
-    <h3>🔐 Acceso VIP</h3>
-    <input type="text" id="vipUser" placeholder="Usuario">
-    <input type="password" id="vipPass" placeholder="Contraseña">
-    <button onclick="verificarAcceso()">Ingresar</button>
+<!-- Login -->
+  <div class="login-popup" id="loginPopup">
+    <div class="login-box">
+      <h3>🔐 Acceso VIP</h3>
+      <input type="text" id="vipUser" placeholder="Usuario">
+      <input type="password" id="vipPass" placeholder="Contraseña">
+      <button onclick="verificarAcceso()">Ingresar</button>
+    </div>
   </div>
-</div>
 
-<!-- Área de reproducción -->
-<div id="player-area">
-  <iframe id="twitchPlayer" class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
- <iframe id="autoDJYoutube" class="twitch" 
-  src="https://youtube.com/playlist?list=PLFcGX84jKOu6MsDlf8SVNRN8jOJ9qDRWc&si=uHW2sKUgxMyeeJ9t" 
-  style="display:none" 
-  allow="autoplay; encrypted-media"
-  allowfullscreen>
-</iframe>
 
-  <iframe id="autoDJSpotify" class="twitch" src="https://open.spotify.com/embed/playlist/51V3wqCwJwxD9QufycVEXZ?utm_source=generator&theme=0"></iframe>
-</div>
+<!-- Reproductores -->
+  <div id="player-area">
+    <iframe id="twitchPlayer" class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
+    <iframe id="autoDJYoutube" class="twitch" src="https://www.youtube.com/embed/videoseries?list=PLuQY0JleB24Ycg63GwMdV6zWi1p69iyT6&autoplay=1&mute=0&loop=1" style="display:none"></iframe>
+    <iframe id="autoDJSpotify" class="twitch" src="https://open.spotify.com/embed/playlist/51V3wqCwJwxD9QufycVEXZ?utm_source=generator&theme=0" style="display:none" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  </div>
 
-<!-- Botones de control para el administrador -->
-<div class="admin-controls">
-  <button onclick="activarAutoDJ('youtube')" style="background:#00b894; color:white; padding:10px 20px; border-radius:10px; font-weight:bold;">🔁 AutoDJ YouTube</button>
-  <button onclick="activarAutoDJ('spotify')" style="background:#1DB954; color:white; padding:10px 20px; border-radius:10px; font-weight:bold;">🎶 AutoDJ Spotify</button>
-  <button onclick="activarTwitch()" style="background:#d63031; color:white; padding:10px 20px; border-radius:10px; font-weight:bold;">🔴 Volver a En Vivo</button>
-</div>
+
+<!-- Controles Admin -->
+  <div class="admin-controls">
+    <button onclick="activarAutoDJ('youtube')" style="background:#00b894; color:white;">🔁 AutoDJ YouTube</button>
+    <button onclick="activarAutoDJ('spotify')" style="background:#1DB954; color:white;">🎶 AutoDJ Spotify</button>
+    <button onclick="activarTwitch()" style="background:#d63031; color:white;">🔴 Volver a En Vivo</button>
+  </div
 
   <section id="rebobinando" class="rebobinando-section">
     <h2>🔁 Rebobinando la Señal</h2>
@@ -763,6 +732,52 @@ function verificarAcceso() {
   document.body.appendChild(aviso);
   setTimeout(() => aviso.remove(), 3000);
 }
+// Importamos las librerías de Firebase (v9 modular)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDI-jXMqW5HBMk0OT_dfGtxm7AwGo8gRK0",
+      authDomain: "inacapino-radio.firebaseapp.com",
+      databaseURL: "https://inacapino-radio-default-rtdb.firebaseio.com",
+      projectId: "inacapino-radio",
+      storageBucket: "inacapino-radio.firebasestorage.app",
+      messagingSenderId: "649918235189",
+      appId: "1:649918235189:web:5cbd6fd32921a90ecde77c",
+      measurementId: "G-25C6GSX57L"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const signalRef = ref(db, 'currentSignal');
+
+    // Elementos
+    const twitch = document.getElementById('twitchPlayer');
+    const youtube = document.getElementById('autoDJYoutube');
+    const spotify = document.getElementById('autoDJSpotify');
+
+    // Escucha de cambios en tiempo real
+    onValue(signalRef, (snapshot) => {
+      const current = snapshot.val();
+      twitch.style.display = current === 'twitch' ? 'block' : 'none';
+      youtube.style.display = current === 'youtube' ? 'block' : 'none';
+      spotify.style.display = current === 'spotify' ? 'block' : 'none';
+    });
+
+    // Funciones globales para el admin
+    window.activarAutoDJ = (tipo) => set(signalRef, tipo);
+    window.activarTwitch = () => set(signalRef, 'twitch');
+    window.verificarAcceso = () => {
+      const user = document.getElementById('vipUser').value;
+      const pass = document.getElementById('vipPass').value;
+      if (user === "Inacapino" && pass === "SedePuertoMontt") {
+        document.getElementById('loginPopup').style.display = 'none';
+        document.querySelector('.admin-controls').style.display = 'flex';
+      } else {
+        alert("Usuario o contraseña incorrectos");
+      }
+    }
+
 </script>
 </body>
 </html>
