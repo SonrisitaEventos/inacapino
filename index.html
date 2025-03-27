@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RadioTV estudiantil interactiva de INACAP Puerto Montt. Transmisiones, concursos, postales y más. ¡Conéctate con El Inacapino!">
   <title>El Inacapino Puerto Montt</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
  
@@ -230,8 +230,13 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-.modal.fade-in .modal-content {
-  opacity: 1;
+.modal.fade-in {
+  animation: aparecer 0.4s ease-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
   .noticias-container {
     display: flex;
@@ -653,7 +658,66 @@
   </section>
 
 <!-- Sección Noticias y Destacados -->
-  <script>
+ <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDI-jXMqW5HBMk0OT_dfGtxm7AwGo8gRK0",
+      authDomain: "inacapino-radio.firebaseapp.com",
+      databaseURL: "https://inacapino-radio-default-rtdb.firebaseio.com",
+      projectId: "inacapino-radio",
+      storageBucket: "inacapino-radio.appspot.com",
+      messagingSenderId: "649918235189",
+      appId: "1:649918235189:web:5cbd6fd32921a90ecde77c",
+      measurementId: "G-25C6GSX57L"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const signalRef = ref(db, 'currentSignal');
+
+    const twitch = document.getElementById('twitchPlayer');
+    const player = document.getElementById('player');
+
+    let currentIndex = 0;
+
+    function reproducirVideo(index) {
+      player.src = videos[index];
+      player.load();
+      player.play();
+    }
+
+    player.addEventListener("ended", () => {
+      currentIndex = (currentIndex + 1) % videos.length;
+      reproducirVideo(currentIndex);
+    });
+
+    onValue(signalRef, (snapshot) => {
+      const estado = snapshot.val();
+      const esTwitch = estado === 'twitch';
+      twitch.style.display = esTwitch ? 'block' : 'none';
+      player.style.display = !esTwitch ? 'block' : 'none';
+      if (!esTwitch) {
+        currentIndex = 0;
+        reproducirVideo(currentIndex);
+      }
+    });
+
+    // Funciones de control desde el panel VIP
+    window.activarTwitch = () => set(signalRef, 'twitch');
+    window.activarAutoDJ = () => set(signalRef, 'firebase');
+
+//✅ BOTÓN ADMIN EXTRA
+  const adminControls = document.querySelector('.admin-controls');
+  if (adminControls) {
+    const btn = document.createElement('button');
+    btn.innerHTML = '🎧 AutoDJ Firebase';
+    btn.style.background = '#ff6f00';
+    btn.style.color = 'white';
+    btn.onclick = () => activarAutoDJ('firebase');
+    adminControls.appendChild(btn);
+  }
     function actualizarReloj() {
       const ahora = new Date();
       let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -682,10 +746,8 @@ const images = [
   "postales_9.jpg", "postales_10.jpg"
 ];
 
-let currentIndex = 0;
-
 function openModal(index) {
-  currentImage = index;
+  let currentImage = 0;
   const modal = document.getElementById("imgModal");
   const modalImg = document.getElementById("modalImg");
 
@@ -733,22 +795,21 @@ function verificarAcceso() {
       document.querySelector('.admin-controls').style.display = 'flex';
     } else {
       alert("Usuario o contraseña incorrectos");
+      if (!user || !pass) {
+  alert("Por favor, completa todos los campos.");
+  return;
+}
+
     }
   }
+if (estado === 'firebase') {
+  mostrarMensaje("🎧 AutoDJ activado desde Firebase");
+}
 
   function activarAutoDJ(tipo) {
   document.getElementById('twitchPlayer').style.display = 'none';
-  document.getElementById('autoDJYoutube').style.display = 'none';
-  document.getElementById('autoDJSpotify').style.display = 'none';
-
-  if (tipo === 'youtube') {
-    document.getElementById('autoDJYoutube').style.display = 'block';
-    mostrarMensaje("🎵 Ahora suena: AutoDJ YouTube");
-  } else if (tipo === 'spotify') {
-    document.getElementById('autoDJSpotify').style.display = 'block';
-    mostrarMensaje("🎶 Ahora suena: AutoDJ Spotify");
+  
   }
-}
 
 
   function activarTwitch() {
@@ -785,71 +846,7 @@ const videos = [
     "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FM%C3%BAsica%20Electr%C3%B3nica%20para%20Estudiar%2C%20m%C3%BAsica%20para%20levantar%20el%20animo.mp4?alt=media&token=de6e525f-ced4-4e2a-a34f-37f8c1d2546f",
     "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FSTREAMING%20GAMER.mp4?alt=media&token=ddcc30aa-9b1c-4ab5-b5e8-eac8e417174c"
   ];
- <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDI-jXMqW5HBMk0OT_dfGtxm7AwGo8gRK0",
-      authDomain: "inacapino-radio.firebaseapp.com",
-      databaseURL: "https://inacapino-radio-default-rtdb.firebaseio.com",
-      projectId: "inacapino-radio",
-      storageBucket: "inacapino-radio.appspot.com",
-      messagingSenderId: "649918235189",
-      appId: "1:649918235189:web:5cbd6fd32921a90ecde77c",
-      measurementId: "G-25C6GSX57L"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const signalRef = ref(db, 'currentSignal');
-
-    const twitch = document.getElementById('twitchPlayer');
-    const player = document.getElementById('player');
-
-    const videos = [
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962",
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4?alt=media&token=ff7fccf3-fc80-4188-a47b-b7fcb5466425",
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FGaming%20Music%202023.mp4?alt=media&token=d3330f02-f47d-4557-9e32-8686bd308e43"
-    ];
-  let currentIndex = 0;
-
-    function reproducirVideo(index) {
-      player.src = videos[index];
-      player.load();
-      player.play();
-    }
-
-    player.addEventListener("ended", () => {
-      currentIndex = (currentIndex + 1) % videos.length;
-      reproducirVideo(currentIndex);
-    });
-
-    onValue(signalRef, (snapshot) => {
-      const estado = snapshot.val();
-      const esTwitch = estado === 'twitch';
-      twitch.style.display = esTwitch ? 'block' : 'none';
-      player.style.display = !esTwitch ? 'block' : 'none';
-      if (!esTwitch) {
-        currentIndex = 0;
-        reproducirVideo(currentIndex);
-      }
-    });
-
-    // Funciones de control desde el panel VIP
-    window.activarTwitch = () => set(signalRef, 'twitch');
-    window.activarAutoDJ = () => set(signalRef, 'firebase');
-
-//✅ BOTÓN ADMIN EXTRA
-  const adminControls = document.querySelector('.admin-controls');
-  if (adminControls) {
-    const btn = document.createElement('button');
-    btn.innerHTML = '🎧 AutoDJ Firebase';
-    btn.style.background = '#ff6f00';
-    btn.style.color = 'white';
-    btn.onclick = () => activarAutoDJ('firebase');
-    adminControls.appendChild(btn);
-  }
+ 
 </script>
 </body>
 </html>
