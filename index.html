@@ -5,6 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>El Inacapino Puerto Montt</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDI-jXMqW5HBMk0OT_dfGtxm7AwGo8gRK0",
+      authDomain: "inacapino-radio.firebaseapp.com",
+      databaseURL: "https://inacapino-radio-default-rtdb.firebaseio.com",
+      projectId: "inacapino-radio",
+      storageBucket: "inacapino-radio.appspot.com",
+      messagingSenderId: "649918235189",
+      appId: "1:649918235189:web:5cbd6fd32921a90ecde77c",
+      measurementId: "G-25C6GSX57L"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const signalRef = ref(db, 'currentSignal');
+
+    const twitch = document.getElementById('twitchPlayer');
+    const youtube = document.getElementById('autoDJYoutube');
+    const spotify = document.getElementById('autoDJSpotify');
+
+    onValue(signalRef, (snapshot) => {
+      const current = snapshot.val();
+      twitch.style.display = current === 'twitch' ? 'block' : 'none';
+      youtube.style.display = current === 'youtube' ? 'block' : 'none';
+      spotify.style.display = current === 'spotify' ? 'block' : 'none';
+      mostrarMensaje(`🎵 Ahora suena: ${current === 'twitch' ? 'Transmisión en Vivo' : current === 'youtube' ? 'AutoDJ YouTube' : 'AutoDJ Spotify'}`);
+    });
+
+    window.activarAutoDJ = (tipo) => set(signalRef, tipo);
+    window.activarTwitch = () => set(signalRef, 'twitch');
+    window.verificarAcceso = () => {
+      const user = document.getElementById('vipUser').value;
+      const pass = document.getElementById('vipPass').value;
+      if (user === "Inacapino" && pass === "SedePuertoMontt") {
+        document.getElementById('loginPopup').style.display = 'none';
+        document.querySelector('.admin-controls').style.display = 'flex';
+      } else {
+        alert("Usuario o contraseña incorrectos");
+      }
+    }
+  </script>
+  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: black; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
@@ -732,51 +777,6 @@ function verificarAcceso() {
   document.body.appendChild(aviso);
   setTimeout(() => aviso.remove(), 3000);
 }
-// Importamos las librerías de Firebase (v9 modular)
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDI-jXMqW5HBMk0OT_dfGtxm7AwGo8gRK0",
-      authDomain: "inacapino-radio.firebaseapp.com",
-      databaseURL: "https://inacapino-radio-default-rtdb.firebaseio.com",
-      projectId: "inacapino-radio",
-      storageBucket: "inacapino-radio.firebasestorage.app",
-      messagingSenderId: "649918235189",
-      appId: "1:649918235189:web:5cbd6fd32921a90ecde77c",
-      measurementId: "G-25C6GSX57L"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const signalRef = ref(db, 'currentSignal');
-
-    // Elementos
-    const twitch = document.getElementById('twitchPlayer');
-    const youtube = document.getElementById('autoDJYoutube');
-    const spotify = document.getElementById('autoDJSpotify');
-
-    // Escucha de cambios en tiempo real
-    onValue(signalRef, (snapshot) => {
-      const current = snapshot.val();
-      twitch.style.display = current === 'twitch' ? 'block' : 'none';
-      youtube.style.display = current === 'youtube' ? 'block' : 'none';
-      spotify.style.display = current === 'spotify' ? 'block' : 'none';
-    });
-
-    // Funciones globales para el admin
-    window.activarAutoDJ = (tipo) => set(signalRef, tipo);
-    window.activarTwitch = () => set(signalRef, 'twitch');
-    window.verificarAcceso = () => {
-      const user = document.getElementById('vipUser').value;
-      const pass = document.getElementById('vipPass').value;
-      if (user === "Inacapino" && pass === "SedePuertoMontt") {
-        document.getElementById('loginPopup').style.display = 'none';
-        document.querySelector('.admin-controls').style.display = 'flex';
-      } else {
-        alert("Usuario o contraseña incorrectos");
-      }
-    }
 
 </script>
 </body>
