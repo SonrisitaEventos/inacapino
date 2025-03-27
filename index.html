@@ -344,6 +344,11 @@
   50% { opacity: 1; transform: translateY(0px); }
   100% { opacity: 1; }
 }
+ @keyframes brillo {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
 
 .fraseAnimada {
   animation: fraseAnimada 1s ease-in-out;
@@ -379,6 +384,15 @@ const listaVideos = [
     url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.appspot.com/o/videos%2FSTREAMING%20GAMER.mp4?alt=media&token=ddcc30aa-9b1c-4ab5-b5e8-eac8e417174c"
   }
 ];
+    .video-nombre {
+      font-size: 20px;
+      font-weight: bold;
+      color: #00ffd5;
+      text-shadow: 1px 1px 8px #000;
+      margin-top: 10px;
+      animation: brillo 2s infinite;
+    }
+    
   </style>
 </head>
 <body>
@@ -420,23 +434,32 @@ const listaVideos = [
     <!-- Contenido dinámico: Twitch o AutoDJ -->
   </div>
 </div>
+<div style="position: relative; width: 100%; max-width: 1430px; margin: auto;">
+    <img src="https://raw.githubusercontent.com/SonrisitaEventos/inacapino/main/imagenes/Overlay%20INACAP%20premium.jpg" alt="Overlay" style="width: 100%; height: auto;">
+    <div id="transmision" style="position: absolute; top: 35px; left: 40px; width: 1350px; height: 740px;">
+      <!-- Contenido dinámico: Twitch o AutoDJ -->
+    </div>
+  </div>
+  <div id="nombreVideo" class="video-nombre"></div>
+
   <!-- Botón de acceso VIP -->
-<div style="text-align: center; margin: 20px 0;">
-  <button onclick="mostrarLoginVIP()" style="padding: 10px 20px; font-weight: bold; background-color: #8000ff; color: white; border: none; border-radius: 10px; cursor: pointer;">Acceso VIP</button>
-</div>
+  <div style="text-align: center; margin: 20px 0;">
+    <button onclick="mostrarLoginVIP()" style="padding: 10px 20px; font-weight: bold; background-color: #8000ff; color: white; border: none; border-radius: 10px; cursor: pointer;">Acceso VIP</button>
+  </div>
 
 <!-- Formulario login VIP -->
-<div id="loginVIP" style="display: none; text-align: center; margin-bottom: 20px;">
-  <input type="text" id="usuario" placeholder="Usuario" style="padding: 5px;">
-  <input type="password" id="clave" placeholder="Contraseña" style="padding: 5px;">
-  <button onclick="accederVIP()" style="padding: 5px 10px;">Entrar</button>
-</div>
+  <div id="loginVIP" style="display: none; text-align: center; margin-bottom: 20px;">
+    <input type="text" id="usuario" placeholder="Usuario" style="padding: 5px;">
+    <input type="password" id="clave" placeholder="Contraseña" style="padding: 5px;">
+    <button onclick="accederVIP()" style="padding: 5px 10px;">Entrar</button>
+  </div>
 
-<!-- Panel VIP -->
-<div id="panelVIP" style="display: none; text-align: center;">
-  <button onclick="cambiarModo('twitch')" style="margin: 10px; padding: 10px; background-color: red; color: white; border: none; border-radius: 10px;">Programa En Vivo</button>
-  <button onclick="cambiarModo('autodj')" style="margin: 10px; padding: 10px; background-color: green; color: white; border: none; border-radius: 10px;">AutoDJ Videos</button>
-</div>
+ <!-- Panel VIP -->
+  <div id="panelVIP" style="display: none; text-align: center;">
+    <button onclick="cambiarModo('twitch')" style="margin: 10px; padding: 10px; background-color: red; color: white; border: none; border-radius: 10px;">Programa En Vivo</button>
+    <button onclick="cambiarModo('autodj')" style="margin: 10px; padding: 10px; background-color: green; color: white; border: none; border-radius: 10px;">AutoDJ Videos</button>
+    <button onclick="cambiarVideoManual()" style="margin: 10px; padding: 10px; background-color: #00bfff; color: white; border: none; border-radius: 10px;">Siguiente Video 🎵</button>
+  </div>
 
 <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
 
@@ -695,8 +718,28 @@ const listaVideos = [
   });
 </script>
   <script>
+    
 let currentImage = 0;
 
+     // === Muestra el nombre del video y cambia al siguiente automáticamente ===
+    firebase.database().ref("radio/videoActual").on("value", (snap) => {
+      const video = snap.val();
+      if (!video) return;
+
+      const contenedor = document.getElementById("transmision");
+      contenedor.innerHTML = `
+        <video id="videoPlayer" autoplay muted controls style="width: 100%; height: 100%; border-radius: 10px;">
+          <source src="${video.url}" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      `;
+
+      // Mostrar nombre del video
+      document.getElementById("nombreVideo").textContent = `🎧 Reproduciendo: ${video.nombre}`;
+
+      const player = document.getElementById("videoPlayer");
+      player.onended = () => cambiarVideoManual();
+    });
     function actualizarReloj() {
       const ahora = new Date();
       let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
