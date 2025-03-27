@@ -178,15 +178,14 @@
     import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
-      authDomain: "inacapino-radio-spark.firebaseapp.com",
-      databaseURL: "https://inacapino-radio-spark-default-rtdb.firebaseio.com",
-      projectId: "inacapino-radio-spark",
-      storageBucket: "inacapino-radio-spark.appspot.com",
-      messagingSenderId: "64588373035",
-      appId: "1:64588373035:web:78b92ca7b5b8b7396d1e6e"
-    };
-
+  apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
+  authDomain: "inacapino-radio-spark.firebaseapp.com",
+  databaseURL: "https://inacapino-radio-spark-default-rtdb.firebaseio.com",
+  projectId: "inacapino-radio-spark",
+  storageBucket: "inacapino-radio-spark.firebasestorage.app",
+  messagingSenderId: "64588373035",
+  appId: "1:64588373035:web:78b92ca7b5b8b7396d1e6e"
+};
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const signalRef = ref(db, 'currentSignal');
