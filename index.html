@@ -1,35 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="RadioTV estudiantil interactiva de INACAP Puerto Montt. Transmisiones, concursos, postales y más. ¡Conéctate con El Inacapino!">
   <title>El Inacapino Puerto Montt</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    :root {
-      --bg-color: #000;
-      --text-color: #fff;
-      --accent-color: #8000ff;
-    }
-    [data-theme="light"] {
-      --bg-color: #fff;
-      --text-color: #000;
-      --accent-color: #d40000;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      margin: 0;
       font-family: sans-serif;
+      background-color: #000;
+      color: white;
     }
     header {
       background-color: #111;
-      padding: 10px;
+      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
       align-items: center;
+      flex-wrap: wrap;
     }
     nav {
       display: flex;
@@ -37,39 +26,36 @@
       gap: 15px;
     }
     nav a {
-      color: var(--text-color);
+      color: white;
       text-decoration: none;
       font-weight: bold;
-      font-size: 14px;
     }
     .top-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
       font-size: 14px;
     }
-    .live-indicator {
-      background-color: red;
-      color: white;
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-weight: bold;
-    }
     .logo {
-      max-width: 150px;
       display: block;
-      margin: 20px auto;
+      max-width: 200px;
+      margin: 20px auto 10px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 24px;
     }
     .frase-motivacional {
       text-align: center;
       font-style: italic;
+      font-size: 14px;
       margin-bottom: 20px;
     }
-    .video-overlay-container {
+    #contenido {
+      padding: 10px;
+    }
+    .video-container {
       position: relative;
       width: 100%;
       max-width: 960px;
-      margin: 30px auto;
+      margin: 0 auto;
     }
     .marco-overlay {
       width: 100%;
@@ -85,184 +71,147 @@
       border-radius: 10px;
       display: none;
     }
-    .vip-button, .admin-controls button, .modo-btn {
+    .vip-button {
       display: block;
-      margin: 10px auto;
-      padding: 10px 20px;
-      background-color: var(--accent-color);
+      margin: 20px auto;
+      background: #8000ff;
       color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
       font-weight: bold;
+      cursor: pointer;
+    }
+    .admin-controls {
+      display: none;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px;
+    }
+    .admin-controls button {
+      padding: 10px;
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      font-weight: bold;
     }
     .login-popup {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.85);
+      background-color: rgba(0,0,0,0.8);
       justify-content: center;
       align-items: center;
-      z-index: 9999;
+      z-index: 1000;
     }
     .login-box {
       background: #222;
-      padding: 30px;
+      padding: 20px;
       border-radius: 10px;
-      text-align: center;
-      color: white;
     }
     .login-box input {
       display: block;
-      width: 80%;
       margin: 10px auto;
       padding: 8px;
-      border-radius: 5px;
-      border: none;
-    }
-    .admin-controls {
-      display: none;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    @media (max-width: 768px) {
-      .video-overlay-container {
-        max-width: 100%;
-      }
-      .video-in-marco {
-        top: 10.5%;
-        left: 5%;
-        width: 90%;
-        height: 75%;
-      }
+      width: 80%;
     }
   </style>
 </head>
-<body data-theme="dark">
+<body>
   <header>
     <nav>
-      <a href="#">Inicio</a>
-      <a href="#rebobinando">Rebobinando</a>
-      <a href="#encuesta">Encuesta</a>
+      <a href="#" onclick="cargarSeccion('inicio')">Inicio</a>
+      <a href="#" onclick="cargarSeccion('rebobinando')">Rebobinando</a>
+      <a href="#" onclick="cargarSeccion('capsulas')">Cápsulas</a>
+      <a href="#" onclick="cargarSeccion('encuesta')">Encuesta</a>
+      <a href="#" onclick="cargarSeccion('concursos')">Concursos</a>
+      <a href="#" onclick="cargarSeccion('postales')">Postales</a>
+      <a href="#" onclick="cargarSeccion('noticias')">Noticias</a>
+      <a href="#" onclick="cargarSeccion('muro')">Muro de Deseos</a>
     </nav>
     <div class="top-info">
       <span id="reloj">00:00</span>
-      <button onclick="toggleTheme()" class="modo-btn">🌓 Modo Día/Noche</button>
     </div>
   </header>
+
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
-  <h1 style="text-align:center;">El Inacapino Puerto Montt</h1>
+  <h1>El Inacapino Puerto Montt</h1>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
-  <div class="video-overlay-container">
-    <img src="imagenes/Overlay INACAP premium.jpg" alt="Marco" class="marco-overlay">
-    <iframe id="twitchPlayer" class="video-in-marco" allowfullscreen></iframe>
-    <video id="player" class="video-in-marco" controls autoplay muted></video>
-  </div>
+
   <button class="vip-button" onclick="document.getElementById('loginPopup').style.display='flex'">🎛️ Acceso VIP</button>
+
   <div class="login-popup" id="loginPopup">
     <div class="login-box">
       <h3>🔐 Acceso VIP</h3>
-      <input type="text" id="vipUser" placeholder="Usuario">
-      <input type="password" id="vipPass" placeholder="Contraseña">
+      <input id="vipUser" placeholder="Usuario">
+      <input id="vipPass" placeholder="Contraseña" type="password">
       <button onclick="verificarAcceso()">Ingresar</button>
     </div>
   </div>
+
   <div class="admin-controls">
     <button onclick="activarTwitch()">🔴 Twitch</button>
     <button onclick="activarAutoDJ()">🎧 AutoDJ Firebase</button>
   </div>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
-    const firebaseConfig = {
-  apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
-  authDomain: "inacapino-radio-spark.firebaseapp.com",
-  databaseURL: "https://inacapino-radio-spark-default-rtdb.firebaseio.com",
-  projectId: "inacapino-radio-spark",
-  storageBucket: "inacapino-radio-spark.firebasestorage.app",
-  messagingSenderId: "64588373035",
-  appId: "1:64588373035:web:78b92ca7b5b8b7396d1e6e"
-};
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const signalRef = ref(db, 'currentSignal');
+  <div class="video-container">
+    <img src="imagenes/Overlay INACAP premium.jpg" class="marco-overlay">
+    <iframe id="twitchPlayer" class="video-in-marco" allowfullscreen></iframe>
+    <video id="player" class="video-in-marco" controls autoplay muted></video>
+  </div>
 
-    const twitch = document.getElementById('twitchPlayer');
-    const player = document.getElementById('player');
+  <main id="contenido">
+    <p style="text-align:center; margin-top:20px;">Haz clic en el menú para explorar las secciones 😊</p>
+  </main>
 
-    const videos = [
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.appspot.com/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media",
-      "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.appspot.com/o/videos%2F3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4?alt=media"
-    ];
-    let currentIndex = 0;
+  <script>
+    const reloj = document.getElementById('reloj');
+    setInterval(() => {
+      const ahora = new Date();
+      reloj.textContent = ahora.toLocaleTimeString();
+    }, 1000);
 
-    function reproducirVideo(index) {
-      player.src = videos[index];
-      player.load();
-      player.play();
-    }
-
-    player.addEventListener("ended", () => {
-      currentIndex = (currentIndex + 1) % videos.length;
-      reproducirVideo(currentIndex);
-    });
-
-    onValue(signalRef, (snapshot) => {
-      const estado = snapshot.val();
-      const esTwitch = estado === 'twitch';
-      twitch.style.display = esTwitch ? 'block' : 'none';
-      player.style.display = !esTwitch ? 'block' : 'none';
-      if (!esTwitch) {
-        currentIndex = 0;
-        reproducirVideo(currentIndex);
-      } else {
-        twitch.src = "https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io";
-      }
-    });
-
-    window.activarTwitch = () => set(signalRef, 'twitch');
-    window.activarAutoDJ = () => set(signalRef, 'firebase');
-    window.verificarAcceso = () => {
-      const user = document.getElementById('vipUser').value;
-      const pass = document.getElementById('vipPass').value;
-      if (user === "Inacapino" && pass === "SedePuertoMontt") {
-        document.getElementById('loginPopup').style.display = 'none';
-        document.querySelector('.admin-controls').style.display = 'flex';
-      } else {
-        alert("Usuario o contraseña incorrectos");
-      }
-    };
-    window.toggleTheme = () => {
-      const actual = document.body.getAttribute('data-theme');
-      const nuevo = actual === 'dark' ? 'light' : 'dark';
-      document.body.setAttribute('data-theme', nuevo);
-      localStorage.setItem('modo', nuevo);
-    };
-    const fraseMotivacional = document.getElementById('frase');
     const frases = [
-      "🎉La educación es el pasaporte al futuro.",
-      "🎉Cada paso cuenta, sigue avanzando.",
-      "🎉El conocimiento es poder.",
-      "✨Nunca dejes de aprender.",
-      "🎉Tu esfuerzo de hoy es tu éxito de mañana.",
-      "🌟La actitud es tan importante como la habilidad."
+      "🎉La educación es el pasaporte al futuro. ✨",
+      "🎉Cada paso cuenta, sigue avanzando.🌟",
+      "🎉El conocimiento es poder.🌟"
     ];
     let fraseActual = 0;
     setInterval(() => {
       fraseActual = (fraseActual + 1) % frases.length;
-      fraseMotivacional.textContent = frases[fraseActual];
+      document.getElementById('frase').textContent = frases[fraseActual];
     }, 7000);
-    const reloj = document.getElementById('reloj');
-    setInterval(() => {
-      const ahora = new Date();
-      reloj.textContent = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    }, 1000);
-    // Restaurar modo desde localStorage
-    const modoGuardado = localStorage.getItem('modo');
-    if (modoGuardado) document.body.setAttribute('data-theme', modoGuardado);
+
+    function verificarAcceso() {
+      const user = document.getElementById('vipUser').value;
+      const pass = document.getElementById('vipPass').value;
+      if (user === 'Inacapino' && pass === 'SedePuertoMontt') {
+        document.getElementById('loginPopup').style.display = 'none';
+        document.querySelector('.admin-controls').style.display = 'flex';
+      } else {
+        alert('Usuario o contraseña incorrectos');
+      }
+    }
+
+    function cargarSeccion(nombre) {
+      fetch(`secciones/${nombre}.html`)
+        .then(res => res.text())
+        .then(html => document.getElementById('contenido').innerHTML = html)
+        .catch(() => document.getElementById('contenido').innerHTML = '<p>Error al cargar la sección.</p>');
+    }
+
+    function activarTwitch() {
+      document.getElementById('twitchPlayer').src = "https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io";
+      document.getElementById('twitchPlayer').style.display = 'block';
+      document.getElementById('player').style.display = 'none';
+    }
+
+    function activarAutoDJ() {
+      document.getElementById('twitchPlayer').style.display = 'none';
+      document.getElementById('player').style.display = 'block';
+      document.getElementById('player').src = "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.appspot.com/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media";
+    }
   </script>
 </body>
 </html>
