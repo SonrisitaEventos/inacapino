@@ -447,11 +447,7 @@ const listaVideos = [
     <a href="https://www.twitch.tv/xtian_alejandro" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
- <!-- Botón de acceso VIP -->
-  <div style="text-align: center; margin: 20px 0;">
-    <button onclick="mostrarLoginVIP()" style="padding: 10px 20px; font-weight: bold; background-color: #8000ff; color: white; border: none; border-radius: 10px; cursor: pointer;">Acceso VIP</button>
-  </div>
-  <!-- Agrega esto en el <body>, donde quieras mostrar la transmisión -->
+   <!-- Agrega esto en el <body>, donde quieras mostrar la transmisión -->
 <div style="position: relative; width: 100%; max-width: 1430px; margin: auto;">
     <img src="https://raw.githubusercontent.com/SonrisitaEventos/inacapino/main/imagenes/Overlay%20INACAP%20premium.jpg" alt="Overlay" style="width: 100%; height: auto;">
     <div id="transmision" style="position: absolute; top: 35px; left: 40px; width: 1350px; height: 740px;">
@@ -740,10 +736,10 @@ let currentImage = 0;
     firebase.database().ref("radio/videoActual").on("value", (snap) => {
       const video = snap.val();
       if (!video) return;
-
+//=== modificado ====
       const contenedor = document.getElementById("transmision");
       contenedor.innerHTML = `
-        <video id="videoPlayer" autoplay muted controls style="width: 100%; height: 100%; border-radius: 10px;">
+        <video id="videoPlayer" autoplay muted controls style="width: 30%; height: 30%; border-radius: 10px;"> 
           <source src="${video.url}" type="video/mp4">
           Tu navegador no soporta el elemento de video.
         </video>
@@ -867,7 +863,7 @@ function cambiarVideoManual() {
 
   const contenedor = document.getElementById("transmision");
   contenedor.innerHTML = `
-    <video id="videoPlayer" autoplay muted controls style="width: 100%; height: 100%; border-radius: 10px;">
+    <video id="videoPlayer" autoplay muted controls style="width: 30%; height: 30%; border-radius: 10px;">
       <source src="${video.url}" type="video/mp4">
       Tu navegador no soporta el elemento de video.
     </video>
