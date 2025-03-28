@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+ <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Radio online interactiva de INACAP Puerto Montt. Noticias, concursos, videos y participación estudiantil.">
   <title>El Inacapino Puerto Montt</title>
@@ -349,10 +349,10 @@
     }
 
 @keyframes fraseAnimada {
-  0% { opacity: 0; transform: translateY(-10px); }
-  50% { opacity: 1; transform: translateY(0px); }
-  100% { opacity: 1; }
-}
+      0% { opacity: 0; transform: translateY(-10px); }
+      50% { opacity: 1; transform: translateY(0px); }
+      100% { opacity: 1; }
+    }
  @keyframes brillo {
       0% { opacity: 1; }
       50% { opacity: 0.6; }
@@ -360,8 +360,8 @@
     }
 
 .fraseAnimada {
-  animation: fraseAnimada 1s ease-in-out;
-}
+      animation: fraseAnimada 1s ease-in-out;
+    }
 
     .video-nombre {
       font-size: 20px;
@@ -395,14 +395,7 @@
     </div>
   </header>
 <div style="text-align: center; margin: 30px 0;">
-  <button onclick="mostrarLoginVIP()" 
-    style="padding: 12px 24px; font-size: 16px; font-weight: bold; 
-           background: linear-gradient(45deg, #8000ff, #ff00ff); 
-           color: white; border: none; border-radius: 12px; 
-           cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-           transition: transform 0.3s ease;">
-    🎧 Acceso VIP
-  </button>
+  <<button onclick="mostrarLoginVIP()">Acceso VIP</button>
 </div>
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
@@ -421,18 +414,20 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
   
-<div id="loginVIP" style="display:none; text-align:center;">
+<div id="loginVIP" style="display:none;">
     <input type="text" id="usuario" placeholder="Usuario">
     <input type="password" id="clave" placeholder="Contraseña">
     <button onclick="accederVIP()">Entrar</button>
   </div>
 
-  <div id="panelVIP" style="display:none; text-align:center;">
+  <div id="panelVIP" style="display:none;">
     <button onclick="cambiarModo('twitch')">Programa En Vivo</button>
-    <button onclick="cambiarModo('autodj')">AutoDJ Videos</button>
-    <button onclick="cambiarVideoManual()">Siguiente Video 🎵</button>
+    <button onclick="cambiarModo('autodj')">AutoDJ</button>
+    <button onclick="cambiarVideoManual()">Siguiente Video</button>
   </div>
-<button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
+<div id="transmision"></div>
+  <p class="frase-motivacional" id="frase">Frase inicial</p>
+  <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
 <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
 
   <section id="rebobinando" class="rebobinando-section">
@@ -645,8 +640,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
   <script>
-     let currentImage = 0;
-  const firebaseConfig = {
+    const firebaseConfig = {
       apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
       authDomain: "inacapino-radio-spark.firebaseapp.com",
       databaseURL: "https://inacapino-radio-spark-default-rtdb.firebaseio.com",
@@ -659,15 +653,14 @@
     const db = firebase.database();
 
     const listaVideos = [
-      { nombre: "1 HOUR MIX (2020)", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.appspot.com/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media" },
-      { nombre: "3 HORAS DE MUSICA PARA LIVE 2022", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.appspot.com/o/videos%2F3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4?alt=media" },
-      { nombre: "Gaming Music 2023", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.appspot.com/o/videos%2FGaming%20Music%202023.mp4?alt=media" }
+      { nombre: "1 HOUR MIX (2020)", url: "https://..." },
+      { nombre: "3 HORAS DE MUSICA PARA LIVE 2022", url: "https://..." },
+      { nombre: "Gaming Music 2023", url: "https://..." }
     ];
 
     function mostrarLoginVIP() {
       const login = document.getElementById("loginVIP");
       login.style.display = login.style.display === "block" ? "none" : "block";
-      console.log("click")
     }
 
     function accederVIP() {
@@ -681,82 +674,59 @@
       }
     }
 
-  function cambiarModo(modo) {
-    db.ref("radio/modoTransmision").set(modo);
-  }
-function cambiarVideoManual() {
+    function cambiarModo(modo) {
+      db.ref("radio/modoTransmision").set(modo);
+    }
+
+    function cambiarVideoManual() {
       const videoSeleccionado = listaVideos[Math.floor(Math.random() * listaVideos.length)];
       db.ref("radio/videoActual").set(videoSeleccionado);
     }
-           });
- db.ref("radio/modoTransmision").on("value", (snap) => {
-  const modo = snap.val();
-  const contenedor = document.getElementById("transmision");
 
-  if (modo === "twitch") {
-    contenedor.innerHTML = `<iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen style="width: 100%; height: 810px; border: none;"></iframe>`;
-  } else {
-    db.ref("radio/videoActual").once("value", (snap) => {
-      const video = snap.val();
-      contenedor.innerHTML = `
-        <video id="videoPlayer" autoplay muted controls style="width: 100%; height: auto;">
-          <source src="${video.url}" type="video/mp4">
-          Tu navegador no soporta el video.
-        </video>
-        <div id="nombreVideo" class="video-nombre">🎧 Reproduciendo: ${video.nombre}</div>
-      `;
+    db.ref("radio/modoTransmision").on("value", (snap) => {
+      const modo = snap.val();
+      const contenedor = document.getElementById("transmision");
 
-      const player = document.getElementById("videoPlayer");
-      player.onended = () => cambiarVideoManual();
+      if (modo === "twitch") {
+        contenedor.innerHTML = `<iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen style="width: 100%; height: 810px; border: none;"></iframe>`;
+      } else {
+        db.ref("radio/videoActual").once("value", (snap) => {
+          const video = snap.val();
+          contenedor.innerHTML = `
+            <video id="videoPlayer" autoplay muted controls style="width: 100%; height: auto;">
+              <source src="${video.url}" type="video/mp4">
+            </video>
+            <div class="video-nombre">🎧 Reproduciendo: ${video.nombre}</div>
+          `;
+          document.getElementById("videoPlayer").onended = () => cambiarVideoManual();
+        });
+      }
     });
-  }
-});
 
 //=== modificado ====
-      const contenedor = document.getElementById("transmision");
-      contenedor.innerHTML = `
-        <video id="videoPlayer" autoplay muted controls style="width: 30%; height: 30%; border-radius: 10px;"> 
-          <source src="${video.url}" type="video/mp4">
-          Tu navegador no soporta el elemento de video.
-        </video>
-      `;
-
-      // Mostrar nombre del video
-      document.getElementById("nombreVideo").textContent = `🎧 Reproduciendo: ${video.nombre}`;
-
-      const player = document.getElementById("videoPlayer");
-      player.onended = () => cambiarVideoManual();
-    });
-    function actualizarReloj() {
-      const ahora = new Date();
-      let hora = ahora.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      document.getElementById('reloj').textContent = hora;
-    }
-    setInterval(actualizarReloj, 1000);
-
+     // Frases animadas
     const frases = [
       "🎉La educación es el pasaporte al futuro. ✨",
       "🎉Cada paso cuenta, sigue avanzando.🌟",
       "🎉El conocimiento es poder.🌟",
       "✨Nunca dejes de aprender.",
-      "✨ Todo lo que puedas imaginar, lo puedes crear. ¡Y tú ya lo estás logrando! 🎉",
+      "✨Todo lo que puedas imaginar, lo puedes crear. 🎉",
       "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
       "🌟La actitud es tan importante como la habilidad.🎉"
     ];
     let fraseActual = 0;
     setInterval(() => {
-  fraseActual = (fraseActual + 1) % frases.length;
-  const fraseEl = document.getElementById('frase');
-  fraseEl.style.opacity = 0;
-
-  setTimeout(() => {
-    fraseEl.textContent = frases[fraseActual];
-    fraseEl.style.opacity = 1;
-    fraseEl.classList.remove("fraseAnimada");
-    void fraseEl.offsetWidth; // Reiniciar animación
-    fraseEl.classList.add("fraseAnimada");
-  }, 300);
-}, 7000);
+      fraseActual = (fraseActual + 1) % frases.length;
+      const fraseEl = document.getElementById('frase');
+      fraseEl.style.opacity = 0;
+      setTimeout(() => {
+        fraseEl.textContent = frases[fraseActual];
+        fraseEl.style.opacity = 1;
+        fraseEl.classList.remove("fraseAnimada");
+        void fraseEl.offsetWidth;
+        fraseEl.classList.add("fraseAnimada");
+      }, 300);
+    }, 7000);
 
 
 const images = [
@@ -809,7 +779,8 @@ function changeImage(step) {
 
 // Mostrar/ocultar botón al hacer scroll
 // Función para volver arriba
-window.onscroll = function () {
+// Botón arriba
+    window.onscroll = function () {
       const btn = document.getElementById("btnTop");
       if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
         btn.style.display = "block";
@@ -817,18 +788,11 @@ window.onscroll = function () {
         btn.style.display = "none";
       }
     };
-
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // === PASO 2: Seleccionar aleatoriamente un video ===
-function seleccionarVideoAleatorio() {
-  const indice = Math.floor(Math.random() * listaVideos.length);
-  return listaVideos[indice];
-}
-
-</script>
+    </script>
 <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
 
 </body>
