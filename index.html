@@ -349,11 +349,6 @@
       z-index: 100;
     }
 
-#frase {
-  animation: fraseAnimada 1s ease-in-out;
-  transition: opacity 0.5s;
-}
-
 @keyframes fraseAnimada {
   0% { opacity: 0; transform: translateY(-10px); }
   50% { opacity: 1; transform: translateY(0px); }
@@ -869,10 +864,6 @@ function seleccionarVideoAleatorio() {
   const indice = Math.floor(Math.random() * listaVideos.length);
   return listaVideos[indice];
 }
-// === PASO 3: Función para actualizar en Firebase el video actual ===
-function cambiarVideoManual() {
-  const videoSeleccionado = seleccionarVideoAleatorio();
-  firebase.database().ref("radio/videoActual").on("value", ...
 
 </script>
 <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
