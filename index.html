@@ -688,21 +688,7 @@ function cambiarVideoManual() {
       const videoSeleccionado = listaVideos[Math.floor(Math.random() * listaVideos.length)];
       db.ref("radio/videoActual").set(videoSeleccionado);
     }
-        const modo = snap.val();
-      const contenedor = document.getElementById("transmision");
-      if (modo === "twitch") {
-        contenedor.innerHTML = `<iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen style="width: 100%; height: 810px; border: none;"></iframe>`;
-      } else {
-        db.ref("radio/videoActual").once("value", (snap) => {
-          const video = snap.val();
-      contenedor.innerHTML = `
-            <video id="videoPlayer" autoplay muted controls style="width: 100%; height: auto;">
-              <source src="${video.url}" type="video/mp4">
-              Tu navegador no soporta el video.
-            </video>
-            <div style="margin-top: 10px; font-weight: bold; color: #00ffd5;">🎧 Reproduciendo: ${video.nombre}</div>`;
-            }
-    });
+           });
  db.ref("radio/modoTransmision").on("value", (snap) => {
   const modo = snap.val();
   const contenedor = document.getElementById("transmision");
