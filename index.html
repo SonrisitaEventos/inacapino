@@ -367,7 +367,7 @@
 .fraseAnimada {
   animation: fraseAnimada 1s ease-in-out;
 }
-// === PASO 1: Arreglo de videos ===
+
 const listaVideos = [
   {
     nombre: "1 HOUR MIX (2020)",
@@ -444,8 +444,7 @@ const listaVideos = [
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1>El Inacapino Puerto Montt</h1>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
-  <iframe class="twitch" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>
-
+  <div id="transmision" style="max-width: 1430px; margin: 0 auto 20px;"></div>
  <div class="botones">
     <a href="#" onclick="mostrarLoginVIP()">🎧 Acceso VIP</a>
     <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -751,8 +750,7 @@ function cambiarVideoManual() {
       }
     });
 
-     // === Muestra el nombre del video y cambia al siguiente automáticamente ===
-    firebase.database().ref("radio/videoActual").on("value", (snap) => {
+     
       const video = snap.val();
       if (!video) return;
 //=== modificado ====
@@ -851,15 +849,6 @@ function changeImage(step) {
 }
 
 // Mostrar/ocultar botón al hacer scroll
-window.onscroll = function () {
-  const btn = document.getElementById("btnTop");
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
-};
-
 // Función para volver arriba
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -873,17 +862,18 @@ function seleccionarVideoAleatorio() {
 // === PASO 3: Función para actualizar en Firebase el video actual ===
 function cambiarVideoManual() {
   const videoSeleccionado = seleccionarVideoAleatorio();
-  firebase.database().ref("radio/videoActual").set(videoSeleccionado);
-}
+  firebase.database().ref("radio/videoActual").on("value", ...
+
 // Botón flotante para volver arriba
-    window.onscroll = function () {
-      const btn = document.getElementById("btnTop");
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        btn.style.display = "block";
-      } else {
-        btn.style.display = "none";
-      }
-    };
+   window.onscroll = function () {
+  const btn = document.getElementById("btnTop");
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+
 
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
