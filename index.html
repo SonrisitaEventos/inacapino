@@ -458,7 +458,7 @@ body.modo-noche a {
     </nav>
     <div class="top-info">
       <span id="reloj">00:00</span>
-      <span id="clima">🌤️ 11°C</span>
+      <span id="clima">⛅ --°C</span>
       <span class="live-indicator">EN VIVO</span>
     </div>
   </header>
@@ -955,30 +955,45 @@ function actualizarReloj() {
 actualizarReloj();
 setInterval(actualizarReloj, 60000);
 
-const apiKey = 'ac05bbbe9fcb2df2fb44145383ed0342';
-const ciudad = 'Puerto Montt,CL'; // CL = Chile
+//Actualización del Clima
+ <script>
+  const API_KEY = "ac05bbbe9fcb2df2fb44145383ed0342"; // Tu clave default
+  const ciudad = "Puerto Montt";
+  const pais = "CL";
 
-async function obtenerClima() {
-  try {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}&units=metric&lang=es`);
-    const data = await response.json();
-
-    const temperatura = Math.round(data.main.temp);
-    const icono = data.weather[0].icon;
-
-    // Mostrar en el elemento con ID clima
-    document.getElementById("clima").innerHTML = `
-      <img src="https://openweathermap.org/img/wn/${icono}.png" alt="clima" style="vertical-align:middle;"> ${temperatura}°C
-    `;
-  } catch (error) {
-    console.error("Error al obtener el clima:", error);
-    document.getElementById("clima").textContent = "🌦️ --°C";
+  function obtenerEmojiClima(icon) {
+    const mapa = {
+      "01d": "☀️", "01n": "🌕",
+      "02d": "🌤️", "02n": "☁️",
+      "03d": "⛅",  "03n": "⛅",
+      "04d": "☁️", "04n": "☁️",
+      "09d": "🌧️", "09n": "🌧️",
+      "10d": "🌦️", "10n": "🌧️",
+      "11d": "⛈️", "11n": "⛈️",
+      "13d": "❄️", "13n": "❄️",
+      "50d": "🌫️", "50n": "🌫️"
+    };
+    return mapa[icon] || "🌡️";
   }
-}
 
-// Actualizar cada 10 minutos
-obtenerClima();
-setInterval(obtenerClima, 600000);
+  function actualizarClima() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${API_KEY}&units=metric&lang=es`)
+      .then(res => res.json())
+      .then(data => {
+        const temperatura = Math.round(data.main.temp);
+        const icon = data.weather[0].icon;
+        const emoji = obtenerEmojiClima(icon);
+        document.getElementById("clima").innerText = `${emoji} ${temperatura}°C`;
+      })
+      .catch(err => {
+        console.error("Error al obtener clima:", err);
+        document.getElementById("clima").innerText = "🌡️ --°C";
+      });
+  }
+
+  actualizarClima();
+  setInterval(actualizarClima, 10 * 60 * 1000); // Se actualiza cada 10 minutos
+</script>
 
    
     </script>
