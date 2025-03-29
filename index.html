@@ -102,14 +102,25 @@
     @media screen and (max-width: 600px) {
       .encuesta iframe { height: 800px; }
     }
-@media (max-width: 768px) {
-  #transmision {
-    width: 100% !important;
-    left: 0 !important;
-    top: 0 !important;
-    height: auto !important;
-  }
-}
+#transmision {
+      max-width: 100%;
+      margin: 20px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,255,255,0.3);
+      transition: all 0.5s ease-in-out;
+    }
+    #transmision video, #transmision iframe {
+      width: 100%;
+      height: auto;
+      border: none;
+      border-radius: 10px;
+    }
+    @media (max-width: 768px) {
+      #transmision video, #transmision iframe {
+        height: auto;
+      }
+    }
 
     .rebobinando-section {
       text-align: center;
@@ -315,15 +326,6 @@
     strong {
       font-weight: bold;
     }
-#transmision {
-      max-width: 1430px;
-      margin: 0 auto 20px;
-    }
-    #transmision video {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
  #loginVIP {
       display: none;
       position: fixed;
@@ -389,8 +391,8 @@
       animation: fraseAnimada 1s ease-in-out;
     }
 
-    .video-nombre {
-      font-size: 20px;
+     .video-nombre {
+      font-size: 18px;
       font-weight: bold;
       color: #00ffd5;
       text-shadow: 1px 1px 8px #000;
@@ -413,7 +415,14 @@
     .vip-button:hover {
       transform: scale(1.05);
     }
-
+ .select-video {
+      margin-top: 10px;
+    }
+    .select-video select {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+    }
     
   </style>
 </head>
@@ -456,9 +465,18 @@
   <h1>El Inacapino Puerto Montt</h1>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
 
-  <div id="transmision" style="max-width: 1430px; margin: 0 auto 20px;"></div>
+  <div id="transmision"></div>
   <div id="nombreVideo" class="video-nombre"></div>
  <div id="transmision"></div>
+ <div class="select-video" id="panelVIP" style="display:none;">
+    <select id="videoSelector">
+      <option value="0">🎶 JAZZ & BLUES</option>
+      <option value="1">🎮 Gaming Music</option>
+      <option value="2">📚 Un Gran momento para estudiar</option>
+      <option value="3">🕺 1 Hora y a bailar</option>
+    </select>
+    <button onclick="cambiarVideoManual()">Reproducir Selección</button>
+  </div>
  <div class="botones">
     <a href="#" onclick="mostrarLoginVIP()">🎧 Acceso VIP</a>
     <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -695,33 +713,16 @@
     const db = firebase.database();
 
     const listaVideos = [
-      { nombre: "STREAMING GAMER", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FSTREAMING%20GAMER.mp4?alt=media&token=ddcc30aa-9b1c-4ab5-b5e8-eac8e417174c" },
-      { nombre: "Música Electrónica para Estudiar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FM%C3%BAsica%20Electr%C3%B3nica%20para%20Estudiar%2C%20m%C3%BAsica%20para%20levantar%20el%20animo.mp4?alt=media&token=de6e525f-ced4-4e2a-a34f-37f8c1d2546f" },
-      { nombre: "MixElectronic", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FMixElectronic.mp4?alt=media&token=15851287-f7b2-4721-b5cf-e1e1d5d6c994" }
+      { nombre: "JAZZ & BLUES", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FJAZZ%20%26%20BLUES%20(conversar%20%2Ccaf%C3%A9%20%2Cestudiar).mp4?alt=media&token=dee26a91-1bc0-4690-aefa-7137d682acdb" },
+      { nombre: "Gaming Music", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FGaming%20Music%202023.mp4?alt=media&token=d3330f02-f47d-4557-9e32-8686bd308e43" },
+      { nombre: "Un Gran momento para estudiar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4?alt=media&token=ff7fccf3-fc80-4188-a47b-b7fcb5466425" },
+      { nombre: "1 Hora y a bailar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962" },
     ];
 
-    function mostrarLoginVIP() {
-      const login = document.getElementById("loginVIP");
-      login.style.display = login.style.display === "block" ? "none" : "block";
-    }
-
-    function accederVIP() {
-      const user = document.getElementById("usuario").value;
-      const pass = document.getElementById("clave").value;
-      if (user === "Inacapino" && pass === "SedePuertoMontt") {
-        document.getElementById("panelVIP").style.display = "block";
-        document.getElementById("loginVIP").style.display = "none";
-      } else {
-        alert("Credenciales incorrectas.");
-      }
-    }
-
-    function cambiarModo(modo) {
-      db.ref("radio/modoTransmision").set(modo);
-    }
-
     function cambiarVideoManual() {
-      const videoSeleccionado = listaVideos[Math.floor(Math.random() * listaVideos.length)];
+      const indice = parseInt(document.getElementById("videoSelector").value);
+      const videoSeleccionado = listaVideos[indice];
+      db.ref("radio/modoTransmision").set("autodj");
       db.ref("radio/videoActual").set(videoSeleccionado);
     }
 
@@ -730,21 +731,21 @@
       const contenedor = document.getElementById("transmision");
 
       if (modo === "twitch") {
-        contenedor.innerHTML = `<iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen style="width: 100%; height: 810px; border: none;"></iframe>`;
+        contenedor.innerHTML = `<iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>`;
+        document.getElementById("nombreVideo").innerText = "🔴 En Vivo: Twitch";
       } else {
         db.ref("radio/videoActual").once("value", (snap) => {
           const video = snap.val();
           contenedor.innerHTML = `
-            <video id="videoPlayer" autoplay muted controls style="width: 100%; height: auto;">
+            <video id="videoPlayer" autoplay muted controls>
               <source src="${video.url}" type="video/mp4">
             </video>
-            <div class="video-nombre">🎧 Reproduciendo: ${video.nombre}</div>
           `;
+          document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${video.nombre}`;
           document.getElementById("videoPlayer").onended = () => cambiarVideoManual();
         });
       }
     });
-
 //=== modificado ====
      // Frases animadas
     const frases = [
