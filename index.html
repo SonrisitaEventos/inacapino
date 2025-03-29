@@ -426,6 +426,15 @@
       border-radius: 6px;
       border: none;
     }
+
+   body.modo-noche {
+  background-color: #111;
+  color: #eee;
+}
+body.modo-noche a {
+  color: #f8f8f8;
+}
+
     
   </style>
 </head>
@@ -487,10 +496,14 @@
   <div id="panelVIP" style="display:none; margin-top: 20px;">
   <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
   <button class="vip-button" onclick="cambiarModo('autodj')">🎶 AutoDJ</button>
+  <button class="vip-button" onclick="activarAutoDJ()">🔀 AutoDJ Aleatorio</button>
   </div>
 
     <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
 <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
+<!-- Boton dia y noche -->
+ <button class="vip-button" onclick="toggleModo()">🌗 Cambiar Modo</button>
+
 
   <section id="rebobinando" class="rebobinando-section">
     <h2>🔁 Rebobinando la Señal</h2>
@@ -871,6 +884,27 @@ function cambiarModo(modo) {
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+   
+   function activarAutoDJ() {
+  const indice = Math.floor(Math.random() * listaVideos.length);
+  const videoSeleccionado = listaVideos[indice];
+
+  db.ref("radio/modoTransmision").set("autodj");
+  db.ref("radio/videoActual").set(videoSeleccionado);
+
+  const contenedor = document.getElementById("transmision");
+  contenedor.innerHTML = `
+    <video id="videoPlayer" autoplay muted controls style="width:100%; max-height:540px; border-radius:10px;">
+      <source src="${videoSeleccionado.url}" type="video/mp4">
+    </video>
+  `;
+  document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
+}
+
+   function toggleModo() {
+  document.body.classList.toggle("modo-noche");
+}
+
 
     </script>
 <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
