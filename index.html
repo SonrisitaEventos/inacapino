@@ -942,13 +942,45 @@ function cambiarModo(modo) {
     db.ref("radio/modoTransmision").set("twitch");
   }
 }
-
-
-
-
    function toggleModo() {
   document.body.classList.toggle("modo-noche");
 }
+function actualizarReloj() {
+  const ahora = new Date();
+  const horas = ahora.getHours().toString().padStart(2, '0');
+  const minutos = ahora.getMinutes().toString().padStart(2, '0');
+  document.getElementById("reloj").textContent = `${horas}:${minutos}`;
+}
+
+actualizarReloj();
+setInterval(actualizarReloj, 60000);
+
+const apiKey = '43ac0ec5296ec566148a327ccd0281da';
+const ciudad = 'Puerto Montt,CL'; // CL = Chile
+
+async function obtenerClima() {
+  try {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}&units=metric&lang=es`);
+    const data = await response.json();
+
+    const temperatura = Math.round(data.main.temp);
+    const icono = data.weather[0].icon;
+
+    // Mostrar en el elemento con ID clima
+    document.getElementById("clima").innerHTML = `
+      <img src="https://openweathermap.org/img/wn/${icono}.png" alt="clima" style="vertical-align:middle;"> ${temperatura}°C
+    `;
+  } catch (error) {
+    console.error("Error al obtener el clima:", error);
+    document.getElementById("clima").textContent = "🌦️ --°C";
+  }
+}
+
+// Actualizar cada 10 minutos
+obtenerClima();
+setInterval(obtenerClima, 600000);
+
+   
     </script>
 </body>
 </html>
