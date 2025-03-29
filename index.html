@@ -941,6 +941,17 @@ db.ref("radio/videoActual").on("value", (snapshot) => {
    function toggleModo() {
   document.body.classList.toggle("modo-noche");
 }
+// Guardar cuando cambia el volumen
+document.addEventListener('volumechange', () => {
+  const video = document.getElementById("videoPlayer");
+  localStorage.setItem("volumenUsuario", video.volume);
+});
+
+// Al cargar un nuevo video:
+const volumenGuardado = localStorage.getItem("volumenUsuario");
+if (volumenGuardado !== null) {
+  video.volume = parseFloat(volumenGuardado);
+}
 
 
     </script>
