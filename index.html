@@ -848,25 +848,32 @@ function changeImage(step) {
 function mostrarLoginVIP() {
   document.getElementById("loginVIP").style.display = "block";
 }
-function cambiarModo(modo) {
-  db.ref("radio/modoTransmision").set(modo);
 
-  const contenedor = document.getElementById("transmision");
+//Al cargar la página, leer el modo actual y mostrarlo:
+db.ref("radio/modoTransmision").on("value", (snapshot) => {
+  const modo = snapshot.val();
   if (modo === "twitch") {
-    contenedor.innerHTML = `
+    document.getElementById("transmision").innerHTML = `
       <iframe 
         src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" 
         allowfullscreen
         style="width:100%; height: 540px; border-radius:10px; border:none;">
       </iframe>
     `;
-    document.getElementById("nombreVideo").innerText = "🎥 Programa En Vivo";
+    document.getElementById("nombreVideo").innerText = `🎥 Transmisión en vivo`;
   } else if (modo === "autodj") {
-    // Si deseas dejarlo vacío hasta que elijan un video
-    contenedor.innerHTML = "";
-    document.getElementById("nombreVideo").innerText = "🎶 AutoDJ activado, elige un video abajo";
+    db.ref("radio/videoActual").once("value").then((snap) => {
+      const video = snap.val();
+      document.getElementById("transmision").innerHTML = `
+        <video autoplay muted controls style="width:100%; max-height:540px; border-radius:10px;">
+          <source src="${video.url}" type="video/mp4">
+        </video>
+      `;
+      document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${video.nombre}`;
+    });
   }
-}
+});
+
 
    
    // Mostrar/ocultar botón al hacer scroll
