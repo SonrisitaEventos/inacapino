@@ -738,13 +738,14 @@ body.modo-noche a {
   const videoSeleccionado = listaVideos[indice];
 
   // Actualiza en Firebase
-  db.ref("radio/modoTransmision").set("autodj");
+ db.ref("radio/modoTransmision").set("autodj");
   db.ref("radio/videoActual").set(videoSeleccionado);
-
+    
   // Mostrar el video directamente en el contenedor
   const contenedor = document.getElementById("transmision");
+  const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
   contenedor.innerHTML = `
-    <video id="videoPlayer" autoplay muted controls style="width:100%; max-height:540px; border-radius:10px;">
+    <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;">
       <source src="${videoSeleccionado.url}" type="video/mp4">
     </video>
   `;
@@ -869,23 +870,43 @@ db.ref("radio/modoTransmision").on("value", (snapshot) => {
           <source src="${video.url}" type="video/mp4">
         </video>
       `;
-      document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${video.nombre}`;
-    });
+      document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
+}
   }
 });
-db.ref("radio/videoActual").on("value", (snapshot) => {
-  const video = snapshot.val();
+// Mejorar modo twitch para que mantenga altura adecuada en móvil
+db.ref("radio/modoTransmision").on("value", (snapshot) => {
+  const modo = snapshot.val();
+  const transmision = document.getElementById("transmision");
 
-  db.ref("radio/modoTransmision").once("value").then((modoSnap) => {
-    if (modoSnap.val() === "autodj") {
-      document.getElementById("transmision").innerHTML = `
-        <video autoplay muted controls style="width:100%; max-height:540px; border-radius:10px;">
+  if (modo === "twitch") {
+    transmision.innerHTML = `
+      <div style="position:relative;padding-top:56.25%;height:0;overflow:hidden;">
+        <iframe 
+          src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" 
+          allowfullscreen
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:10px">
+        </iframe>
+      </div>
+    `;
+    document.getElementById("nombreVideo").innerText = `🎥 Transmisión en vivo`;
+  } else if (modo === "autodj") {
+    db.ref("radio/videoActual").once("value").then((snap) => {
+      const video = snap.val();
+      const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
+      transmision.innerHTML = `
+        <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;">
           <source src="${video.url}" type="video/mp4">
         </video>
       `;
+      const videoEl = document.getElementById("videoPlayer");
+      videoEl.volume = parseFloat(volumenGuardado);
+      videoEl.addEventListener("volumechange", () => {
+        localStorage.setItem("volumenUsuario", videoEl.volume);
+      });
       document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${video.nombre}`;
-    }
-  });
+    });
+  }
 });
 
 
@@ -943,9 +964,13 @@ db.ref("radio/videoActual").on("value", (snapshot) => {
 }
 // Guardar cuando cambia el volumen
 document.addEventListener('volumechange', () => {
-  const video = document.getElementById("videoPlayer");
-  localStorage.setItem("volumenUsuario", video.volume);
-});
+   const video = document.getElementById("videoPlayer");
+  video.volume = parseFloat(volumenGuardado);
+
+  video.addEventListener("volumechange", () => {
+    localStorage.setItem("volumenUsuario", video.volume);
+  });
+
 
 // Al cargar un nuevo video:
 const volumenGuardado = localStorage.getItem("volumenUsuario");
