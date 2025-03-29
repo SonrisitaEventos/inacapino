@@ -455,21 +455,31 @@ body.modo-noche a {
       padding: 4px 0;
     }
 
+    .mensaje-motivacional {
+      position: absolute;
+      left: 0;
+      top: -30px;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      z-index: 99;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00ffd5, #a05bff);
+      color: #000;
+      padding: 4px 0;
+    }
     .mensaje-motivacional span {
       display: inline-block;
       padding-left: 100%;
       animation: scrollMensaje 15s linear infinite;
     }
-
     @keyframes scrollMensaje {
       0% { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
-
     .mensaje-resalte {
       animation: destello 1s ease-in-out 2;
     }
-
     @keyframes destello {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.3; }
@@ -480,8 +490,8 @@ body.modo-noche a {
 <body>
 <header>
  <div class="mensaje-motivacional" id="mensajeMotivacional">
-    <span id="mensajeTexto">🎉 ¡Este es un gran día para brillar! ✨</span>
-  </div>
+      <span id="mensajeTexto">🎉 ¡Este es un gran día para brillar! ✨</span>
+    </div>
     <nav>
       <a href="#">Inicio</a>
       <a href="#rebobinando">Rebobinando</a>
@@ -492,10 +502,10 @@ body.modo-noche a {
       <a href="#noticias">Noticias</a>
     </nav>
     <div class="top-info">
-    <span id="reloj">00:00</span>
-    <span id="clima">☀️ --°C</span>
-    <span class="live-indicator">EN VIVO</span>
-  </div>
+      <span id="reloj">00:00</span>
+      <span id="clima">☀️ --°C</span>
+      <span class="live-indicator">EN VIVO</span>
+    </div>
   </header>
 <!-- ✅ BOTÓN VIP CENTRADO CON ESTILO -->
 
@@ -1041,7 +1051,6 @@ const mensajes = [
 
   let mensajeActual = 0;
   const contenedor = document.getElementById("mensajeTexto");
-  const capa = document.getElementById("mensajeMotivacional");
 
   function cambiarMensaje() {
     mensajeActual = (mensajeActual + 1) % mensajes.length;
