@@ -920,6 +920,12 @@ db.ref("radio/videoActual").on("value", (snapshot) => {
   `;
   document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
 }
+   function cambiarModo(modo) {
+  if (modo === "twitch") {
+    db.ref("radio/modoTransmision").set("twitch");
+  }
+}
+
 
    function toggleModo() {
   document.body.classList.toggle("modo-noche");
