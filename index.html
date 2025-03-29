@@ -897,22 +897,25 @@ body.modo-noche a {
     ];
 
 function openModal(index) {
-      currentImage = index;
-      const modal = document.getElementById("imgModal");
-      const modalImg = document.getElementById("modalImg");
-      modal.style.display = "flex";
-      modalImg.src = images[currentImage];
-    }
-  // Le damos un poquito de tiempo antes de mostrar el efecto
+  currentImage = index;
+  const modal = document.getElementById("imgModal");
+  const modalImg = document.getElementById("modalImg");
+
+  modalImg.style.opacity = 0;
+  modal.style.display = "flex";
+
+  // Agrega la clase para el efecto fade
   setTimeout(() => {
     modal.classList.add("fade-in");
-    modalImg.src = "imagenes/" + images[currentImage];
+    modalImg.src = images[currentImage];
   }, 50);
 
+  // Luego de otro pequeño delay, aplicamos opacidad
   setTimeout(() => {
     modalImg.style.opacity = 1;
   }, 100);
 }
+
 
 function closeModal() {
       document.getElementById("imgModal").style.display = "none";
@@ -928,7 +931,6 @@ function closeModal() {
         closeModal();
       }
     });
-  const modalImg = document.getElementById("modalImg");
   modalImg.style.opacity = 0;
 
   setTimeout(() => {
