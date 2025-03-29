@@ -731,7 +731,14 @@
 
   // ⚡ Forzar recarga inmediata del video
   const contenedor = document.getElementById("transmision");
-  contenedor.innerHTML = `
+ contenedor.innerHTML = `
+  <iframe 
+    src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" 
+    allowfullscreen
+    style="width:100%; height: 540px; border-radius:10px; border:none;"
+  ></iframe>
+`;
+  
     <video id="videoPlayer" autoplay muted controls>
       <source src="${videoSeleccionado.url}" type="video/mp4">
     </video>
