@@ -721,33 +721,24 @@
       { nombre: "1 Hora y a bailar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962" },
     ];
 
-    function cambiarVideoManual() {
-      const indice = parseInt(document.getElementById("videoSelector").value);
-      const videoSeleccionado = listaVideos[indice];
-      db.ref("radio/modoTransmision").set("autodj");
-      db.ref("radio/videoActual").set(videoSeleccionado);
-    }
+   function cambiarVideoManual() {
+  const indice = parseInt(document.getElementById("videoSelector").value);
+  const videoSeleccionado = listaVideos[indice];
 
-    db.ref("radio/modoTransmision").on("value", (snap) => {
-      const modo = snap.val();
-      const contenedor = document.getElementById("transmision");
+  // Actualiza el modo y video
+  db.ref("radio/modoTransmision").set("autodj");
+  db.ref("radio/videoActual").set(videoSeleccionado);
 
-      if (modo === "twitch") {
-        contenedor.innerHTML = `<iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe>`;
-        document.getElementById("nombreVideo").innerText = "🔴 En Vivo: Twitch";
-      } else {
-        db.ref("radio/videoActual").once("value", (snap) => {
-          const video = snap.val();
-          contenedor.innerHTML = `
-            <video id="videoPlayer" autoplay muted controls>
-              <source src="${video.url}" type="video/mp4">
-            </video>
-          `;
-          document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${video.nombre}`;
-          document.getElementById("videoPlayer").onended = () => cambiarVideoManual();
-        });
-      }
-    });
+  // ⚡ Forzar recarga inmediata del video
+  const contenedor = document.getElementById("transmision");
+  contenedor.innerHTML = `
+    <video id="videoPlayer" autoplay muted controls>
+      <source src="${videoSeleccionado.url}" type="video/mp4">
+    </video>
+  `;
+  document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
+}
+
 //=== modificado ====
    function accederVIP() {
   const usuario = document.getElementById("usuario").value;
