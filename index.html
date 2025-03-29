@@ -441,20 +441,7 @@ body.modo-noche a {
   color: #f8f8f8;
 }
 
-     position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      z-index: 99;
-      font-weight: bold;
-      background: linear-gradient(90deg, #00ffd5, #a05bff);
-      color: #000;
-      padding: 4px 0;
-    }
-
-   .noticiero-flex {
+      .noticiero-flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -931,15 +918,7 @@ function closeModal() {
         closeModal();
       }
     });
-  modalImg.style.opacity = 0;
-
-  setTimeout(() => {
-    modalImg.src = "imagenes/" + images[currentImage];
-    modalImg.style.opacity = 1;
-  }, 300);
-}
-
-// ... (todo tu código actual)
+ // ... (todo tu código actual)
 
 // ✅ FUNCIÓN QUE ABRE EL LOGIN VIP
 function mostrarLoginVIP() {
