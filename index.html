@@ -504,7 +504,49 @@ body.modo-noche a {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.3; }
     }
-    
+  .carrusel-postales {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 20px 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.postales-slider {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+}
+
+.postal-item {
+  flex: 0 0 auto;
+  width: 160px;
+  height: 120px;
+  scroll-snap-align: start;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.postal-item:hover {
+  transform: scale(1.08);
+}
+
+.postal-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+  .postal-item {
+    width: 120px;
+    height: 90px;
+  }
+}  
   </style>
 </head>
 <body>
@@ -667,64 +709,20 @@ body.modo-noche a {
 <section id="postales">
   <h2>📸 Postales Inacapinas</h2>
   <p>¡Momentos que nos conectan y nos inspiran!</p>
-  <div class="gallery-container">
-    <!-- Repite esta estructura para cada imagen -->
-    <!-- Imagen 1 -->
-<div class="gallery-item" onclick="openModal(0)">
-  <img src="imagenes/postales_1.jpg" alt="Postal 1">
-</div>
 
-<!-- Imagen 2 -->
-<div class="gallery-item" onclick="openModal(1)">
-  <img src="imagenes/postales_2.jpg" alt="Postal 2">
-</div>
-
-<!-- Imagen 3 -->
-<div class="gallery-item" onclick="openModal(2)">
-  <img src="imagenes/postales_3.jpg" alt="Postal 3">
-</div>
-
-<!-- Imagen 4 -->
-<div class="gallery-item" onclick="openModal(3)">
-  <img src="imagenes/postales_4.jpg" alt="Postal 4">
-</div>
-<!-- Imagen5 -->
-<div class="gallery-item" onclick="openModal(4)">
-  <img src="imagenes/postales_5.jpg" alt="Postal 5">
-</div>
-
-<!-- Imagen6 -->
-<div class="gallery-item" onclick="openModal(5)">
-  <img src="imagenes/postales_6.jpg" alt="Postal 6">
-</div>
-
-<!-- Imagen 7 -->
-<div class="gallery-item" onclick="openModal(6)">
-  <img src="imagenes/postales_7.jpg" alt="Postal 7">
-</div>
-
-<!-- Imagen 8 -->
-<div class="gallery-item" onclick="openModal(7)">
-  <img src="imagenes/postales_8.jpg" alt="Postal 8">
-</div>
-<!-- Imagen 9 -->
-<div class="gallery-item" onclick="openModal(8)">
-  <img src="imagenes/postales_9.jpg" alt="Postal 9">
-</div>
-
-<!-- Imagen 10 -->
-<div class="gallery-item" onclick="openModal(9)">
-  <img src="imagenes/postales_10.jpg" alt="Postal 10">
-</div>
-
-    <!-- Agrega más postales aquí -->
-  </div>
-
-  <div class="modal" id="imgModal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImg">
-    <a class="prev" onclick="changeImage(-1)">&#10094;</a>
-    <a class="next" onclick="changeImage(1)">&#10095;</a>
+  <div class="carrusel-postales">
+    <div class="postales-slider">
+      <div class="postal-item"><img src="imagenes/postales_1.jpg" alt="Postal 1"></div>
+      <div class="postal-item"><img src="imagenes/postales_2.jpg" alt="Postal 2"></div>
+      <div class="postal-item"><img src="imagenes/postales_3.jpg" alt="Postal 3"></div>
+      <div class="postal-item"><img src="imagenes/postales_4.jpg" alt="Postal 4"></div>
+      <div class="postal-item"><img src="imagenes/postales_5.jpg" alt="Postal 5"></div>
+      <div class="postal-item"><img src="imagenes/postales_6.jpg" alt="Postal 6"></div>
+      <div class="postal-item"><img src="imagenes/postales_7.jpg" alt="Postal 7"></div>
+      <div class="postal-item"><img src="imagenes/postales_8.jpg" alt="Postal 8"></div>
+      <div class="postal-item"><img src="imagenes/postales_9.jpg" alt="Postal 9"></div>
+      <div class="postal-item"><img src="imagenes/postales_10.jpg" alt="Postal 10"></div>
+    </div>
   </div>
 </section>
 <!-- Sección Noticias y Destacados -->
