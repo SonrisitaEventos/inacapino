@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
- 
-  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
       authDomain: "inacapino-radio-spark.firebaseapp.com",
@@ -292,9 +290,4 @@ const mensajes = [
 
   setInterval(cambiarMensaje, 15000);
 
- // Todo tu código JS aquí
-});
-
-   
-    </script>
-
+}); // 👈 Muy importante cerrar el addEventListener
