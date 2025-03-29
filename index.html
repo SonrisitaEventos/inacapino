@@ -124,6 +124,11 @@
         height: auto;
       }
     }
+@media (max-width: 480px) {
+  #transmision iframe {
+    height: 240px !important;
+  }
+}
 
     .rebobinando-section {
       text-align: center;
@@ -738,11 +743,28 @@ body.modo-noche a {
   const indice = parseInt(document.getElementById("videoSelector").value);
   const videoSeleccionado = listaVideos[indice];
 
-  // Actualiza en Firebase
- db.ref("radio/modoTransmision").set("autodj");
+  // Guarda en Firebase
+  db.ref("radio/modoTransmision").set("autodj");
   db.ref("radio/videoActual").set(videoSeleccionado);
-    
- }
+
+  // Mostrar inmediatamente para el administrador
+  const contenedor = document.getElementById("transmision");
+  const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
+  contenedor.innerHTML = `
+    <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;">
+      <source src="${videoSeleccionado.url}" type="video/mp4">
+    </video>
+  `;
+
+  const videoEl = document.getElementById("videoPlayer");
+  videoEl.volume = parseFloat(volumenGuardado);
+  videoEl.addEventListener("volumechange", () => {
+    localStorage.setItem("volumenUsuario", videoEl.volume);
+  });
+
+  document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
+}
+
 
 
 //=== modificado ====
