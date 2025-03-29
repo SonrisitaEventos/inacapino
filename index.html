@@ -749,6 +749,19 @@
       }
     });
 //=== modificado ====
+   function accederVIP() {
+  const usuario = document.getElementById("usuario").value;
+  const clave = document.getElementById("clave").value;
+
+  if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
+    document.getElementById("loginVIP").style.display = "none";
+    document.getElementById("panelVIP").style.display = "block";
+    alert("¡Bienvenido administrador Inacapino! 🎉");
+  } else {
+    alert("Usuario o contraseña incorrecta 😢");
+  }
+}
+
      // Frases animadas
     const frases = [
       "🎉La educación es el pasaporte al futuro. ✨",
@@ -821,6 +834,15 @@ function changeImage(step) {
     modalImg.style.opacity = 1;
   }, 300);
 }
+
+// ... (todo tu código actual)
+
+// ✅ FUNCIÓN QUE ABRE EL LOGIN VIP
+function mostrarLoginVIP() {
+  document.getElementById("loginVIP").style.display = "block";
+}
+
+
 
 // Mostrar/ocultar botón al hacer scroll
 // Función para volver arriba
