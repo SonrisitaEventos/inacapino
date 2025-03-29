@@ -873,6 +873,20 @@ db.ref("radio/modoTransmision").on("value", (snapshot) => {
     });
   }
 });
+db.ref("radio/videoActual").on("value", (snapshot) => {
+  const video = snapshot.val();
+
+  db.ref("radio/modoTransmision").once("value").then((modoSnap) => {
+    if (modoSnap.val() === "autodj") {
+      document.getElementById("transmision").innerHTML = `
+        <video autoplay muted controls style="width:100%; max-height:540px; border-radius:10px;">
+          <source src="${video.url}" type="video/mp4">
+        </video>
+      `;
+      document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${video.nombre}`;
+    }
+  });
+});
 
 
    
