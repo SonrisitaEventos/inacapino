@@ -458,11 +458,12 @@
   <button onclick="accederVIP()">Entrar</button>
 </div>
 
-  <div id="panelVIP" style="display:none;">
-    <button onclick="cambiarModo('twitch')">Programa En Vivo</button>
-    <button onclick="cambiarModo('autodj')">AutoDJ</button>
-    <button onclick="cambiarVideoManual()">Siguiente Video</button>
-  </div>
+  <div id="panelVIP" style="display:none; margin-top: 20px;">
+  <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
+  <button class="vip-button" onclick="cambiarModo('autodj')">🎶 AutoDJ</button>
+  <button class="vip-button" onclick="cambiarVideoManual()">⏭️ Siguiente Video</button>
+</div>
+
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1>El Inacapino Puerto Montt</h1>
@@ -470,15 +471,16 @@
 
   <div id="transmision"></div>
   <div id="nombreVideo" class="video-nombre"></div>
- <div class="select-video" id="panelVIP" style="display:none;">
-    <select id="videoSelector">
-      <option value="0">🎶 JAZZ & BLUES</option>
-      <option value="1">🎮 Gaming Music</option>
-      <option value="2">📚 Un Gran momento para estudiar</option>
-      <option value="3">🕺 1 Hora y a bailar</option>
-    </select>
-    <button onclick="cambiarVideoManual()">Reproducir Selección</button>
-  </div>
+ <div class="select-video" id="panelSelector" style="display:none;">
+  <select id="videoSelector">
+    <option value="0">🎶 JAZZ & BLUES</option>
+    <option value="1">🎮 Gaming Music</option>
+    <option value="2">📚 Un Gran momento para estudiar</option>
+    <option value="3">🕺 1 Hora y a bailar</option>
+  </select>
+  <button class="vip-button" onclick="cambiarVideoManual()">Reproducir Selección</button>
+</div>
+
  <div class="botones">
     <a href="#" onclick="mostrarLoginVIP()">🎧 Acceso VIP</a>
     <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -756,11 +758,13 @@
   if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
     document.getElementById("loginVIP").style.display = "none";
     document.getElementById("panelVIP").style.display = "block";
+    document.getElementById("panelSelector").style.display = "block"; // <- ¡nuevo!
     alert("¡Bienvenido administrador Inacapino! 🎉");
   } else {
     alert("Usuario o contraseña incorrecta 😢");
   }
 }
+
 
      // Frases animadas
     const frases = [
@@ -840,6 +844,9 @@ function changeImage(step) {
 // ✅ FUNCIÓN QUE ABRE EL LOGIN VIP
 function mostrarLoginVIP() {
   document.getElementById("loginVIP").style.display = "block";
+}
+function cambiarModo(modo) {
+  db.ref("radio/modoTransmision").set(modo);
 }
 
 
