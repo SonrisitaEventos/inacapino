@@ -870,22 +870,28 @@ db.ref("radio/modoTransmision").on("value", (snapshot) => {
     `;
     document.getElementById("nombreVideo").innerText = `🎥 Transmisión en vivo`;
   } else if (modo === "autodj") {
-    db.ref("radio/videoActual").once("value").then((snap) => {
+    db.ref("radio/videoActual").on("value", (snap) => {
+  db.ref("radio/modoTransmision").once("value").then((modoSnap) => {
+    if (modoSnap.val() === "autodj") {
       const video = snap.val();
       const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
+
+      const transmision = document.getElementById("transmision");
       transmision.innerHTML = `
         <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;">
           <source src="${video.url}" type="video/mp4">
         </video>
       `;
+
       const videoEl = document.getElementById("videoPlayer");
       videoEl.volume = parseFloat(volumenGuardado);
       videoEl.addEventListener("volumechange", () => {
         localStorage.setItem("volumenUsuario", videoEl.volume);
       });
+
       document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${video.nombre}`;
-    });
-  }
+    }
+  });
 });
 
 
