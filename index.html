@@ -920,11 +920,22 @@ db.ref("radio/videoActual").on("value", (snapshot) => {
   `;
   document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
 }
-   function cambiarModo(modo) {
+  function cambiarModo(modo) {
   if (modo === "twitch") {
     db.ref("radio/modoTransmision").set("twitch");
+
+    // Mostrar en vivo también al admin
+    document.getElementById("transmision").innerHTML = `
+      <iframe 
+        src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" 
+        allowfullscreen
+        style="width:100%; height: 540px; border-radius:10px; border:none;">
+      </iframe>
+    `;
+    document.getElementById("nombreVideo").innerText = `🎥 Transmisión en vivo`;
   }
 }
+
 
 
    function toggleModo() {
