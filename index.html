@@ -974,14 +974,6 @@ document.addEventListener('volumechange', () => {
   });
 }); // <-- ¡Este paréntesis y cierre FALTABA!
 
-
-// Al cargar un nuevo video:
-const volumenGuardado = localStorage.getItem("volumenUsuario");
-if (volumenGuardado !== null) {
-  video.volume = parseFloat(volumenGuardado);
-}
-
-
     </script>
 <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
 
