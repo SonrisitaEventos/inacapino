@@ -498,8 +498,7 @@ body.modo-noche a {
   <button class="vip-button" onclick="activarAutoDJ()">🔀 AutoDJ Aleatorio</button>
   </div>
 
-    <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
-<!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
+   <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
 <!-- Boton dia y noche -->
  <button class="vip-button" onclick="toggleModo()">🌗 Cambiar Modo</button>
 
@@ -964,12 +963,16 @@ db.ref("radio/modoTransmision").on("value", (snapshot) => {
 }
 // Guardar cuando cambia el volumen
 document.addEventListener('volumechange', () => {
-   const video = document.getElementById("videoPlayer");
-  video.volume = parseFloat(volumenGuardado);
+  const video = document.getElementById("videoPlayer");
+  const volumenGuardado = localStorage.getItem("volumenUsuario");
+  if (volumenGuardado !== null) {
+    video.volume = parseFloat(volumenGuardado);
+  }
 
   video.addEventListener("volumechange", () => {
     localStorage.setItem("volumenUsuario", video.volume);
   });
+}); // <-- ¡Este paréntesis y cierre FALTABA!
 
 
 // Al cargar un nuevo video:
