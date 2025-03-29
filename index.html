@@ -103,19 +103,22 @@
       .encuesta iframe { height: 800px; }
     }
 #transmision {
-      max-width: 100%;
-      margin: 20px auto;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 15px rgba(0,255,255,0.3);
-      transition: all 0.5s ease-in-out;
-    }
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,255,255,0.3);
+  transition: all 0.5s ease-in-out;
+}
+
     #transmision video, #transmision iframe {
-      width: 100%;
-      height: auto;
-      border: none;
-      border-radius: 10px;
-    }
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  max-height: 540px; /* así no se agranda demasiado */
+}
+
     @media (max-width: 768px) {
       #transmision video, #transmision iframe {
         height: auto;
@@ -467,7 +470,6 @@
 
   <div id="transmision"></div>
   <div id="nombreVideo" class="video-nombre"></div>
- <div id="transmision"></div>
  <div class="select-video" id="panelVIP" style="display:none;">
     <select id="videoSelector">
       <option value="0">🎶 JAZZ & BLUES</option>
