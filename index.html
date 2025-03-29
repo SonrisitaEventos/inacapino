@@ -447,23 +447,6 @@
     </div>
   </header>
 <!-- ✅ BOTÓN VIP CENTRADO CON ESTILO -->
-<div style="text-align: center;">
-  <button class="vip-button" onclick="mostrarLoginVIP()">🎧 Acceso VIP</button>
-</div>
-<!-- ✅ PANEL DE LOGIN MODAL -->
-<div id="loginVIP">
-  <h3>🔐 Ingreso VIP</h3>
-  <input type="text" id="usuario" placeholder="Usuario">
-  <input type="password" id="clave" placeholder="Contraseña">
-  <button onclick="accederVIP()">Entrar</button>
-</div>
-
-  <div id="panelVIP" style="display:none; margin-top: 20px;">
-  <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
-  <button class="vip-button" onclick="cambiarModo('autodj')">🎶 AutoDJ</button>
-  <button class="vip-button" onclick="cambiarVideoManual()">⏭️ Siguiente Video</button>
-</div>
-
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1>El Inacapino Puerto Montt</h1>
@@ -489,7 +472,23 @@
     <a href="https://www.twitch.tv/xtian_alejandro" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
-  
+
+ <div style="text-align: center;">
+  <button class="vip-button" onclick="mostrarLoginVIP()">🎧 Acceso VIP</button>
+</div>
+<!-- ✅ PANEL DE LOGIN MODAL -->
+<div id="loginVIP">
+  <h3>🔐 Ingreso VIP</h3>
+  <input type="text" id="usuario" placeholder="Usuario">
+  <input type="password" id="clave" placeholder="Contraseña">
+  <button onclick="accederVIP()">Entrar</button>
+</div>
+
+  <div id="panelVIP" style="display:none; margin-top: 20px;">
+  <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
+  <button class="vip-button" onclick="cambiarModo('autodj')">🎶 AutoDJ</button>
+  <button class="vip-button" onclick="cambiarVideoManual()">⏭️ Siguiente Video</button>
+</div>
 
     <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
 <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
