@@ -324,15 +324,41 @@
       height: auto;
       border-radius: 10px;
     }
-#loginVIP, #panelVIP {
+ #loginVIP {
       display: none;
-      margin: 20px auto;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #111;
+      border: 2px solid #8000ff;
+      padding: 20px;
+      border-radius: 15px;
+      z-index: 1000;
+      box-shadow: 0 0 20px rgba(128, 0, 255, 0.8);
+      width: 90%;
+      max-width: 400px;
     }
     #loginVIP input {
-      margin: 5px;
-      padding: 8px;
-      border-radius: 5px;
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
       border: none;
+      font-size: 16px;
+    }
+    #loginVIP button {
+      padding: 10px 20px;
+      background-color: #8000ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #loginVIP button:hover {
+      background-color: #a05bff;
     }
     #btnTop {
       display: none;
@@ -371,9 +397,23 @@
       margin-top: 10px;
       animation: brillo 2s infinite;
     }
-    .btn-vip:hover {
-  transform: scale(1.05);
-}
+    .vip-button {
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #8000ff, #ff00ff);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      margin-top: 20px;
+    }
+    .vip-button:hover {
+      transform: scale(1.05);
+    }
+
     
   </style>
 </head>
@@ -394,10 +434,24 @@
       <span class="live-indicator">EN VIVO</span>
     </div>
   </header>
-<div style="text-align: center; margin: 30px 0;">
-  <<button onclick="mostrarLoginVIP()">Acceso VIP</button>
+<!-- ✅ BOTÓN VIP CENTRADO CON ESTILO -->
+<div style="text-align: center;">
+  <button class="vip-button" onclick="mostrarLoginVIP()">🎧 Acceso VIP</button>
+</div>
+<!-- ✅ PANEL DE LOGIN MODAL -->
+<div id="loginVIP">
+  <h3>🔐 Ingreso VIP</h3>
+  <input type="text" id="usuario" placeholder="Usuario">
+  <input type="password" id="clave" placeholder="Contraseña">
+  <button onclick="accederVIP()">Entrar</button>
 </div>
 
+  <div id="panelVIP" style="display:none;">
+    <button onclick="cambiarModo('twitch')">Programa En Vivo</button>
+    <button onclick="cambiarModo('autodj')">AutoDJ</button>
+    <button onclick="cambiarVideoManual()">Siguiente Video</button>
+  </div>
+<div id="transmision"></div>
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1>El Inacapino Puerto Montt</h1>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
@@ -414,18 +468,7 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
   
-<div id="loginVIP" style="display:none;">
-    <input type="text" id="usuario" placeholder="Usuario">
-    <input type="password" id="clave" placeholder="Contraseña">
-    <button onclick="accederVIP()">Entrar</button>
-  </div>
 
-  <div id="panelVIP" style="display:none;">
-    <button onclick="cambiarModo('twitch')">Programa En Vivo</button>
-    <button onclick="cambiarModo('autodj')">AutoDJ</button>
-    <button onclick="cambiarVideoManual()">Siguiente Video</button>
-  </div>
-<div id="transmision"></div>
     <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
 <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
 
