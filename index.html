@@ -742,17 +742,7 @@ body.modo-noche a {
  db.ref("radio/modoTransmision").set("autodj");
   db.ref("radio/videoActual").set(videoSeleccionado);
     
-  // Mostrar el video directamente en el contenedor
-  const contenedor = document.getElementById("transmision");
-  const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
-  contenedor.innerHTML = `
-    <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;">
-      <source src="${videoSeleccionado.url}" type="video/mp4">
-    </video>
-  `;
-
-  document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
-}
+ }
 
 
 //=== modificado ====
