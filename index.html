@@ -112,23 +112,25 @@
   transition: all 0.5s ease-in-out;
 }
 
-    #transmision video, #transmision iframe {
+#transmision video {
   width: 100%;
   height: auto;
   border-radius: 10px;
-  max-height: 540px; /* así no se agranda demasiado */
+  max-height: 540px;
 }
 
-    @media (max-width: 768px) {
+#transmision iframe {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  aspect-ratio: 16 / 9;
+}
+   @media (max-width: 768px) {
       #transmision video, #transmision iframe {
         height: auto;
       }
     }
-@media (max-width: 480px) {
-  #transmision iframe {
-    height: 240px !important;
-  }
-}
+
 
     .rebobinando-section {
       text-align: center;
@@ -872,14 +874,15 @@ db.ref("radio/modoTransmision").on("value", (snapshot) => {
 
   if (modo === "twitch") {
     transmision.innerHTML = `
-      <div style="position:relative;padding-top:56.25%;height:0;overflow:hidden;">
-        <iframe 
-          src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" 
-          allowfullscreen
-          style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:10px">
-        </iframe>
-      </div>
-    `;
+  <div style="width: 100%; max-width: 960px; aspect-ratio: 16/9; margin: 0 auto;">
+    <iframe 
+      src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io"
+      allowfullscreen
+      style="width: 100%; height: 100%; border: none; border-radius: 10px;">
+    </iframe>
+  </div>
+`;
+
     document.getElementById("nombreVideo").innerText = `🎥 Transmisión en vivo`;
   }
 });
