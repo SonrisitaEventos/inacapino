@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "imagenes/postales_5.jpg",
       "imagenes/postales_6.jpg"
     ];
+let currentImage = 0; // 👈 Muy importante para controlar las postales
 
 function openModal(index) {
   currentImage = index;
