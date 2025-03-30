@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // ✅ Esto restaura el modo guardado al cargar la página
+  const modoGuardado = localStorage.getItem("modoPreferido");
+  if (modoGuardado === "noche") {
+    document.body.classList.add("modo-noche");
+  } else {
+    document.body.classList.add("modo-dia");
+  }
+    // 🔁 Aquí sigue tu código actual con Firebase:
     const firebaseConfig = {
       apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
       authDomain: "inacapino-radio-spark.firebaseapp.com",
@@ -218,13 +226,13 @@ function cambiarModo(modo) {
 }
    function toggleModo() {
   document.body.classList.toggle("modo-noche");
+  document.body.classList.toggle("modo-dia");
+
+  // Guardamos el estado en localStorage (opcional)
+  const modoActual = document.body.classList.contains("modo-noche") ? "noche" : "dia";
+  localStorage.setItem("modoPreferido", modoActual);
 }
-function actualizarReloj() {
-  const ahora = new Date();
-  const horas = ahora.getHours().toString().padStart(2, '0');
-  const minutos = ahora.getMinutes().toString().padStart(2, '0');
-  document.getElementById("reloj").textContent = `${horas}:${minutos}`;
-}
+
 
 actualizarReloj();
 setInterval(actualizarReloj, 60000);
