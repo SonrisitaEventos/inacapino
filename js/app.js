@@ -289,7 +289,10 @@ const mensajes = [
     contenedor.classList.add("mensaje-resalte");
   }
 
-  setInterval(cambiarMensaje, 15000);
+ // Cambia el mensaje motivacional cada 15 segundos
+setInterval(cambiarMensaje, 15000);
+
+// ✅ HACEMOS GLOBALES LAS FUNCIONES, DENTRO del DOMContentLoaded
 window.scrollToTop = scrollToTop;
 window.openModal = openModal;
 window.closeModal = closeModal;
@@ -300,7 +303,8 @@ window.cambiarVideoManual = cambiarVideoManual;
 window.accederVIP = accederVIP;
 window.activarAutoDJ = activarAutoDJ;
 window.cambiarModo = cambiarModo;
-}); // 👈 Muy importante cerrar el addEventListener
+
+}); // 👈 ESTE es el cierre del DOMContentLoaded
 
 
 
