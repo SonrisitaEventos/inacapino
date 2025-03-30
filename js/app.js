@@ -238,8 +238,12 @@ function actualizarReloj() {
   const ahora = new Date();
   const horas = ahora.getHours().toString().padStart(2, '0');
   const minutos = ahora.getMinutes().toString().padStart(2, '0');
-  document.getElementById("reloj").innerText = `${horas}:${minutos}`;
+  document.getElementById("reloj").textContent = `${horas}:${minutos}`;
 }
+
+actualizarReloj();
+setInterval(actualizarReloj, 60000);
+
 
 //Actualización del Clima
    
