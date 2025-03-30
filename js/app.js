@@ -314,11 +314,6 @@ const URL_CHAT = "https://script.google.com/macros/s/AKfycbz6HXFXxhvipqeEWW0ZSUY
 function enviarMensajeChat() {
   const nombre = document.getElementById("nombreChat").value.trim();
   const mensaje = document.getElementById("mensajeChat").value.trim();
-     .catch(err => {
-    console.error("Detalles del error:", err);
-    alert("Error al enviar mensaje 😢");
-  });
-
 
   if (!mensaje) {
     alert("¡Por favor escribe un mensaje!");
@@ -342,7 +337,10 @@ function enviarMensajeChat() {
       throw new Error("Fallo al enviar");
     }
   })
-  .catch(err => alert("Error al enviar mensaje 😢"));
+  .catch(err => {
+    console.error("Detalles del error:", err);
+    alert("Error al enviar mensaje 😢");
+  });
 }
 
 // ✅ Función para cargar mensajes desde la hoja de cálculo
