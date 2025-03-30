@@ -293,3 +293,14 @@ const mensajes = [
   setInterval(cambiarMensaje, 15000);
 
 }); // 👈 Muy importante cerrar el addEventListener
+window.scrollToTop = scrollToTop;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.changeImage = changeImage;
+window.mostrarLoginVIP = mostrarLoginVIP;
+window.toggleModo = toggleModo;
+window.cambiarVideoManual = cambiarVideoManual;
+window.accederVIP = accederVIP;
+window.activarAutoDJ = activarAutoDJ;
+window.cambiarModo = cambiarModo;
+
