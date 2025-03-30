@@ -308,7 +308,6 @@ const mensajes = [
 setInterval(cambiarMensaje, 15000);
 // Chat mensajes
 const URL_CHAT = "https://script.google.com/macros/s/AKfycbwzbtCAhUQYqDxSWhUcQqIKamTwgH1ynL6yubhC41dWXIEBC_GejJir7n5KDflD6O06/exec";
-
   function enviarMensajeChat() {
     const nombre = document.getElementById("nombreChat").value.trim();
     const mensaje = document.getElementById("mensajeChat").value.trim();
