@@ -1,3 +1,4 @@
+alert("¡El script app.js se cargó correctamente!");
 document.addEventListener("DOMContentLoaded", function () {
     const firebaseConfig = {
       apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
