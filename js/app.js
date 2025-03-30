@@ -309,7 +309,7 @@ setInterval(cambiarMensaje, 15000);
 // Chat mensajes
   // ✅ URL del Apps Script desplegado (reemplaza por el tuyo si cambia)
    
-const URL_CHAT = "https://script.google.com/macros/s/AKfycbw5xnVOUoTcN7lUe8lXNU7nURuw_C6OSk385nJMZgbdqLRu2D_uh4tzB0wSdnVbtaua/exec";
+const URL_CHAT = "https://script.google.com/macros/s/AKfycbz4LP7bMNKi8ttNMHkK4XoogC8tk6RqwF4cQCdmUfYLhqfCGyPVj_ObBraVDxJDlysU/exec";
 
    const sheetURL = "https://opensheet.elk.sh/1UJOht6wP2mNGFm1edP6mrn0ylUYdXEBbV2r8R6PR-n0/Hoja%201";
 // ✅ Función para enviar mensajes
