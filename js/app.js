@@ -332,6 +332,11 @@ function enviarMensajeChat() {
   .then(res => {
     if (res.ok) {
       document.getElementById("mensajeChat").value = "";
+
+      // ✅ Sonido suave al enviar
+      const sonido = document.getElementById("sonidoEnviar");
+      if (sonido) sonido.play();
+
       cargarMensajes();
     } else {
       throw new Error("Fallo al enviar");
@@ -342,7 +347,6 @@ function enviarMensajeChat() {
     alert("Error al enviar mensaje 😢");
   });
 }
-
 
 // ✅ Función para cargar mensajes desde la hoja de cálculo
 function cargarMensajes() {
