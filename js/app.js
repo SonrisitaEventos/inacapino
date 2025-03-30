@@ -1,4 +1,3 @@
-alert("¡El script app.js se cargó correctamente!");
 document.addEventListener("DOMContentLoaded", function () {
     const firebaseConfig = {
       apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
@@ -291,8 +290,6 @@ const mensajes = [
   }
 
   setInterval(cambiarMensaje, 15000);
-
-}); // 👈 Muy importante cerrar el addEventListener
 window.scrollToTop = scrollToTop;
 window.openModal = openModal;
 window.closeModal = closeModal;
@@ -302,5 +299,8 @@ window.toggleModo = toggleModo;
 window.cambiarVideoManual = cambiarVideoManual;
 window.accederVIP = accederVIP;
 window.activarAutoDJ = activarAutoDJ;
+
+}); // 👈 Muy importante cerrar el addEventListener
+
 window.cambiarModo = cambiarModo;
 
