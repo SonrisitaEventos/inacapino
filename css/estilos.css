@@ -475,6 +475,26 @@ body.modo-dia .live-indicator {
   background-color: #d40000;
   color: white;
 }
+body.modo-dia header,
+body.modo-dia nav {
+  background-color: #ffffff;
+}
+
+body.modo-dia nav a {
+  color: #222;
+}
+
+body.modo-dia .noticiero-flex {
+  background-color: #f0f0f0;
+}
+
+body.modo-dia .mensaje-motivacional span {
+  color: #8000ff;
+}
+
+body.modo-dia .noticia-info p {
+  color: #222;
+}
 
 
 
