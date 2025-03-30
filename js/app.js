@@ -299,8 +299,8 @@ window.toggleModo = toggleModo;
 window.cambiarVideoManual = cambiarVideoManual;
 window.accederVIP = accederVIP;
 window.activarAutoDJ = activarAutoDJ;
-
+window.cambiarModo = cambiarModo;
 }); // 👈 Muy importante cerrar el addEventListener
 
-window.cambiarModo = cambiarModo;
+
 
