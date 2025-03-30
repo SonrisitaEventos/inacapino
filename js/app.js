@@ -314,6 +314,11 @@ const URL_CHAT = "https://script.google.com/macros/s/AKfycbz6HXFXxhvipqeEWW0ZSUY
 function enviarMensajeChat() {
   const nombre = document.getElementById("nombreChat").value.trim();
   const mensaje = document.getElementById("mensajeChat").value.trim();
+     .catch(err => {
+    console.error("Detalles del error:", err);
+    alert("Error al enviar mensaje 😢");
+  });
+
 
   if (!mensaje) {
     alert("¡Por favor escribe un mensaje!");
@@ -345,7 +350,7 @@ function cargarMensajes() {
   fetch(URL_CHAT)
     .then(res => res.json())
     .then(data => {
-      const contenedor = document.getElementById("chat");
+      const contenedor = document.getElementById("chatMensajes");
       contenedor.innerHTML = "";
       data.reverse().forEach(m => {
         const fechaHora = new Date(m.fecha).toLocaleString();
