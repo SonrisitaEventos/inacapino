@@ -355,9 +355,11 @@ function cargarMensajes() {
         const fechaHora = new Date(m.fecha).toLocaleString();
         const nombre = m.nombre ? `<strong>${m.nombre}</strong>` : "Anónimo";
         const div = document.createElement("div");
-        div.style.marginBottom = "15px";
-        div.innerHTML = `🕒 <span style="color:#aaa">${fechaHora}</span><br>${nombre}: ${parseEmojis(m.mensaje)}`;
-        contenedor.appendChild(div);
+div.classList.add("mensaje-nuevo"); // 👈 fade animación
+div.style.marginBottom = "15px";
+div.innerHTML = `🕒 <span style="color:#aaa">${fechaHora}</span><br>${nombre}: ${parseEmojis(m.mensaje)}`;
+contenedor.appendChild(div);
+
       });
       contenedor.scrollTop = contenedor.scrollHeight;
     })
