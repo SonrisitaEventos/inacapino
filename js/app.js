@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    actualizarReloj();
     // ✅ Esto restaura el modo guardado al cargar la página
   const modoGuardado = localStorage.getItem("modoPreferido");
   if (modoGuardado === "noche") {
@@ -241,7 +242,6 @@ function actualizarReloj() {
   document.getElementById("reloj").textContent = `${horas}:${minutos}`;
 }
 
-actualizarReloj();
 setInterval(actualizarReloj, 60000);
 
 
