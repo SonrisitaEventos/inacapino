@@ -331,15 +331,9 @@ function enviarMensajeChat() {
   })
   .then(res => {
     if (res.ok) {
-  document.getElementById("mensajeChat").value = "";
-  
-  // 🔊 Reproducir sonido
-  const sonido = document.getElementById("sonidoEnviar");
-  if (sonido) sonido.play();
-
-  cargarMensajes();
-}
-  } else {
+      document.getElementById("mensajeChat").value = "";
+      cargarMensajes();
+    } else {
       throw new Error("Fallo al enviar");
     }
   })
@@ -355,7 +349,7 @@ function cargarMensajes() {
   fetch(URL_CHAT)
     .then(res => res.json())
     .then(data => {
-      const contenedor = document.getElementById("chatMensajes");
+      const contenedor = document.getElementById("Chat");
       contenedor.innerHTML = "";
       data.reverse().forEach(m => {
         const fechaHora = new Date(m.fecha).toLocaleString();
