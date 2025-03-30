@@ -307,57 +307,78 @@ const mensajes = [
  // Cambia el mensaje motivacional cada 15 segundos
 setInterval(cambiarMensaje, 15000);
 // Chat mensajes
-  const URL_CHAT = "https://script.google.com/macros/s/AKfycbwcCHRjjj00h4qi-kvxw3woxkgUvqovlGQb-SRWsECinKV5mqFh2PRegw28wuDj9RCk/exec";
-   const sheetURL = "https://opensheet.elk.sh/1UJOht6wP2mNGFm1edP6mrn0ylUYdXEBbV2r8R6PR-n0/Hoja%201";
-    
-  function enviarMensajeChat() {
-    const nombre = document.getElementById("nombreChat").value.trim();
-    const mensaje = document.getElementById("mensajeChat").value.trim();
-    if (!mensaje) return alert("¡Por favor escribe un mensaje!");
+  // ✅ URL del Apps Script desplegado (reemplaza por el tuyo si cambia)
+const URL_CHAT = "https://script.google.com/macros/s/AKfycbwcCHRjjj00h4qi-kvxw3woxkgUvqovlGQb-SRWsECinKV5mqFh2PRegw28wuDj9RCk/exec";
 
-    const datos = { nombre, mensaje };
-    fetch(URL_CHAT, {
-      method: "POST",
-      body: JSON.stringify(datos),
-      headers: { "Content-Type": "application/json" }
-    })
-    .then(() => {
+// ✅ Función para enviar mensajes
+function enviarMensajeChat() {
+  const nombre = document.getElementById("nombreChat").value.trim();
+  const mensaje = document.getElementById("mensajeChat").value.trim();
+
+  if (!mensaje) {
+    alert("¡Por favor escribe un mensaje!");
+    return;
+  }
+
+  const datos = { nombre, mensaje };
+
+  fetch(URL_CHAT, {
+    method: "POST",
+    body: JSON.stringify(datos),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => {
+    if (res.ok) {
       document.getElementById("mensajeChat").value = "";
       cargarMensajes();
-    })
-    .catch(err => alert("Error al enviar mensaje 😢"));
-  }
+    } else {
+      throw new Error("Fallo al enviar");
+    }
+  })
+  .catch(err => alert("Error al enviar mensaje 😢"));
+}
 
-  function cargarMensajes() {
-    fetch(URL_CHAT)
-      .then(res => res.json())
-      .then(data => {
-        const contenedor = document.getElementById("chatMensajes");
-        contenedor.innerHTML = "";
-        data.reverse().forEach(m => {
-          const fechaHora = new Date(m.fecha).toLocaleString();
-          const nombre = m.nombre ? `<strong>${m.nombre}</strong>` : "Anónimo";
-          const div = document.createElement("div");
-          div.style.marginBottom = "15px";
-          div.innerHTML = `🕒 <span style="color:#aaa">${fechaHora}</span><br>${nombre}: ${parseEmojis(m.mensaje)}`;
-          contenedor.appendChild(div);
-        });
-        contenedor.scrollTop = contenedor.scrollHeight;
+// ✅ Función para cargar mensajes desde la hoja de cálculo
+function cargarMensajes() {
+  fetch(URL_CHAT)
+    .then(res => res.json())
+    .then(data => {
+      const contenedor = document.getElementById("chatMensajes");
+      contenedor.innerHTML = "";
+      data.reverse().forEach(m => {
+        const fechaHora = new Date(m.fecha).toLocaleString();
+        const nombre = m.nombre ? `<strong>${m.nombre}</strong>` : "Anónimo";
+        const div = document.createElement("div");
+        div.style.marginBottom = "15px";
+        div.innerHTML = `🕒 <span style="color:#aaa">${fechaHora}</span><br>${nombre}: ${parseEmojis(m.mensaje)}`;
+        contenedor.appendChild(div);
       });
-  }
+      contenedor.scrollTop = contenedor.scrollHeight;
+    })
+    .catch(err => {
+      console.error("Error al cargar mensajes", err);
+    });
+}
 
-  function parseEmojis(texto) {
-    return texto
-      .replace(/:\)/g, "😊")
-      .replace(/:D/g, "😄")
-      .replace(/:heart:/g, "❤️")
-      .replace(/:fire:/g, "🔥")
-      .replace(/:star:/g, "🌟")
-      .replace(/:grin:/g, "😁");
-  }
-// Fin Chat Mensaje
-  setInterval(cargarMensajes, 10000); // Actualiza cada 10 segundos
-  cargarMensajes();
+// ✅ Función para reemplazar códigos por emoticones
+function parseEmojis(texto) {
+  return texto
+    .replace(/:\)/g, "😊")
+    .replace(/:D/g, "😄")
+    .replace(/:heart:/g, "❤️")
+    .replace(/:fire:/g, "🔥")
+    .replace(/:star:/g, "🌟")
+    .replace(/:grin:/g, "😁");
+}
+
+// ✅ Actualiza cada 10 segundos automáticamente
+setInterval(cargarMensajes, 10000);
+cargarMensajes(); // Al cargar la página
+
+// ✅ Haz global la función para que el botón pueda usarla
+window.enviarMensajeChat = enviarMensajeChat;
 
    
 // ✅ HACEMOS GLOBALES LAS FUNCIONES, DENTRO del DOMContentLoaded
@@ -371,8 +392,6 @@ window.cambiarVideoManual = cambiarVideoManual;
 window.accederVIP = accederVIP;
 window.activarAutoDJ = activarAutoDJ;
 window.cambiarModo = cambiarModo;
-window.enviarMensajeChat = enviarMensajeChat;
-
 }); // 👈 ESTE es el cierre del DOMContentLoaded
 
 
