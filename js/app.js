@@ -345,7 +345,7 @@ function cargarMensajes() {
   fetch(URL_CHAT)
     .then(res => res.json())
     .then(data => {
-      const contenedor = document.getElementById("chatMensajes");
+      const contenedor = document.getElementById("chat");
       contenedor.innerHTML = "";
       data.reverse().forEach(m => {
         const fechaHora = new Date(m.fecha).toLocaleString();
