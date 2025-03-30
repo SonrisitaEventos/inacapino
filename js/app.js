@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    actualizarReloj();
+   actualizarReloj();
+setInterval(actualizarReloj, 60000);
+
     // ✅ Esto restaura el modo guardado al cargar la página
   const modoGuardado = localStorage.getItem("modoPreferido");
   if (modoGuardado === "noche") {
@@ -241,9 +243,6 @@ function actualizarReloj() {
   const minutos = ahora.getMinutes().toString().padStart(2, '0');
   document.getElementById("reloj").textContent = `${horas}:${minutos}`;
 }
-
-setInterval(actualizarReloj, 60000);
-
 
 //Actualización del Clima
    
