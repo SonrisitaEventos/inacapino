@@ -306,7 +306,59 @@ const mensajes = [
 
  // Cambia el mensaje motivacional cada 15 segundos
 setInterval(cambiarMensaje, 15000);
+// Chat mensajes
+const URL_CHAT = "https://script.google.com/macros/s/AKfycbwzbtCAhUQYqDxSWhUcQqIKamTwgH1ynL6yubhC41dWXIEBC_GejJir7n5KDflD6O06/exec";
 
+  function enviarMensajeChat() {
+    const nombre = document.getElementById("nombreChat").value.trim();
+    const mensaje = document.getElementById("mensajeChat").value.trim();
+    if (!mensaje) return alert("¡Por favor escribe un mensaje!");
+
+    const datos = { nombre, mensaje };
+    fetch(URL_CHAT, {
+      method: "POST",
+      body: JSON.stringify(datos),
+      headers: { "Content-Type": "application/json" }
+    })
+    .then(() => {
+      document.getElementById("mensajeChat").value = "";
+      cargarMensajes();
+    })
+    .catch(err => alert("Error al enviar mensaje 😢"));
+  }
+
+  function cargarMensajes() {
+    fetch(URL_CHAT)
+      .then(res => res.json())
+      .then(data => {
+        const contenedor = document.getElementById("chatMensajes");
+        contenedor.innerHTML = "";
+        data.reverse().forEach(m => {
+          const fechaHora = new Date(m.timestamp).toLocaleString();
+          const nombre = m.nombre ? `<strong>${m.nombre}</strong>` : "Anónimo";
+          const div = document.createElement("div");
+          div.style.marginBottom = "15px";
+          div.innerHTML = `🕒 <span style="color:#aaa">${fechaHora}</span><br>${nombre}: ${parseEmojis(m.mensaje)}`;
+          contenedor.appendChild(div);
+        });
+        contenedor.scrollTop = contenedor.scrollHeight;
+      });
+  }
+
+  function parseEmojis(texto) {
+    return texto
+      .replace(/:\)/g, "😊")
+      .replace(/:D/g, "😄")
+      .replace(/:heart:/g, "❤️")
+      .replace(/:fire:/g, "🔥")
+      .replace(/:star:/g, "🌟")
+      .replace(/:grin:/g, "😁");
+  }
+// Fin Chat Mensaje
+  setInterval(cargarMensajes, 10000); // Actualiza cada 10 segundos
+  cargarMensajes();
+
+   
 // ✅ HACEMOS GLOBALES LAS FUNCIONES, DENTRO del DOMContentLoaded
 window.scrollToTop = scrollToTop;
 window.openModal = openModal;
