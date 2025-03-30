@@ -218,8 +218,10 @@
   border-radius: 15px;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
   transition: opacity 0.5s ease;
-  object-fit: contain; /* 👈 Muy importante para que no se corte */
+  object-fit: contain;
+  background-color: #000; /* Opcional: mejora contraste en fotos PNG */
 }
+
 
 .close {
   position: absolute;
@@ -244,16 +246,6 @@
     }
     .prev { left: 10px; }
     .next { right: 10px; }
-
-.modal-content {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 10px;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
 
 .modal.fade-in .modal-content {
   opacity: 1;
