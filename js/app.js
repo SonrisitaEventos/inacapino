@@ -308,6 +308,8 @@ const mensajes = [
 setInterval(cambiarMensaje, 15000);
 // Chat mensajes
   const URL_CHAT = "https://script.google.com/macros/s/AKfycbxjgExtCrtoq6JOHwLh_oO_1VpFJnvG05ugEPR6YUK69xV3xapR5EeKIz_ncwxY8I09/exec";
+   const sheetURL = "https://opensheet.elk.sh/1FKHc3KV4rIym0WX1K_zOSPRydVfUi3TT7KyxJz4fyXc/Hoja%201";
+
   function enviarMensajeChat() {
     const nombre = document.getElementById("nombreChat").value.trim();
     const mensaje = document.getElementById("mensajeChat").value.trim();
