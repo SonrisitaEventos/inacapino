@@ -307,7 +307,8 @@ const mensajes = [
  // Cambia el mensaje motivacional cada 15 segundos
 setInterval(cambiarMensaje, 15000);
 // Chat mensajes
-const URL_CHAT = "https://script.google.com/macros/s/AKfycbwzbtCAhUQYqDxSWhUcQqIKamTwgH1ynL6yubhC41dWXIEBC_GejJir7n5KDflD6O06/exec";
+  const URL_CHAT = "https://script.google.com/macros/s/AKfycbwzbtCAhUQYqDxSWhUcQqIKamTwgH1ynL6yubhC41dWXIEBC_GejJir7n5KDflD6O06/exec";
+
   function enviarMensajeChat() {
     const nombre = document.getElementById("nombreChat").value.trim();
     const mensaje = document.getElementById("mensajeChat").value.trim();
@@ -369,6 +370,7 @@ window.cambiarVideoManual = cambiarVideoManual;
 window.accederVIP = accederVIP;
 window.activarAutoDJ = activarAutoDJ;
 window.cambiarModo = cambiarModo;
+window.enviarMensajeChat = enviarMensajeChat;
 
 }); // 👈 ESTE es el cierre del DOMContentLoaded
 
