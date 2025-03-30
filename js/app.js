@@ -334,7 +334,7 @@ setInterval(cambiarMensaje, 15000);
         const contenedor = document.getElementById("chatMensajes");
         contenedor.innerHTML = "";
         data.reverse().forEach(m => {
-          const fechaHora = new Date(m.timestamp).toLocaleString();
+          const fechaHora = new Date(m.fecha).toLocaleString();
           const nombre = m.nombre ? `<strong>${m.nombre}</strong>` : "Anónimo";
           const div = document.createElement("div");
           div.style.marginBottom = "15px";
