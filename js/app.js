@@ -331,9 +331,15 @@ function enviarMensajeChat() {
   })
   .then(res => {
     if (res.ok) {
-      document.getElementById("mensajeChat").value = "";
-      cargarMensajes();
-    } else {
+  document.getElementById("mensajeChat").value = "";
+  
+  // 🔊 Reproducir sonido
+  const sonido = document.getElementById("sonidoEnviar");
+  if (sonido) sonido.play();
+
+  cargarMensajes();
+}
+  } else {
       throw new Error("Fallo al enviar");
     }
   })
