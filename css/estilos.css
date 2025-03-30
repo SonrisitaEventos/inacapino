@@ -431,37 +431,51 @@
   color: #eee;
 }
 
+/* 🌞 Estilo modo DÍA */
 body.modo-dia {
-  background-color: #f1f1f1;
-  color: #111;
-}
-
-body.modo-dia a {
+  background-color: #f3f3f3;
   color: #222;
+  transition: background-color 0.5s, color 0.5s;
 }
 
-body.modo-dia .noticia-card {
-  background-color: #fff;
-  border-color: #8000ff;
+body.modo-dia .rebobinando-section,
+body.modo-dia .noticias-container,
+body.modo-dia .video-title {
+  background-color: #ffffff;
+  color: #000;
 }
 
-body.modo-dia .video-card {
-  background-color: #f9f9f9;
-  color: #111;
-}
-
+body.modo-dia .botones a,
 body.modo-dia .vip-button {
-  background: linear-gradient(45deg, #ff8c00, #ffa500);
-  color: black;
+  background-color: #8000ff;
+  color: white;
+}
+
+body.modo-dia .video-title {
+  background: #e0e0e0;
+  color: #000;
 }
 
 body.modo-dia .noticia-info h3 {
-  color: #8000ff;
+  color: #5c27a5;
 }
 
-body.modo-dia .noticia-info p {
-  color: #333;
+body.modo-dia .noticia-card {
+  border: 3px solid #8000ff;
+  background-color: #fafafa;
 }
+
+body.modo-dia #loginVIP {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #8000ff;
+}
+
+body.modo-dia .live-indicator {
+  background-color: #d40000;
+  color: white;
+}
+
 
 
       .noticiero-flex {
