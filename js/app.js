@@ -307,8 +307,7 @@ const mensajes = [
  // Cambia el mensaje motivacional cada 15 segundos
 setInterval(cambiarMensaje, 15000);
 // Chat mensajes
-  const URL_CHAT = "https://script.google.com/macros/s/AKfycbwzbtCAhUQYqDxSWhUcQqIKamTwgH1ynL6yubhC41dWXIEBC_GejJir7n5KDflD6O06/exec";
-
+  const URL_CHAT = "https://script.google.com/macros/s/AKfycbxjgExtCrtoq6JOHwLh_oO_1VpFJnvG05ugEPR6YUK69xV3xapR5EeKIz_ncwxY8I09/exec";
   function enviarMensajeChat() {
     const nombre = document.getElementById("nombreChat").value.trim();
     const mensaje = document.getElementById("mensajeChat").value.trim();
