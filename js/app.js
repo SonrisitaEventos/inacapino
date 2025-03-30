@@ -343,6 +343,7 @@ function enviarMensajeChat() {
   });
 }
 
+
 // ✅ Función para cargar mensajes desde la hoja de cálculo
 function cargarMensajes() {
   fetch(URL_CHAT)
