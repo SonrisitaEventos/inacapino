@@ -325,12 +325,14 @@ function enviarMensajeChat() {
   const datos = { nombre, mensaje };
 
   fetch(URL_CHAT, {
-    method: "POST",
-    body: JSON.stringify(datos),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
+  method: "POST",
+  mode: "cors", // 👈 MUY IMPORTANTE
+  body: JSON.stringify(datos),
+  headers: {
+    "Content-Type": "application/json"
+  }
+})
+
   .then(res => {
     if (res.ok) {
       document.getElementById("mensajeChat").value = "";
@@ -352,7 +354,7 @@ function enviarMensajeChat() {
 
 // ✅ Función para cargar mensajes desde la hoja de cálculo
 function cargarMensajes() {
-  fetch(URL_CHAT)
+  fetch(URL_CHAT, { method: "GET", mode: "cors" })
     .then(res => res.json())
     .then(data => {
       const contenedor = document.getElementById("Chat");
