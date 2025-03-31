@@ -308,7 +308,8 @@ const mensajes = [
 setInterval(cambiarMensaje, 15000);
 // Chat mensajes
   // ✅ URL del Apps Script desplegado (reemplaza por el tuyo si cambia)
-const URL_CHAT = "https://inacapino-proxy.vercel.app/?" + encodeURIComponent("https://script.google.com/macros/s/AKfycbwCB2fBPW_2RxNwkenGDkj7r-zFmM6ZDfXe-zYeA-WDaEKhNn9CGXQsh9bY9O1d4S-Eag/exec");
+const URL_CHAT = "https://inacapino-proxy.vercel.app/?" + encodeURIComponent("https://script.google.com/macros/s/AKfycbwCB2fBPW_2RxNwkenGDkj7r-zFmM6ZDfXe-zYeA-WDaEKhNn9CGXQsh9bY9O1d4S-Eag/exec") + "&followRedirects";
+
    
 // ✅ Función para enviar mensajes
 function enviarMensajeChat() {
