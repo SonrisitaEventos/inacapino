@@ -326,11 +326,15 @@ function enviarMensajeChat() {
   fetch(URL_CHAT, {
   method: "POST",
   mode: "cors",
-  body: JSON.stringify(datos),
   headers: {
     "Content-Type": "application/json"
-  }
+  },
+  body: JSON.stringify({
+    nombre: "Cristián",
+    mensaje: "Probando desde el frontend"
+  })
 })
+
 
 
   .then(res => {
