@@ -325,12 +325,13 @@ function enviarMensajeChat() {
 
   fetch(URL_CHAT, {
   method: "POST",
-  mode: "cors", // 👈 MUY IMPORTANTE
+  mode: "cors",
   body: JSON.stringify(datos),
   headers: {
     "Content-Type": "application/json"
   }
 })
+
 
   .then(res => {
     if (res.ok) {
