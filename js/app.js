@@ -309,7 +309,7 @@ setInterval(cambiarMensaje, 15000);
 // Chat mensajes
   // ✅ URL del Apps Script desplegado (reemplaza por el tuyo si cambia)
    
-const URL_CHAT = "https://script.google.com/macros/s/AKfycbwXONH7W5HeqGw9TOMnn9LoZpXyhr5f3pm8Anb-6w46Tk1CHoCGPgk_RaM1KXwemBAz1w/exec";
+const URL_CHAT = "https://script.google.com/macros/s/AKfycbypO42hGy6p0iJ7iOVkeBobW9JeRZx19mNhw9qOp8edxit8EkCUiY0eTj9WkY-UMXU4VQ/exec";
 
 
 // ✅ Función para enviar mensajes
