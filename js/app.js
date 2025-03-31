@@ -309,7 +309,8 @@ setInterval(cambiarMensaje, 15000);
 // Chat mensajes
   // ✅ URL del Apps Script desplegado (reemplaza por el tuyo si cambia)
    
-const URL_CHAT = "https://script.google.com/macros/s/AKfycbypO42hGy6p0iJ7iOVkeBobW9JeRZx19mNhw9qOp8edxit8EkCUiY0eTj9WkY-UMXU4VQ/exec";
+const URL_CHAT = "https://corsproxy.io/?" + encodeURIComponent("https://script.google.com/macros/s/AKfycbypO42hGy6p0iJ7iOVkeBobW9JeRZx19mNhw9qOp8edxit8EkCUiY0eTj9WkY-UMXU4VQ/exec");
+
 
 
 // ✅ Función para enviar mensajes
@@ -330,10 +331,7 @@ function enviarMensajeChat() {
   headers: {
     "Content-Type": "application/json"
   },
-  body: JSON.stringify({
-    nombre: "Cristián",
-    mensaje: "Probando desde el frontend"
-  })
+  body: JSON.stringify(datos)
 })
 
 
