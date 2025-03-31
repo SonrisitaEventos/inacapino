@@ -309,7 +309,7 @@ setInterval(cambiarMensaje, 15000);
 // Chat mensajes
   // ✅ URL del Apps Script desplegado (reemplaza por el tuyo si cambia)
    
-const URL_CHAT = "https://inacapino-proxy.vercel.app/https://script.google.com/macros/s/AKfycbypO42hGy6p0iJ7iOVkeBobW9JeRZx19mNhw9qOp8edxit8EkCUiY0eTj9WkY-UMXU4VQ/exec";
+const URL_CHAT = "https://inacapino-proxy.vercel.app/https://script.google.com/macros/s/AKfycbwCB2fBPW_2RxNwkenGDkj7r-zFmM6ZDfXe-zYeA-WDaEKhNn9CGXQsh9bY9O1d4S-Eag/exec";
 
 
 
