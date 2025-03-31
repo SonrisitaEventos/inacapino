@@ -309,7 +309,7 @@ setInterval(cambiarMensaje, 15000);
 // Chat mensajes
   // ✅ URL del Apps Script desplegado (reemplaza por el tuyo si cambia)
    
-const URL_CHAT = "https://corsproxy.io/?" + encodeURIComponent("https://script.google.com/macros/s/AKfycbypO42hGy6p0iJ7iOVkeBobW9JeRZx19mNhw9qOp8edxit8EkCUiY0eTj9WkY-UMXU4VQ/exec");
+const URL_CHAT = "https://inacapino-proxy.vercel.app/?" + encodeURIComponent("https://script.google.com/macros/s/AKfycbypO42hGy6p0iJ7iOVkeBobW9JeRZx19mNhw9qOp8edxit8EkCUiY0eTj9WkY-UMXU4VQ/exec");
 
 
 
@@ -317,21 +317,19 @@ const URL_CHAT = "https://corsproxy.io/?" + encodeURIComponent("https://script.g
 function enviarMensajeChat() {
   const nombre = document.getElementById("nombreChat").value.trim();
   const mensaje = document.getElementById("mensajeChat").value.trim();
-
   if (!mensaje) {
     alert("¡Por favor escribe un mensaje!");
     return;
   }
-
   const datos = { nombre, mensaje };
-
   fetch(URL_CHAT, {
   method: "POST",
   mode: "cors",
   headers: {
     "Content-Type": "application/json"
   },
-  body: JSON.stringify(datos)
+ body: JSON.stringify({ nombre, mensaje })
+
 })
 
 
