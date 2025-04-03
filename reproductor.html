@@ -22,126 +22,40 @@
     }
 
     .video-container {
-  position: relative;
-  margin: 40px auto;
-  max-width: 720px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
-}
-
-.video-container video {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  opacity: 1;
-}
-
-.zeno-box {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 95%;
-  max-width: 640px;
-  height: 125px; /* 🔼 Subimos de 80 a 125 para mostrar el contenido completo */
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 0 15px rgba(0,255,204,0.2);
-}
-@media (max-width: 600px) {
-  .zeno-box {
-    height: 110px;
-  }
-}
-
-
-
-
-    .spotify-player {
-  position: absolute;
-  top: 90%; /* 🔽 Más abajo que el 30% anterior */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.6); /* 🔍 Menos oscuro */
-  border-radius: 15px;
-  padding: 10px 20px;
-  box-shadow: 0 0 15px #1DB954aa;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  backdrop-filter: blur(4px); /* ✨ Agrega transparencia elegante */
-}
-    .controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 30px;
+      position: relative;
+      margin: 40px auto;
+      max-width: 720px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
     }
 
-    .controls button {
-      background: #1DB954;
-      border: none;
-      border-radius: 50%;
-      padding: 15px;
-      font-size: 20px;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      opacity: 1;
     }
 
-    .controls button:hover {
-      transform: scale(1.15);
-      background: #17a74a;
+    .zeno-box {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      max-width: 640px;
+      height: 125px; /* ✅ Altura ajustada para mostrar todo el contenido */
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,255,204,0.2);
     }
 
-    .play-btn:hover {
-    transform: scale(1.15);
-    background: #17a74a;
-  }
-
-  .song-title {
-  font-weight: bold;
-  font-size: 18px;
-  color: #00ffcc;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  animation: pulso 2s infinite alternate;
-}
-@keyframes pulso {
-  0% { opacity: 0.8; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.03); }
-}
-    #audioElement {
-      display: none;
-    }
-  .info-nowplaying {
-  background: #111;
-  color: #fff;
-  padding: 15px;
-  margin: 20px auto;
-  max-width: 600px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0,255,204,0.2);
-}
-.zeno-mask {
-  width: 400px;       /* Ajusta el ancho que quieres mostrar */
-  height: 60px;       /* Altura exacta del texto de la canción */
-  overflow: hidden;
-  margin: 20px auto;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,255,204,0.15);
-  position: relative;
-}
-
-.zeno-mask iframe {
-      /* Ajusta estos valores para mover el contenido del iframe
-         - El primer valor (translateX) mueve horizontalmente (negativo = hacia la izquierda)
-         - El segundo (translateY) mueve verticalmente (negativo = sube) */
-      transform: translate(-20px, -150px);
-      border: none;
+    /* Opcional: responsivo para pantallas pequeñas */
+    @media (max-width: 600px) {
+      .zeno-box {
+        height: 115px;
+      }
     }
   </style>
 </head>
@@ -149,83 +63,25 @@
 
   <div class="titulo">🎙️ El Inacapino</div>
   <p>Transmitiendo desde Puerto Montt para toda Latinoamérica 🌍🎧</p>
-<div class="video-container">
-  <video autoplay muted loop>
-    <source src="reproductor.mp4" type="video/mp4">
-    Tu navegador no soporta video HTML5.
-  </video>
 
-  <!-- Reproductor Zeno integrado -->
-  <div class="zeno-mask">
-    <iframe 
-      src="https://zeno.fm/player/inacapinoptomontt" 
-      width="600" height="1000" 
-      frameborder="0" scrolling="no">
-    </iframe>
+  <div class="video-container">
+    <video autoplay muted loop>
+      <source src="reproductor.mp4" type="video/mp4">
+      Tu navegador no soporta video HTML5.
+    </video>
+
+    <!-- ✅ Iframe Zeno bien posicionado -->
+    <div class="zeno-box">
+      <iframe 
+        src="https://zeno.fm/player/inacapinoptomontt" 
+        width="100%" 
+        height="100%" 
+        frameborder="0" 
+        scrolling="no">
+      </iframe>
+    </div>
   </div>
-
-</div>
-
-  
-  <audio id="audioElement" autoplay muted>
-  <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
-  Tu navegador no soporta audio HTML5.
-</audio>
-
-
-
-  <script>
-    const audio = document.getElementById("audioElement");
-    const playBtn = document.getElementById("playBtn");
-    const titulo = document.getElementById("cancionActual");
-
-    let playing = false;
-
-    function togglePlay() {
-      if (playing) {
-        audio.pause();
-        playBtn.innerText = "▶️";
-      } else {
-        audio.play();
-        playBtn.innerText = "⏸️";
-      }
-      playing = !playing;
-    }
-
-    function retroceder() {
-      audio.currentTime = 0;
-    }
-
-    function avanzar() {
-      audio.currentTime += 10;
-    }
-
-    function actualizarCancion() {
-  fetch("https://api.zeno.fm/stations/18fdybqy3rhwv/nowplaying")
-    .then(response => response.json())
-    .then(data => {
-      const tituloCancion = data.title || "Sin información 🎶";
-      document.getElementById("cancionActual").innerText = `🎵 Ahora suena: ${tituloCancion}`;
-    })
-    .catch(() => {
-      document.getElementById("cancionActual").innerText = "🔄 Esperando datos...";
-    });
-}
-
-window.addEventListener("load", () => {
-  audio.muted = false;
-  audio.play().then(() => {
-    playBtn.innerText = "⏸️";
-    playing = true;
-  }).catch((e) => {
-    console.log("Autoplay bloqueado por el navegador:", e);
-  });
-});
-
-    // Inicia actualizaciones
-    actualizarCancion();
-    setInterval(actualizarCancion, 15000);
-  </script>
 
 </body>
 </html>
+
