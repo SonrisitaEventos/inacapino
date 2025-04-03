@@ -116,7 +116,7 @@
 }
 
 .zeno-mask iframe {
-  transform: translateY(-198px); /* 💥 Esto "sube" el contenido interno */
+  transform: translateY(-200px); /* Sube o baja el contenido interno */
   border: none;
    margin: 10px auto 50px auto; /* top right bottom left */
 }
@@ -129,23 +129,27 @@
   <p>Transmitiendo desde Puerto Montt para toda Latinoamérica 🌍🎧</p>
 
   <div class="video-container">
-    <video autoplay muted loop>
-      <source src="reproductor.mp4" type="video/mp4">
-      Tu navegador no soporta video HTML5.
-    </video>
+  <video autoplay muted loop>
+    <source src="reproductor.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
 
-    <div class="spotify-player">
-  <button onclick="togglePlay()" id="playBtn" class="play-btn">▶️</button>
-  <div id="cancionActual" class="song-title">🎵 Cargando canción...</div>
-</div>
-    <div class="zeno-mask">
-  <iframe 
-    src="https://zeno.fm/player/inacapinoptomontt" 
-    width="600" height="1000" 
-    frameborder="0" scrolling="no">
-  </iframe>
-</div>
+  <!-- Reproductor estilo Spotify -->
+  <div class="spotify-player">
+    <button onclick="togglePlay()" id="playBtn" class="play-btn">▶️</button>
+    <div id="cancionActual" class="song-title">🎵 Cargando canción...</div>
   </div>
+
+  <!-- Máscara para mostrar solo el nombre de la canción -->
+  <div class="zeno-mask">
+    <iframe 
+      src="https://zeno.fm/player/inacapinoptomontt" 
+      width="600" height="1000" 
+      frameborder="0" scrolling="no">
+    </iframe>
+  </div>
+</div>
+
 
   <audio id="audioElement" autoplay muted>
   <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
