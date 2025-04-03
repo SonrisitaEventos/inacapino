@@ -35,23 +35,23 @@
       height: auto;
       display: block;
       object-fit: contain;
-      opacity: 0.4;
+      opacity: 1; /* 100% de visibilidad */
     }
 
     .spotify-player {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.85);
-    border-radius: 30px;
-    padding: 15px 25px;
-    box-shadow: 0 0 20px #1DB954aa;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
+  position: absolute;
+  top: 60%; /* 🔽 Más abajo que el 30% anterior */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.6); /* 🔍 Menos oscuro */
+  border-radius: 15px;
+  padding: 10px 20px;
+  box-shadow: 0 0 15px #1DB954aa;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  backdrop-filter: blur(4px); /* ✨ Agrega transparencia elegante */
+}
     .controls {
       display: flex;
       justify-content: center;
