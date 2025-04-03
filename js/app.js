@@ -1,25 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
   actualizarReloj();
   setInterval(actualizarReloj, 60000);
-
   const zenoAudio = document.getElementById("zenoAudio");
+  const playIcon = document.getElementById("playIcon");
 
   if (zenoAudio) {
     zenoAudio.volume = 1.0;
 
-    // Intenta reproducir de inmediato
-   zenoAudio.play()
-  .then(() => {
-    // ✅ Si se reproduce con éxito, cambiamos el ícono a pause
-    document.body.addEventListener("click", function () {
-  if (zenoAudio.paused) {
     zenoAudio.play().then(() => {
-      document.getElementById("playIcon").src = "imagenes/pause.png";
-    }).catch(err => {
-      console.log("🔇 Todavía no se puede reproducir:", err);
+      console.log("🎧 Reproducción automática exitosa.");
+      playIcon.src = "imagenes/pause.png";
+    }).catch(() => {
+      console.log("🎧 El navegador bloqueó autoplay. Esperando interacción...");
     });
+
+    document.body.addEventListener("click", function () {
+      if (zenoAudio.paused) {
+        zenoAudio.play().then(() => {
+          playIcon.src = "imagenes/pause.png";
+        }).catch(err => {
+          console.log("🔇 No se pudo reproducir aún:", err);
+        });
+      }
+    }, { once: true });
   }
-}, { once: true });
+});
 
 
 
@@ -497,6 +502,8 @@ function obtenerInfoZeno() {
 
 setInterval(obtenerInfoZeno, 10000); // Cada 10 seg
 obtenerInfoZeno();
+playIcon.classList.add("pulsing");
+playIcon.classList.remove("pulsing");
 
 
    
