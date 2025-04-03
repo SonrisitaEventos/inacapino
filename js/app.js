@@ -45,7 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
     zenoAudio.volume = 0.7;
     zenoAudio.play();
   }
+  }
 }
+
 //=== modificado ====
    function accederVIP() {
   const usuario = document.getElementById("usuario").value;
@@ -133,12 +135,6 @@ function closeModal() {
       }
     });
  // ... (todo tu código actual)
-
-// ✅ FUNCIÓN QUE ABRE EL LOGIN VIP
-function mostrarLoginVIP() {
-  document.getElementById("loginVIP").style.display = "block";
-}
-
 
   function mostrarTwitch() {
     transmision.innerHTML = `
