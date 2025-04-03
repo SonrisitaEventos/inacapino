@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
     }, { once: true });
-  } else {
+   else {
     console.warn("⚠️ No se encontró el audio con ID 'zenoAudio'");
   }
 });
