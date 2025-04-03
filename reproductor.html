@@ -81,12 +81,18 @@
   }
 
   .song-title {
-    font-weight: bold;
-    font-size: 18px;
-    color: #00ffcc;
-    white-space: nowrap;
-  }
-
+  font-weight: bold;
+  font-size: 18px;
+  color: #00ffcc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: pulso 2s infinite alternate;
+}
+@keyframes pulso {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.03); }
+}
     #audioElement {
       display: none;
     }
@@ -105,14 +111,15 @@
 
     <div class="spotify-player">
   <button onclick="togglePlay()" id="playBtn" class="play-btn">▶️</button>
-  <div class="song-title" id="cancionActual">🎵 Cargando canción...</div>
+  <div id="cancionActual" class="song-title">🎵 Cargando canción...</div>
 </div>
   </div>
 
-  <audio id="audioElement">
-    <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
-    Tu navegador no soporta audio HTML5.
-  </audio>
+  <audio id="audioElement" autoplay muted>
+  <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
+  Tu navegador no soporta audio HTML5.
+</audio>
+
 
   <script>
     const audio = document.getElementById("audioElement");
@@ -141,16 +148,26 @@
     }
 
     function actualizarCancion() {
-      fetch("https://api.zeno.fm/stations/18fdybqy3rhwv/nowplaying")
-        .then(response => response.json())
-        .then(data => {
-          const tituloCancion = data.title || "Sin información 🎶";
-          titulo.innerText = `🎵 Ahora suena: ${tituloCancion}`;
-        })
-        .catch(() => {
-          titulo.innerText = "🔄 Esperando datos...";
-        });
-    }
+  fetch("https://api.zeno.fm/stations/18fdybqy3rhwv/nowplaying")
+    .then(response => response.json())
+    .then(data => {
+      const tituloCancion = data.title || "Sin información 🎶";
+      document.getElementById("cancionActual").innerText = `🎵 Ahora suena: ${tituloCancion}`;
+    })
+    .catch(() => {
+      document.getElementById("cancionActual").innerText = "🔄 Esperando datos...";
+    });
+}
+
+window.addEventListener("load", () => {
+  audio.muted = false;
+  audio.play().then(() => {
+    playBtn.innerText = "⏸️";
+    playing = true;
+  }).catch((e) => {
+    console.log("Autoplay bloqueado por el navegador:", e);
+  });
+});
 
     // Inicia actualizaciones
     actualizarCancion();
