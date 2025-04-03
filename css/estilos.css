@@ -395,18 +395,19 @@
     }
 
 @keyframes fraseAnimada {
-      0% { opacity: 0; transform: translateY(-10px); }
-      50% { opacity: 1; transform: translateY(0px); }
-      100% { opacity: 1; }
-    }
+  0% { opacity: 0; transform: translateY(-10px); }
+  50% { opacity: 1; transform: translateY(0px); }
+  100% { opacity: 1; }
+}
+
+.fraseAnimada {
+  animation: fraseAnimada 1s ease-in-out;
+}
+
  @keyframes brillo {
       0% { opacity: 1; }
       50% { opacity: 0.6; }
       100% { opacity: 1; }
-    }
-
-.fraseAnimada {
-      animation: fraseAnimada 1s ease-in-out;
     }
 
      .video-nombre {
