@@ -132,25 +132,46 @@ iframe::-webkit-scrollbar {
   <audio id="audioElement" autoplay>
     <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
   </audio>
-  
-  <script>
-    window.addEventListener("load", () => {
-      const audio = document.getElementById("audioElement");
-      audio.muted = false;
-      audio.volume = 0.8; // 80% volumen
-      audio.play().then(() => {
-        console.log("✅ Reproducción automática activada");
-      }).catch((e) => {
-        console.warn("⚠️ Autoplay bloqueado por el navegador:", e);
-      });
-    });
-    function reproducirAudio() {
-  const audio = document.getElementById("audioElement");
-  audio.muted = false;
-  audio.play();
-}
+  <!-- Botón para móviles -->
+<button id="playMobile" onclick="reproducirAudio()" style="
+  display: none;
+  margin-top: 10px;
+  background: #00ffcc;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,255,204,0.4);">
+  📲 Presiona para comenzar a escuchar
+</button>
 
-  </script>
+  <script>
+  window.addEventListener("load", () => {
+    const audio = document.getElementById("audioElement");
+    const boton = document.getElementById("playMobile");
+
+    audio.muted = false;
+    audio.volume = 0.8;
+
+    audio.play().then(() => {
+      console.log("✅ Reproducción automática activada");
+    }).catch((e) => {
+      console.warn("⚠️ Autoplay bloqueado, mostrando botón:", e);
+      boton.style.display = "inline-block"; // Muestra el botón en móviles
+    });
+  });
+
+  function reproducirAudio() {
+    const audio = document.getElementById("audioElement");
+    audio.muted = false;
+    audio.play().then(() => {
+      document.getElementById("playMobile").style.display = "none";
+    });
+  }
+</script>
+
 
 </body>
 </html>
