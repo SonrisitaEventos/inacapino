@@ -73,6 +73,27 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+function mostrarLoginVIP() {
+  const panel = document.getElementById("loginVIP");
+  if (panel.style.display === "block") {
+    panel.style.display = "none";
+  } else {
+    panel.style.display = "block";
+  }
+}
+
+function toggleModo() {
+  const body = document.body;
+  if (body.classList.contains("modo-dia")) {
+    body.classList.remove("modo-dia");
+    body.classList.add("modo-noche");
+    localStorage.setItem("modoPreferido", "noche");
+  } else {
+    body.classList.remove("modo-noche");
+    body.classList.add("modo-dia");
+    localStorage.setItem("modoPreferido", "dia");
+  }
+}
 
   iniciarModo();
 });
