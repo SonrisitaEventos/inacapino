@@ -1,6 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
    actualizarReloj();
 setInterval(actualizarReloj, 60000);
+    const zenoAudio = document.getElementById("zenoAudio");
+   // Intenta reproducir al cargar
+  zenoAudio.volume = 1.0;
+  zenoAudio.play().catch((error) => {
+    console.log("🎧 Esperando interacción para reproducir audio...");
+  });
+});
+
+document.body.addEventListener("click", function () {
+  const zenoAudio = document.getElementById("zenoAudio");
+  if (zenoAudio.paused) {
+    zenoAudio.play();
+  }
+}, { once: true });
+
 
     // ✅ Esto restaura el modo guardado al cargar la página
   const modoGuardado = localStorage.getItem("modoPreferido");
