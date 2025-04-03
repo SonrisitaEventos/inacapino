@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta name="description" content="Radio online interactiva de INACAP Puerto Montt. Noticias, concursos, videos y participación estudiantil.">
+
   <title>El Inacapino - Reproductor</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     body {
       margin: 0;
@@ -110,6 +114,35 @@ iframe::-webkit-scrollbar {
   </style>
 </head>
 <body>
+<header>
+ <nav>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#">Inicio</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#rebobinando">Rebobinando</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#capsulas">Cápsulas</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#encuesta">Encuesta</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#concursos">Concursos</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#postales">Postales</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#noticias">Noticias</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#muro-deseos">Muro de los Buenos Deseos</a>
+  </nav>
+    <div class="noticiero-flex">
+    <div class="mensaje-motivacional">
+      <span id="mensajeTexto">🌟 Sigue adelante, lo mejor está por venir.</span>
+    </div>
+    <div class="top-info">
+      <span id="reloj">00:00</span>
+      <span id="clima">☀️ --°C</span>
+      <span class="live-indicator">EN VIVO</span>
+    </div>
+  </div>
+   </header>
+<!-- ✅ BOTÓN VIP CENTRADO CON ESTILO -->
+
+ <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
+
+  <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
+  <h1>El Inacapino Puerto Montt</h1>
+  <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
 
   <div class="titulo">🎙️ El Inacapino</div>
   <p>Transmitiendo desde Puerto Montt para toda Latinoamérica 🌍🎧</p>
