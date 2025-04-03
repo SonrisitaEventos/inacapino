@@ -14,19 +14,6 @@
       text-align: center;
     }
 
-    video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  max-height: 100vh;
-  object-fit: contain;
-  z-index: -1;
-  opacity: 0.3; /* opcional: si quieres que no opaque el contenido */
-}
-
-
     .titulo {
       margin-top: 40px;
       font-size: 28px;
@@ -35,31 +22,32 @@
     }
 
     .video-container {
-    position: relative;
-    margin: 0 auto;
-    max-width: 720px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
-  }
+      position: relative;
+      margin: 40px auto;
+      max-width: 720px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+    }
 
-  .video-container video {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
-  }
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      opacity: 0.4;
+    }
 
-  .spotify-player {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.85);
-    border-radius: 20px;
-    padding: 25px 40px;
-    box-shadow: 0 0 20px #1DB954aa;
-  }
+    .spotify-player {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 20px;
+      padding: 25px 40px;
+      box-shadow: 0 0 20px #1DB954aa;
+    }
 
     .controls {
       display: flex;
@@ -97,37 +85,24 @@
   </style>
 </head>
 <body>
-<div class="video-container">
-  <video autoplay muted loop>
-    <source src="reproductor.mp4" type="video/mp4">
-    Tu navegador no soporta video HTML5.
-  </video>
-
-  <div class="spotify-player">
-    <div class="controls">
-      <button onclick="retroceder()">⏮️</button>
-      <button onclick="togglePlay()" id="playBtn">▶️</button>
-      <button onclick="avanzar()">⏭️</button>
-    </div>
-    <div class="song-title" id="cancionActual">🎵 Cargando canción...</div>
-  </div>
-</div>
-
-  <video autoplay muted loop>
-    <source src="reproductor.mp4" type="video/mp4">
-    Tu navegador no soporta video HTML5.
-  </video>
 
   <div class="titulo">🎙️ Inacapino</div>
   <p>Transmitiendo desde Puerto Montt para toda Latinoamérica 🌍🎧</p>
 
-  <div class="spotify-player">
-    <div class="controls">
-      <button onclick="retroceder()">⏮️</button>
-      <button onclick="togglePlay()" id="playBtn">▶️</button>
-      <button onclick="avanzar()">⏭️</button>
+  <div class="video-container">
+    <video autoplay muted loop>
+      <source src="reproductor.mp4" type="video/mp4">
+      Tu navegador no soporta video HTML5.
+    </video>
+
+    <div class="spotify-player">
+      <div class="controls">
+        <button onclick="retroceder()">⏮️</button>
+        <button onclick="togglePlay()" id="playBtn">▶️</button>
+        <button onclick="avanzar()">⏭️</button>
+      </div>
+      <div class="song-title" id="cancionActual">🎵 Cargando canción...</div>
     </div>
-    <div class="song-title" id="cancionActual">🎵 Cargando canción...</div>
   </div>
 
   <audio id="audioElement">
