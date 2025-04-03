@@ -98,27 +98,29 @@
       <source src="reproductor.mp4" type="video/mp4">
       Tu navegador no soporta video HTML5.
     </video>
+  </div>
 
     <button class="abrir-btn" onclick="window.open('https://zeno.fm/player/inacapinoptomontt','zeno','width=400,height=150');">
       🎧 Abrir Reproductor en Ventana
     </button>
 
-    <div class="zeno-box">
-  <iframe 
-    src="https://zeno.fm/player/inacapinoptomontt" 
-    width="100%" 
-    height="100%" 
-    frameborder="0" 
-    scrolling="no">
-  </iframe>
-  <div class="etiqueta-en-vivo">📻 Escuchando ahora en vivo</div>
-</div>
+   <!-- Reproductor de Zeno debajo del video -->
+  <div class="zeno-box">
+    <iframe 
+      src="https://zeno.fm/player/inacapinoptomontt" 
+      width="100%" 
+      height="100%" 
+      frameborder="0" 
+      scrolling="no">
+    </iframe>
+  </div>
 
 
+ <!-- Audio oculto para autoplay -->
   <audio id="audioElement" autoplay>
     <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
   </audio>
-
+  
   <script>
     window.addEventListener("load", () => {
       const audio = document.getElementById("audioElement");
