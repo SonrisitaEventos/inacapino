@@ -37,12 +37,9 @@
       object-fit: contain;
       opacity: 1;
     }
-
     .zeno-box {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      margin: 0 auto;
+      margin-top: 20px;
       width: 95%;
       max-width: 640px;
       height: 125px;
@@ -50,7 +47,6 @@
       overflow: hidden;
       box-shadow: 0 0 20px rgba(0,255,204,0.3);
     }
-
     .zeno-box h3 {
       margin: 10px 0 0;
       color: #00ffcc;
@@ -69,10 +65,11 @@
     }
 
     @media (max-width: 600px) {
-      .abrir-btn {
-        display: none;
+      .zeno-box {
+        height: 115px;
       }
     }
+
     .etiqueta-en-vivo {
   position: absolute;
   top: -30px;
