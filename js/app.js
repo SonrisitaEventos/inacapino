@@ -481,13 +481,17 @@ function iniciarModo() {
   const icon = document.getElementById("playIcon");
 
   if (audio.paused) {
-    audio.play();
-    icon.src = "imagenes/pause.png";
+    audio.play().then(() => {
+      icon.src = "imagenes/pause.png";
+    }).catch(err => {
+      console.warn("🔇 El navegador bloqueó la reproducción:", err);
+    });
   } else {
     audio.pause();
-    icon.src = "img/play.png";
+    icon.src = "imagenes/play.png";
   }
 }
+
 
 function obtenerInfoZeno() {
   fetch("https://api.zeno.fm/station/zyaw3bqy3rhvv")
