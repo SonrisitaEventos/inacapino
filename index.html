@@ -39,9 +39,12 @@
   <h1>El Inacapino Puerto Montt</h1>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
 
-  <div id="transmision" style="background-image: url('fondo_reproductor.png'); background-size: cover; background-position: center; height: 550px; width: 100%; max-width: 1430px; margin: 0 auto; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 20px;">
-  <!-- Aquí el JS insertará el video visual y el audio de Zeno -->
+  <div id="transmision-wrapper" style="display: flex; justify-content: center; align-items: center; background-image: url('fondo_reproductor.png'); background-size: contain; background-repeat: no-repeat; background-position: center; width: 100%; max-width: 1430px; height: 580px; margin: auto; position: relative;">
+  <div id="transmision" style="width: 1300px; height: 550px; border-radius: 15px; overflow: hidden;">
+    <!-- JS insertará aquí el video -->
+  </div>
 </div>
+
 <div id="nombreVideo" class="video-nombre"></div>
 <div class="select-video" id="panelSelector" style="display:none;">
   <select id="videoSelector">
