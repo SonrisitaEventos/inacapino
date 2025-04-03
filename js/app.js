@@ -421,14 +421,9 @@ function mostrarVideoZeno(videoUrl) {
   const zenoPlayer = document.getElementById("zenoPlayer");
 
   transmision.innerHTML = `
-    <video autoplay muted loop playsinline style="
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    ">
-      <source src="${videoUrl}" type="video/mp4">
+    <video autoplay muted loop playsinline 
+       style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+       <source src="${videoUrl}" type="video/mp4">
     </video>
   `;
 
