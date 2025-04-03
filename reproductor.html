@@ -136,18 +136,26 @@
 <body>
   <header>
     <nav>
-      <a href="#">Inicio</a>
-      <a href="#rebobinando">Rebobinando</a>
-      <a href="#capsulas">Cápsulas</a>
-      <a href="#encuesta">Encuesta</a>
-      <a href="#concursos">Concursos</a>
-      <a href="#postales">Postales</a>
-      <a href="#noticias">Noticias</a>
-      <a href="#muro-deseos">Muro de los Buenos Deseos</a>
-    </nav>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#">Inicio</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#rebobinando">Rebobinando</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#capsulas">Cápsulas</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#encuesta">Encuesta</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#concursos">Concursos</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#postales">Postales</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#noticias">Noticias</a>
+    <a href="https://sonrisitaeventos.github.io/inacapino/#muro-deseos">Muro de los Buenos Deseos</a>
+  </nav>
+
     <div class="mensaje-motivacional">
       <span id="mensajeTexto">🌟 Sigue adelante, lo mejor está por venir.</span>
     </div>
+    <div class="top-info">
+      <span id="reloj">00:00</span>
+      <span id="clima">☀️ --°C</span>
+      <span class="live-indicator">EN VIVO</span>
+    </div>
+  </div>
+
   </header>
 
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
@@ -217,6 +225,80 @@
         document.getElementById("playMobile").style.display = "none";
       });
     }
+    function actualizarReloj() {
+  const ahora = new Date();
+  const horas = ahora.getHours().toString().padStart(2, '0');
+  const minutos = ahora.getMinutes().toString().padStart(2, '0');
+  document.getElementById("reloj").textContent = `${horas}:${minutos}`;
+}
+
+//Actualización del Clima
+   
+  const API_KEY = "ac05bbbe9fcb2df2fb44145383ed0342"; // Tu clave default
+  const ciudad = "Puerto Montt";
+  const pais = "CL";
+
+  function obtenerEmojiClima(icon) {
+    const mapa = {
+      "01d": "☀️", "01n": "🌕",
+      "02d": "🌤️", "02n": "☁️",
+      "03d": "⛅",  "03n": "⛅",
+      "04d": "☁️", "04n": "☁️",
+      "09d": "🌧️", "09n": "🌧️",
+      "10d": "🌦️", "10n": "🌧️",
+      "11d": "⛈️", "11n": "⛈️",
+      "13d": "❄️", "13n": "❄️",
+      "50d": "🌫️", "50n": "🌫️"
+    };
+    return mapa[icon] || "🌡️";
+  }
+
+  function actualizarClima() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${API_KEY}&units=metric&lang=es`)
+      .then(res => res.json())
+      .then(data => {
+        const temperatura = Math.round(data.main.temp);
+        const icon = data.weather[0].icon;
+        const emoji = obtenerEmojiClima(icon);
+        document.getElementById("clima").innerText = `${emoji} ${temperatura}°C`;
+      })
+      .catch(err => {
+        console.error("Error al obtener clima:", err);
+        document.getElementById("clima").innerText = "🌡️ --°C";
+      });
+  }
+
+  actualizarClima();
+  setInterval(actualizarClima, 10 * 60 * 1000); // Se actualiza cada 10 minutos
+
+const mensajes = [
+    "🌞 ¡Hoy es un buen día para aprender algo nuevo!",
+    "🎯 Sigue adelante, la meta está cada vez más cerca.",
+    "🎉 Cada esfuerzo cuenta y tú lo estás haciendo genial.",
+    "💡 Recuerda: una actitud positiva cambia todo.",
+    "📚 Estudiar con pasión cambia tu presente y tu futuro.",
+    "💪 No estás solo/a, ¡estamos contigo en cada paso!",
+    "✨ Cree en ti: eres capaz de lograr cosas increíbles."
+  ];
+
+  let mensajeActual = 0;
+  const contenedor = document.getElementById("mensajeTexto");
+
+  function cambiarMensaje() {
+    mensajeActual = (mensajeActual + 1) % mensajes.length;
+    contenedor.textContent = mensajes[mensajeActual];
+    contenedor.classList.remove("mensaje-resalte");
+    void contenedor.offsetWidth;
+    contenedor.classList.add("mensaje-resalte");
+  }
+
+ // Cambia el mensaje motivacional cada 15 segundos
+setInterval(cambiarMensaje, 15000);
+
+  window.addEventListener("load", () => {
+    const audio = document.getElementById("audioElement");
+    const boton = document.getElementById("playMobile");
+
   </script>
 </body>
 </html>
