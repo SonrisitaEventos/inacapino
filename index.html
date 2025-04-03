@@ -104,17 +104,23 @@
   </div>
 
   <!-- Reproductor de Zeno -->
-  <div id="zenoPlayer" 
-       style="z-index: 2; 
-              position: relative; 
-              margin-top: 10px;">
-    <iframe src="https://zeno.fm/player/inacapinoptomontt" 
-            width="320" 
-            height="60" 
-            frameborder="0" 
-            scrolling="no" 
-            style="border-radius: 8px;"></iframe>
+  <div id="customPlayer" style="display: flex; align-items: center; gap: 20px; background: #111; padding: 15px; border-radius: 15px; max-width: 600px; margin: 30px auto; box-shadow: 0 0 15px #8000ff;">
+
+  <!-- 🔘 Botón de Play/Pause con imagen -->
+  <button onclick="togglePlay()" style="background: none; border: none; cursor: pointer;">
+    <img id="playIcon" src="img/play.png" alt="Play" style="width: 50px;">
+  </button>
+
+  <!-- 🎵 Info de la canción actual -->
+  <div id="infoZeno" style="flex: 1; color: #00ffd5; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+    🎶 Cargando canción...
   </div>
+</div>
+
+<audio id="zenoAudio" preload="none">
+  <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
+</audio>
+
 </div>
 
  
