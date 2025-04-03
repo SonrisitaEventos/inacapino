@@ -36,10 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function mostrarVideoZeno(video) {
     transmision.innerHTML = `
-      <video autoplay muted loop playsinline style="width: 1300px; height: 550px; border-radius: 15px;">
-        <source src="${video.url}" type="video/mp4">
-      </video>
-    `;
+      <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+
     nombreVideo.innerText = `🎧 Zeno + Visual: ${video.nombre}`;
     if (zenoAudio) {
       zenoAudio.volume = 0.7;
