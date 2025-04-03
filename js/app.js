@@ -96,5 +96,20 @@ function toggleModo() {
 }
 
   iniciarModo();
-});
+// ✅ Haz global la función para que el botón pueda usarla
+window.enviarMensajeChat = enviarMensajeChat;
+
+   
+// ✅ HACEMOS GLOBALES LAS FUNCIONES, DENTRO del DOMContentLoaded
+window.scrollToTop = scrollToTop;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.changeImage = changeImage;
+window.mostrarLoginVIP = mostrarLoginVIP;
+window.toggleModo = toggleModo;
+window.cambiarVideoManual = cambiarVideoManual;
+window.accederVIP = accederVIP;
+window.activarAutoDJ = activarAutoDJ;
+window.cambiarModo = cambiarModo;
+}); // 👈 ESTE es el cierre del DOMContentLoaded
 
