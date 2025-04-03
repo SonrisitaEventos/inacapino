@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reproductor El Inacapino</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      background: black;
+    }
+
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+    }
+
+    .radio-player {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 15px 30px;
+      border-radius: 30px;
+    }
+
+    audio {
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎥 Video de fondo -->
+  <video autoplay muted loop class="video-bg">
+    <source src="reproductor.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
+
+  <!-- 📝 Overlay con texto -->
+  <div class="overlay">
+    <h1>🎙️ Radio El Inacapino</h1>
+    <p>Transmitiendo desde Puerto Montt para toda Latinoamérica 🎧🌍</p>
+  </div>
+
+  <!-- 🔊 Reproductor de audio Zeno -->
+  <div class="radio-player">
+    <audio controls autoplay>
+      <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
+      Tu navegador no soporta audio HTML5.
+    </audio>
+  </div>
+
+</body>
+</html>
 
