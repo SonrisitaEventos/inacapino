@@ -406,10 +406,13 @@ function mostrarVideoZeno(videoUrl) {
   const zenoPlayer = document.getElementById("zenoPlayer");
 
   transmision.innerHTML = `
-    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+  <div style="width: 640px; height: 360px; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
+    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: contain; border-radius: 15px;">
       <source src="${videoUrl}" type="video/mp4">
     </video>
-  `;
+  </div>
+`;
+
 
   zenoPlayer.style.display = "block"; // Muestra Zeno si estás en modo AutoDJ
 }
