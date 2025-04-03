@@ -1,411 +1,78 @@
 document.addEventListener("DOMContentLoaded", function () {
-   actualizarReloj();
-setInterval(actualizarReloj, 60000);
+  actualizarReloj();
+  setInterval(actualizarReloj, 60000);
 
-    // ✅ Esto restaura el modo guardado al cargar la página
+  // ✅ Modo noche o día
   const modoGuardado = localStorage.getItem("modoPreferido");
   if (modoGuardado === "noche") {
     document.body.classList.add("modo-noche");
   } else {
     document.body.classList.add("modo-dia");
   }
-    // 🔁 Aquí sigue tu código actual con Firebase:
-    const firebaseConfig = {
-      apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
-      authDomain: "inacapino-radio-spark.firebaseapp.com",
-      databaseURL: "https://inacapino-radio-spark-default-rtdb.firebaseio.com",
-      projectId: "inacapino-radio-spark",
-      storageBucket: "inacapino-radio-spark.appspot.com",
-      messagingSenderId: "64588373035",
-      appId: "1:64588373035:web:78b92ca7b5b8b7396d1e6e"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
 
-    const listaVideos = [
-      { nombre: "JAZZ & BLUES", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FJAZZ%20%26%20BLUES%20(conversar%20%2Ccaf%C3%A9%20%2Cestudiar).mp4?alt=media&token=dee26a91-1bc0-4690-aefa-7137d682acdb" },
-      { nombre: "Gaming Music", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FGaming%20Music%202023.mp4?alt=media&token=d3330f02-f47d-4557-9e32-8686bd308e43" },
-      { nombre: "Un Gran momento para estudiar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4?alt=media&token=ff7fccf3-fc80-4188-a47b-b7fcb5466425" },
-      { nombre: "1 Hora y a bailar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962" },
-    ];
+  // ✅ Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
+    authDomain: "inacapino-radio-spark.firebaseapp.com",
+    databaseURL: "https://inacapino-radio-spark-default-rtdb.firebaseio.com",
+    projectId: "inacapino-radio-spark",
+    storageBucket: "inacapino-radio-spark.appspot.com",
+    messagingSenderId: "64588373035",
+    appId: "1:64588373035:web:78b92ca7b5b8b7396d1e6e"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
 
-   function cambiarVideoManual() {
-  const indice = parseInt(document.getElementById("videoSelector").value);
-  const videoSeleccionado = listaVideos[indice];
-
-  // Guarda en Firebase
-  db.ref("radio/modoTransmision").set("autodj");
-  db.ref("radio/videoActual").set(videoSeleccionado);
-
-  // Mostrar inmediatamente para el administrador
-  const contenedor = document.getElementById("transmision");
-  const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
-  contenedor.innerHTML = `
-    <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;">
-      <source src="${videoSeleccionado.url}" type="video/mp4">
-    </video>
-  `;
-
-  const videoEl = document.getElementById("videoPlayer");
-  videoEl.volume = parseFloat(volumenGuardado);
-  videoEl.addEventListener("volumechange", () => {
-    localStorage.setItem("volumenUsuario", videoEl.volume);
-  });
-
-  document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
-}
-
-
-
-//=== modificado ====
-   function accederVIP() {
-  const usuario = document.getElementById("usuario").value;
-  const clave = document.getElementById("clave").value;
-
-  if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
-    document.getElementById("loginVIP").style.display = "none";
-    document.getElementById("panelVIP").style.display = "block";
-    document.getElementById("panelSelector").style.display = "block"; // <- ¡nuevo!
-    alert("¡Bienvenido administrador Inacapino! 🎉");
-  } else {
-    alert("Usuario o contraseña incorrecta 😢");
-  }
-}
-
-
-     // Frases animadas
-    const frases = [
-      "🎉La educación es el pasaporte al futuro. ✨",
-      "🎉Cada paso cuenta, sigue avanzando.🌟",
-      "🎉El conocimiento es poder.🌟",
-      "✨Nunca dejes de aprender.",
-      "✨Todo lo que puedas imaginar, lo puedes crear. 🎉",
-      "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
-      "🌟La actitud es tan importante como la habilidad.🎉"
-    ];
-    let fraseActual = 0;
-    setInterval(() => {
-      fraseActual = (fraseActual + 1) % frases.length;
-      const fraseEl = document.getElementById('frase');
-      fraseEl.style.opacity = 0;
-      setTimeout(() => {
-        fraseEl.textContent = frases[fraseActual];
-        fraseEl.style.opacity = 1;
-        fraseEl.classList.remove("fraseAnimada");
-        void fraseEl.offsetWidth;
-        fraseEl.classList.add("fraseAnimada");
-      }, 300);
-    }, 7000);
-
-
- const images = [
-      "imagenes/postales_1.jpg",
-      "imagenes/postales_2.jpg",
-      "imagenes/postales_3.jpg",
-      "imagenes/postales_4.jpg",
-      "imagenes/postales_5.jpg",
-      "imagenes/postales_6.jpg"
-    ];
-let currentImage = 0; // 👈 Muy importante para controlar las postales
-
-function openModal(index) {
-  currentImage = index;
-  const modal = document.getElementById("imgModal");
-  const modalImg = document.getElementById("modalImg");
-
-  modalImg.style.opacity = 0;
-  modal.style.display = "flex";
-
-  // Agrega la clase para el efecto fade
-  setTimeout(() => {
-    modal.classList.add("fade-in");
-    modalImg.src = images[currentImage];
-  }, 50);
-
-  // Luego de otro pequeño delay, aplicamos opacidad
-  setTimeout(() => {
-    modalImg.style.opacity = 1;
-  }, 100);
-}
-
-
-function closeModal() {
-      document.getElementById("imgModal").style.display = "none";
-    }
-
-    function changeImage(step) {
-      currentImage = (currentImage + step + images.length) % images.length;
-      document.getElementById("modalImg").src = images[currentImage];
-    }
- // Cerrar con ESC
-    document.addEventListener("keydown", function(event) {
-      if (event.key === "Escape") {
-        closeModal();
-      }
-    });
- // ... (todo tu código actual)
-
-// ✅ FUNCIÓN QUE ABRE EL LOGIN VIP
-function mostrarLoginVIP() {
-  document.getElementById("loginVIP").style.display = "block";
-}
-
-//Al cargar la página, leer el modo actual y mostrarlo:
-
-// ESCUCHA CAMBIO DE MODO
-db.ref("radio/modoTransmision").on("value", (snapshot) => {
-  const modo = snapshot.val();
   const transmision = document.getElementById("transmision");
+  const zenoAudio = document.getElementById("zenoAudio");
+  const nombreVideo = document.getElementById("nombreVideo");
 
-  if (modo === "twitch") {
-    transmision.innerHTML = `
-  <div style="width: 100%; max-width: 960px; aspect-ratio: 16/9; margin: 0 auto;">
-    <iframe 
-      src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io"
-      allowfullscreen
-      style="width: 100%; height: 100%; border: none; border-radius: 10px;">
-    </iframe>
-  </div>
-`;
-
-    document.getElementById("nombreVideo").innerText = `🎥 Transmisión en vivo`;
-  }
-});
-
-// ESCUCHA CAMBIO DE VIDEO CUANDO MODO SEA AUTO-DJ
-db.ref("radio/videoActual").on("value", (snap) => {
-  db.ref("radio/modoTransmision").once("value").then((modoSnap) => {
-    if (modoSnap.val() === "autodj") {
-      const video = snap.val();
-      const transmision = document.getElementById("transmision");
-      const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
-
-      transmision.innerHTML = `
-        <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;">
-          <source src="${video.url}" type="video/mp4">
-        </video>
-      `;
-
-      const videoEl = document.getElementById("videoPlayer");
-      videoEl.volume = parseFloat(volumenGuardado);
-      videoEl.addEventListener("volumechange", () => {
-        localStorage.setItem("volumenUsuario", videoEl.volume);
-      });
-
-      document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${video.nombre}`;
-    }
-  });
-});
-
-
-   
-   // Mostrar/ocultar botón al hacer scroll
-// Función para volver arriba
-// Botón arriba
-    window.onscroll = function () {
-      const btn = document.getElementById("btnTop");
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        btn.style.display = "block";
-      } else {
-        btn.style.display = "none";
-      }
-    };
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-   
-  function activarAutoDJ() {
-  const indice = Math.floor(Math.random() * listaVideos.length);
-  const videoSeleccionado = listaVideos[indice];
-
-  db.ref("radio/modoTransmision").set("autodj");
-  db.ref("radio/videoActual").set(videoSeleccionado);
-}
-
-function cambiarModo(modo) {
-  if (modo === "twitch") {
-    db.ref("radio/modoTransmision").set("twitch");
-  }
-}
-   function toggleModo() {
-  document.body.classList.toggle("modo-noche");
-  document.body.classList.toggle("modo-dia");
-
-  // Guardamos el estado en localStorage (opcional)
-  const modoActual = document.body.classList.contains("modo-noche") ? "noche" : "dia";
-  localStorage.setItem("modoPreferido", modoActual);
-}
-
-
-function actualizarReloj() {
-  const ahora = new Date();
-  const horas = ahora.getHours().toString().padStart(2, '0');
-  const minutos = ahora.getMinutes().toString().padStart(2, '0');
-  document.getElementById("reloj").textContent = `${horas}:${minutos}`;
-}
-
-//Actualización del Clima
-   
-  const API_KEY = "ac05bbbe9fcb2df2fb44145383ed0342"; // Tu clave default
-  const ciudad = "Puerto Montt";
-  const pais = "CL";
-
-  function obtenerEmojiClima(icon) {
-    const mapa = {
-      "01d": "☀️", "01n": "🌕",
-      "02d": "🌤️", "02n": "☁️",
-      "03d": "⛅",  "03n": "⛅",
-      "04d": "☁️", "04n": "☁️",
-      "09d": "🌧️", "09n": "🌧️",
-      "10d": "🌦️", "10n": "🌧️",
-      "11d": "⛈️", "11n": "⛈️",
-      "13d": "❄️", "13n": "❄️",
-      "50d": "🌫️", "50n": "🌫️"
-    };
-    return mapa[icon] || "🌡️";
-  }
-
-  function actualizarClima() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${API_KEY}&units=metric&lang=es`)
-      .then(res => res.json())
-      .then(data => {
-        const temperatura = Math.round(data.main.temp);
-        const icon = data.weather[0].icon;
-        const emoji = obtenerEmojiClima(icon);
-        document.getElementById("clima").innerText = `${emoji} ${temperatura}°C`;
-      })
-      .catch(err => {
-        console.error("Error al obtener clima:", err);
-        document.getElementById("clima").innerText = "🌡️ --°C";
-      });
-  }
-
-  actualizarClima();
-  setInterval(actualizarClima, 10 * 60 * 1000); // Se actualiza cada 10 minutos
-
-const mensajes = [
-    "🌞 ¡Hoy es un buen día para aprender algo nuevo!",
-    "🎯 Sigue adelante, la meta está cada vez más cerca.",
-    "🎉 Cada esfuerzo cuenta y tú lo estás haciendo genial.",
-    "💡 Recuerda: una actitud positiva cambia todo.",
-    "📚 Estudiar con pasión cambia tu presente y tu futuro.",
-    "💪 No estás solo/a, ¡estamos contigo en cada paso!",
-    "✨ Cree en ti: eres capaz de lograr cosas increíbles."
+  const listaVideos = [
+    { nombre: "JAZZ & BLUES", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FJAZZ%20%26%20BLUES%20(conversar%20%2Ccaf%C3%A9%20%2Cestudiar).mp4?alt=media&token=dee26a91-1bc0-4690-aefa-7137d682acdb" },
+    { nombre: "Gaming Music", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FGaming%20Music%202023.mp4?alt=media&token=d3330f02-f47d-4557-9e32-8686bd308e43" },
+    { nombre: "Un Gran momento para estudiar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4?alt=media&token=ff7fccf3-fc80-4188-a47b-b7fcb5466425" },
+    { nombre: "1 Hora y a bailar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962" }
   ];
 
-  let mensajeActual = 0;
-  const contenedor = document.getElementById("mensajeTexto");
-
-  function cambiarMensaje() {
-    mensajeActual = (mensajeActual + 1) % mensajes.length;
-    contenedor.textContent = mensajes[mensajeActual];
-    contenedor.classList.remove("mensaje-resalte");
-    void contenedor.offsetWidth;
-    contenedor.classList.add("mensaje-resalte");
-  }
-
- // Cambia el mensaje motivacional cada 15 segundos
-setInterval(cambiarMensaje, 15000);
-// Chat mensajes
-  // ✅ URL del Apps Script desplegado (reemplaza por el tuyo si cambia)
-const URL_CHAT = "https://inacapino-proxy.vercel.app/?" + encodeURIComponent("https://script.google.com/macros/s/AKfycbwCB2fBPW_2RxNwkenGDkj7r-zFmM6ZDfXe-zYeA-WDaEKhNn9CGXQsh9bY9O1d4S-Eag/exec") + "&followRedirects";
-
-   
-// ✅ Función para enviar mensajes
-function enviarMensajeChat() {
-  const nombre = document.getElementById("nombreChat").value.trim();
-  const mensaje = document.getElementById("mensajeChat").value.trim();
-  if (!mensaje) {
-    alert("¡Por favor escribe un mensaje!");
-    return;
-  }
-  const datos = { nombre, mensaje };
-  fetch(URL_CHAT, {
-  method: "POST",
-  mode: "cors",
-  headers: {
-    "Content-Type": "application/json"
-  },
- body: JSON.stringify({ nombre, mensaje })
-
-})
-
-
-
-  .then(res => {
-    if (res.ok) {
-      document.getElementById("mensajeChat").value = "";
-
-      // ✅ Sonido suave al enviar
-      const sonido = document.getElementById("sonidoEnviar");
-      if (sonido) sonido.play();
-
-      cargarMensajes();
-    } else {
-      throw new Error("Fallo al enviar");
+  function mostrarVideoZeno(video) {
+    transmision.innerHTML = `
+      <video autoplay muted loop playsinline style="width: 1300px; height: 550px; border-radius: 15px;">
+        <source src="${video.url}" type="video/mp4">
+      </video>
+    `;
+    nombreVideo.innerText = `🎧 Zeno + Visual: ${video.nombre}`;
+    if (zenoAudio) {
+      zenoAudio.volume = 0.7;
+      zenoAudio.play();
     }
-  })
-  .catch(err => {
-    console.error("Detalles del error:", err);
-    alert("Error al enviar mensaje 😢");
-  });
-}
+  }
 
-// ✅ Función para cargar mensajes desde la hoja de cálculo
-function cargarMensajes() {
-  fetch(URL_CHAT, { method: "GET", mode: "cors" })
-    .then(res => res.json())
-    .then(data => {
-      const contenedor = document.getElementById("Chat");
-      contenedor.innerHTML = "";
-      data.reverse().forEach(m => {
-        const fechaHora = new Date(m.fecha).toLocaleString();
-        const nombre = m.nombre ? `<strong>${m.nombre}</strong>` : "Anónimo";
-        const div = document.createElement("div");
-div.classList.add("mensaje-nuevo"); // 👈 fade animación
-div.style.marginBottom = "15px";
-div.innerHTML = `🕒 <span style="color:#aaa">${fechaHora}</span><br>${nombre}: ${parseEmojis(m.mensaje)}`;
-contenedor.appendChild(div);
+  function mostrarTwitch() {
+    transmision.innerHTML = `
+      <iframe 
+        src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io"
+        allowfullscreen
+        style="width: 100%; height: 100%; border: none; border-radius: 15px;">
+      </iframe>
+    `;
+    nombreVideo.innerText = `🎥 Transmisión en vivo`;
+    if (zenoAudio) zenoAudio.pause();
+  }
 
-      });
-      contenedor.scrollTop = contenedor.scrollHeight;
-    })
-    .catch(err => {
-      console.error("Error al cargar mensajes", err);
+  function iniciarModo() {
+    db.ref("radio/modoTransmision").on("value", (snap) => {
+      const modo = snap.val();
+      if (modo === "twitch") {
+        mostrarTwitch();
+      } else {
+        db.ref("radio/videoActual").once("value").then((videoSnap) => {
+          const video = videoSnap.val();
+          mostrarVideoZeno(video);
+        });
+      }
     });
-}
+  }
 
-// ✅ Función para reemplazar códigos por emoticones
-function parseEmojis(texto) {
-  return texto
-    .replace(/:\)/g, "😊")
-    .replace(/:D/g, "😄")
-    .replace(/:heart:/g, "❤️")
-    .replace(/:fire:/g, "🔥")
-    .replace(/:star:/g, "🌟")
-    .replace(/:grin:/g, "😁");
-}
-
-// ✅ Actualiza cada 10 segundos automáticamente
-setInterval(cargarMensajes, 10000);
-cargarMensajes(); // Al cargar la página
-
-// ✅ Haz global la función para que el botón pueda usarla
-window.enviarMensajeChat = enviarMensajeChat;
-
-   
-// ✅ HACEMOS GLOBALES LAS FUNCIONES, DENTRO del DOMContentLoaded
-window.scrollToTop = scrollToTop;
-window.openModal = openModal;
-window.closeModal = closeModal;
-window.changeImage = changeImage;
-window.mostrarLoginVIP = mostrarLoginVIP;
-window.toggleModo = toggleModo;
-window.cambiarVideoManual = cambiarVideoManual;
-window.accederVIP = accederVIP;
-window.activarAutoDJ = activarAutoDJ;
-window.cambiarModo = cambiarModo;
-}); // 👈 ESTE es el cierre del DOMContentLoaded
-
-
+  iniciarModo();
+});
 
