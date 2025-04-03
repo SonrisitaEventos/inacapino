@@ -39,15 +39,18 @@
     }
 
     .spotify-player {
-      position: absolute;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.85);
-      border-radius: 20px;
-      padding: 25px 40px;
-      box-shadow: 0 0 20px #1DB954aa;
-    }
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 30px;
+    padding: 15px 25px;
+    box-shadow: 0 0 20px #1DB954aa;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
 
     .controls {
       display: flex;
@@ -72,12 +75,17 @@
       background: #17a74a;
     }
 
-    .song-title {
-      margin-top: 20px;
-      font-weight: bold;
-      font-size: 20px;
-      color: #00ffcc;
-    }
+    .play-btn:hover {
+    transform: scale(1.15);
+    background: #17a74a;
+  }
+
+  .song-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #00ffcc;
+    white-space: nowrap;
+  }
 
     #audioElement {
       display: none;
@@ -96,11 +104,10 @@
     </video>
 
     <div class="spotify-player">
-      <div class="controls">
-        <button onclick="retroceder()">⏮️</button>
-        <button onclick="togglePlay()" id="playBtn">▶️</button>
-        <button onclick="avanzar()">⏭️</button>
-      </div>
+  <button onclick="togglePlay()" id="playBtn" class="play-btn">▶️</button>
+  <div class="song-title" id="cancionActual">🎵 Cargando canción...</div>
+</div>
+
       <div class="song-title" id="cancionActual">🎵 Cargando canción...</div>
     </div>
   </div>
