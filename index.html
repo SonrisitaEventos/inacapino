@@ -75,19 +75,45 @@
   <button class="vip-button" onclick="activarAutoDJ()">🔀 AutoDJ Aleatorio</button>
   </div>
 
- <!-- Contenedor principal -->
-<div id="transmision-wrapper" style="position: relative; z-index: 0; flex; justify-content: center; align-items: center; background-image: url('fondo_reproductor.png'); background-size: contain; background-repeat: no-repeat; background-position: center; width: 100%; max-width: 1430px; height: 580px; margin: auto; position: relative; flex-direction: column;">
+<!-- Contenedor principal -->
+<div id="transmision-wrapper" 
+     style="position: relative; 
+            z-index: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            flex-direction: column;
+            background-image: url('fondo_reproductor.png'); 
+            background-size: contain; 
+            background-repeat: no-repeat; 
+            background-position: center; 
+            width: 100%; 
+            max-width: 1430px; 
+            height: 580px; 
+            margin: auto;">
 
   <!-- Contenedor del video -->
-  <div id="transmision" style="z-index: 1; position: relative; width: 700px; height: 400px; ...">
-
+  <div id="transmision" 
+       style="z-index: 1; 
+              position: relative; 
+              width: 700px; 
+              height: 400px; 
+              overflow: hidden; 
+              border-radius: 15px;">
     <!-- Aquí el JS insertará el video o Twitch -->
   </div>
 
   <!-- Reproductor de Zeno -->
-  <div id="zenoPlayer" style="z-index: 2; position: relative; margin-top: 10px;">
-
-    <iframe src="https://zeno.fm/player/inacapinoptomontt" width="320" height="60" frameborder="0" scrolling="no" style="border-radius: 8px;"></iframe>
+  <div id="zenoPlayer" 
+       style="z-index: 2; 
+              position: relative; 
+              margin-top: 10px;">
+    <iframe src="https://zeno.fm/player/inacapinoptomontt" 
+            width="320" 
+            height="60" 
+            frameborder="0" 
+            scrolling="no" 
+            style="border-radius: 8px;"></iframe>
   </div>
 </div>
 
