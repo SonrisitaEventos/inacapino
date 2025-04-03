@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reproductor El Inacapino</title>
   <style>
     body {
       margin: 0;
-      overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
+      background-color: black;
+      font-family: Arial, sans-serif;
       color: white;
-      background: black;
+      text-align: center;
     }
 
-    .video-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      z-index: -1;
-      object-fit: cover;
+    .video-container {
+      margin: 40px auto 20px;
+      max-width: 720px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     }
 
-    .overlay {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+    video {
+      width: 100%;
+      height: auto;
+      border: none;
     }
 
-    .radio-player {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 15px 30px;
-      border-radius: 30px;
+    .titulo {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .audio-player {
+      margin-top: 20px;
+      background-color: #1a1a1a;
+      padding: 15px 20px;
+      border-radius: 20px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
     }
 
     audio {
@@ -50,20 +49,17 @@
 </head>
 <body>
 
-  <!-- 🎥 Video de fondo -->
-  <video autoplay muted loop class="video-bg">
-    <source src="reproductor.mp4" type="video/mp4">
-    Tu navegador no soporta video HTML5.
-  </video>
+  <div class="titulo">🎙️ Radio El Inacapino</div>
+  <p>Transmitiendo desde Puerto Montt para toda Latinoamérica 🌍🎧</p>
 
-  <!-- 📝 Overlay con texto -->
-  <div class="overlay">
-    <h1>🎙️ Radio El Inacapino</h1>
-    <p>Transmitiendo desde Puerto Montt para toda Latinoamérica 🎧🌍</p>
+  <div class="video-container">
+    <video autoplay muted loop>
+      <source src="reproductor.mp4" type="video/mp4">
+      Tu navegador no soporta video HTML5.
+    </video>
   </div>
 
-  <!-- 🔊 Reproductor de audio Zeno -->
-  <div class="radio-player">
+  <div class="audio-player">
     <audio controls autoplay>
       <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
       Tu navegador no soporta audio HTML5.
@@ -72,4 +68,3 @@
 
 </body>
 </html>
-
