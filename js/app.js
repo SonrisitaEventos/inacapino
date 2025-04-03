@@ -306,6 +306,7 @@ function actualizarReloj() {
   }
 
   function actualizarClima() {
+    console.log("🌦️ Actualizando clima para:", ciudad, pais);
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${API_KEY}&units=metric&lang=es`)
       .then(res => res.json())
       .then(data => {
@@ -315,7 +316,7 @@ function actualizarReloj() {
         document.getElementById("clima").innerText = `${emoji} ${temperatura}°C`;
       })
       .catch(err => {
-        console.error("Error al obtener clima:", err);
+        console.error("❌ Error al cargar el clima:", err);
         document.getElementById("clima").innerText = "🌡️ --°C";
       });
   }
