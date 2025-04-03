@@ -386,6 +386,50 @@ function parseEmojis(texto) {
     .replace(/:grin:/g, "😁");
 }
 
+function mostrarTwitch() {
+  const transmision = document.getElementById("transmision");
+  const zenoPlayer = document.getElementById("zenoPlayer");
+
+  transmision.innerHTML = `
+    <iframe 
+      src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io"
+      allowfullscreen
+      style="width: 100%; height: 100%; border: none; border-radius: 15px;">
+    </iframe>
+  `;
+
+  zenoPlayer.style.display = "none"; // Oculta Zeno si estás en vivo
+}
+
+function mostrarVideoZeno(videoUrl) {
+  const transmision = document.getElementById("transmision");
+  const zenoPlayer = document.getElementById("zenoPlayer");
+
+  transmision.innerHTML = `
+    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+      <source src="${videoUrl}" type="video/mp4">
+    </video>
+  `;
+
+  zenoPlayer.style.display = "block"; // Muestra Zeno si estás en modo AutoDJ
+}
+
+function iniciarModo() {
+  db.ref("radio/modoTransmision").on("value", (snap) => {
+    const modo = snap.val();
+    if (modo === "twitch") {
+      mostrarTwitch();
+    } else {
+      db.ref("radio/videoActual").once("value").then((videoSnap) => {
+        const video = videoSnap.val();
+        mostrarVideoZeno(video.url);
+      });
+    }
+  });
+}
+
+
+   
 // ✅ Actualiza cada 10 segundos automáticamente
 setInterval(cargarMensajes, 10000);
 cargarMensajes(); // Al cargar la página
