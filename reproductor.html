@@ -45,11 +45,17 @@
   transform: translateX(-50%);
   width: 95%;
   max-width: 640px;
-  height: 80px;
+  height: 125px; /* 🔼 Subimos de 80 a 125 para mostrar el contenido completo */
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0 15px rgba(0,255,204,0.2);
 }
+@media (max-width: 600px) {
+  .zeno-box {
+    height: 110px;
+  }
+}
+
 
 
 
