@@ -434,6 +434,34 @@ function iniciarModo() {
   db.ref("radio/videoActual").set(video);
 }, 600000); // cada 10 minutos
 
+   function togglePlay() {
+  const audio = document.getElementById("zenoAudio");
+  const icon = document.getElementById("playIcon");
+
+  if (audio.paused) {
+    audio.play();
+    icon.src = "img/pause.png";
+  } else {
+    audio.pause();
+    icon.src = "img/play.png";
+  }
+}
+
+function obtenerInfoZeno() {
+  fetch("https://api.zeno.fm/station/zyaw3bqy3rhvv")
+    .then(res => res.json())
+    .then(data => {
+      const nowPlaying = data.now_playing?.title || "🎵 Escuchando en vivo...";
+      document.getElementById("infoZeno").innerText = nowPlaying;
+    })
+    .catch(() => {
+      document.getElementById("infoZeno").innerText = "🎶 Conectando señal...";
+    });
+}
+
+setInterval(obtenerInfoZeno, 10000); // Cada 10 seg
+obtenerInfoZeno();
+
 
    
 // ✅ Actualiza cada 10 segundos automáticamente
