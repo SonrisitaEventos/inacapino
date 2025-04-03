@@ -243,16 +243,18 @@ db.ref("radio/videoActual").on("value", (snap) => {
 // Función para volver arriba
 // Botón arriba
     window.onscroll = function () {
-      const btn = document.getElementById("btnTop");
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        btn.style.display = "block";
-      } else {
-        btn.style.display = "none";
-      }
-    };
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+  const btn = document.getElementById("btnTop");
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+// Botón arriba
    
   function activarAutoDJ() {
   const indice = Math.floor(Math.random() * listaVideos.length);
@@ -531,6 +533,7 @@ window.cambiarVideoManual = cambiarVideoManual;
 window.accederVIP = accederVIP;
 window.activarAutoDJ = activarAutoDJ;
 window.cambiarModo = cambiarModo;
+window.togglePlay = togglePlay;
 }); // 👈 ESTE es el cierre del DOMContentLoaded
 
 
