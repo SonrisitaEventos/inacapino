@@ -428,6 +428,12 @@ function iniciarModo() {
   });
 }
 
+   setInterval(() => {
+  const indice = Math.floor(Math.random() * listaVideos.length);
+  const video = listaVideos[indice];
+  db.ref("radio/videoActual").set(video);
+}, 600000); // cada 10 minutos
+
 
    
 // ✅ Actualiza cada 10 segundos automáticamente
