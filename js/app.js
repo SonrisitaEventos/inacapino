@@ -1,20 +1,40 @@
 document.addEventListener("DOMContentLoaded", function () {
-   actualizarReloj();
-setInterval(actualizarReloj, 60000);
-    const zenoAudio = document.getElementById("zenoAudio");
-   // Intenta reproducir al cargar
-  zenoAudio.volume = 1.0;
-  zenoAudio.play().catch((error) => {
-    console.log("🎧 Esperando interacción para reproducir audio...");
-  });
-});
+  actualizarReloj();
+  setInterval(actualizarReloj, 60000);
 
-document.body.addEventListener("click", function () {
   const zenoAudio = document.getElementById("zenoAudio");
+
+  if (zenoAudio) {
+    zenoAudio.volume = 1.0;
+
+    // Intenta reproducir de inmediato
+   zenoAudio.play()
+  .then(() => {
+    // ✅ Si se reproduce con éxito, cambiamos el ícono a pause
+    document.body.addEventListener("click", function () {
   if (zenoAudio.paused) {
-    zenoAudio.play();
+    zenoAudio.play().then(() => {
+      document.getElementById("playIcon").src = "img/pause.png";
+    }).catch(err => {
+      console.log("🔇 Todavía no se puede reproducir:", err);
+    });
   }
 }, { once: true });
+
+
+
+    // Reproduce al primer clic en la página
+    document.body.addEventListener("click", function () {
+      if (zenoAudio.paused) {
+        zenoAudio.play().catch(err => {
+          console.error("🔇 No se pudo reproducir aún:", err);
+        });
+      }
+    }, { once: true });
+  } else {
+    console.warn("⚠️ No se encontró el audio con ID 'zenoAudio'");
+  }
+});
 
 
     // ✅ Esto restaura el modo guardado al cargar la página
