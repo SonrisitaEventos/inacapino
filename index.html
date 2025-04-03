@@ -38,16 +38,10 @@
   <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1>El Inacapino Puerto Montt</h1>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
- <div id="transmision-wrapper" style="display: flex; justify-content: center; align-items: center; background-image: url('fondo_reproductor.png'); background-size: contain; background-repeat: no-repeat; background-position: center; width: 100%; max-width: 1430px; height: 580px; margin: auto; position: relative;">
-  <div id="transmision" style="width: 1300px; height: 550px; border-radius: 15px; overflow: hidden;">
-    <!-- JS insertará aquí el video -->
-  </div>
-</div>
 
-
-
-<div id="nombreVideo" class="video-nombre"></div>
-<div class="select-video" id="panelSelector" style="display:none;">
+  <div id="transmision"></div>
+  <div id="nombreVideo" class="video-nombre"></div>
+ <div class="select-video" id="panelSelector" style="display:none;">
   <select id="videoSelector">
     <option value="0">🎶 JAZZ & BLUES</option>
     <option value="1">🎮 Gaming Music</option>
@@ -56,7 +50,6 @@
   </select>
   <button class="vip-button" onclick="cambiarVideoManual()">Reproducir Selección</button>
 </div>
-
 
  <div class="botones">
     <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -83,22 +76,13 @@
   </div>
 
    <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
-<section id="zeno-radio" style="margin: 40px auto; text-align: center;">
+ <section id="zeno-radio" style="margin: 40px auto; text-align: center;">
   <h2>📻 Señal Alternativa desde Zeno.FM</h2>
   <p>Escúchanos también desde nuestro servidor Zeno.fm, ideal para cuando estás en movimiento o solo quieres audio 🎧</p>
-  
-  <iframe 
-    src="https://zeno.fm/player/inacapinoptomontt" 
-    width="100%" 
-    height="300" 
-    frameborder="0" 
-    scrolling="no" 
-    style="border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); max-width: 768px;">
-  </iframe>
-
+  <iframe src="https://zeno.fm/player/inacapinoptomontt" width="768" height="300" frameborder="0" scrolling="no" style="border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); max-width: 100%;"></iframe>
   <br>
- </section>
-
+  <a href="https://zeno.fm/" target="_blank" style="display: block; font-size: 0.9em; line-height: 10px; margin-top: 5px;">Ver en Zeno.FM</a>
+</section>
 
 <!-- Boton dia y noche -->
  <button class="vip-button" onclick="toggleModo()">🌗 Cambiar Modo</button>
@@ -265,7 +249,6 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script src="js/app.js" defer></script>
 <audio id="sonidoEnviar" src="hipjazz.mp3" preload="auto"></audio>
-<audio id="zenoAudio" src="https://stream.zeno.fm/zyaw3bqy3rhvv" autoplay loop></audio>
 </body>
 </html>
 
