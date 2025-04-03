@@ -75,6 +75,21 @@
   <button class="vip-button" onclick="activarAutoDJ()">🔀 AutoDJ Aleatorio</button>
   </div>
 
+ <!-- Contenedor principal -->
+<div id="transmision-wrapper" style="display: flex; justify-content: center; align-items: center; background-image: url('fondo_reproductor.png'); background-size: contain; background-repeat: no-repeat; background-position: center; width: 100%; max-width: 1430px; height: 580px; margin: auto; position: relative; flex-direction: column;">
+
+  <!-- Contenedor del video -->
+  <div id="transmision" style="width: 700px; height: 400px; border-radius: 15px; overflow: hidden; margin-top: 20px;">
+    <!-- Aquí el JS insertará el video o Twitch -->
+  </div>
+
+  <!-- Reproductor de Zeno -->
+  <div id="zenoPlayer" style="margin-top: 10px; display: none;">
+    <iframe src="https://zeno.fm/player/inacapinoptomontt" width="320" height="60" frameborder="0" scrolling="no" style="border-radius: 8px;"></iframe>
+  </div>
+</div>
+
+ 
    <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
  <section id="zeno-radio" style="margin: 40px auto; text-align: center;">
   <h2>📻 Señal Alternativa desde Zeno.FM</h2>
