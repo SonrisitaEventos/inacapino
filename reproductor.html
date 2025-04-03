@@ -45,16 +45,32 @@
       transform: translateX(-50%);
       width: 95%;
       max-width: 640px;
-      height: 125px; /* ✅ Altura ajustada para mostrar todo el contenido */
-      border-radius: 15px;
+      height: 125px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 0 15px rgba(0,255,204,0.2);
+      box-shadow: 0 0 20px rgba(0,255,204,0.3);
     }
 
-    /* Opcional: responsivo para pantallas pequeñas */
+    .zeno-box h3 {
+      margin: 10px 0 0;
+      color: #00ffcc;
+    }
+
+    .abrir-btn {
+      margin-top: 15px;
+      background: #1DB954;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #1DB954aa;
+    }
+
     @media (max-width: 600px) {
-      .zeno-box {
-        height: 115px;
+      .abrir-btn {
+        display: none;
       }
     }
   </style>
@@ -70,8 +86,12 @@
       Tu navegador no soporta video HTML5.
     </video>
 
-    <!-- ✅ Iframe Zeno bien posicionado -->
+    <button class="abrir-btn" onclick="window.open('https://zeno.fm/player/inacapinoptomontt','zeno','width=400,height=150');">
+      🎧 Abrir Reproductor en Ventana
+    </button>
+
     <div class="zeno-box">
+      <h3>📻 Escuchando ahora en vivo:</h3>
       <iframe 
         src="https://zeno.fm/player/inacapinoptomontt" 
         width="100%" 
@@ -82,6 +102,22 @@
     </div>
   </div>
 
+  <audio id="audioElement" autoplay>
+    <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
+  </audio>
+
+  <script>
+    window.addEventListener("load", () => {
+      const audio = document.getElementById("audioElement");
+      audio.muted = false;
+      audio.volume = 0.8; // 80% volumen
+      audio.play().then(() => {
+        console.log("✅ Reproducción automática activada");
+      }).catch((e) => {
+        console.warn("⚠️ Autoplay bloqueado por el navegador:", e);
+      });
+    });
+  </script>
+
 </body>
 </html>
-
