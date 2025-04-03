@@ -34,14 +34,32 @@
       text-shadow: 0 0 10px #000;
     }
 
-    .spotify-player {
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 20px;
-      padding: 25px 40px;
-      display: inline-block;
-      margin-top: 40px;
-      box-shadow: 0 0 20px #1DB954aa;
-    }
+    .video-container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 720px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+  }
+
+  .video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .spotify-player {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 20px;
+    padding: 25px 40px;
+    box-shadow: 0 0 20px #1DB954aa;
+  }
 
     .controls {
       display: flex;
@@ -79,6 +97,21 @@
   </style>
 </head>
 <body>
+<div class="video-container">
+  <video autoplay muted loop>
+    <source src="reproductor.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
+
+  <div class="spotify-player">
+    <div class="controls">
+      <button onclick="retroceder()">⏮️</button>
+      <button onclick="togglePlay()" id="playBtn">▶️</button>
+      <button onclick="avanzar()">⏭️</button>
+    </div>
+    <div class="song-title" id="cancionActual">🎵 Cargando canción...</div>
+  </div>
+</div>
 
   <video autoplay muted loop>
     <source src="reproductor.mp4" type="video/mp4">
