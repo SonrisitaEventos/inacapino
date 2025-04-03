@@ -138,6 +138,13 @@
   <button onclick="togglePlay()" id="playBtn" class="play-btn">▶️</button>
   <div id="cancionActual" class="song-title">🎵 Cargando canción...</div>
 </div>
+    <div class="zeno-mask">
+  <iframe 
+    src="https://zeno.fm/player/inacapinoptomontt" 
+    width="600" height="1000" 
+    frameborder="0" scrolling="no">
+  </iframe>
+</div>
   </div>
 
   <audio id="audioElement" autoplay muted>
@@ -145,13 +152,7 @@
   Tu navegador no soporta audio HTML5.
 </audio>
 
-<div class="zeno-mask">
-  <iframe 
-    src="https://zeno.fm/player/inacapinoptomontt" 
-    width="600" height="1000" 
-    frameborder="0" scrolling="no">
-  </iframe>
-</div>
+
 
   <script>
     const audio = document.getElementById("audioElement");
