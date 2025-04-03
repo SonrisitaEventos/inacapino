@@ -46,8 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
     zenoAudio.play();
   }
   }
-}
-
 //=== modificado ====
    function accederVIP() {
   const usuario = document.getElementById("usuario").value;
