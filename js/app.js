@@ -35,15 +35,18 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   function mostrarVideoZeno(video) {
-    transmision.innerHTML = `
-      <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-
-    nombreVideo.innerText = `🎧 Zeno + Visual: ${video.nombre}`;
-    if (zenoAudio) {
-      zenoAudio.volume = 0.7;
-      zenoAudio.play();
-    }
+  transmision.innerHTML = `
+    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+      <source src="${video.url}" type="video/mp4">
+    </video>
+  `;
+  nombreVideo.innerText = `🎧 Zeno + Visual: ${video.nombre}`;
+  if (zenoAudio) {
+    zenoAudio.volume = 0.7;
+    zenoAudio.play();
   }
+}
+
 
   function mostrarTwitch() {
     transmision.innerHTML = `
