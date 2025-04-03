@@ -3,42 +3,32 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(actualizarReloj, 60000);
   const zenoAudio = document.getElementById("zenoAudio");
   const playIcon = document.getElementById("playIcon");
+  playIcon.classList.add("pulsing");
+playIcon.classList.remove("pulsing");
 
   if (zenoAudio) {
-    zenoAudio.volume = 1.0;
+  zenoAudio.volume = 1.0;
 
-    zenoAudio.play().then(() => {
-      console.log("🎧 Reproducción automática exitosa.");
-      playIcon.src = "imagenes/pause.png";
-    }).catch(() => {
-      console.log("🎧 El navegador bloqueó autoplay. Esperando interacción...");
-    });
+  zenoAudio.play().then(() => {
+    console.log("🎧 Reproducción automática exitosa.");
+    playIcon.src = "imagenes/pause.png";
+  }).catch(() => {
+    console.log("🎧 El navegador bloqueó autoplay. Esperando interacción...");
+  });
 
-    document.body.addEventListener("click", function () {
-      if (zenoAudio.paused) {
-        zenoAudio.play().then(() => {
-          playIcon.src = "imagenes/pause.png";
-        }).catch(err => {
-          console.log("🔇 No se pudo reproducir aún:", err);
-        });
-      }
-    }, { once: true });
-  }
-});
+  // Reproduce al primer clic en la página
+  document.body.addEventListener("click", function () {
+    if (zenoAudio.paused) {
+      zenoAudio.play().catch(err => {
+        console.error("🔇 No se pudo reproducir aún:", err);
+      });
+    }
+  }, { once: true });
 
+} else {
+  console.warn("⚠️ No se encontró el audio con ID 'zenoAudio'");
+}
 
-
-    // Reproduce al primer clic en la página
-    document.body.addEventListener("click", function () {
-      if (zenoAudio.paused) {
-        zenoAudio.play().catch(err => {
-          console.error("🔇 No se pudo reproducir aún:", err);
-        });
-      }
-    }, { once: true });
-   else {
-    console.warn("⚠️ No se encontró el audio con ID 'zenoAudio'");
-  }
 });
 
 
@@ -509,10 +499,6 @@ function obtenerInfoZeno() {
 
 setInterval(obtenerInfoZeno, 10000); // Cada 10 seg
 obtenerInfoZeno();
-playIcon.classList.add("pulsing");
-playIcon.classList.remove("pulsing");
-
-
    
 // ✅ Actualiza cada 10 segundos automáticamente
 setInterval(cargarMensajes, 10000);
