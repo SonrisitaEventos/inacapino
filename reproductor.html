@@ -3,104 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reproductor El Inacapino</title>
+  <title>El Inacapino - Reproductor</title>
   <style>
     body {
       margin: 0;
-      background-color: black;
       font-family: 'Segoe UI', sans-serif;
+      background-color: black;
       color: white;
+      overflow-x: hidden;
       text-align: center;
     }
 
-    .titulo {
-      margin-top: 20px;
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .video-container {
-      position: relative;
-      margin: 40px auto 20px;
-      max-width: 720px;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    }
-
     video {
-      width: 100%;
-      height: auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .titulo {
+      margin-top: 40px;
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 0 0 10px #000;
+    }
+
+    .spotify-player {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 20px;
+      padding: 25px 40px;
+      display: inline-block;
+      margin-top: 40px;
+      box-shadow: 0 0 20px #1DB954aa;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .controls button {
+      background: #1DB954;
       border: none;
-      display: block;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
     }
 
-    .audio-player {
-      position: absolute;
-      bottom: 20px; /* Ajusta esta altura para calzar con la franja blanca */
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: transparent; /* ¡Lo importante! */
-      padding: 0; /* Eliminamos padding extra */
-      border-radius: 0;
-      box-shadow: none;
+    .controls button:hover {
+      transform: scale(1.15);
+      background: #17a74a;
     }
 
-    audio {
-  width: 280px;
-  border: none;
-  background: transparent; /* Para navegadores que apliquen fondo */
-  outline: none; /* Para quitar ese contorno que se ve en algunos */
-}
-
-    #cancionActual {
-      margin-top: 15px;
-      font-size: 18px;
+    .song-title {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 20px;
       color: #00ffcc;
+    }
+
+    #audioElement {
+      display: none;
     }
   </style>
 </head>
 <body>
 
+  <video autoplay muted loop>
+    <source src="reproductor.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
+
   <div class="titulo">🎙️ Radio El Inacapino</div>
   <p>Transmitiendo desde Puerto Montt para toda Latinoamérica 🌍🎧</p>
 
-  <div class="video-container">
-    <video autoplay muted loop>
-      <source src="reproductor.mp4" type="video/mp4">
-      Tu navegador no soporta video HTML5.
-    </video>
-
-    <!-- 🔊 Reproductor de audio sobre el video -->
-    <div class="audio-player">
-      <audio controls autoplay>
-        <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
-        Tu navegador no soporta audio HTML5.
-      </audio>
+  <div class="spotify-player">
+    <div class="controls">
+      <button onclick="retroceder()">⏮️</button>
+      <button onclick="togglePlay()" id="playBtn">▶️</button>
+      <button onclick="avanzar()">⏭️</button>
     </div>
+    <div class="song-title" id="cancionActual">🎵 Cargando canción...</div>
   </div>
 
-  <!-- 🎶 Canción actual desde Zeno -->
-  <div id="cancionActual">🎵 Cargando canción...</div>
+  <audio id="audioElement">
+    <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
 
   <script>
+    const audio = document.getElementById("audioElement");
+    const playBtn = document.getElementById("playBtn");
+    const titulo = document.getElementById("cancionActual");
+
+    let playing = false;
+
+    function togglePlay() {
+      if (playing) {
+        audio.pause();
+        playBtn.innerText = "▶️";
+      } else {
+        audio.play();
+        playBtn.innerText = "⏸️";
+      }
+      playing = !playing;
+    }
+
+    function retroceder() {
+      audio.currentTime = 0;
+    }
+
+    function avanzar() {
+      audio.currentTime += 10;
+    }
+
     function actualizarCancion() {
       fetch("https://api.zeno.fm/stations/18fdybqy3rhwv/nowplaying")
         .then(response => response.json())
         .then(data => {
-          const titulo = data.title || "Sin información 🎶";
-          document.getElementById("cancionActual").innerText = `🎵 Ahora suena: ${titulo}`;
-        })
-        .catch(() => {
-          document.getElementById("cancionActual").innerText = "🔄 Esperando datos...";
-        });
-    }
-
-    // Actualiza la canción cada 15 segundos
-    actualizarCancion();
-    setInterval(actualizarCancion, 15000);
-  </script>
-
-</body>
-</html>
-
+          const tituloCancion = data.title || "Sin información 🎶";
+          titulo.inner
