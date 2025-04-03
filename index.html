@@ -1,60 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+ <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Radio online interactiva de INACAP Puerto Montt. Noticias, concursos, videos y participación estudiantil." />
+  <meta name="description" content="Radio online interactiva de INACAP Puerto Montt. Noticias, concursos, videos y participación estudiantil.">
   <title>El Inacapino Puerto Montt</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/estilos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+   <link rel="stylesheet" href="css/estilos.css">
+
 </head>
 <body>
-  <!-- Header y Navegación -->
-  <header>
-    <nav>
-      <a href="#">Inicio</a>
-      <a href="#rebobinando">Rebobinando</a>
-      <a href="#capsulas">Cápsulas</a>
-      <a href="#encuesta">Encuesta</a>
-      <a href="#concursos">Concursos</a>
-      <a href="#postales">Postales</a>
-      <a href="#noticias">Noticias</a>
-    </nav>
+<header>
+ <nav>
+    <a href="#">Inicio</a>
+    <a href="#rebobinando">Rebobinando</a>
+    <a href="#capsulas">Cápsulas</a>
+    <a href="#encuesta">Encuesta</a>
+    <a href="#concursos">Concursos</a>
+    <a href="#postales">Postales</a>
+    <a href="#noticias">Noticias</a>
+  </nav>
     <div class="noticiero-flex">
-      <div class="mensaje-motivacional">
-        <span id="mensajeTexto">🌟 Sigue adelante, lo mejor está por venir.</span>
-      </div>
-      <div class="top-info">
-        <span id="reloj">00:00</span>
-        <span id="clima">☀️ --°C</span>
-        <span class="live-indicator">EN VIVO</span>
-      </div>
+    <div class="mensaje-motivacional">
+      <span id="mensajeTexto">🌟 Sigue adelante, lo mejor está por venir.</span>
     </div>
+    <div class="top-info">
+      <span id="reloj">00:00</span>
+      <span id="clima">☀️ --°C</span>
+      <span class="live-indicator">EN VIVO</span>
+    </div>
+  </div>
    </header>
 <!-- ✅ BOTÓN VIP CENTRADO CON ESTILO -->
 
-  <!-- Botón flotante para volver arriba -->
-  <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
+ <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
 
-  <!-- Logo y Frase Principal -->
-  <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo" />
+  <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
   <h1>El Inacapino Puerto Montt</h1>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
 
-  <!-- Nombre de Video / Selector Admin -->
+  <div id="transmision"></div>
   <div id="nombreVideo" class="video-nombre"></div>
-  <div class="select-video" id="panelSelector" style="display:none;">
-    <select id="videoSelector">
-      <option value="0">🎶 JAZZ & BLUES</option>
-      <option value="1">🎮 Gaming Music</option>
-      <option value="2">📚 Un Gran momento para estudiar</option>
-      <option value="3">🕺 1 Hora y a bailar</option>
-    </select>
-    <button class="vip-button" onclick="cambiarVideoManual()">Reproducir Selección</button>
-  </div>
+ <div class="select-video" id="panelSelector" style="display:none;">
+  <select id="videoSelector">
+    <option value="0">🎶 JAZZ & BLUES</option>
+    <option value="1">🎮 Gaming Music</option>
+    <option value="2">📚 Un Gran momento para estudiar</option>
+    <option value="3">🕺 1 Hora y a bailar</option>
+  </select>
+  <button class="vip-button" onclick="cambiarVideoManual()">Reproducir Selección</button>
+</div>
 
-  <!-- Botones Redes Sociales -->
-  <div class="botones">
+ <div class="botones">
     <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     <a href="https://www.facebook.com/RyCSolucionesPV" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
     <a href="https://www.instagram.com/cristian_riffo_araya/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
@@ -62,44 +59,22 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
 
-  <!-- Botón Acceso VIP -->
-  <div style="text-align: center;">
-    <button class="vip-button" onclick="mostrarLoginVIP()">🎧 Acceso VIP</button>
-  </div>
+ <div style="text-align: center;">
+  <button class="vip-button" onclick="mostrarLoginVIP()">🎧 Acceso VIP</button>
+</div>
+<!-- ✅ PANEL DE LOGIN MODAL -->
+<div id="loginVIP">
+  <h3>🔐 Ingreso VIP</h3>
+  <input type="text" id="usuario" placeholder="Usuario">
+  <input type="password" id="clave" placeholder="Contraseña">
+  <button onclick="accederVIP()">Entrar</button>
+</div>
 
-  <!-- Login VIP -->
-  <div id="loginVIP">
-    <h3>🔐 Ingreso VIP</h3>
-    <input type="text" id="usuario" placeholder="Usuario" />
-    <input type="password" id="clave" placeholder="Contraseña" />
-    <button onclick="accederVIP()">Entrar</button>
-  </div>
-
-  <!-- Panel VIP -->
   <div id="panelVIP" style="display:none; margin-top: 20px;">
-    <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
-    <button class="vip-button" onclick="activarAutoDJ()">🔀 AutoDJ Aleatorio</button>
+  <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
+  <button class="vip-button" onclick="activarAutoDJ()">🔀 AutoDJ Aleatorio</button>
   </div>
-<!-- Contenedor principal -->
-<!-- Reproductor Principal -->
-  <div id="transmision-wrapper">
-    <div id="transmision"></div>
-    <div id="customPlayer">
-      <button onclick="togglePlay()">
-        <img id="playIcon" src="imagenes/play.png" alt="Play" style="width: 50px;">
-      </button>
-      <div id="infoZeno">🎶 Cargando canción...</div>
-    </div>
-    <audio id="zenoAudio" preload="none">
-      <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
-    </audio>
-  </div>
-  </div>
-</div>
 
-</div>
-
- 
    <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
  <section id="zeno-radio" style="margin: 40px auto; text-align: center;">
   <h2>📻 Señal Alternativa desde Zeno.FM</h2>
@@ -270,11 +245,10 @@
     </p>
     <a href="muro_buenos_deseos.html" style="display:inline-block; margin-top: 15px; padding: 10px 20px; background-color: #d40000; color: white; border-radius: 10px; text-decoration: none; font-weight: bold;">Deja tu mensaje</a>
   </section>
- <!-- Scripts -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-  <script src="js/app.js" defer></script>
-  <audio id="sonidoEnviar" src="hipjazz.mp3" preload="auto"></audio>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script src="js/app.js" defer></script>
+<audio id="sonidoEnviar" src="hipjazz.mp3" preload="auto"></audio>
 </body>
 </html>
 
