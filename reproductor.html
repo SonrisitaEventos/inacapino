@@ -15,14 +15,17 @@
     }
 
     video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-height: 100vh;
+  object-fit: contain;
+  z-index: -1;
+  opacity: 0.3; /* opcional: si quieres que no opaque el contenido */
+}
+
 
     .titulo {
       margin-top: 40px;
