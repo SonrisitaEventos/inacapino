@@ -1,36 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  actualizarReloj();
-  setInterval(actualizarReloj, 60000);
-  const zenoAudio = document.getElementById("zenoAudio");
-  const playIcon = document.getElementById("playIcon");
-  playIcon.classList.add("pulsing");
-playIcon.classList.remove("pulsing");
-
-  if (zenoAudio) {
-  zenoAudio.volume = 1.0;
-
-  zenoAudio.play().then(() => {
-    console.log("🎧 Reproducción automática exitosa.");
-    playIcon.src = "imagenes/pause.png";
-  }).catch(() => {
-    console.log("🎧 El navegador bloqueó autoplay. Esperando interacción...");
-  });
-
-  // Reproduce al primer clic en la página
-  document.body.addEventListener("click", function () {
-    if (zenoAudio.paused) {
-      zenoAudio.play().catch(err => {
-        console.error("🔇 No se pudo reproducir aún:", err);
-      });
-    }
-  }, { once: true });
-
-} else {
-  console.warn("⚠️ No se encontró el audio con ID 'zenoAudio'");
-}
-
-});
-
+   actualizarReloj();
+setInterval(actualizarReloj, 60000);
 
     // ✅ Esto restaura el modo guardado al cargar la página
   const modoGuardado = localStorage.getItem("modoPreferido");
@@ -233,18 +203,16 @@ db.ref("radio/videoActual").on("value", (snap) => {
 // Función para volver arriba
 // Botón arriba
     window.onscroll = function () {
-  const btn = document.getElementById("btnTop");
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
-};
-
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-// Botón arriba
+      const btn = document.getElementById("btnTop");
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    };
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
    
   function activarAutoDJ() {
   const indice = Math.floor(Math.random() * listaVideos.length);
@@ -298,7 +266,6 @@ function actualizarReloj() {
   }
 
   function actualizarClima() {
-    console.log("🌦️ Actualizando clima para:", ciudad, pais);
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${API_KEY}&units=metric&lang=es`)
       .then(res => res.json())
       .then(data => {
@@ -308,7 +275,7 @@ function actualizarReloj() {
         document.getElementById("clima").innerText = `${emoji} ${temperatura}°C`;
       })
       .catch(err => {
-        console.error("❌ Error al cargar el clima:", err);
+        console.error("Error al obtener clima:", err);
         document.getElementById("clima").innerText = "🌡️ --°C";
       });
   }
@@ -419,87 +386,6 @@ function parseEmojis(texto) {
     .replace(/:grin:/g, "😁");
 }
 
-function mostrarTwitch() {
-  const transmision = document.getElementById("transmision");
-  const zenoPlayer = document.getElementById("zenoPlayer");
-
-  transmision.innerHTML = `
-    <iframe 
-      src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io"
-      allowfullscreen
-      style="width: 100%; height: 100%; border: none; border-radius: 15px;">
-    </iframe>
-  `;
-
-  zenoPlayer.style.display = "none"; // Oculta Zeno si estás en vivo
-}
-
-function mostrarVideoZeno(videoUrl) {
-  const transmision = document.getElementById("transmision");
-  const zenoPlayer = document.getElementById("zenoPlayer");
-
-  transmision.innerHTML = `
-    <video autoplay muted loop playsinline 
-       style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
-       <source src="${videoUrl}" type="video/mp4">
-    </video>
-  `;
-
-  zenoPlayer.style.display = "block"; // Muestra Zeno si estás en modo AutoDJ
-}
-
-function iniciarModo() {
-  db.ref("radio/modoTransmision").on("value", (snap) => {
-    const modo = snap.val();
-    if (modo === "twitch") {
-      mostrarTwitch();
-    } else {
-      db.ref("radio/videoActual").once("value").then((videoSnap) => {
-        const video = videoSnap.val();
-        mostrarVideoZeno(video.url);
-      });
-    }
-  });
-}
-
-   setInterval(() => {
-  const indice = Math.floor(Math.random() * listaVideos.length);
-  const video = listaVideos[indice];
-  db.ref("radio/videoActual").set(video);
-}, 600000); // cada 10 minutos
-
-   function togglePlay() {
-  const audio = document.getElementById("zenoAudio");
-  const icon = document.getElementById("playIcon");
-
-  if (audio.paused) {
-    audio.play().then(() => {
-      icon.src = "imagenes/pause.png";
-    }).catch(err => {
-      console.warn("🔇 El navegador bloqueó la reproducción:", err);
-    });
-  } else {
-    audio.pause();
-    icon.src = "imagenes/play.png";
-  }
-}
-
-
-function obtenerInfoZeno() {
-  fetch("https://api.zeno.fm/station/zyaw3bqy3rhvv")
-    .then(res => res.json())
-    .then(data => {
-      const nowPlaying = data.now_playing?.title || "🎵 Escuchando en vivo...";
-      document.getElementById("infoZeno").innerText = nowPlaying;
-    })
-    .catch(() => {
-      document.getElementById("infoZeno").innerText = "🎶 Conectando señal...";
-    });
-}
-
-setInterval(obtenerInfoZeno, 10000); // Cada 10 seg
-obtenerInfoZeno();
-   
 // ✅ Actualiza cada 10 segundos automáticamente
 setInterval(cargarMensajes, 10000);
 cargarMensajes(); // Al cargar la página
@@ -519,7 +405,6 @@ window.cambiarVideoManual = cambiarVideoManual;
 window.accederVIP = accederVIP;
 window.activarAutoDJ = activarAutoDJ;
 window.cambiarModo = cambiarModo;
-window.togglePlay = togglePlay;
 }); // 👈 ESTE es el cierre del DOMContentLoaded
 
 
