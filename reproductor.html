@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reproductor El Inacapino</title>
   <style>
     body {
       margin: 0;
       background-color: black;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       color: white;
       text-align: center;
     }
 
+    .titulo {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
     .video-container {
+      position: relative;
       margin: 40px auto 20px;
       max-width: 720px;
       border-radius: 15px;
@@ -25,25 +32,28 @@
       width: 100%;
       height: auto;
       border: none;
-    }
-
-    .titulo {
-      margin-top: 20px;
-      font-size: 24px;
-      font-weight: bold;
+      display: block;
     }
 
     .audio-player {
-      margin-top: 20px;
-      background-color: #1a1a1a;
-      padding: 15px 20px;
-      border-radius: 20px;
-      display: inline-block;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      position: absolute;
+      bottom: 80px; /* Ajusta esta altura para calzar con la franja blanca */
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      border-radius: 30px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
 
     audio {
-      width: 300px;
+      width: 280px;
+    }
+
+    #cancionActual {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #00ffcc;
     }
   </style>
 </head>
@@ -57,14 +67,37 @@
       <source src="reproductor.mp4" type="video/mp4">
       Tu navegador no soporta video HTML5.
     </video>
+
+    <!-- 🔊 Reproductor de audio sobre el video -->
+    <div class="audio-player">
+      <audio controls autoplay>
+        <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+      </audio>
+    </div>
   </div>
 
-  <div class="audio-player">
-    <audio controls autoplay>
-      <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
-      Tu navegador no soporta audio HTML5.
-    </audio>
-  </div>
+  <!-- 🎶 Canción actual desde Zeno -->
+  <div id="cancionActual">🎵 Cargando canción...</div>
+
+  <script>
+    function actualizarCancion() {
+      fetch("https://api.zeno.fm/stations/18fdybqy3rhwv/nowplaying")
+        .then(response => response.json())
+        .then(data => {
+          const titulo = data.title || "Sin información 🎶";
+          document.getElementById("cancionActual").innerText = `🎵 Ahora suena: ${titulo}`;
+        })
+        .catch(() => {
+          document.getElementById("cancionActual").innerText = "🔄 Esperando datos...";
+        });
+    }
+
+    // Actualiza la canción cada 15 segundos
+    actualizarCancion();
+    setInterval(actualizarCancion, 15000);
+  </script>
 
 </body>
 </html>
+
