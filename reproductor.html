@@ -92,6 +92,20 @@ iframe::-webkit-scrollbar {
   font-weight: bold;
   box-shadow: 0 0 10px rgba(0,255,204,0.4);
 }
+  #playMobile {
+  display: none;
+  margin: 20px auto;
+  background: #00ffcc;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,255,204,0.4);
+  max-width: 90%;
+}
+
 
   </style>
 </head>
@@ -146,6 +160,9 @@ iframe::-webkit-scrollbar {
   box-shadow: 0 0 10px rgba(0,255,204,0.4);">
   📲 Presiona para comenzar a escuchar
 </button>
+<div style="text-align: center;">
+  <button id="playMobile" onclick="reproducirAudio()">📲 Presiona para comenzar a escuchar</button>
+</div>
 
   <script>
   window.addEventListener("load", () => {
