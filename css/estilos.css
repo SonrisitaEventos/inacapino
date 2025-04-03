@@ -85,17 +85,19 @@
       .encuesta iframe { height: 800px; }
     }
 #transmision {
-  width: 640px;
-  height: 360px;
+  width: 85%;
+  max-width: 720px;
+  aspect-ratio: 16/9;
   margin: 0 auto;
-  border-radius: 15px;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  border-radius: 15px;
+  background: rgba(0,0,0,0.6);
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-  background-color: rgba(0, 0, 0, 0.7); /* opcional para contraste */
 }
+
 
 
 #transmision video {
