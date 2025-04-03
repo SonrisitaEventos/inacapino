@@ -73,6 +73,19 @@
         display: none;
       }
     }
+    .etiqueta-en-vivo {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00ffcc;
+  color: black;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0,255,204,0.4);
+}
+
   </style>
 </head>
 <body>
@@ -91,16 +104,16 @@
     </button>
 
     <div class="zeno-box">
-      <h3>📻 Escuchando ahora en vivo:</h3>
-      <iframe 
-        src="https://zeno.fm/player/inacapinoptomontt" 
-        width="100%" 
-        height="100%" 
-        frameborder="0" 
-        scrolling="no">
-      </iframe>
-    </div>
-  </div>
+  <iframe 
+    src="https://zeno.fm/player/inacapinoptomontt" 
+    width="100%" 
+    height="100%" 
+    frameborder="0" 
+    scrolling="no">
+  </iframe>
+  <div class="etiqueta-en-vivo">📻 Escuchando ahora en vivo</div>
+</div>
+
 
   <audio id="audioElement" autoplay>
     <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
