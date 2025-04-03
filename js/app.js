@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.addEventListener("click", function () {
   if (zenoAudio.paused) {
     zenoAudio.play().then(() => {
-      document.getElementById("playIcon").src = "img/pause.png";
+      document.getElementById("playIcon").src = "imagenes/pause.png";
     }).catch(err => {
       console.log("🔇 Todavía no se puede reproducir:", err);
     });
@@ -476,7 +476,7 @@ function iniciarModo() {
 
   if (audio.paused) {
     audio.play();
-    icon.src = "img/pause.png";
+    icon.src = "imagenes/pause.png";
   } else {
     audio.pause();
     icon.src = "img/play.png";
