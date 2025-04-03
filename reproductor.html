@@ -130,4 +130,17 @@
         .then(response => response.json())
         .then(data => {
           const tituloCancion = data.title || "Sin información 🎶";
-          titulo.inner
+          titulo.innerText = `🎵 Ahora suena: ${tituloCancion}`;
+        })
+        .catch(() => {
+          titulo.innerText = "🔄 Esperando datos...";
+        });
+    }
+
+    // Inicia actualizaciones
+    actualizarCancion();
+    setInterval(actualizarCancion, 15000);
+  </script>
+
+</body>
+</html>
