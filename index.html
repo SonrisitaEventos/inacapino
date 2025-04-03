@@ -39,9 +39,11 @@
   <h1>El Inacapino Puerto Montt</h1>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
 
-  <div id="transmision"></div>
-  <div id="nombreVideo" class="video-nombre"></div>
- <div class="select-video" id="panelSelector" style="display:none;">
+  <div id="transmision" style="background-image: url('fondo_reproductor.png'); background-size: cover; background-position: center; height: 550px; width: 100%; max-width: 1430px; margin: 0 auto; display: flex; justify-content: center; align-items: center; position: relative; border-radius: 20px;">
+  <!-- Aquí el JS insertará el video visual y el audio de Zeno -->
+</div>
+<div id="nombreVideo" class="video-nombre"></div>
+<div class="select-video" id="panelSelector" style="display:none;">
   <select id="videoSelector">
     <option value="0">🎶 JAZZ & BLUES</option>
     <option value="1">🎮 Gaming Music</option>
@@ -50,6 +52,7 @@
   </select>
   <button class="vip-button" onclick="cambiarVideoManual()">Reproducir Selección</button>
 </div>
+
 
  <div class="botones">
     <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -249,6 +252,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script src="js/app.js" defer></script>
 <audio id="sonidoEnviar" src="hipjazz.mp3" preload="auto"></audio>
+<audio id="zenoAudio" src="https://stream.zeno.fm/p4b92tk0yuhvv" autoplay loop></audio>
 </body>
 </html>
 
