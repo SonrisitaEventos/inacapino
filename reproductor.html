@@ -105,6 +105,20 @@
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0,255,204,0.2);
 }
+.zeno-mask {
+  width: 400px;       /* Ajusta el ancho que quieres mostrar */
+  height: 40px;       /* Altura exacta del texto de la canción */
+  overflow: hidden;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,255,204,0.15);
+  position: relative;
+}
+
+.zeno-mask iframe {
+  transform: translateY(-198px); /* 💥 Esto "sube" el contenido interno */
+  border: none;
+}
 
   </style>
 </head>
@@ -133,6 +147,13 @@
 <div class="info-nowplaying">
   <h4>🔊 Información en vivo desde Zeno</h4>
   <iframe src="https://zeno.fm/player/inacapinoptomontt" width="100%" height="100" frameborder="0" scrolling="no" style="border-radius: 10px;"></iframe>
+</div>
+<div class="zeno-mask">
+  <iframe 
+    src="https://zeno.fm/player/inacapinoptomontt" 
+    width="600" height="1000" 
+    frameborder="0" scrolling="no">
+  </iframe>
 </div>
 
   <script>
