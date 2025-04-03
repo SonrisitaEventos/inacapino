@@ -46,6 +46,98 @@ document.addEventListener("DOMContentLoaded", function () {
     zenoAudio.play();
   }
 }
+//=== modificado ====
+   function accederVIP() {
+  const usuario = document.getElementById("usuario").value;
+  const clave = document.getElementById("clave").value;
+
+  if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
+    document.getElementById("loginVIP").style.display = "none";
+    document.getElementById("panelVIP").style.display = "block";
+    document.getElementById("panelSelector").style.display = "block"; // <- ¡nuevo!
+    alert("¡Bienvenido administrador Inacapino! 🎉");
+  } else {
+    alert("Usuario o contraseña incorrecta 😢");
+  }
+}
+
+
+     // Frases animadas
+    const frases = [
+      "🎉La educación es el pasaporte al futuro. ✨",
+      "🎉Cada paso cuenta, sigue avanzando.🌟",
+      "🎉El conocimiento es poder.🌟",
+      "✨Nunca dejes de aprender.",
+      "✨Todo lo que puedas imaginar, lo puedes crear. 🎉",
+      "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
+      "🌟La actitud es tan importante como la habilidad.🎉"
+    ];
+    let fraseActual = 0;
+    setInterval(() => {
+      fraseActual = (fraseActual + 1) % frases.length;
+      const fraseEl = document.getElementById('frase');
+      fraseEl.style.opacity = 0;
+      setTimeout(() => {
+        fraseEl.textContent = frases[fraseActual];
+        fraseEl.style.opacity = 1;
+        fraseEl.classList.remove("fraseAnimada");
+        void fraseEl.offsetWidth;
+        fraseEl.classList.add("fraseAnimada");
+      }, 300);
+    }, 7000);
+
+
+ const images = [
+      "imagenes/postales_1.jpg",
+      "imagenes/postales_2.jpg",
+      "imagenes/postales_3.jpg",
+      "imagenes/postales_4.jpg",
+      "imagenes/postales_5.jpg",
+      "imagenes/postales_6.jpg"
+    ];
+let currentImage = 0; // 👈 Muy importante para controlar las postales
+
+function openModal(index) {
+  currentImage = index;
+  const modal = document.getElementById("imgModal");
+  const modalImg = document.getElementById("modalImg");
+
+  modalImg.style.opacity = 0;
+  modal.style.display = "flex";
+
+  // Agrega la clase para el efecto fade
+  setTimeout(() => {
+    modal.classList.add("fade-in");
+    modalImg.src = images[currentImage];
+  }, 50);
+
+  // Luego de otro pequeño delay, aplicamos opacidad
+  setTimeout(() => {
+    modalImg.style.opacity = 1;
+  }, 100);
+}
+
+
+function closeModal() {
+      document.getElementById("imgModal").style.display = "none";
+    }
+
+    function changeImage(step) {
+      currentImage = (currentImage + step + images.length) % images.length;
+      document.getElementById("modalImg").src = images[currentImage];
+    }
+ // Cerrar con ESC
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    });
+ // ... (todo tu código actual)
+
+// ✅ FUNCIÓN QUE ABRE EL LOGIN VIP
+function mostrarLoginVIP() {
+  document.getElementById("loginVIP").style.display = "block";
+}
 
 
   function mostrarTwitch() {
