@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // 🌟 Primero definimos las funciones que vamos a usar
   window.aceptarCookies = function () {
     localStorage.setItem("cookiesAceptadas", "true");
-    document.getElementById("cookie-banner").style.display = "none";
+    
   }
   window.mostrarPreferencias = function () {
     alert("Aquí podrías redirigir a una sección de configuración de cookies.");
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // 🟩 Luego usamos esas funciones con addEventListener
   // Banner cookies
   if (localStorage.getItem("cookiesAceptadas") !== "true") {
-    document.getElementById("cookie-banner").style.display = "flex";
+    
   }
   document.getElementById("aceptarCookies").addEventListener("click", window.aceptarCookies);
   document.getElementById("configurarCookies").addEventListener("click", window.mostrarPreferencias);
