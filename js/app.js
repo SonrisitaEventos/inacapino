@@ -1,4 +1,3 @@
-
 // script_limpio_radio.js
 window.accederVIP = function () {
   const usuario = document.getElementById("usuario").value.trim();
@@ -92,26 +91,12 @@ document.addEventListener("DOMContentLoaded", function () {
   actualizarClima();
   setInterval(actualizarClima, 10 * 60 * 1000);
   setInterval(cambiarMensaje, 15000);
-// 🌟 Primero definimos las funciones que vamos a usar
-  window.aceptarCookies = function () {
-    localStorage.setItem("cookiesAceptadas", "true");
-    
-  }
-  window.mostrarPreferencias = function () {
-    alert("Aquí podrías redirigir a una sección de configuración de cookies.");
-  }
 
   // Restaurar modo guardado
   const modoGuardado = localStorage.getItem("modoPreferido");
   document.body.classList.add(modoGuardado === "noche" ? "modo-noche" : "modo-dia");
 // 🟩 Luego usamos esas funciones con addEventListener
-  // Banner cookies
-  if (localStorage.getItem("cookiesAceptadas") !== "true") {
-    
-  }
-  document.getElementById("aceptarCookies").addEventListener("click", window.aceptarCookies);
-  document.getElementById("configurarCookies").addEventListener("click", window.mostrarPreferencias);
-
+  
   // Firebase
   const firebaseConfig = { /* tus credenciales */ };
   firebase.initializeApp(firebaseConfig);
@@ -178,14 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-
-// Cerrar login al hacer clic fuera del modal
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    document.getElementById("fondoLogin").classList.remove("mostrar");
-  }
-});
-
 
   // Globalizar funciones
   window.scrollToTop = scrollToTop;
