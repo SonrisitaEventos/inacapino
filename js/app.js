@@ -94,7 +94,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Restaurar modo guardado
   const modoGuardado = localStorage.getItem("modoPreferido");
-  document.body.classList.add(modoGuardado === "noche" ? "modo-noche" : "modo-dia");
+ if (modoGuardado === "noche") {
+  document.body.classList.add("modo-noche");
+} else if (modoGuardado === "dia") {
+  document.body.classList.add("modo-dia");
+}
+
 // 🟩 Luego usamos esas funciones con addEventListener
   
   // Firebase
@@ -110,6 +115,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const fraseEl = document.getElementById('frase');
     fraseEl.style.opacity = 0;
     setTimeout(() => {
+  document.body.style.transition = "background-color 0.5s, color 0.5s";
+}, 100);
+
       fraseEl.textContent = frases[fraseActual];
       fraseEl.style.opacity = 1;
       fraseEl.classList.remove("fraseAnimada");
