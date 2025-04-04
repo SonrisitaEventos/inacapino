@@ -1,5 +1,20 @@
 
 // script_limpio_radio.js
+window.toggleModo = function () {
+  const body = document.body;
+  const modoActual = body.classList.contains("modo-noche") ? "noche" : "dia";
+  const nuevoModo = modoActual === "noche" ? "modo-dia" : "modo-noche";
+
+  body.classList.remove("modo-dia", "modo-noche");
+  body.classList.add(nuevoModo);
+
+  localStorage.setItem("modoPreferido", nuevoModo === "modo-noche" ? "noche" : "dia");
+};
+
+window.mostrarLoginVIP = function () {
+  document.getElementById("loginVIP").style.display = "block";
+};
+
 function actualizarReloj() {
   const ahora = new Date();
   const horas = ahora.getHours().toString().padStart(2, '0');
