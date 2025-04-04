@@ -385,22 +385,23 @@ function parseEmojis(texto) {
     .replace(/:star:/g, "🌟")
     .replace(/:grin:/g, "😁");
 }
-  function aceptarCookies() {
-    localStorage.setItem("cookiesAceptadas", "true");
-    document.getElementById("cookie-banner").style.display = "none";
-  }
+  // ✅ Banner de cookies
+const banner = document.getElementById("cookie-banner");
+const btnAceptar = document.getElementById("aceptarCookies");
+const btnConfigurar = document.getElementById("configurarCookies");
 
-  function mostrarPreferencias() {
-    alert("Aquí podrías redirigir a una página o sección con opciones avanzadas 🌐.");
-  }
+if (localStorage.getItem("cookiesAceptadas") !== "true") {
+  banner.style.display = "flex";
+}
 
-  window.onload = () => {
-    if (localStorage.getItem("cookiesAceptadas") !== "true") {
-      document.getElementById("cookie-banner").style.display = "flex";
-    } else {
-      document.getElementById("cookie-banner").style.display = "none";
-    }
-  };
+btnAceptar.addEventListener("click", () => {
+  localStorage.setItem("cookiesAceptadas", "true");
+  banner.style.display = "none";
+});
+
+btnConfigurar.addEventListener("click", () => {
+  alert("Aquí podrías redirigir a una sección de configuración de cookies.");
+});
 
 // ✅ Actualiza cada 10 segundos automáticamente
 setInterval(cargarMensajes, 10000);
