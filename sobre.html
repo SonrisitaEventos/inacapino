@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
- <link rel="shortcut icon" href="imagenes/logoradio.png" type="image/png">
   <!-- SEO Básico -->
 <meta name="description" content="Conoce la historia de la primera Radio Online Estudiantil de INACAP Puerto Montt. Hecha por y para estudiantes, con corazón e innovación.">
 <meta name="keywords" content="radio INACAP, radio estudiantil, radio Puerto Montt, sobre la radio, estudiantes INACAP">
@@ -24,8 +23,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sobre la Radio - El Inacapino</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="css/estilos.css">
-  
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #000000, #1a1a1a);
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      line-height: 1.6;
+    }
+    header {
+      background: #d40000;
+      padding: 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      color: white;
+    }
+    .contenido {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #121212;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+    .contenido img {
+      width: 90%;
+      max-width: 700px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,255,204,0.3);
+      margin: 20px 0;
+    }
+    .contenido h2 {
+      color: #1DB954;
+      margin-top: 30px;
+    }
+    .contenido p {
+      font-size: 18px;
+      margin: auto;
+      max-width: 800px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px auto;
+      max-width: 500px;
+    }
+    ul li {
+      background: #222;
+      padding: 12px 20px;
+      margin: 8px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,255,204,0.2);
+      text-align: left;
+    }
+    ul li::before {
+      content: "🎧 ";
+    }
+    .boton, .vip-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 30px;
+      background-color: #00ffcc;
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,255,204,0.4);
+      transition: transform 0.2s;
+      font-size: 16px;
+    }
+    .boton:hover, .vip-button:hover {
+      transform: scale(1.05);
+    }
+   @media (max-width: 600px) {
+  .contenido {
+    padding: 10px;
+  }
+
+  .contenido p, ul li {
+    font-size: 16px;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
+
+  .vip-button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+
+  </style>
+   <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FY11ZY6ZV3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FY11ZY6ZV3');
+</script>
   </head>
 <body>
   <header>
@@ -82,6 +184,21 @@ Coordinador de Actividades Temporales - INACAP Puerto Montt</p>
     <button onclick="mostrarPreferencias()">Configurar</button>
   </div>
 </div>
+<script>
+  function aceptarCookies() {
+    localStorage.setItem("cookiesAceptadas", "true");
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+
+  function mostrarPreferencias() {
+    alert("Aquí podrías redirigir a una sección de configuración de cookies.");
+  }
+
+  // Mostrar banner si no ha sido aceptado
+  if (localStorage.getItem("cookiesAceptadas") !== "true") {
+    document.getElementById("cookie-banner").style.display = "flex";
+  }
+</script>
 
 </body>
 </html>
