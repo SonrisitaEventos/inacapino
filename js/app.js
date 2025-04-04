@@ -1,53 +1,126 @@
-// script_limpio_radio.js
-window.accederVIP = function () {
+// 🎉 ¡Hola querido Cristián! Este es tu archivo JS limpio, corregido y consolidado con amor 🤗
+
+// ========== CONFIGURACIÓN INICIAL ========== //
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
+  authDomain: "inacapino-radio-spark.firebaseapp.com",
+  databaseURL: "https://inacapino-radio-spark-default-rtdb.firebaseio.com",
+  projectId: "inacapino-radio-spark",
+  storageBucket: "inacapino-radio-spark.appspot.com",
+  messagingSenderId: "64588373035",
+  appId: "1:64588373035:web:78b92ca7b5b8b7396d1e6e"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+const listaVideos = [
+  { nombre: "JAZZ & BLUES", url: "https://...dee26a91" },
+  { nombre: "Gaming Music", url: "https://...d3330f02" },
+  { nombre: "Un Gran momento para estudiar", url: "https://...ff7fccf3" },
+  { nombre: "1 Hora y a bailar", url: "https://...6a4b4e70" },
+];
+
+// ========== FUNCIONES DE ESTILO Y MODO OSCURO ========== //
+
+function toggleModo() {
+  document.body.classList.toggle("modo-noche");
+  document.body.classList.toggle("modo-dia");
+  const modoActual = document.body.classList.contains("modo-noche") ? "noche" : "dia";
+  localStorage.setItem("modoPreferido", modoActual);
+}
+
+function restaurarModo() {
+  const modoGuardado = localStorage.getItem("modoPreferido");
+  document.body.classList.add(modoGuardado === "noche" ? "modo-noche" : "modo-dia");
+}
+
+// ========== VIDEO Y TRANSMISIÓN ========== //
+
+function cambiarVideoManual() {
+  const indice = parseInt(document.getElementById("videoSelector").value);
+  const videoSeleccionado = listaVideos[indice];
+  db.ref("radio/modoTransmision").set("autodj");
+  db.ref("radio/videoActual").set(videoSeleccionado);
+
+  mostrarVideo(videoSeleccionado);
+}
+
+function mostrarVideo(videoSeleccionado) {
+  const contenedor = document.getElementById("transmision");
+  const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
+  contenedor.innerHTML = `
+    <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;">
+      <source src="${videoSeleccionado.url}" type="video/mp4">
+    </video>
+  `;
+
+  const videoEl = document.getElementById("videoPlayer");
+  videoEl.volume = parseFloat(volumenGuardado);
+  videoEl.addEventListener("volumechange", () => {
+    localStorage.setItem("volumenUsuario", videoEl.volume);
+  });
+
+  document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
+}
+
+function activarAutoDJ() {
+  const indice = Math.floor(Math.random() * listaVideos.length);
+  const video = listaVideos[indice];
+  db.ref("radio/modoTransmision").set("autodj");
+  db.ref("radio/videoActual").set(video);
+}
+
+function cambiarModo(modo) {
+  if (modo === "twitch") db.ref("radio/modoTransmision").set("twitch");
+}
+
+// ========== VIP ========== //
+
+function accederVIP() {
   const usuario = document.getElementById("usuario").value.trim();
   const clave = document.getElementById("clave").value.trim();
-  const fondo = document.getElementById("fondoLogin");
-  const panelVIP = document.getElementById("panelVIP");
-  function mostrarLoginVIP() {
-  }
-window.mostrarLoginVIP = mostrarLoginVIP;
-
-
   if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
-    fondo.classList.remove("mostrar");
-    panelVIP.style.display = "block";
-    document.getElementById("panelSelector").style.display = "flex";
-    alert("🎉 Acceso VIP concedido. ¡Bienvenido al panel de control!");
+    document.getElementById("loginVIP").style.display = "none";
+    document.getElementById("panelVIP").style.display = "block";
+    document.getElementById("panelSelector").style.display = "block";
+    alert("¡Bienvenido administrador Inacapino! 🎉");
   } else {
-    alert("🚫 Usuario o contraseña incorrectos. Intenta nuevamente.");
+    alert("Usuario o contraseña incorrecta 😢");
   }
-};
+}
 
+function mostrarLoginVIP() {
+  document.getElementById("loginVIP").style.display = "block";
+}
 
-window.toggleModo = function () {
-  const body = document.body;
-  const modoActual = body.classList.contains("modo-noche") ? "noche" : "dia";
-  const nuevoModo = modoActual === "noche" ? "modo-dia" : "modo-noche";
+// ========== FRASES MOTIVACIONALES ========== //
 
-  body.classList.remove("modo-dia", "modo-noche");
-  body.classList.add(nuevoModo);
+const frases = [
+  "🎉La educación es el pasaporte al futuro. ✨",
+  "🎉Cada paso cuenta, sigue avanzando.🌟",
+  "🎉El conocimiento es poder.🌟",
+  "✨Nunca dejes de aprender.",
+  "✨Todo lo que puedas imaginar, lo puedes crear. 🎉",
+  "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
+  "🌟La actitud es tan importante como la habilidad.🎉"
+];
+let fraseActual = 0;
+setInterval(() => {
+  fraseActual = (fraseActual + 1) % frases.length;
+  const fraseEl = document.getElementById('frase');
+  fraseEl.style.opacity = 0;
+  setTimeout(() => {
+    fraseEl.textContent = frases[fraseActual];
+    fraseEl.style.opacity = 1;
+    fraseEl.classList.remove("fraseAnimada");
+    void fraseEl.offsetWidth;
+    fraseEl.classList.add("fraseAnimada");
+  }, 300);
+}, 7000);
 
-  localStorage.setItem("modoPreferido", nuevoModo === "modo-noche" ? "noche" : "dia");
-};
-
-window.mostrarLoginVIP = function () {
-  document.getElementById("fondoLogin").classList.add("mostrar");
-};
-
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    document.getElementById("fondoLogin").classList.remove("mostrar");
-  }
-});
-
-window.addEventListener("click", function (e) {
-  const modal = document.getElementById("loginVIP");
-  const fondo = document.getElementById("fondoLogin");
-  if (fondo.classList.contains("mostrar") && !modal.contains(e.target)) {
-    fondo.classList.remove("mostrar");
-  }
-});
+// ========== CLIMA Y HORA ========== //
 
 function actualizarReloj() {
   const ahora = new Date();
@@ -74,7 +147,7 @@ function obtenerEmojiClima(icon) {
 function actualizarClima() {
   const ciudad = "Puerto Montt";
   const pais = "CL";
-  const API_KEY = "ac05bbbe9fcb2df2fb44145383ed0342"; // Tu API KEY
+  const API_KEY = "ac05bbbe9fcb2df2fb44145383ed0342";
 
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${API_KEY}&units=metric&lang=es`)
     .then(res => res.json())
@@ -84,111 +157,26 @@ function actualizarClima() {
       const emoji = obtenerEmojiClima(icon);
       document.getElementById("clima").innerText = `${emoji} ${temperatura}°C`;
     })
-    .catch(err => {
-      console.error("Error al obtener clima:", err);
+    .catch(() => {
       document.getElementById("clima").innerText = "🌡️ --°C";
     });
 }
-document.addEventListener("DOMContentLoaded", function () {
+
+// ========== EVENTOS PRINCIPALES ========== //
+
+document.addEventListener("DOMContentLoaded", () => {
+  restaurarModo();
   actualizarReloj();
   setInterval(actualizarReloj, 60000);
   actualizarClima();
   setInterval(actualizarClima, 10 * 60 * 1000);
-  setInterval(cambiarMensaje, 15000);
-
-  // Restaurar modo guardado
-  const modoGuardado = localStorage.getItem("modoPreferido");
- if (modoGuardado === "noche") {
-  document.body.classList.add("modo-noche");
-} else if (modoGuardado === "dia") {
-  document.body.classList.add("modo-dia");
-}
-
-// 🟩 Luego usamos esas funciones con addEventListener
-  
-  // Firebase
-  const firebaseConfig = { /* tus credenciales */ };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
-
-  // Frases animadas
-  const frases = ["🎉La educación es el pasaporte al futuro. ✨", /* ... */ ];
-  let fraseActual = 0;
-  setInterval(() => {
-    fraseActual = (fraseActual + 1) % frases.length;
-    const fraseEl = document.getElementById('frase');
-    fraseEl.style.opacity = 0;
-    setTimeout(() => {
-  document.body.style.transition = "background-color 0.5s, color 0.5s";
-}, 100);
-
-      fraseEl.textContent = frases[fraseActual];
-      fraseEl.style.opacity = 1;
-      fraseEl.classList.remove("fraseAnimada");
-      void fraseEl.offsetWidth;
-      fraseEl.classList.add("fraseAnimada");
-    }, 300);
-  }, 7000);
-
-  // Scroll botón arriba
-  window.onscroll = function () {
-    const btn = document.getElementById("btnTop");
-    btn.style.display = (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) ? "block" : "none";
-  };
-
-  // Audio Autoplay
-  window.addEventListener("load", () => {
-    const audio = document.getElementById("audioElement");
-    const boton = document.getElementById("playMobile");
-    audio.muted = false;
-    audio.volume = 0.8;
-    audio.play().catch(() => boton.style.display = "inline-block");
-  });
-
-  // Cargar mensajes chat
-  cargarMensajes();
-  setInterval(cargarMensajes, 10000);
-
-  // Firebase listeners
-  db.ref("radio/modoTransmision").on("value", (snapshot) => {
-    const modo = snapshot.val();
-    const transmision = document.getElementById("transmision");
-    if (modo === "twitch") {
-      transmision.innerHTML = `<div><iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" allowfullscreen></iframe></div>`;
-      document.getElementById("nombreVideo").innerText = `🎥 Transmisión en vivo`;
-    }
-  });
-
-  db.ref("radio/videoActual").on("value", (snap) => {
-    db.ref("radio/modoTransmision").once("value").then((modoSnap) => {
-      if (modoSnap.val() === "autodj") {
-        const video = snap.val();
-        const transmision = document.getElementById("transmision");
-        const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
-        transmision.innerHTML = `<video id="videoPlayer" autoplay controls><source src="${video.url}" type="video/mp4"></video>`;
-        const videoEl = document.getElementById("videoPlayer");
-        videoEl.volume = parseFloat(volumenGuardado);
-        videoEl.addEventListener("volumechange", () => {
-          localStorage.setItem("volumenUsuario", videoEl.volume);
-        });
-        document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${video.nombre}`;
-      }
-    });
-  });
-
-  // Globalizar funciones
- function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-  window.openModal = openModal;
-  window.closeModal = closeModal;
-  window.changeImage = changeImage;
-  window.mostrarLoginVIP = mostrarLoginVIP;
-  window.toggleModo = toggleModo;
-  window.cambiarVideoManual = cambiarVideoManual;
-  window.accederVIP = accederVIP;
-  window.activarAutoDJ = activarAutoDJ;
-  window.cambiarModo = cambiarModo;
-  window.enviarMensajeChat = enviarMensajeChat;
-  
 });
+
+// ========== EXPORTAR FUNCIONES GLOBALES ========== //
+
+window.toggleModo = toggleModo;
+window.accederVIP = accederVIP;
+window.mostrarLoginVIP = mostrarLoginVIP;
+window.cambiarVideoManual = cambiarVideoManual;
+window.activarAutoDJ = activarAutoDJ;
+window.cambiarModo = cambiarModo;
