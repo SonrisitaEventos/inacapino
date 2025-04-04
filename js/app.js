@@ -1,6 +1,45 @@
 
 // script_limpio_radio.js
+function actualizarReloj() {
+  const ahora = new Date();
+  const horas = ahora.getHours().toString().padStart(2, '0');
+  const minutos = ahora.getMinutes().toString().padStart(2, '0');
+  document.getElementById("reloj").textContent = `${horas}:${minutos}`;
+}
 
+function obtenerEmojiClima(icon) {
+  const mapa = {
+    "01d": "☀️", "01n": "🌕",
+    "02d": "🌤️", "02n": "☁️",
+    "03d": "⛅",  "03n": "⛅",
+    "04d": "☁️", "04n": "☁️",
+    "09d": "🌧️", "09n": "🌧️",
+    "10d": "🌦️", "10n": "🌧️",
+    "11d": "⛈️", "11n": "⛈️",
+    "13d": "❄️", "13n": "❄️",
+    "50d": "🌫️", "50n": "🌫️"
+  };
+  return mapa[icon] || "🌡️";
+}
+
+function actualizarClima() {
+  const ciudad = "Puerto Montt";
+  const pais = "CL";
+  const API_KEY = "ac05bbbe9fcb2df2fb44145383ed0342"; // Tu API KEY
+
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${API_KEY}&units=metric&lang=es`)
+    .then(res => res.json())
+    .then(data => {
+      const temperatura = Math.round(data.main.temp);
+      const icon = data.weather[0].icon;
+      const emoji = obtenerEmojiClima(icon);
+      document.getElementById("clima").innerText = `${emoji} ${temperatura}°C`;
+    })
+    .catch(err => {
+      console.error("Error al obtener clima:", err);
+      document.getElementById("clima").innerText = "🌡️ --°C";
+    });
+}
 document.addEventListener("DOMContentLoaded", function () {
   actualizarReloj();
   setInterval(actualizarReloj, 60000);
