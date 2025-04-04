@@ -1,5 +1,21 @@
 
 // script_limpio_radio.js
+window.accederVIP = function () {
+  const usuario = document.getElementById("usuario").value.trim();
+  const clave = document.getElementById("clave").value.trim();
+  const loginModal = document.getElementById("loginVIP");
+  const panelVIP = document.getElementById("panelVIP");
+
+  if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
+    loginModal.style.display = "none";
+    panelVIP.style.display = "block";
+    document.getElementById("panelSelector").style.display = "flex";
+    alert("🎉 Acceso VIP concedido. ¡Bienvenido al panel de control!");
+  } else {
+    alert("🚫 Usuario o contraseña incorrectos. Intenta nuevamente.");
+  }
+};
+
 window.toggleModo = function () {
   const body = document.body;
   const modoActual = body.classList.contains("modo-noche") ? "noche" : "dia";
