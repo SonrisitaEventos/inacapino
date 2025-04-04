@@ -7,13 +7,6 @@
       color: #fff;
       text-align: center;
     }
-    header {
-      background-color: #111;
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 20px;
-      flex-wrap: wrap;
-    }
     nav {
       display: flex;
       gap: 15px;
@@ -691,68 +684,6 @@ header {
       gap: 15px;
       flex-wrap: wrap;
     }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-    }
-      
-    .logo {
-      max-width: 150px;
-      margin: 20px auto;
-    }
-    h1 { font-size: 24px; margin-bottom: 5px; }
-    .frase-motivacional { font-style: italic; font-size: 18px; margin-bottom: 20px; }
-    iframe.twitch {
-      width: 100%;
-      max-width: 720px;
-      height: 405px;
-      border: none;
-      display: block;
-      margin: 0 auto;
-    }
-@keyframes fraseAnimada {
-      0% { opacity: 0; transform: translateY(-10px); }
-      50% { opacity: 1; transform: translateY(0px); }
-      100% { opacity: 1; }
-    }
- @keyframes brillo {
-      0% { opacity: 1; }
-      50% { opacity: 0.6; }
-      100% { opacity: 1; }
-    }
-
-.fraseAnimada {
-      animation: fraseAnimada 1s ease-in-out;
-    }
-.mensaje-motivacional {
-  flex: 1;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.mensaje-motivacional span {
-  display: inline-block;
-  padding-left: 100%;
-  animation: scrollMensaje 15s linear infinite;
-  font-weight: bold;
-  color: #00ffd5;
-}
-
-@keyframes scrollMensaje {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-.mensaje-resalte {
-  animation: destello 1s ease-in-out 2;
-}
-
-@keyframes destello {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
 
 
     .titulo {
@@ -845,18 +776,6 @@ iframe::-webkit-scrollbar {
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0,255,204,0.4);
   max-width: 90%;
-}
-.top-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.live-indicator {
-  background-color: red;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-weight: bold;
-  color: white;
 }
 body {
       font-family: 'Segoe UI', sans-serif;
@@ -976,4 +895,3 @@ body {
 
 
   </style>
-
