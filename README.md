@@ -1,3 +1,12 @@
+<!--
+SEO: Radio El Inacapino - INACAP Puerto Montt
+Descripción: La primera radio online estudiantil creada desde la sede INACAP Puerto Montt para toda Latinoamérica.
+URL: https://sonrisitaeventos.github.io/inacapino
+Imagen destacada: https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png
+Autor: Cristián Riffo Araya
+Palabras clave: radio estudiantil, INACAP, Puerto Montt, radio online, música estudiantil, proyectos INACAP
+-->
+
 <p align="center">
   <img src="imagenes/portadainacapino.png" alt="Radio El Inacapino - INACAP Puerto Montt" width="650">
 </p>
