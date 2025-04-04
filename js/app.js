@@ -385,6 +385,24 @@ function parseEmojis(texto) {
     .replace(/:star:/g, "🌟")
     .replace(/:grin:/g, "😁");
 }
+<script>
+  function aceptarCookies() {
+    localStorage.setItem("cookiesAceptadas", "true");
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+
+  function mostrarPreferencias() {
+    alert("Aquí podrías redirigir a una página o sección con opciones avanzadas 🌐.");
+  }
+
+  window.onload = () => {
+    if (localStorage.getItem("cookiesAceptadas") !== "true") {
+      document.getElementById("cookie-banner").style.display = "flex";
+    } else {
+      document.getElementById("cookie-banner").style.display = "none";
+    }
+  };
+</script>
 
 // ✅ Actualiza cada 10 segundos automáticamente
 setInterval(cargarMensajes, 10000);
