@@ -406,6 +406,156 @@ btnConfigurar.addEventListener("click", () => {
 // ✅ Actualiza cada 10 segundos automáticamente
 setInterval(cargarMensajes, 10000);
 cargarMensajes(); // Al cargar la página
+document.addEventListener("DOMContentLoaded", function () {
+   actualizarReloj();
+setInterval(actualizarReloj, 60000);
+
+    // ✅ Esto restaura el modo guardado al cargar la página
+  const modoGuardado = localStorage.getItem("modoPreferido");
+  if (modoGuardado === "noche") {
+    document.body.classList.add("modo-noche");
+  } else {
+    document.body.classList.add("modo-dia");
+  }
+ // Frases animadas
+    const frases = [
+      "🎉La educación es el pasaporte al futuro. ✨",
+      "🎉Cada paso cuenta, sigue avanzando.🌟",
+      "🎉El conocimiento es poder.🌟",
+      "✨Nunca dejes de aprender.",
+      "✨Todo lo que puedas imaginar, lo puedes crear. 🎉",
+      "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
+      "🌟La actitud es tan importante como la habilidad.🎉"
+    ];
+    let fraseActual = 0;
+    setInterval(() => {
+      fraseActual = (fraseActual + 1) % frases.length;
+      const fraseEl = document.getElementById('frase');
+      fraseEl.style.opacity = 0;
+      setTimeout(() => {
+        fraseEl.textContent = frases[fraseActual];
+        fraseEl.style.opacity = 1;
+        fraseEl.classList.remove("fraseAnimada");
+        void fraseEl.offsetWidth;
+        fraseEl.classList.add("fraseAnimada");
+      }, 300);
+    }, 7000);
+// Mostrar/ocultar botón al hacer scroll
+// Función para volver arriba
+// Botón arriba
+    window.onscroll = function () {
+      const btn = document.getElementById("btnTop");
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    };
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+function toggleModo() {
+  document.body.classList.toggle("modo-noche");
+  document.body.classList.toggle("modo-dia");
+
+  // Guardamos el estado en localStorage (opcional)
+  const modoActual = document.body.classList.contains("modo-noche") ? "noche" : "dia";
+  localStorage.setItem("modoPreferido", modoActual);
+}
+
+
+function actualizarReloj() {
+  const ahora = new Date();
+  const horas = ahora.getHours().toString().padStart(2, '0');
+  const minutos = ahora.getMinutes().toString().padStart(2, '0');
+  document.getElementById("reloj").textContent = `${horas}:${minutos}`;
+}
+
+//Actualización del Clima
+   
+  const API_KEY = "ac05bbbe9fcb2df2fb44145383ed0342"; // Tu clave default
+  const ciudad = "Puerto Montt";
+  const pais = "CL";
+
+  function obtenerEmojiClima(icon) {
+    const mapa = {
+      "01d": "☀️", "01n": "🌕",
+      "02d": "🌤️", "02n": "☁️",
+      "03d": "⛅",  "03n": "⛅",
+      "04d": "☁️", "04n": "☁️",
+      "09d": "🌧️", "09n": "🌧️",
+      "10d": "🌦️", "10n": "🌧️",
+      "11d": "⛈️", "11n": "⛈️",
+      "13d": "❄️", "13n": "❄️",
+      "50d": "🌫️", "50n": "🌫️"
+    };
+    return mapa[icon] || "🌡️";
+  }
+
+  function actualizarClima() {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${API_KEY}&units=metric&lang=es`)
+      .then(res => res.json())
+      .then(data => {
+        const temperatura = Math.round(data.main.temp);
+        const icon = data.weather[0].icon;
+        const emoji = obtenerEmojiClima(icon);
+        document.getElementById("clima").innerText = `${emoji} ${temperatura}°C`;
+      })
+      .catch(err => {
+        console.error("Error al obtener clima:", err);
+        document.getElementById("clima").innerText = "🌡️ --°C";
+      });
+  }
+
+  actualizarClima();
+  setInterval(actualizarClima, 10 * 60 * 1000); // Se actualiza cada 10 minutos
+
+const mensajes = [
+    "🌞 ¡Hoy es un buen día para aprender algo nuevo!",
+    "🎯 Sigue adelante, la meta está cada vez más cerca.",
+    "🎉 Cada esfuerzo cuenta y tú lo estás haciendo genial.",
+    "💡 Recuerda: una actitud positiva cambia todo.",
+    "📚 Estudiar con pasión cambia tu presente y tu futuro.",
+    "💪 No estás solo/a, ¡estamos contigo en cada paso!",
+    "✨ Cree en ti: eres capaz de lograr cosas increíbles."
+  ];
+
+  let mensajeActual = 0;
+  const contenedor = document.getElementById("mensajeTexto");
+
+  function cambiarMensaje() {
+    mensajeActual = (mensajeActual + 1) % mensajes.length;
+    contenedor.textContent = mensajes[mensajeActual];
+    contenedor.classList.remove("mensaje-resalte");
+    void contenedor.offsetWidth;
+    contenedor.classList.add("mensaje-resalte");
+  }
+
+ // Cambia el mensaje motivacional cada 15 segundos
+setInterval(cambiarMensaje, 15000);
+
+  window.addEventListener("load", () => {
+    const audio = document.getElementById("audioElement");
+    const boton = document.getElementById("playMobile");
+
+    audio.muted = false;
+    audio.volume = 0.8;
+
+    audio.play().then(() => {
+      console.log("✅ Reproducción automática activada");
+    }).catch((e) => {
+      console.warn("⚠️ Autoplay bloqueado, mostrando botón:", e);
+      boton.style.display = "inline-block"; // Muestra el botón en móviles
+    });
+  });
+
+  function reproducirAudio() {
+    const audio = document.getElementById("audioElement");
+    audio.muted = false;
+    audio.play().then(() => {
+      document.getElementById("playMobile").style.display = "none";
+    });
+  }
 
 // ✅ Haz global la función para que el botón pueda usarla
 window.enviarMensajeChat = enviarMensajeChat;
