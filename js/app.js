@@ -402,7 +402,7 @@ btnAceptar.addEventListener("click", () => {
 btnConfigurar.addEventListener("click", () => {
   alert("Aquí podrías redirigir a una sección de configuración de cookies.");
 });
-
+ }
 // ✅ Actualiza cada 10 segundos automáticamente
 setInterval(cargarMensajes, 10000);
 cargarMensajes(); // Al cargar la página
