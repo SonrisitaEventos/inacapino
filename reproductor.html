@@ -1,298 +1,81 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <!-- SEO Básico -->
-<meta name="description" content="Escucha la señal online de Radio El Inacapino. ¡Música, contenidos educativos y buena vibra estudiantil!">
-<meta name="keywords" content="radio online INACAP, señal en vivo, Zeno radio, escuchar INACAP, música INACAP">
-<meta name="author" content="Cristián Riffo Araya">
-
+<!-- SEO Básico -->
+<meta content="Escucha la señal online de Radio El Inacapino. ¡Música, contenidos educativos y buena vibra estudiantil!" name="description"/>
+<meta content="radio online INACAP, señal en vivo, Zeno radio, escuchar INACAP, música INACAP" name="keywords"/>
+<meta content="Cristián Riffo Araya" name="author"/>
 <!-- Open Graph -->
-<meta property="og:title" content="🎧 Escucha Radio El Inacapino - Señal Online">
-<meta property="og:description" content="Disfruta de nuestra señal continua con AutoDJ y contenidos estudiantiles.">
-<meta property="og:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png">
-<meta property="og:url" content="https://sonrisitaeventos.github.io/inacapino/reproductor.html">
-<meta property="og:type" content="music.radio_station">
-
+<meta content="🎧 Escucha Radio El Inacapino - Señal Online" property="og:title"/>
+<meta content="Disfruta de nuestra señal continua con AutoDJ y contenidos estudiantiles." property="og:description"/>
+<meta content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png" property="og:image"/>
+<meta content="https://sonrisitaeventos.github.io/inacapino/reproductor.html" property="og:url"/>
+<meta content="music.radio_station" property="og:type"/>
 <!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="🎧 Radio El Inacapino - Señal Online">
-<meta name="twitter:description" content="Escucha música, cápsulas y contenidos creados por estudiantes.">
-<meta name="twitter:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png">
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="🎧 Radio El Inacapino - Señal Online" name="twitter:title"/>
+<meta content="Escucha música, cápsulas y contenidos creados por estudiantes." name="twitter:description"/>
+<meta content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png" name="twitter:image"/>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="Radio online interactiva de INACAP Puerto Montt. Noticias, concursos, videos y participación estudiantil." name="description"/>
+<title>El Inacapino - Reproductor</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <meta name="description" content="Radio online interactiva de INACAP Puerto Montt. Noticias, concursos, videos y participación estudiantil.">
-
-  <title>El Inacapino - Reproductor</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: black;
-      color: white;
-      overflow-x: hidden;
-      text-align: center;
-    }
-header {
-      background-color: #111;
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 20px;
-      flex-wrap: wrap;
-    }
- nav {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-    }
-      
-    .logo {
-      max-width: 150px;
-      margin: 20px auto;
-    }
-    h1 { font-size: 24px; margin-bottom: 5px; }
-    .frase-motivacional { font-style: italic; font-size: 18px; margin-bottom: 20px; }
-    iframe.twitch {
-      width: 100%;
-      max-width: 720px;
-      height: 405px;
-      border: none;
-      display: block;
-      margin: 0 auto;
-    }
-@keyframes fraseAnimada {
-      0% { opacity: 0; transform: translateY(-10px); }
-      50% { opacity: 1; transform: translateY(0px); }
-      100% { opacity: 1; }
-    }
- @keyframes brillo {
-      0% { opacity: 1; }
-      50% { opacity: 0.6; }
-      100% { opacity: 1; }
-    }
-
-.fraseAnimada {
-      animation: fraseAnimada 1s ease-in-out;
-    }
-.mensaje-motivacional {
-  flex: 1;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.mensaje-motivacional span {
-  display: inline-block;
-  padding-left: 100%;
-  animation: scrollMensaje 15s linear infinite;
-  font-weight: bold;
-  color: #00ffd5;
-}
-
-@keyframes scrollMensaje {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-.mensaje-resalte {
-  animation: destello 1s ease-in-out 2;
-}
-
-@keyframes destello {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-
-    .titulo {
-      margin-top: 40px;
-      font-size: 28px;
-      font-weight: bold;
-      text-shadow: 0 0 10px #000;
-    }
-
-    .video-container {
-      margin: 40px auto 10px;
-      max-width: 720px;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
-      position: relative;
-    }
-
-    .video-container video {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: contain;
-      opacity: 1;
-    }
-    .zeno-box {
-      margin: 0 auto;
-      margin-top: 20px;
-      width: 95%;
-      max-width: 640px;
-      height: 160px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,255,204,0.3);
-    }
-    .zeno-box h3 {
-      margin: 10px 0 0;
-      color: #00ffcc;
-    }
-
-    .abrir-btn {
-      margin-top: 15px;
-      background: #1DB954;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #1DB954aa;
-    }
-iframe::-webkit-scrollbar {
-  display: none;
-}
-
-    @media (max-width: 600px) {
-     .zeno-box {
-  margin: 0 auto;
-  margin-top: 20px;
-  width: 95%;
-  max-width: 640px;
-  height: 200px;  /* ✅ Cambia aquí también */
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,255,204,0.3);
-}
-
-
-    .etiqueta-en-vivo {
-  position: absolute;
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #00ffcc;
-  color: black;
-  padding: 5px 15px;
-  border-radius: 15px;
-  font-weight: bold;
-  box-shadow: 0 0 10px rgba(0,255,204,0.4);
-}
-  #playMobile {
-  display: none;
-  margin: 20px auto;
-  background: #00ffcc;
-  color: black;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,255,204,0.4);
-  max-width: 90%;
-}
-.top-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.live-indicator {
-  background-color: red;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-weight: bold;
-  color: white;
-}
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FY11ZY6ZV3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FY11ZY6ZV3');
-</script>
-  </style>
-</head>
-<body>
+</meta></meta><link href="css/estilos.css" rel="stylesheet"/></head>
+<body class="reproductor-body">
 <header>
- <nav>
-    <a href="https://sonrisitaeventos.github.io/inacapino/#">Inicio</a>
-    <a href="https://sonrisitaeventos.github.io/inacapino/#rebobinando">Rebobinando</a>
-    <a href="https://sonrisitaeventos.github.io/inacapino/#capsulas">Cápsulas</a>
-    <a href="https://sonrisitaeventos.github.io/inacapino/#encuesta">Encuesta</a>
-    <a href="https://sonrisitaeventos.github.io/inacapino/#concursos">Concursos</a>
-    <a href="https://sonrisitaeventos.github.io/inacapino/#postales">Postales</a>
-    <a href="https://sonrisitaeventos.github.io/inacapino/#noticias">Noticias</a>
-    <a href="https://sonrisitaeventos.github.io/inacapino/#muro-deseos">Muro de los Buenos Deseos</a>
-  </nav>
-    <div class="noticiero-flex">
-    <div class="mensaje-motivacional">
-      <span id="mensajeTexto">🌟 Sigue adelante, lo mejor está por venir.</span>
-    </div>
-    <div class="top-info">
-      <span id="reloj">00:00</span>
-      <span id="clima">☀️ --°C</span>
-      <span class="live-indicator">EN VIVO</span>
-    </div>
-  </div>
-
-   </header>
+<nav>
+<a href="https://sonrisitaeventos.github.io/inacapino/#">Inicio</a>
+<a href="https://sonrisitaeventos.github.io/inacapino/#rebobinando">Rebobinando</a>
+<a href="https://sonrisitaeventos.github.io/inacapino/#capsulas">Cápsulas</a>
+<a href="https://sonrisitaeventos.github.io/inacapino/#encuesta">Encuesta</a>
+<a href="https://sonrisitaeventos.github.io/inacapino/#concursos">Concursos</a>
+<a href="https://sonrisitaeventos.github.io/inacapino/#postales">Postales</a>
+<a href="https://sonrisitaeventos.github.io/inacapino/#noticias">Noticias</a>
+<a href="https://sonrisitaeventos.github.io/inacapino/#muro-deseos">Muro de los Buenos Deseos</a>
+</nav>
+<div class="noticiero-flex">
+<div class="mensaje-motivacional">
+<span id="mensajeTexto">🌟 Sigue adelante, lo mejor está por venir.</span>
+</div>
+<div class="top-info">
+<span id="reloj">00:00</span>
+<span id="clima">☀️ --°C</span>
+<span class="live-indicator">EN VIVO</span>
+</div>
+</div>
+</header>
 <!-- ✅ BOTÓN VIP CENTRADO CON ESTILO -->
-
-  <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
-  <h1>El Inacapino Puerto Montt</h1>
-  <p class="frase-motivacional" id="frase">🌟La educación es el pasaporte al futuro.🎉</p>
-
-  <div class="titulo">🎙️ El Inacapino</div>
-  <p>Transmitiendo desde Puerto Montt para toda Latinoamérica 🌍🎧</p>
-
-  <div class="video-container">
-    <video autoplay muted loop>
-      <source src="reproductor.mp4" type="video/mp4">
+<img alt="Logo Radio INACAP" class="logo" src="radio inacap.png"/>
+<h1>El Inacapino Puerto Montt</h1>
+<p class="frase-motivacional" id="frase">🌟La educación es el pasaporte al futuro.🎉</p>
+<div class="titulo">🎙️ El Inacapino</div>
+<p>Transmitiendo desde Puerto Montt para toda Latinoamérica 🌍🎧</p>
+<div class="video-container">
+<video autoplay="" loop="" muted="">
+<source src="reproductor.mp4" type="video/mp4"/>
       Tu navegador no soporta video HTML5.
     </video>
-  </div>
+</div>
 <button class="abrir-btn" onclick="window.open('https://zeno.fm/player/inacapinoptomontt','zeno','width=400,height=150');">
       🎧 Abrir Reproductor en Ventana
     </button>
-      <!-- Reproductor de Zeno debajo del video -->
-  <section id="zeno-radio" style="margin: 40px auto; text-align: center;">
-   <iframe 
-    src="https://zeno.fm/player/inacapinoptomontt" 
-    width="768" 
-    height="300" 
-    frameborder="0" 
-    style="
+<!-- Reproductor de Zeno debajo del video -->
+<section id="zeno-radio" style="margin: 40px auto; text-align: center;">
+<iframe frameborder="0" height="300" src="https://zeno.fm/player/inacapinoptomontt" style="
       border-radius: 12px; 
       box-shadow: 0 0 10px rgba(0,0,0,0.2); 
       max-width: 100%;
-    ">
-  </iframe>
-
-  </section>
-
- 
-
-
- <!-- Audio oculto para autoplay -->
-  <audio id="audioElement" autoplay>
-    <source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg">
-  </audio>
-  <!-- Botón para móviles -->
+    " width="768">
+</iframe>
+</section>
+<!-- Audio oculto para autoplay -->
+<audio autoplay="" id="audioElement">
+<source src="https://stream.zeno.fm/zyaw3bqy3rhvv" type="audio/mpeg"/>
+</audio>
+<!-- Botón para móviles -->
 <button id="playMobile" onclick="reproducirAudio()" style="
   display: none;
   margin-top: 10px;
@@ -307,10 +90,9 @@ iframe::-webkit-scrollbar {
   📲 Presiona para comenzar a escuchar
 </button>
 <div style="text-align: center;">
-  <button id="playMobile" onclick="reproducirAudio()">📲 Presiona para comenzar a escuchar</button>
+<button id="playMobile" onclick="reproducirAudio()">📲 Presiona para comenzar a escuchar</button>
 </div>
-
-  <script>
+<script>
     document.addEventListener("DOMContentLoaded", function () {
    actualizarReloj();
 setInterval(actualizarReloj, 60000);
@@ -476,15 +258,13 @@ window.activarAutoDJ = activarAutoDJ;
 window.cambiarModo = cambiarModo;
 }); // 👈 ESTE es el cierre del DOMContentLoaded
 </script>
-
 <!-- 🍪 Banner de Cookies -->
-<div id="cookie-banner" class="cookie-banner">
-  <p>Utilizamos cookies para mejorar tu experiencia. Puedes aceptar o configurar tus preferencias.</p>
-  <div class="cookie-buttons">
-    <button onclick="aceptarCookies()">Aceptar todo</button>
-    <button onclick="mostrarPreferencias()">Configurar</button>
-  </div>
+<div class="cookie-banner" id="cookie-banner">
+<p>Utilizamos cookies para mejorar tu experiencia. Puedes aceptar o configurar tus preferencias.</p>
+<div class="cookie-buttons">
+<button onclick="aceptarCookies()">Aceptar todo</button>
+<button onclick="mostrarPreferencias()">Configurar</button>
 </div>
-
+</div>
 </body>
 </html>
