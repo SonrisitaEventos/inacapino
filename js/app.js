@@ -422,6 +422,14 @@ window.cambiarVideoManual = cambiarVideoManual;
 window.accederVIP = accederVIP;
 window.activarAutoDJ = activarAutoDJ;
 window.cambiarModo = cambiarModo;
+window.aceptarCookies = function () {
+  localStorage.setItem("cookiesAceptadas", "true");
+  document.getElementById("cookie-banner").style.display = "none";
+}
+window.mostrarPreferencias = function () {
+  alert("Aquí podrías redirigir a una sección de configuración de cookies.");
+}
+
 }); // 👈 ESTE es el cierre del DOMContentLoaded
 
 
