@@ -99,7 +99,25 @@
     .boton:hover, .vip-button:hover {
       transform: scale(1.05);
     }
-   
+   @media (max-width: 600px) {
+  .contenido {
+    padding: 10px;
+  }
+
+  .contenido p, ul li {
+    font-size: 16px;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
+
+  .vip-button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+
   </style>
    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FY11ZY6ZV3"></script>
@@ -166,6 +184,21 @@ Coordinador de Actividades Temporales - INACAP Puerto Montt</p>
     <button onclick="mostrarPreferencias()">Configurar</button>
   </div>
 </div>
+<script>
+  function aceptarCookies() {
+    localStorage.setItem("cookiesAceptadas", "true");
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+
+  function mostrarPreferencias() {
+    alert("Aquí podrías redirigir a una sección de configuración de cookies.");
+  }
+
+  // Mostrar banner si no ha sido aceptado
+  if (localStorage.getItem("cookiesAceptadas") !== "true") {
+    document.getElementById("cookie-banner").style.display = "flex";
+  }
+</script>
 
 </body>
 </html>
