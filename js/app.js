@@ -4,6 +4,11 @@ window.accederVIP = function () {
   const clave = document.getElementById("clave").value.trim();
   const fondo = document.getElementById("fondoLogin");
   const panelVIP = document.getElementById("panelVIP");
+  function mostrarLoginVIP() {
+  document.getElementById("fondoLogin").classList.add("mostrar");
+}
+window.mostrarLoginVIP = mostrarLoginVIP;
+
 
   if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
     fondo.classList.remove("mostrar");
@@ -173,7 +178,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Globalizar funciones
-  window.scrollToTop = scrollToTop;
+ function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
   window.openModal = openModal;
   window.closeModal = closeModal;
   window.changeImage = changeImage;
