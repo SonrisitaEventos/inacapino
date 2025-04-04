@@ -385,7 +385,6 @@ function parseEmojis(texto) {
     .replace(/:star:/g, "🌟")
     .replace(/:grin:/g, "😁");
 }
-<script>
   function aceptarCookies() {
     localStorage.setItem("cookiesAceptadas", "true");
     document.getElementById("cookie-banner").style.display = "none";
@@ -402,7 +401,6 @@ function parseEmojis(texto) {
       document.getElementById("cookie-banner").style.display = "none";
     }
   };
-</script>
 
 // ✅ Actualiza cada 10 segundos automáticamente
 setInterval(cargarMensajes, 10000);
