@@ -418,13 +418,19 @@
       transform: scale(1.05);
     }
  .select-video {
-      margin-top: 10px;
-    }
-    .select-video select {
-      padding: 6px 12px;
-      border-radius: 6px;
-      border: none;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Para que botón quede debajo o al lado */
+  margin-top: 20px;
+}
+.select-video select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
 
   body.modo-noche {
   background-color: #111;
@@ -986,6 +992,16 @@ body {
 #fondoLogin.mostrar {
   display: flex;
 }
+#panelSelector {
+  display: flex; /* <--- Agrega esta línea si no está */
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  text-align: center;
+}
+
 
   </style>
 
