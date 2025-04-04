@@ -71,7 +71,6 @@ Si eres parte de otra sede INACAP y quieres implementarlo en tu región, ¡cont�
 **Cristián Riffo Araya**  
 Coordinador de Actividades Temporales - INACAP Puerto Montt  
 Ingeniero en Electricidad, Educador y Emprendedor Tecnológico  
-
 ---
 
 > "La educación es el pasaporte al futuro, y la voz del estudiante merece ser escuchada."
