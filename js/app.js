@@ -5,8 +5,7 @@ window.accederVIP = function () {
   const fondo = document.getElementById("fondoLogin");
   const panelVIP = document.getElementById("panelVIP");
   function mostrarLoginVIP() {
-  document.getElementById("fondoLogin").classList.add("mostrar");
-}
+  }
 window.mostrarLoginVIP = mostrarLoginVIP;
 
 
