@@ -7,11 +7,19 @@ document.addEventListener("DOMContentLoaded", function () {
   actualizarClima();
   setInterval(actualizarClima, 10 * 60 * 1000);
   setInterval(cambiarMensaje, 15000);
+// 🌟 Primero definimos las funciones que vamos a usar
+  window.aceptarCookies = function () {
+    localStorage.setItem("cookiesAceptadas", "true");
+    document.getElementById("cookie-banner").style.display = "none";
+  }
+  window.mostrarPreferencias = function () {
+    alert("Aquí podrías redirigir a una sección de configuración de cookies.");
+  }
 
   // Restaurar modo guardado
   const modoGuardado = localStorage.getItem("modoPreferido");
   document.body.classList.add(modoGuardado === "noche" ? "modo-noche" : "modo-dia");
-
+// 🟩 Luego usamos esas funciones con addEventListener
   // Banner cookies
   if (localStorage.getItem("cookiesAceptadas") !== "true") {
     document.getElementById("cookie-banner").style.display = "flex";
@@ -98,11 +106,5 @@ document.addEventListener("DOMContentLoaded", function () {
   window.activarAutoDJ = activarAutoDJ;
   window.cambiarModo = cambiarModo;
   window.enviarMensajeChat = enviarMensajeChat;
-  window.aceptarCookies = function () {
-    localStorage.setItem("cookiesAceptadas", "true");
-    document.getElementById("cookie-banner").style.display = "none";
-  }
-  window.mostrarPreferencias = function () {
-    alert("Aquí podrías redirigir a una sección de configuración de cookies.");
-  }
+  
 });
