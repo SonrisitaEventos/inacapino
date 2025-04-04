@@ -163,6 +163,20 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+// Cerrar login al presionar ESC
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    document.getElementById("loginVIP").style.display = "none";
+  }
+});
+
+// Cerrar login al hacer clic fuera del modal
+window.addEventListener("click", function (e) {
+  const modal = document.getElementById("loginVIP");
+  if (modal.style.display === "block" && !modal.contains(e.target) && e.target.id !== "usuario" && e.target.id !== "clave") {
+    modal.style.display = "none";
+  }
+});
 
   // Globalizar funciones
   window.scrollToTop = scrollToTop;
