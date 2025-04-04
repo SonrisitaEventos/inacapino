@@ -3,11 +3,11 @@
 window.accederVIP = function () {
   const usuario = document.getElementById("usuario").value.trim();
   const clave = document.getElementById("clave").value.trim();
-  const loginModal = document.getElementById("loginVIP");
+  const fondo = document.getElementById("fondoLogin");
   const panelVIP = document.getElementById("panelVIP");
 
   if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
-    loginModal.style.display = "none";
+    fondo.classList.remove("mostrar");
     panelVIP.style.display = "block";
     document.getElementById("panelSelector").style.display = "flex";
     alert("🎉 Acceso VIP concedido. ¡Bienvenido al panel de control!");
@@ -15,6 +15,7 @@ window.accederVIP = function () {
     alert("🚫 Usuario o contraseña incorrectos. Intenta nuevamente.");
   }
 };
+
 
 window.toggleModo = function () {
   const body = document.body;
@@ -28,8 +29,22 @@ window.toggleModo = function () {
 };
 
 window.mostrarLoginVIP = function () {
-  document.getElementById("loginVIP").style.display = "block";
+  document.getElementById("fondoLogin").classList.add("mostrar");
 };
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    document.getElementById("fondoLogin").classList.remove("mostrar");
+  }
+});
+
+window.addEventListener("click", function (e) {
+  const modal = document.getElementById("loginVIP");
+  const fondo = document.getElementById("fondoLogin");
+  if (fondo.classList.contains("mostrar") && !modal.contains(e.target)) {
+    fondo.classList.remove("mostrar");
+  }
+});
 
 function actualizarReloj() {
   const ahora = new Date();
@@ -163,20 +178,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-// Cerrar login al presionar ESC
+
+// Cerrar login al hacer clic fuera del modal
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
-    document.getElementById("loginVIP").style.display = "none";
+    document.getElementById("fondoLogin").classList.remove("mostrar");
   }
 });
 
-// Cerrar login al hacer clic fuera del modal
-window.addEventListener("click", function (e) {
-  const modal = document.getElementById("loginVIP");
-  if (modal.style.display === "block" && !modal.contains(e.target) && e.target.id !== "usuario" && e.target.id !== "clave") {
-    modal.style.display = "none";
-  }
-});
 
   // Globalizar funciones
   window.scrollToTop = scrollToTop;
