@@ -24,17 +24,9 @@ const listaVideos = [
 
 // ========== FUNCIONES DE ESTILO Y MODO OSCURO ========== //
 
-function toggleModo() {
-  document.body.classList.toggle("modo-noche");
-  document.body.classList.toggle("modo-dia");
-  const modoActual = document.body.classList.contains("modo-noche") ? "noche" : "dia";
-  localStorage.setItem("modoPreferido", modoActual);
-}
+// función toggleModo removida (duplicada con funciones_comunes.js)
 
-function restaurarModo() {
-  const modoGuardado = localStorage.getItem("modoPreferido");
-  document.body.classList.add(modoGuardado === "noche" ? "modo-noche" : "modo-dia");
-}
+// función restaurarModo removida (duplicada con funciones_comunes.js)
 
 // ========== VIDEO Y TRANSMISIÓN ========== //
 
@@ -78,22 +70,9 @@ function cambiarModo(modo) {
 
 // ========== VIP ========== //
 
-function accederVIP() {
-  const usuario = document.getElementById("usuario").value.trim();
-  const clave = document.getElementById("clave").value.trim();
-  if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
-    document.getElementById("loginVIP").style.display = "none";
-    document.getElementById("panelVIP").style.display = "block";
-    document.getElementById("panelSelector").style.display = "block";
-    alert("¡Bienvenido administrador Inacapino! 🎉");
-  } else {
-    alert("Usuario o contraseña incorrecta 😢");
-  }
-}
+// función accederVIP removida (duplicada con funciones_comunes.js)
 
-function mostrarLoginVIP() {
-  document.getElementById("loginVIP").style.display = "block";
-}
+// función mostrarLoginVIP removida (duplicada con funciones_comunes.js)
 
 // ========== FRASES MOTIVACIONALES ========== //
 
@@ -122,45 +101,11 @@ setInterval(() => {
 
 // ========== CLIMA Y HORA ========== //
 
-function actualizarReloj() {
-  const ahora = new Date();
-  const horas = ahora.getHours().toString().padStart(2, '0');
-  const minutos = ahora.getMinutes().toString().padStart(2, '0');
-  document.getElementById("reloj").textContent = `${horas}:${minutos}`;
-}
+// función actualizarReloj removida (duplicada con funciones_comunes.js)
 
-function obtenerEmojiClima(icon) {
-  const mapa = {
-    "01d": "☀️", "01n": "🌕",
-    "02d": "🌤️", "02n": "☁️",
-    "03d": "⛅",  "03n": "⛅",
-    "04d": "☁️", "04n": "☁️",
-    "09d": "🌧️", "09n": "🌧️",
-    "10d": "🌦️", "10n": "🌧️",
-    "11d": "⛈️", "11n": "⛈️",
-    "13d": "❄️", "13n": "❄️",
-    "50d": "🌫️", "50n": "🌫️"
-  };
-  return mapa[icon] || "🌡️";
-}
+// función obtenerEmojiClima removida (duplicada con funciones_comunes.js)
 
-function actualizarClima() {
-  const ciudad = "Puerto Montt";
-  const pais = "CL";
-  const API_KEY = "ac05bbbe9fcb2df2fb44145383ed0342";
-
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${API_KEY}&units=metric&lang=es`)
-    .then(res => res.json())
-    .then(data => {
-      const temperatura = Math.round(data.main.temp);
-      const icon = data.weather[0].icon;
-      const emoji = obtenerEmojiClima(icon);
-      document.getElementById("clima").innerText = `${emoji} ${temperatura}°C`;
-    })
-    .catch(() => {
-      document.getElementById("clima").innerText = "🌡️ --°C";
-    });
-}
+// función actualizarClima removida (duplicada con funciones_comunes.js)
 
 // ========== EVENTOS PRINCIPALES ========== //
 
