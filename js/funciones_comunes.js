@@ -141,7 +141,9 @@ function cerrarLoginVIP() {
 function accederVIP() {
   const usuario = document.getElementById("usuario").value;
   const clave = document.getElementById("clave").value;
-
+  if (controles) controles.style.display = "block";
+  const selector = document.getElementById("panelSelector");
+  if (selector) selector.style.display = "block";
   if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
     cerrarLoginVIP();
     const controles = document.getElementById("panelVIP"); // ✅ ¡aquí el cambio!
@@ -196,8 +198,19 @@ function changeImage(dir) {
 }
 document.addEventListener("DOMContentLoaded", () => {
   initFuncionesComunes();
-  reproducirAutoDJ(); // esto carga altiro uno si Twitch no está
+  setTimeout(() => {
+    reproducirAutoDJ();
+  }, 500); // Espera medio segundo para asegurar que todo esté listo
 });
+
+function cambiarVideoManual() {
+  const seleccion = document.getElementById("videoSelector").value;
+  twitchFrame.style.display = "none";
+  videoPlayer.style.display = "block";
+  videoPlayer.src = videosAutoDJ[seleccion];
+}
+window.cambiarVideoManual = cambiarVideoManual;
+
 
 // 🧠 Exponer funciones al HTML
 window.reproducirAutoDJ = reproducirAutoDJ;
