@@ -325,6 +325,7 @@ html {
   margin: 20px auto;
   display: block;
 }
+/* 🎮 Modo noche (por defecto) */
 .concurso-card {
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid #d40000;
@@ -336,6 +337,17 @@ html {
   text-align: left;
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
 }
+
+/* 🌞 Modo día */
+body.modo-dia .concurso-card {
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  border-left: 5px solid #d40000;
+  border: none;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
 
 #fondoLogin {
   position: fixed;
