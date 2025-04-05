@@ -141,17 +141,18 @@ function cerrarLoginVIP() {
 function accederVIP() {
   const usuario = document.getElementById("usuario").value;
   const clave = document.getElementById("clave").value;
-  if (controles) controles.style.display = "block";
-  const selector = document.getElementById("panelSelector");
-  if (selector) selector.style.display = "block";
+
   if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
     cerrarLoginVIP();
-    const controles = document.getElementById("panelVIP"); // ✅ ¡aquí el cambio!
+    const controles = document.getElementById("panelVIP");
+    const selector = document.getElementById("panelSelector");
     if (controles) controles.style.display = "block";
+    if (selector) selector.style.display = "block";
   } else {
     alert("Credenciales incorrectas, intenta nuevamente.");
   }
 }
+
 
 // Lista de videos desde Firebase Storage
 const videosAutoDJ = [
