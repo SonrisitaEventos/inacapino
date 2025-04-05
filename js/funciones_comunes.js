@@ -138,7 +138,49 @@ function cerrarLoginVIP() {
   const login = document.getElementById("fondoLogin");
   login.classList.remove("mostrar");
 }
+function accederVIP() {
+  const usuario = document.getElementById("usuario").value;
+  const clave = document.getElementById("clave").value;
 
+  if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
+    cerrarLoginVIP();
+    const controles = document.getElementById("controlesVIP");
+    if (controles) controles.style.display = "block";
+  } else {
+    alert("Credenciales incorrectas, intenta nuevamente.");
+  }
+}
+// Lista de videos desde Firebase Storage
+const videosAutoDJ = [
+  "https://firebasestorage.googleapis.com/v0/b/inacapino-radio.appspot.com/o/videos%2Fvideo1.mp4?alt=media",
+  "https://firebasestorage.googleapis.com/v0/b/inacapino-radio.appspot.com/o/videos%2Fvideo2.mp4?alt=media",
+  "https://firebasestorage.googleapis.com/v0/b/inacapino-radio.appspot.com/o/videos%2Fvideo3.mp4?alt=media"
+];
+
+let videoActual = 0;
+const videoPlayer = document.getElementById("autoDJ");
+const twitchFrame = document.getElementById("twitchStream");
+
+// 🔁 Cambiar video aleatorio
+function reproducirAutoDJ() {
+  twitchFrame.style.display = "none";
+  videoPlayer.style.display = "block";
+  videoActual = Math.floor(Math.random() * videosAutoDJ.length);
+  videoPlayer.src = videosAutoDJ[videoActual];
+}
+
+// 🎥 Pasar a Twitch
+function mostrarTwitch() {
+  videoPlayer.style.display = "none";
+  twitchFrame.style.display = "block";
+}
+
+// 🧠 Exponer funciones al HTML
+window.reproducirAutoDJ = reproducirAutoDJ;
+window.mostrarTwitch = mostrarTwitch;
+window.accederVIP = accederVIP;
+window.mostrarLoginVIP = mostrarLoginVIP;
+window.cerrarLoginVIP = cerrarLoginVIP;
 window.toggleModo = toggleModo;
 window.scrollToTop = scrollToTop;
 window.initFuncionesComunes = initFuncionesComunes;
