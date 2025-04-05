@@ -238,7 +238,7 @@ footer.footer-red {
 
 @media screen and (max-width: 768px) {
   .carrusel iframe {
-    height: 240px;
+    height: 200px;
   }
 }
 
