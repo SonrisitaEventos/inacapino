@@ -174,6 +174,29 @@ function mostrarTwitch() {
   videoPlayer.style.display = "none";
   twitchFrame.style.display = "block";
 }
+let imagenes = document.querySelectorAll('.imagen-postal');
+let modal = document.getElementById('imgModal');
+let modalImg = document.getElementById('modalImg');
+let index = 0;
+
+function openModal(i) {
+  index = i;
+  modal.style.display = 'flex';
+  modalImg.src = imagenes[index].src;
+}
+
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+function changeImage(dir) {
+  index = (index + dir + imagenes.length) % imagenes.length;
+  modalImg.src = imagenes[index].src;
+}
+document.addEventListener("DOMContentLoaded", () => {
+  initFuncionesComunes();
+  reproducirAutoDJ(); // esto carga altiro uno si Twitch no está
+});
 
 // 🧠 Exponer funciones al HTML
 window.reproducirAutoDJ = reproducirAutoDJ;
