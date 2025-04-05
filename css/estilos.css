@@ -19,9 +19,10 @@ body {
 
 /* 🧭 Encabezado */
 header {
-  background-color: #111;
-  padding: 20px;
-  box-shadow: 0 0 25px rgba(255, 94, 226, 0.6);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  flex-wrap: wrap;
 }
 
 nav {
@@ -140,14 +141,11 @@ nav a {
 }
 
 .noticia-card {
-  background: #222;
-  border: 2px solid #00ffd5;
-  border-radius: 12px;
-  width: 250px;
-  text-decoration: none;
-  color: white;
-  transition: transform 0.3s;
+  background-color: #111;
+  border: 3px solid #7e2ce4;
+  box-shadow: 0 0 10px rgba(126, 44, 228, 0.7);
 }
+
 
 .noticia-card:hover {
   transform: scale(1.05);
@@ -294,11 +292,14 @@ body.modo-dia {
   justify-content: center;
   align-items: center;
 }
-
+.modal.fade-in .modal-content {
+  opacity: 1;
+}
 .modal-content {
   max-width: 90%;
   max-height: 80%;
   border-radius: 12px;
+  transition: opacity 0.5s ease;
 }
 
 .close, .prev, .next {
@@ -428,4 +429,10 @@ html {
 @keyframes parpadeo {
   0% { opacity: 1; }
   100% { opacity: 0.5; }
+}
+.rebobinando-section {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 20px 10px;
 }
