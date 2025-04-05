@@ -61,22 +61,19 @@
 
   <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
 <main>
-  <img src="imagenes/logoradio.png" alt="Logo Radio INACAP" class="logo">
-  <h1>El Inacapino Puerto Montt</h1>
-  <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
+    <img src="imagenes/logoradio.png" alt="Logo Radio INACAP" class="logo">
+    <h1>El Inacapino Puerto Montt</h1>
+    <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
 
-  <section style="margin: 30px auto; text-align: center;">
-    <a href="sobre.html" class="boton-llamativo">📻 Conoce la historia de la radio</a>
-  </section>
+    <section style="margin: 30px auto; text-align: center;">
+      <a href="sobre.html" class="boton-llamativo">📻 Conoce la historia de la radio</a>
+    </section>
 
-  <div id="transmision"></div>
-  <div id="videoContainer">
-  <video id="autoDJ" autoplay loop muted></video>
-  <iframe id="twitchStream" style="display:none;" src="https://player.twitch.tv/?channel=tu_canal&parent=github.io" frameborder="0" allowfullscreen></iframe>
-</div>
-
-  <div id="nombreVideo" class="video-nombre"></div>
-
+    <section id="transmision" class="transmision-container">
+      <video id="autoDJ" autoplay loop muted></video>
+      <iframe id="twitchStream" style="display:none;" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" frameborder="0" allowfullscreen></iframe>
+      <div id="nombreVideo" class="video-nombre"></div>
+    </section>
   <div class="select-video" id="panelSelector" style="display:none;">
     <select id="videoSelector">
       <option value="0">🎶 JAZZ & BLUES</option>
@@ -276,11 +273,14 @@
     </p>
     <a href="muro_buenos_deseos.html" style="display:inline-block; margin-top: 15px; padding: 10px 20px; background-color: #d40000; color: white; border-radius: 10px; text-decoration: none; font-weight: bold;">Deja tu mensaje</a>
   </section>
-</main>
+<!-- Footer agregado -->
+    <footer class="footer-red">
+      <p>🎙️ Radio El Inacapino - INACAP Puerto Montt | Hecho con 💚 por Cristián Riffo</p>
+    </footer>
+  </main>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
   <script src="js/funciones_comunes.js" defer></script>
   <script src="js/app.js" defer></script>
-  <audio id="sonidoEnviar" src="hipjazz.mp3" preload="auto"></audio>
 </body>
 </html>
