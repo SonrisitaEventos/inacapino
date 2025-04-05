@@ -1,90 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
- <head>
- <meta name="google-site-verification" content="SLyEOBR3_WVwZ55J8DJ1mXrZZpP0HUaUwUWzAguGfOo" />
- <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Radio online interactiva de INACAP Puerto Montt. Noticias, concursos, videos y participación estudiantil.">
+  <meta name="author" content="Cristián Riffo Araya">
+  <meta name="keywords" content="Radio El Inacapino, INACAP Puerto Montt, radio estudiantil, Twitch, AutoDJ, Zeno FM, noticias INACAP, cápsulas educativas, participación estudiantil, concursos, música online, estudiantes INACAP">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="🎙️ Radio El Inacapino - INACAP Puerto Montt">
+  <meta property="og:description" content="La primera radio online estudiantil hecha por y para estudiantes INACAP Puerto Montt. Música, transmisiones en vivo, concursos y más.">
+  <meta property="og:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png">
+  <meta property="og:url" content="https://sonrisitaeventos.github.io/inacapino">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🎙️ Radio El Inacapino - INACAP Puerto Montt">
+  <meta name="twitter:description" content="Sintoniza la radio online de estudiantes INACAP Puerto Montt: música, entrevistas, concursos y buena vibra.">
+  <meta name="twitter:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png">
+
   <title>El Inacapino Puerto Montt</title>
- <!-- Meta Etiquetas SEO -->
-<meta name="author" content="Cristián Riffo Araya">
-<meta name="keywords" content="Radio El Inacapino, INACAP Puerto Montt, radio estudiantil, Twitch, AutoDJ, Zeno FM, noticias INACAP, cápsulas educativas, participación estudiantil, concursos, música online, estudiantes INACAP">
-<meta name="robots" content="index, follow">
-
-<!-- Open Graph (para Facebook y redes sociales) -->
-<meta property="og:title" content="🎙️ Radio El Inacapino - INACAP Puerto Montt" />
-<meta property="og:description" content="La primera radio online estudiantil hecha por y para estudiantes INACAP Puerto Montt. Música, transmisiones en vivo, concursos y más." />
-<meta property="og:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png" />
-<meta property="og:url" content="https://sonrisitaeventos.github.io/inacapino" />
-<meta property="og:type" content="website" />
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="🎙️ Radio El Inacapino - INACAP Puerto Montt" />
-<meta name="twitter:description" content="Sintoniza la radio online de estudiantes INACAP Puerto Montt: música, entrevistas, concursos y buena vibra." />
-<meta name="twitter:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png" />
-<meta name="twitter:site" content="@tu_usuario_si_tienes_twitter" />
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-   <link rel="stylesheet" href="css/estilos.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FY11ZY6ZV3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <link rel="stylesheet" href="css/estilos.css">
 
-  gtag('config', 'G-FY11ZY6ZV3');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FY11ZY6ZV3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FY11ZY6ZV3');
+  </script>
 </head>
 <body>
-<header>
- <nav>
-    <a href="#">Inicio</a>
-  <a href="sobre.html">Sobre la Radio</a>
-    <a href="#rebobinando">Rebobinando</a>
-    <a href="#capsulas">Cápsulas</a>
-    <a href="#encuesta">Encuesta</a>
-    <a href="#concursos">Concursos</a>
-    <a href="#postales">Postales</a>
-    <a href="#noticias">Noticias</a>
-    <a href="#muro-deseos">Muro de los Buenos Deseos</a>
-  </nav>
+  <header>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="sobre.html">Sobre la Radio</a>
+      <a href="#rebobinando">Rebobinando</a>
+      <a href="#capsulas">Cápsulas</a>
+      <a href="#encuesta">Encuesta</a>
+      <a href="#concursos">Concursos</a>
+      <a href="#postales">Postales</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#muro-deseos">Muro de los Buenos Deseos</a>
+    </nav>
     <div class="noticiero-flex">
-    <div class="mensaje-motivacional">
-      <span id="mensajeTexto">🌟 Sigue adelante, lo mejor está por venir.</span>
+      <div class="mensaje-motivacional">
+        <span id="mensajeTexto">🌟 Sigue adelante, lo mejor está por venir.</span>
+      </div>
+      <div class="top-info">
+        <span id="reloj">00:00</span>
+        <span id="clima">☀️ --°C</span>
+        <span class="live-indicator">EN VIVO</span>
+      </div>
     </div>
-    <div class="top-info">
-      <span id="reloj">00:00</span>
-      <span id="clima">☀️ --°C</span>
-      <span class="live-indicator">EN VIVO</span>
-    </div>
-  </div>
-   </header>
-<!-- ✅ BOTÓN VIP CENTRADO CON ESTILO -->
+  </header>
 
- <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
+  <button onclick="scrollToTop()" id="btnTop" title="Volver arriba">⬆️</button>
 
-  <img src="radio inacap.png" alt="Logo Radio INACAP" class="logo">
+  <img src="imagenes/logoradio.png" alt="Logo Radio INACAP" class="logo">
   <h1>El Inacapino Puerto Montt</h1>
   <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
-<section style="margin: 30px auto; text-align: center;">
-  <a href="sobre.html" class="boton-llamativo">📻 Conoce la historia de la radio</a>
-</section>
+
+  <section style="margin: 30px auto; text-align: center;">
+    <a href="sobre.html" class="boton-llamativo">📻 Conoce la historia de la radio</a>
+  </section>
 
   <div id="transmision"></div>
   <div id="nombreVideo" class="video-nombre"></div>
- <div class="select-video" id="panelSelector" style="display:none;">
-  <select id="videoSelector">
-    <option value="0">🎶 JAZZ & BLUES</option>
-    <option value="1">🎮 Gaming Music</option>
-    <option value="2">📚 Un Gran momento para estudiar</option>
-    <option value="3">🕺 1 Hora y a bailar</option>
-  </select>
-  <button class="vip-button" onclick="cambiarVideoManual()">Reproducir Selección</button>
-</div>
 
- <div class="botones">
+  <div class="select-video" id="panelSelector" style="display:none;">
+    <select id="videoSelector">
+      <option value="0">🎶 JAZZ & BLUES</option>
+      <option value="1">🎮 Gaming Music</option>
+      <option value="2">📚 Un Gran momento para estudiar</option>
+      <option value="3">🕺 1 Hora y a bailar</option>
+    </select>
+    <button class="vip-button" onclick="cambiarVideoManual()">Reproducir Selección</button>
+  </div>
+
+  <div class="botones">
     <a href="https://wa.me/+56956596228" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     <a href="https://www.facebook.com/RyCSolucionesPV" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
     <a href="https://www.instagram.com/cristian_riffo_araya/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
@@ -92,26 +90,26 @@
     <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
 
- <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 20px;">
-  <button class="vip-button" onclick="mostrarLoginVIP()">🎧 Acceso VIP</button>
-  <a href="reproductor.html" class="vip-button">📻 Escucha nuestra Señal Online</a>
-</div>
-
-<!-- ✅ PANEL DE LOGIN MODAL -->
-<div id="fondoLogin">
-  <div id="loginVIP">
-    <h3>🔐 Ingreso VIP</h3>
-    <input type="text" id="usuario" placeholder="Usuario">
-    <input type="password" id="clave" placeholder="Contraseña">
-    <button onclick="accederVIP()">Entrar</button>
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 20px;">
+    <button class="vip-button" onclick="mostrarLoginVIP()">🎧 Acceso VIP</button>
+    <a href="reproductor.html" class="vip-button">📻 Escucha nuestra Señal Online</a>
   </div>
-</div>
 
+  <div id="fondoLogin">
+    <div id="loginVIP">
+      <h3>🔐 Ingreso VIP</h3>
+      <input type="text" id="usuario" placeholder="Usuario">
+      <input type="password" id="clave" placeholder="Contraseña">
+      <button onclick="accederVIP()">Entrar</button>
+    </div>
+  </div>
 
   <div id="panelVIP" style="display:none; margin-top: 20px;">
-  <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
-  <button class="vip-button" onclick="activarAutoDJ()">🔀 AutoDJ Aleatorio</button>
+    <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
+    <button class="vip-button" onclick="activarAutoDJ()">🔀 AutoDJ Aleatorio</button>
   </div>
+
+  <button class="vip-button" onclick="toggleModo()">🌗 Cambiar Modo</button>
 
    <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
 
@@ -276,15 +274,8 @@
     <a href="muro_buenos_deseos.html" style="display:inline-block; margin-top: 15px; padding: 10px 20px; background-color: #d40000; color: white; border-radius: 10px; text-decoration: none; font-weight: bold;">Deja tu mensaje</a>
   </section>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-<script src="js/app.js" defer></script>
-<audio id="sonidoEnviar" src="hipjazz.mp3" preload="auto"></audio>
- <script src="js/funciones_comunes.js" defer></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    initFuncionesComunes();
-  });
-</script>
-
- </body>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="js/funciones_comunes.js" defer></script>
+  <audio id="sonidoEnviar" src="hipjazz.mp3" preload="auto"></audio>
+</body>
 </html>
