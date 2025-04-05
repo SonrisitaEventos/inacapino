@@ -2,22 +2,22 @@
 <html lang="es">
 <head>
   <!-- SEO Básico -->
-<meta name="description" content="Conoce la historia de la primera Radio Online Estudiantil de INACAP Puerto Montt. Hecha por y para estudiantes, con corazón e innovación.">
-<meta name="keywords" content="radio INACAP, radio estudiantil, radio Puerto Montt, sobre la radio, estudiantes INACAP">
-<meta name="author" content="Cristián Riffo Araya">
+  <meta name="description" content="Conoce la historia de la primera Radio Online Estudiantil de INACAP Puerto Montt. Hecha por y para estudiantes, con corazón e innovación.">
+  <meta name="keywords" content="radio INACAP, radio estudiantil, radio Puerto Montt, sobre la radio, estudiantes INACAP">
+  <meta name="author" content="Cristián Riffo Araya">
 
-<!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
-<meta property="og:title" content="🎙️ Sobre Radio El Inacapino - INACAP Puerto Montt">
-<meta property="og:description" content="Una radio creada por estudiantes para estudiantes. Conócela aquí.">
-<meta property="og:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png">
-<meta property="og:url" content="https://sonrisitaeventos.github.io/inacapino/sobre.html">
-<meta property="og:type" content="website">
+  <!-- Open Graph -->
+  <meta property="og:title" content="🎙️ Sobre Radio El Inacapino - INACAP Puerto Montt">
+  <meta property="og:description" content="Una radio creada por estudiantes para estudiantes. Conócela aquí.">
+  <meta property="og:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png">
+  <meta property="og:url" content="https://sonrisitaeventos.github.io/inacapino/sobre.html">
+  <meta property="og:type" content="website">
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="🎙️ Sobre Radio El Inacapino - INACAP Puerto Montt">
-<meta name="twitter:description" content="Descubre la historia de la radio estudiantil de INACAP Puerto Montt.">
-<meta name="twitter:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🎙️ Sobre Radio El Inacapino - INACAP Puerto Montt">
+  <meta name="twitter:description" content="Descubre la historia de la radio estudiantil de INACAP Puerto Montt.">
+  <meta name="twitter:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,39 +99,36 @@
     .boton:hover, .vip-button:hover {
       transform: scale(1.05);
     }
-   @media (max-width: 600px) {
-  .contenido {
-    padding: 10px;
-  }
 
-  .contenido p, ul li {
-    font-size: 16px;
-  }
+    @media (max-width: 600px) {
+      .contenido {
+        padding: 10px;
+      }
 
-  header h1 {
-    font-size: 24px;
-  }
+      .contenido p, ul li {
+        font-size: 16px;
+      }
 
-  .vip-button {
-    font-size: 14px;
-    padding: 10px 20px;
-  }
-}
+      header h1 {
+        font-size: 24px;
+      }
 
-background-color: #d40000; /* rojo institucional */
-color: #ffffff;
-
+      .vip-button {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
   </style>
-   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FY11ZY6ZV3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-FY11ZY6ZV3');
-</script>
-  </head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FY11ZY6ZV3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FY11ZY6ZV3');
+  </script>
+</head>
 <body>
   <header>
     <h1>Sobre la Radio El Inacapino</h1>
@@ -175,21 +172,17 @@ color: #ffffff;
     <h2>👤 Coordinador General</h2>
     <p><strong>Cristián Riffo Araya</strong><br>
       Ingeniero en Electricidad, Educador y Emprendedor Tecnológico<br>
-Coordinador de Actividades Temporales - INACAP Puerto Montt</p>
+      Coordinador de Actividades Temporales - INACAP Puerto Montt</p>
 
     <a href="index.html" class="vip-button">🏠 Volver al Inicio</a>
   </div>
-  
-<script>
- 
-</script>
-<script src="js/funciones_comunes.js" defer></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    initFuncionesComunes();
-  });
-</script>
 
+  <!-- ✅ Scripts globales -->
+  <script src="js/funciones_comunes.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      initFuncionesComunes();
+    });
+  </script>
 </body>
 </html>
-
