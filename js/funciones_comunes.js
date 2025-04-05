@@ -130,6 +130,14 @@ function initFuncionesComunes() {
   setInterval(actualizarReloj, 60000);
   setInterval(actualizarClima, 600000);
 }
+function mostrarLoginVIP() {
+  const login = document.getElementById("fondoLogin");
+  login.classList.add("mostrar");
+}
+function cerrarLoginVIP() {
+  const login = document.getElementById("fondoLogin");
+  login.classList.remove("mostrar");
+}
 
 window.toggleModo = toggleModo;
 window.scrollToTop = scrollToTop;
