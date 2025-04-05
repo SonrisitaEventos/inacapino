@@ -1,4 +1,5 @@
 
+/* 🎨 Estilos Globales */
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +17,7 @@ body {
   padding: 0;
 }
 
-
+/* 🧭 Encabezado */
 header {
   background-color: #111;
   padding: 20px;
@@ -27,6 +28,7 @@ nav {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav a {
@@ -36,32 +38,27 @@ nav a {
   font-size: 14px;
 }
 
-.logo {
-  max-width: 150px;
-  margin: 20px auto;
-}
-
-h1 {
-  font-size: 24px;
-  margin-bottom: 5px;
-}
-
+/* 💡 Frase Animada */
 .frase-motivacional {
   font-style: italic;
   font-size: 18px;
   margin-bottom: 20px;
   animation: fraseAnimada 1s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
-iframe.twitch {
+/* 🎥 Video Container */
+.transmision-container video,
+.transmision-container iframe {
   width: 100%;
   max-width: 720px;
   height: 405px;
-  border: none;
-  display: block;
+  border-radius: 12px;
   margin: 0 auto;
+  display: block;
 }
 
+/* 🎧 Botones */
 .botones {
   display: flex;
   justify-content: center;
@@ -80,52 +77,6 @@ iframe.twitch {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-section {
-  margin-top: 40px;
-}
-
-h2 {
-  margin-bottom: 10px;
-  font-size: 20px;
-}
-
-.encuesta iframe {
-  width: 100%;
-  max-width: 640px;
-  height: 600px;
-  border: none;
-}
-
-.concurso-card {
-  background: rgba(255, 255, 255, 0.9);
-  color: black;
-  margin: 10px auto;
-  max-width: 600px;
-  padding: 15px;
-  border-left: 5px solid #d40000;
-  border-radius: 5px;
-  text-align: left;
-}
-
-.footer {
-  margin-top: 40px;
-  font-size: 12px;
-  color: #aaa;
-}
-
-@media screen and (max-width: 600px) {
-  .encuesta iframe {
-    height: 800px;
-  }
-}
-
-/* Animaciones */
-@keyframes fraseAnimada {
-  0% { opacity: 0; transform: translateY(-10px); }
-  50% { opacity: 1; transform: translateY(0px); }
-  100% { opacity: 1; }
 }
 
 .vip-button, .boton-llamativo {
@@ -147,15 +98,102 @@ h2 {
   transform: scale(1.05);
 }
 
-.noticiero-flex {
+/* 🔁 Carrusel de Videos & Cápsulas */
+.video-carrusel, .carrusel {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 15px;
-  background-color: #111;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 10px 20px;
+  scroll-behavior: smooth;
+}
+
+.video-card {
+  flex: 0 0 auto;
+  width: 220px;
+  border-radius: 12px;
+  background: #111;
   overflow: hidden;
-  gap: 15px;
-  flex-wrap: nowrap;
+  position: relative;
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.video-title {
+  background: #d40000;
+  color: white;
+  padding: 6px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 📰 Noticias */
+.noticias-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  justify-content: center;
+  padding: 10px 20px;
+}
+
+.noticia-card {
+  background: #222;
+  border: 2px solid #00ffd5;
+  border-radius: 12px;
+  width: 250px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s;
+}
+
+.noticia-card:hover {
+  transform: scale(1.05);
+}
+
+.noticia-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+.noticia-info {
+  padding: 10px;
+}
+
+.noticia-titulo {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* 🖼️ Postales */
+.gallery-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.gallery-item img {
+  max-width: 240px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* 🎇 Animaciones */
+@keyframes scrollMensaje {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes fraseAnimada {
+  0% { opacity: 0; transform: translateY(-10px); }
+  50% { opacity: 1; transform: translateY(0px); }
+  100% { opacity: 1; }
 }
 
 .mensaje-motivacional span {
@@ -164,57 +202,10 @@ h2 {
   animation: scrollMensaje 15s linear infinite;
   font-weight: bold;
   color: #00ffd5;
+  white-space: nowrap;
 }
 
-.live-indicator {
-  background-color: red;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-weight: bold;
-  color: white;
-}
-
-@media (max-width: 600px) {
-  .vip-button, .boton-llamativo {
-    font-size: 14px;
-    padding: 10px 18px;
-    margin-top: 10px;
-  }
-
-  .noticiero-flex {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-}
-#fondoLogin {
-  /* sin display aquí */
-  position: fixed;
-  z-index: 9999;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-}
-
-
-#fondoLogin.mostrar {
-  display: flex;
-}
-
-#loginVIP {
-  background: white;
-  color: black;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px #00ffd5;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-}
-
+/* 🧱 Botón Top */
 #btnTop {
   position: fixed;
   bottom: 20px;
@@ -229,16 +220,30 @@ h2 {
   cursor: pointer;
   display: none;
 }
-.imagen-postal {
-  max-width: 100%;
-  max-height: 350px;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
+
+/* 🎯 Footer */
+footer.footer-red {
+  background-color: #d40000;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
+  font-weight: bold;
+  text-align: center;
 }
-.imagen-postal:hover {
-  transform: scale(1.05);
+
+/* 📱 Responsive */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .video-card, .noticia-card {
+    width: 85vw;
+  }
+  .noticia-img, .video-thumb img {
+    height: 180px;
+  }
+  .gallery-item img {
+    max-width: 90vw;
+  }
 }
-
-
-
