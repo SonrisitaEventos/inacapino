@@ -247,3 +247,59 @@ footer.footer-red {
     max-width: 90vw;
   }
 }
+
+body.modo-dia {
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  color: #111;
+}
+
+.modo-dia .video-title,
+.modo-dia .noticia-title {
+  background: #d40000;
+  color: white;
+}
+.select-video select {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 2px solid #8000ff;
+  background-color: #222;
+  color: white;
+}
+
+.select-video select:focus {
+  outline: none;
+  box-shadow: 0 0 8px #8000ff;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 12px;
+}
+
+.close, .prev, .next {
+  font-size: 32px;
+  color: white;
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+}
+a, .vip-button, .video-card, .noticia-card {
+  transition: all 0.3s ease-in-out;
+}
+html {
+  scroll-behavior: smooth;
+}
+
