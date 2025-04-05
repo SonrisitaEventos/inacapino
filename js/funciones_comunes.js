@@ -144,12 +144,13 @@ function accederVIP() {
 
   if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
     cerrarLoginVIP();
-    const controles = document.getElementById("controlesVIP");
+    const controles = document.getElementById("panelVIP"); // ✅ ¡aquí el cambio!
     if (controles) controles.style.display = "block";
   } else {
     alert("Credenciales incorrectas, intenta nuevamente.");
   }
 }
+
 // Lista de videos desde Firebase Storage
 const videosAutoDJ = [
   "https://firebasestorage.googleapis.com/v0/b/inacapino-radio.appspot.com/o/videos%2Fvideo1.mp4?alt=media",
