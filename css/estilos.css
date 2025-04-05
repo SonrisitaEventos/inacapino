@@ -336,3 +336,40 @@ html {
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
 }
 
+#fondoLogin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#loginVIP {
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+  color: white;
+  text-align: center;
+}
+#loginVIP input {
+  margin: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  width: 80%;
+}
+#loginVIP button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: linear-gradient(45deg, #8000ff, #ff00ff);
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
