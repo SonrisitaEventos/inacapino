@@ -380,7 +380,7 @@ html {
   justify-content: space-between;
   align-items: center;
   padding: 5px 15px;
-  background-color: #111;
+  background-color: #000;
   overflow: hidden;
   gap: 15px;
   flex-wrap: nowrap;
@@ -432,7 +432,7 @@ html {
 }
 .rebobinando-section {
   text-align: center;
-  background: rgba(255, 255, 255, 0.05);
+  background-color: #000;
   border-radius: 10px;
   padding: 20px 10px;
 }
