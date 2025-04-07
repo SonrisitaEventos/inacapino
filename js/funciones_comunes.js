@@ -225,15 +225,22 @@ function cambiarVideoManual() {
   videoPlayer.src = videosAutoDJ[seleccion];
 }
 window.cambiarVideoManual = cambiarVideoManual;
-// Mostrar flecha cuando se hace scroll
+// Mostrar flecha al hacer scroll
 window.addEventListener("scroll", () => {
   const btn = document.getElementById("btnTop");
-  if (window.scrollY > 200) {
+  if (window.scrollY > 300) {
     btn.style.display = "block";
   } else {
     btn.style.display = "none";
   }
 });
+
+// Función para subir arriba
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+window.scrollToTop = scrollToTop;
+
 
 
 // 🧠 Exponer funciones al HTML
