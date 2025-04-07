@@ -32,11 +32,6 @@ nav {
   justify-content: center;
 }
 
-nav {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
 /* 💡 Frase Animada */
 .frase-motivacional {
   font-style: italic;
@@ -298,27 +293,17 @@ footer.footer-red {
 /* 📱 Responsive */
 @media screen and (max-width: 768px) {
   nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px 15px;
-  }
-
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
     nav a {
-    flex: 1 1 45%;
-    min-width: 120px;
-    max-width: 160px;
-    padding: 8px 10px;
-    font-size: 13px;
-    background-color: transparent; /* Fondo transparente */
-    border-radius: 0; /* Sin esquinas redondeadas */
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    box-shadow: none;
-    transition: transform 0.2s ease;
-  }
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
 
 
   nav a:hover {
@@ -505,10 +490,10 @@ body.modo-dia .concurso-card {
 
 .live-indicator {
   background-color: red;
-  padding: 5px 10px;
+  color: white;
+  padding: 3px 10px;
   border-radius: 20px;
   font-weight: bold;
-  color: white;
   animation: parpadeo 1s infinite alternate;
 }
 
@@ -589,3 +574,35 @@ body.modo-dia .concurso-card {
 #postales {
   position: relative; /* Para que las flechas se posicionen bien */
 }
+ .noticia-titulo {
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .img-portada {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      display: block;
+      border-radius: 8px;
+    }
+    .contenido {
+      max-width: 800px;
+      margin: auto;
+      text-align: left;
+    }
+    .contenido p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #ffffff;
+    }
+    .contenido strong {
+      color: #00d4ff;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
