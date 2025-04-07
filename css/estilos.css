@@ -475,13 +475,13 @@ body.modo-dia .concurso-card {
 }
 /* 🗞️ Noticiero Motivacional y Estado */
 .noticiero-flex {
-  display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
-  padding: 10px;
-  gap: 10px;
+  text-align: center;
+  gap: 8px;
+  margin-top: 10px;
 }
+
 
 @media screen and (max-width: 768px) {
   .noticiero-flex {
@@ -494,15 +494,8 @@ body.modo-dia .concurso-card {
   flex: 1;
   overflow: hidden;
   white-space: nowrap;
+  max-width: 90%;
 }
-
-.mensaje-motivacional span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scrollMensaje 15s linear infinite;
-      font-weight: bold;
-      color: #00ffd5;
-    }
 
     .top-info {
       display: flex;
