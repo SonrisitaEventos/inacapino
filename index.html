@@ -192,6 +192,9 @@
 <section id="postales">
  <h2>📸 Postales Inacapinas</h2>
   <p>¡Momentos que nos conectan y nos inspiran!</p>
+  <div class="galeria-con-flechas"> <!-- Nuevo contenedor para controlar todo -->
+  <button class="flecha-galeria izquierda" onclick="moverGaleria(-1)">❮</button>
+
   <div class="gallery-container">
     <div class="gallery-item" onclick="openModal(0)"><img src="imagenes/postales_1.jpg" class="imagen-postal" alt="Postal 1"></div>
     <div class="gallery-item" onclick="openModal(1)"><img src="imagenes/postales_2.jpg" class="imagen-postal" alt="Postal 2"></div>
@@ -200,6 +203,10 @@
     <div class="gallery-item" onclick="openModal(4)"><img src="imagenes/postales_5.jpg" class="imagen-postal" alt="Postal 5"></div>
     <div class="gallery-item" onclick="openModal(5)"><img src="imagenes/postales_6.jpg" class="imagen-postal" alt="Postal 6"></div>
   </div>
+
+  <button class="flecha-galeria derecha" onclick="moverGaleria(1)">❯</button>
+</div>
+
 <div class="modal" id="imgModal">
     <span class="close" onclick="closeModal()">&times;</span>
     <img class="modal-content" id="modalImg">
