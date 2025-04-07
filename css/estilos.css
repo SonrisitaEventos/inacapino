@@ -489,12 +489,29 @@ body.modo-dia .concurso-card {
     text-align: center;
   }
 
+/* Movimiento horizontal continuo */
 .mensaje-motivacional {
-  flex: 1;
   overflow: hidden;
   white-space: nowrap;
-  max-width: 90%;
+  flex: 1;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  height: 24px;
 }
+
+.scroll-wrapper {
+  display: inline-block;
+  white-space: nowrap;
+  animation: moverTexto 25s linear infinite;
+}
+
+@keyframes moverTexto {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+
 
     .top-info {
       display: flex;
@@ -502,14 +519,6 @@ body.modo-dia .concurso-card {
       gap: 10px;
     }
 
-.live-indicator {
-  background-color: red;
-  color: white;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-weight: bold;
-  animation: parpadeo 1s infinite alternate;
-}
 
 /* 💫 Efecto de Resalte para los mensajes */
 .mensaje-resalte {
@@ -614,4 +623,13 @@ body.modo-dia .concurso-card {
     .contenido strong {
       color: #00d4ff;
     }
+.live-indicator {
+  background-color: red;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  animation: parpadeo 1s infinite alternate;
+}
+
     
