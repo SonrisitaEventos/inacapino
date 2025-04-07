@@ -46,10 +46,13 @@ function actualizarClima() {
 function moverGaleria(direccion) {
   const galeria = document.querySelector(".gallery-container");
   if (galeria) {
-    const anchoItem = galeria.querySelector(".gallery-item img").offsetWidth + 12; // incluye gap
+    const anchoItem = galeria.querySelector(".gallery-item img").offsetWidth + 12;
     galeria.scrollLeft += direccion * anchoItem;
   }
 }
+
+window.moverGaleria = moverGaleria;
+
 
 // 🌜🌞 Modo Día/Noche
 function toggleModo() {
