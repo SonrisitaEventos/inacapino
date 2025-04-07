@@ -280,28 +280,53 @@ footer.footer-red {
   border-radius: 12px;
 }
 
+/* 📱 Responsive */
 @media screen and (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 15px;
+  }
+
+  nav a {
+    flex: 1 1 45%;
+    min-width: 120px;
+    max-width: 160px;
+    padding: 8px 10px;
+    font-size: 13px;
+    background-color: #d40000;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
+  }
+
+  nav a:hover {
+    transform: scale(1.05);
+    background-color: #ff0033;
+  }
+
+  .video-card, .noticia-card {
+    width: 90vw;
+  }
+
+  .noticia-img, .video-thumb img {
+    height: 180px;
+  }
+
+  .gallery-item img {
+    max-width: 90vw;
+  }
+
   .carrusel iframe {
     height: 200px;
   }
 }
 
-/* 📱 Responsive */
-@media screen and (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    gap: 8px;
-  }
-  .video-card, .noticia-card {
-    width: 85vw;
-  }
-  .noticia-img, .video-thumb img {
-    height: 180px;
-  }
-  .gallery-item img {
-    max-width: 90vw;
-  }
-}
 
 body.modo-dia {
   background: linear-gradient(145deg, #ffffff, #f0f0f0);
@@ -523,34 +548,5 @@ body.modo-dia .concurso-card {
   aspect-ratio: 9 / 16;
   border-radius: 10px;
   border: none;
-}
-@media screen and (max-width: 768px) {
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px;
-  }
-
-  nav a {
-    flex: 1 1 30%;
-    min-width: 100px;
-    max-width: 150px;
-    padding: 8px 6px;
-    font-size: 14px;
-    background-color: #d40000;
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    transition: transform 0.2s ease;
-  }
-
-  nav a:hover {
-    transform: scale(1.05);
-    background-color: #ff0055;
-  }
 }
 
