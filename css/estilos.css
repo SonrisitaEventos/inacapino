@@ -210,10 +210,18 @@ nav a {
 .gallery-container {
   display: flex;
   overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
   gap: 10px;
   padding: 20px;
-  justify-content: center;
+  justify-content: flex-start;
 }
+
+.gallery-item {
+  scroll-snap-align: start;
+}
+
+
 
 .gallery-item img {
   max-width: 240px;
@@ -290,20 +298,21 @@ footer.footer-red {
     padding: 10px 15px;
   }
 
-  nav a {
+    nav a {
     flex: 1 1 45%;
     min-width: 120px;
     max-width: 160px;
     padding: 8px 10px;
     font-size: 13px;
-    background-color: #d40000;
-    border-radius: 12px;
+    background-color: transparent; /* Fondo transparente */
+    border-radius: 0; /* Sin esquinas redondeadas */
     text-align: center;
     color: white;
     font-weight: bold;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    box-shadow: none;
     transition: transform 0.2s ease;
   }
+
 
   nav a:hover {
     transform: scale(1.05);
@@ -550,3 +559,29 @@ body.modo-dia .concurso-card {
   border: none;
 }
 
+.flecha-galeria {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px 15px;
+  z-index: 10;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+.flecha-galeria:hover {
+  background-color: rgba(255, 0, 0, 0.8);
+}
+.flecha-galeria.izquierda {
+  left: 10px;
+}
+.flecha-galeria.derecha {
+  right: 10px;
+}
+#postales {
+  position: relative; /* Para que las flechas se posicionen bien */
+}
