@@ -524,4 +524,20 @@ body.modo-dia .concurso-card {
   border-radius: 10px;
   border: none;
 }
+@media screen and (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    flex: 1 1 45%; /* Ocupa 45% del ancho, para que quepan 2 por fila */
+    margin: 5px;
+    text-align: center;
+    background-color: #d40000;
+    border-radius: 10px;
+    padding: 8px;
+  }
+}
 
