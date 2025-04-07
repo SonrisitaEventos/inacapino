@@ -29,11 +29,9 @@ html {
 ================================================== */
 header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  justify-content: space-between;
   padding: 10px 20px;
-  background-color: #111;
+  flex-wrap: wrap;
 }
 
 nav {
@@ -56,10 +54,11 @@ nav a:hover {
 }
 
 .logo {
-  max-width: 150px;
+  max-width: 120px;
   margin: 20px auto;
   display: block;
 }
+
 
 .top-info {
   display: flex;
