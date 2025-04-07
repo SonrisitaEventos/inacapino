@@ -31,6 +31,20 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
 }
+nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+
+
+  nav a:hover {
+    transform: scale(1.05);
+    background-color: #ff0033;
+  }
+
 
 /* 💡 Frase Animada */
 .frase-motivacional {
@@ -600,9 +614,4 @@ body.modo-dia .concurso-card {
     .contenido strong {
       color: #00d4ff;
     }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-    }
+    
