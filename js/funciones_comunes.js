@@ -43,6 +43,13 @@ function actualizarClima() {
       document.getElementById("clima").innerText = "🌡️ --°C";
     });
 }
+function moverGaleria(direccion) {
+  const galeria = document.querySelector(".gallery-container");
+  if (galeria) {
+    const anchoItem = galeria.querySelector(".gallery-item img").offsetWidth + 12; // incluye gap
+    galeria.scrollLeft += direccion * anchoItem;
+  }
+}
 
 // 🌜🌞 Modo Día/Noche
 function toggleModo() {
