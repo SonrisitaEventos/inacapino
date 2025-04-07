@@ -59,6 +59,28 @@ nav a:hover {
   display: block;
 }
 
+/* Movimiento horizontal continuo */
+.mensaje-motivacional {
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.scroll-wrapper {
+  display: inline-block;
+  white-space: nowrap;
+  animation: moverTexto 25s linear infinite;
+}
+
+@keyframes moverTexto {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
 
 .top-info {
   display: flex;
