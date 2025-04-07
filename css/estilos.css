@@ -540,4 +540,9 @@ body.modo-dia .concurso-card {
     padding: 8px;
   }
 }
+nav a:hover {
+  background-color: #ff00aa;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
 
