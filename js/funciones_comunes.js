@@ -203,12 +203,11 @@ document.addEventListener("DOMContentLoaded", () => {
     reproducirAutoDJ();
   }, 500); // Espera medio segundo para asegurar que todo esté listo
 });
-// Forzar galería de postales a empezar desde la imagen 1
-    const galeria = document.querySelector(".gallery-container");
-    if (galeria) galeria.scrollLeft = 0;
+ // Inicializar galería de postales correctamente
+imagenes = document.querySelectorAll('.imagen-postal');
+modal = document.getElementById('imgModal');
+modalImg = document.getElementById('modalImg');
 
-  }, 500);
-});
 function cambiarVideoManual() {
   const seleccion = document.getElementById("videoSelector").value;
   twitchFrame.style.display = "none";
