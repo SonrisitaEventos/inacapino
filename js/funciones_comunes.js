@@ -1,5 +1,24 @@
 // funciones_comunes.js
 // 🎯 Funciones compartidas para clima, reloj, frases y animaciones
+function reproducirAutoDJ() {
+  const select = document.getElementById("videoSelector");
+  const videoElegido = select.value;
+  const video = listaVideos.find(v => v.nombre === videoElegido);
+
+  if (video) {
+    const contenedor = document.getElementById("videoContainer");
+    contenedor.innerHTML = `
+      <video id="autoDJVideo" controls autoplay width="100%">
+        <source src="${video.url}" type="video/mp4">
+        Tu navegador no soporta la etiqueta de video.
+      </video>
+    `;
+    document.getElementById("nombreVideo").innerText = videoElegido;
+  }
+}
+
+// Para que esté disponible globalmente
+window.reproducirAutoDJ = reproducirAutoDJ;
 
 // ⏰ Actualización de la hora
 function actualizarReloj() {
