@@ -199,8 +199,9 @@ function changeImage(dir) {
 document.addEventListener("DOMContentLoaded", () => {
   initFuncionesComunes();
   setTimeout(() => {
-    reproducirAutoDJ();
-  }, 500); // Espera medio segundo para asegurar que todo esté listo
+  activarAutoDJ(); // ✅ Esta sí existe
+}, 500);
+ // Espera medio segundo para asegurar que todo esté listo
 });
  // Inicializar galería de postales correctamente
 imagenes = document.querySelectorAll('.imagen-postal');
@@ -227,7 +228,7 @@ window.scrollToTop = scrollToTop;
 
 
 // 🧠 Exponer funciones al HTML
-window.reproducirAutoDJ = reproducirAutoDJ;
+window.activarAutoDJ = activarAutoDJ;
 window.mostrarTwitch = mostrarTwitch;
 window.accederVIP = accederVIP;
 window.mostrarLoginVIP = mostrarLoginVIP;
