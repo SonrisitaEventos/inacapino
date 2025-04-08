@@ -40,7 +40,10 @@ function cambiarVideoManual() {
 }
 
 function mostrarVideo(videoSeleccionado) {
+  const twitchFrame = document.getElementById("twitchStream");
   const contenedor = document.getElementById("transmision");
+  twitchFrame.style.display = "none";
+
   const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
   contenedor.innerHTML = `
     <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;">
@@ -56,6 +59,7 @@ function mostrarVideo(videoSeleccionado) {
 
   document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
 }
+
 
 function activarAutoDJ() {
   const indice = Math.floor(Math.random() * listaVideos.length);
@@ -100,6 +104,21 @@ setInterval(() => {
 }, 7000);
 
 // ========== CLIMA Y HORA ========== //
+// 🔄 Escuchar cambios en Firebase para mostrar Twitch o AutoDJ automáticamente
+function escucharModoTransmision() {
+  db.ref("radio/modoTransmision").on("value", (snapshot) => {
+    const modo = snapshot.val();
+
+    if (modo === "twitch") {
+      mostrarTwitch();
+    } else if (modo === "autodj") {
+      db.ref("radio/videoActual").once("value").then((snap) => {
+        const video = snap.val();
+        mostrarVideo(video);
+      });
+    }
+  });
+}
 
 // función actualizarReloj removida (duplicada con funciones_comunes.js)
 
@@ -115,7 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(actualizarReloj, 60000);
   actualizarClima();
   setInterval(actualizarClima, 10 * 60 * 1000);
+  escucharModoTransmision(); // 🔁 Escuchar cambios en transmisión
 });
+
 
 // ========== EXPORTAR FUNCIONES GLOBALES ========== //
 
