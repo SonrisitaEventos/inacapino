@@ -99,15 +99,7 @@ function cambiarModo(modo) {
 
 // ========== FRASES MOTIVACIONALES ========== //
 
-const frases = [
-  "🎉La educación es el pasaporte al futuro. ✨",
-  "🎉Cada paso cuenta, sigue avanzando.🌟",
-  "🎉El conocimiento es poder.🌟",
-  "✨Nunca dejes de aprender.",
-  "✨Todo lo que puedas imaginar, lo puedes crear. 🎉",
-  "🎉Tu esfuerzo de hoy es tu éxito de mañana.✨",
-  "🌟La actitud es tan importante como la habilidad.🎉"
-];
+
 let fraseActual = 0;
 setInterval(() => {
   fraseActual = (fraseActual + 1) % frases.length;
