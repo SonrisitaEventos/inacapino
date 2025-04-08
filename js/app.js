@@ -16,10 +16,10 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 const listaVideos = [
-  { nombre: "JAZZ & BLUES", url: "https://...dee26a91" },
-  { nombre: "Gaming Music", url: "https://...d3330f02" },
-  { nombre: "Un Gran momento para estudiar", url: "https://...ff7fccf3" },
-  { nombre: "1 Hora y a bailar", url: "https://...6a4b4e70" },
+  { nombre: "JAZZ & BLUES", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio.appspot.com/o/videos%2Fvideo1.mp4?alt=media" },
+  { nombre: "Gaming Music", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio.appspot.com/o/videos%2Fvideo2.mp4?alt=media" },
+  { nombre: "Un Gran momento para estudiar", url: "firebasestorage.googleapis.com/v0/b/inacapino-radio.appspot.com/o/videos%2Fvideo3.mp4?alt=media" },
+  { nombre: "1 Hora y a bailar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962" },
 ];
 
 // ========== FUNCIONES DE ESTILO Y MODO OSCURO ========== //
