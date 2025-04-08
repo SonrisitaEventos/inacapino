@@ -58,19 +58,26 @@ function cambiarVideoManual() {
 
 function mostrarVideo(videoSeleccionado) {
   console.log("Mostrando video:", videoSeleccionado);
+
   const twitchFrame = document.getElementById("twitchStream");
   const contenedor = document.getElementById("videoContainer");
-  twitchFrame.style.display = "none";
+
+  // Solo si el iframe existe, lo ocultamos
+  if (twitchFrame) {
+    twitchFrame.style.display = "none";
+  }
 
   const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
+
   contenedor.innerHTML = `
     <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;" crossorigin="anonymous">
       <source src="${videoSeleccionado.url}" type="video/mp4">
     </video>
   `;
-  
+
   const videoEl = document.getElementById("videoPlayer");
   videoEl.volume = parseFloat(volumenGuardado);
+
   videoEl.addEventListener("volumechange", () => {
     localStorage.setItem("volumenUsuario", videoEl.volume);
   });
