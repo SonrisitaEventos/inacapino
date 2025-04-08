@@ -58,7 +58,7 @@ function cambiarVideoManual() {
 function mostrarVideo(videoSeleccionado) {
   console.log("Mostrando video:", videoSeleccionado);
   const twitchFrame = document.getElementById("twitchStream");
-  const contenedor = document.getElementById("transmision");
+  const contenedor = document.getElementById("videoContainer");
   twitchFrame.style.display = "none";
 
   const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
