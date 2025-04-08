@@ -46,24 +46,27 @@ const listaVideos = [
 function cambiarVideoManual() {
   const indice = parseInt(document.getElementById("videoSelector").value);
   const videoSeleccionado = listaVideos[indice];
+  console.log("Video seleccionado:", videoSeleccionado);
   db.ref("radio/modoTransmision").set("autodj");
   db.ref("radio/videoActual").set(videoSeleccionado);
-
+  
   mostrarVideo(videoSeleccionado);
 }
 
+
 function mostrarVideo(videoSeleccionado) {
+  console.log("Mostrando video:", videoSeleccionado);
   const twitchFrame = document.getElementById("twitchStream");
   const contenedor = document.getElementById("transmision");
   twitchFrame.style.display = "none";
 
   const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
   contenedor.innerHTML = `
-    <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;">
+    <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;" crossorigin="anonymous">
       <source src="${videoSeleccionado.url}" type="video/mp4">
     </video>
   `;
-
+  
   const videoEl = document.getElementById("videoPlayer");
   videoEl.volume = parseFloat(volumenGuardado);
   videoEl.addEventListener("volumechange", () => {
@@ -72,6 +75,7 @@ function mostrarVideo(videoSeleccionado) {
 
   document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
 }
+
 
 
 function activarAutoDJ() {
