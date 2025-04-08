@@ -142,12 +142,14 @@ function initFuncionesComunes() {
 }
 function mostrarLoginVIP() {
   const login = document.getElementById("fondoLogin");
-  login.classList.add("mostrar");
+  login.style.display = "flex";
 }
+
 function cerrarLoginVIP() {
   const login = document.getElementById("fondoLogin");
-  login.classList.remove("mostrar");
+  login.style.display = "none";
 }
+
 function accederVIP() {
   const usuario = document.getElementById("usuario").value;
   const clave = document.getElementById("clave").value;
