@@ -140,9 +140,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ========== EXPORTAR FUNCIONES GLOBALES ========== //
 
-window.toggleModo = toggleModo;
-window.accederVIP = accederVIP;
 window.mostrarLoginVIP = mostrarLoginVIP;
+window.accederVIP = accederVIP;
+window.cerrarLoginVIP = cerrarLoginVIP;
+window.toggleModo = toggleModo;
 window.cambiarVideoManual = cambiarVideoManual;
 window.activarAutoDJ = activarAutoDJ;
 window.cambiarModo = cambiarModo;
