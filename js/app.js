@@ -1,6 +1,7 @@
 // 🎉 ¡Hola querido Cristián! Este es tu archivo JS limpio, corregido y consolidado con amor 🤗
 
 // ========== CONFIGURACIÓN INICIAL ========== //
+console.log("app.js cargado");
 
 const firebaseConfig = {
   apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
