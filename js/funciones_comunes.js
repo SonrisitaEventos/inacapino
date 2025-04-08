@@ -218,13 +218,7 @@ imagenes = document.querySelectorAll('.imagen-postal');
 modal = document.getElementById('imgModal');
 modalImg = document.getElementById('modalImg');
 
-function cambiarVideoManual() {
-  const seleccion = document.getElementById("videoSelector").value;
-  twitchFrame.style.display = "none";
-  videoPlayer.style.display = "block";
-  videoPlayer.src = videosAutoDJ[seleccion];
-}
-window.cambiarVideoManual = cambiarVideoManual;
+
 // Mostrar flecha al hacer scroll
 window.addEventListener("scroll", () => {
   const btn = document.getElementById("btnTop");
