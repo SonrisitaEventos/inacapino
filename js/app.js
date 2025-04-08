@@ -20,7 +20,7 @@ const db = firebase.database();
 const listaVideos = [
   {
     nombre: "🕺 1 Hora y a bailar",
-    url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FSTREAMING%20GAMER.mp4?alt=media&token=ddcc30aa-9b1c-4ab5-b5e8-eac8e417174c"
+   url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.appspot.com/o/videos%2F1%20HOUR%20MIX%20%282020%29.mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962"
   },
   
 ];
