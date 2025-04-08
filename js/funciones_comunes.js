@@ -164,30 +164,6 @@ function accederVIP() {
 }
 
 
-// Lista de videos desde Firebase Storage
-const videosAutoDJ = [
-  "https://firebasestorage.googleapis.com/v0/b/inacapino-radio.appspot.com/o/videos%2Fvideo1.mp4?alt=media",
-  "https://firebasestorage.googleapis.com/v0/b/inacapino-radio.appspot.com/o/videos%2Fvideo2.mp4?alt=media",
-  "https://firebasestorage.googleapis.com/v0/b/inacapino-radio.appspot.com/o/videos%2Fvideo3.mp4?alt=media"
-];
-
-let videoActual = 0;
-const videoPlayer = document.getElementById("autoDJ");
-const twitchFrame = document.getElementById("twitchStream");
-
-// 🔁 Cambiar video aleatorio
-function reproducirAutoDJ() {
-  twitchFrame.style.display = "none";
-  videoPlayer.style.display = "block";
-  videoActual = Math.floor(Math.random() * videosAutoDJ.length);
-  videoPlayer.src = videosAutoDJ[videoActual];
-}
-
-// 🎥 Pasar a Twitch
-function mostrarTwitch() {
-  videoPlayer.style.display = "none";
-  twitchFrame.style.display = "block";
-}
 let imagenes = document.querySelectorAll('.imagen-postal');
 let modal = document.getElementById('imgModal');
 let modalImg = document.getElementById('modalImg');
