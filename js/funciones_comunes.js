@@ -166,12 +166,15 @@ function accederVIP() {
 }
 
 function mostrarTwitch() {
+  console.log("Mostrando transmisión en vivo de Twitch");
   const contenedor = document.getElementById("transmision");
   contenedor.innerHTML = `
-    <iframe id="twitchStream" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" frameborder="0" allowfullscreen style="width:100%; height: 540px; border-radius: 10px;"></iframe>
+    <iframe id="twitchStream" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" 
+            frameborder="0" allowfullscreen style="width:100%; height: 540px; border-radius: 10px;"></iframe>
   `;
   document.getElementById("nombreVideo").innerText = `🔴 Transmisión en vivo desde Twitch`;
 }
+
 
 
 let imagenes = document.querySelectorAll('.imagen-postal');
