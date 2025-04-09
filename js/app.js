@@ -83,13 +83,18 @@ function mostrarVideo(videoSeleccionado) {
 function activarAutoDJ() {
   const indice = Math.floor(Math.random() * listaVideos.length);
   const video = listaVideos[indice];
-  db.ref("radio/modoTransmision").set("autodj");
-  db.ref("radio/videoActual").set(video);
+
+  db.ref("radio/videoActual").set(video); // Guardamos primero el video
+
+  // 🔄 Forzamos el cambio del modo aunque ya sea "autodj"
+  db.ref("radio/modoTransmision").set("espera").then(() => {
+    db.ref("radio/modoTransmision").set("autodj");
+  });
+
+  // 💡 Mostramos el video altiro por si no se detecta el cambio
+  mostrarVideo(video);
 }
 
-function cambiarModo(modo) {
-  if (modo === "twitch") db.ref("radio/modoTransmision").set("twitch");
-}
 
 // ========== VIP ========== //
 
