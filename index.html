@@ -106,11 +106,175 @@
     <button class="vip-button" onclick="toggleModo()">🌗 Cambiar Modo</button>
   </main>
 
-  <footer class="footer-red">
-    <p>🎙️ Radio El Inacapino - INACAP Puerto Montt | Hecho con 💚 por Cristián Riffo</p>
-  </footer>
+ !-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+ <section id="rebobinando" class="rebobinando-section">
+  <h2>🔁 Rebobinando la Señal</h2>
+  <p>¡Revive los mejores momentos de nuestras transmisiones!</p>
+
+  <div class="video-carrusel">
+    <!-- Episodio 1 -->
+    <div class="video-card vertical">
+  <iframe src="https://www.youtube.com/embed/R6bZrK0mDUs" allowfullscreen></iframe>
+  <div class="video-title">Deja tu Huella 2025</div>
+</div>
+
+     <!-- Episodio 2 -->
+    <div class="video-card vertical">
+  <iframe src="https://www.youtube.com/embed/0lNJ-IeYZ9Y" allowfullscreen></iframe>
+  <div class="video-title">Bienvenida 2025</div>
+</div>
+    
+    <!-- Episodio 3 -->
+    <div class="video-card vertical">
+  <iframe src="https://www.youtube.com/embed/KFEP9G3Qq70" allowfullscreen></iframe>
+  <div class="video-title">Nuestro Vice</div>
+</div>
+    </section>
+
+  <section id="capsulas">
+    <h2>🎬 Cápsulas Inacapinas</h2>
+    <p>Historias, datos y mensajes breves para toda la comunidad</p>
+    <div class="carrusel">
+      <div class="video-card vertical">
+        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1110969660676270" allowfullscreen></iframe>
+        <div class="video-title">Testimonios de Inacapinos!</div>
+      </div>
+      <div class="video-card vertical">
+        <iframe src="https://www.instagram.com/reel/DHonYlnylMx/embed" allowfullscreen></iframe>
+        <div class="video-title">Nueva Parcela Didáctica </div>
+      </div>
+      <div class="video-card vertical">
+        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/997899215169145" allowfullscreen></iframe>
+        <div class="video-title">🌟 En INACAP seguimos conmemorando el mes de la mujer</div>
+      </div>
+       <div class="video-card vertical">
+        <iframe src="https://www.instagram.com/reel/DGyIribROOw/embed" allowfullscreen></iframe>
+        <div class="video-title">SEMANA DE BIENVENIDA 2025!!! 🤗</div>
+      </div>
+       <div class="video-card vertical">
+        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1160584632281917" allowfullscreen></iframe>
+        <div class="video-title">Tips Mecánico</div>
+      </div>
+    </div>
+  </section>
+<section id="concursos">
+  <h2>🎉 Participa en nuestros Concursos</h2>
+
+  <div class="concurso-card">
+    <strong>🔥 Concurso en vivo:</strong><br>
+    Durante la transmisión de este viernes, responde en el chat de Twitch la <strong>pregunta sorpresa</strong> y gana un delicioso <strong>completo o salchipapa</strong> en el Casino INACAP Puerto Montt. ¡Solo para los más rápidos!
+  </div>
+
+  <div class="concurso-card">
+    <strong>🕵️‍♂️ Búsqueda del Tesoro:</strong><br>
+    ¡Revisa nuestras redes! Cada semana escondemos una <strong>pista secreta</strong> para que descubras la <strong>palabra mágica</strong>. Si la dices en vivo, ¡te llevas <strong>premio doble</strong>!
+  </div>
+
+  <div class="concurso-card">
+    <strong>🌟 Fans N° 1:</strong><br>
+    ¿Comentas, compartes y reaccionas todo lo que hacemos? Cada mes elegimos al <strong>fan más activo</strong> de nuestras redes y lo premiamos con <strong>sorpresas exclusivas</strong>.
+  </div>
+
+  <div class="concurso-card">
+    <strong>📢 ¡Cambia el nombre de la radio!</strong><br>
+    Participa con tu propuesta para <strong>renombrar “El Inacapino Puerto Montt”</strong>. ¿Se te ocurre algo épico? ¡Podría quedar en la historia!
+  </div>
+</section>
+
+<section id="postales">
+ <h2>📸 Postales Inacapinas</h2>
+  <p>¡Momentos que nos conectan y nos inspiran!</p>
+  <div class="galeria-con-flechas"> <!-- Nuevo contenedor para controlar todo -->
+  <button class="flecha-galeria izquierda" onclick="moverGaleria(-1)">❮</button>
+
+  <div class="gallery-container">
+    <div class="gallery-item" onclick="openModal(0)"><img src="imagenes/postales_1.jpg" class="imagen-postal" alt="Postal 1"></div>
+    <div class="gallery-item" onclick="openModal(1)"><img src="imagenes/postales_2.jpg" class="imagen-postal" alt="Postal 2"></div>
+    <div class="gallery-item" onclick="openModal(2)"><img src="imagenes/postales_3.jpg" class="imagen-postal" alt="Postal 3"></div>
+    <div class="gallery-item" onclick="openModal(3)"><img src="imagenes/postales_4.jpg" class="imagen-postal" alt="Postal 4"></div>
+    <div class="gallery-item" onclick="openModal(4)"><img src="imagenes/postales_5.jpg" class="imagen-postal" alt="Postal 5"></div>
+    <div class="gallery-item" onclick="openModal(5)"><img src="imagenes/postales_6.jpg" class="imagen-postal" alt="Postal 6"></div>
+  </div>
+
+  <button class="flecha-galeria derecha" onclick="moverGaleria(1)">❯</button>
+</div>
+
+<div class="modal" id="imgModal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+    <span class="prev" onclick="changeImage(-1)">&#10094;</span>
+    <span class="next" onclick="changeImage(1)">&#10095;</span>
+  </div>
+</section>
+<!-- Sección Noticias y Destacados -->
+<section id="noticias" style="margin-top: 60px; text-align: center; color: white;">
+  <h2>📰 Noticias y Destacados</h2>
+  <p style="margin-bottom: 30px;">¡Entérate de lo último en nuestra sede, eventos y colaboraciones!</p>
+
+  <div class="noticias-container">
+
+    <!-- Noticia 1 -->
+    <a href="noticia1.html" target="_blank" class="noticia-card">
+      <img src="imagenes/pokemon.jpg" alt="Pokémon GO" class="noticia-img">
+      <div class="noticia-info">
+        <h3 class="noticia-titulo">Empresa Saudita adquiere Pokémon GO</h3>
+        <p class="noticia-resumen">Arabia Saudita adquiere Niantic por más de 3 mil millones de dólares.</p>
+      </div>
+    </a>
+
+    <!-- Noticia 2 -->
+    <a href="noticia2.html" target="_blank" class="noticia-card">
+      <img src="imagenes/noticia_2_0.jpg" alt="David Steven Cohen" class="noticia-img">
+      <div class="noticia-info">
+        <h3 class="noticia-titulo">Fallece David Steven Cohen</h3>
+        <p class="noticia-resumen">Guionista de "Coraje, el perro cobarde" deja un legado en la animación.</p>
+      </div>
+    </a>
+
+    <!-- Noticia 3 -->
+    <a href="noticia3.html" target="_blank" class="noticia-card">
+      <img src="imagenes/noticia_3_0.jpg" alt="Pescador peruano" class="noticia-img">
+      <div class="noticia-info">
+        <h3 class="noticia-titulo">Milagro en el mar</h3>
+        <p class="noticia-resumen">Pescador peruano sobrevive 95 días alimentándose de animales silvestres.</p>
+      </div>
+    </a>
+
+    <!-- Noticia 4 -->
+    <a href="noticia4.html" target="_blank" class="noticia-card">
+      <img src="imagenes/noticia_4_0.jpg" alt="Carabinero con perro" class="noticia-img">
+      <div class="noticia-info">
+        <h3 class="noticia-titulo">Polémica en redes</h3>
+        <p class="noticia-resumen">Carabinero le tiró spray a un perro por ladrarle en la calle.</p>
+      </div>
+    </a>
+
+  </div>
+    <!-- Sección Noticias 5 -->
+  
+</section>
+  <!-- Sección Muro de Deseos -->
+  <section id="muro-deseos" style="margin-top: 40px;">
+    <h2>🌟 Muro de los Buenos Deseos</h2>
+    <p style="margin: 10px auto; max-width: 600px;">
+      Te invitamos a que puedas aportar tu mensaje de buenos deseos para los alumnos, docentes o personal de nuestra Sede Puerto Montt. Puedes hacerlo en el siguiente enlace:
+    </p>
+    <a href="muro_buenos_deseos.html" style="display:inline-block; margin-top: 15px; padding: 10px 20px; background-color: #d40000; color: white; border-radius: 10px; text-decoration: none; font-weight: bold;">Deja tu mensaje</a>
+  </section>
+<section id="encuesta">
+  <h2>🗳️ ¡Queremos escucharte!</h2>
+  <h3>Responde esta breve encuesta y ayúdanos a mejorar tu experiencia en la radio.</h3>
+  <div style="max-width: 720px; height: 600px; margin: auto; overflow-y: auto; border-radius: 10px;">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf-QyBP3NOBXk_ANgyLomcoVYtg52uEQcztvn4Pn9brdFr0bw/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" style="border: none;">Cargando…</iframe>
+  </div>
+</section>
+<!-- Footer agregado -->
+    <footer class="footer-red">
+      <p>🎙️ Radio El Inacapino - INACAP Puerto Montt | Hecho con 💚 por Cristián Riffo</p>
+    </footer>
+  </main>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
   <script src="js/funciones_comunes.js" defer></script>
   <script src="js/app.js" defer></script>
