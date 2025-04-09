@@ -1,26 +1,7 @@
 // funciones_comunes.js
-// 🎯 Funciones compartidas para clima, reloj, frases y animaciones
-function reproducirAutoDJ() {
-  const select = document.getElementById("videoSelector");
-  const videoElegido = select.value;
-  const video = listaVideos.find(v => v.nombre === videoElegido);
+// 🎯 Funciones compartidas para clima, reloj, frases y más
 
-  if (video) {
-    const contenedor = document.getElementById("videoContainer");
-    contenedor.innerHTML = `
-      <video id="autoDJVideo" controls autoplay width="100%">
-        <source src="${video.url}" type="video/mp4">
-        Tu navegador no soporta la etiqueta de video.
-      </video>
-    `;
-    document.getElementById("nombreVideo").innerText = videoElegido;
-  }
-}
-
-// Para que esté disponible globalmente
-window.reproducirAutoDJ = reproducirAutoDJ;
-
-// ⏰ Actualización de la hora
+// ⏰ Actualizar reloj
 function actualizarReloj() {
   const ahora = new Date();
   const horas = ahora.getHours().toString().padStart(2, '0');
@@ -28,7 +9,7 @@ function actualizarReloj() {
   document.getElementById("reloj").textContent = `${horas}:${minutos}`;
 }
 
-// 🌤️ Función para obtener el emoji según el ícono
+// 🌤️ Clima desde OpenWeather
 function obtenerEmojiClima(icon) {
   const mapa = {
     "01d": "☀️", "01n": "🌕",
@@ -44,13 +25,10 @@ function obtenerEmojiClima(icon) {
   return mapa[icon] || "🌡️";
 }
 
-// 📡 Clima en tiempo real
 function actualizarClima() {
   const ciudad = "Puerto Montt";
-  const pais = "CL";
   const API_KEY = "ac05bbbe9fcb2df2fb44145383ed0342";
-
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${API_KEY}&units=metric&lang=es`)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},CL&appid=${API_KEY}&units=metric&lang=es`)
     .then(res => res.json())
     .then(data => {
       const temperatura = Math.round(data.main.temp);
@@ -62,35 +40,25 @@ function actualizarClima() {
       document.getElementById("clima").innerText = "🌡️ --°C";
     });
 }
-function moverGaleria(direccion) {
-  const galeria = document.querySelector(".gallery-container");
-  if (galeria) {
-    const anchoItem = galeria.querySelector(".gallery-item img").offsetWidth + 12;
-    galeria.scrollLeft += direccion * anchoItem;
-  }
-}
 
-window.moverGaleria = moverGaleria;
-
-
-// 🌜🌞 Modo Día/Noche
+// 🌗 Cambiar modo claro/oscuro
 function toggleModo() {
   document.body.classList.toggle("modo-noche");
   document.body.classList.toggle("modo-dia");
-  const modoActual = document.body.classList.contains("modo-noche") ? "noche" : "dia";
-  localStorage.setItem("modoPreferido", modoActual);
+  const modo = document.body.classList.contains("modo-noche") ? "noche" : "dia";
+  localStorage.setItem("modoPreferido", modo);
 }
 
 function restaurarModo() {
-  const modoGuardado = localStorage.getItem("modoPreferido");
-  if (modoGuardado === "noche") {
+  const modo = localStorage.getItem("modoPreferido");
+  if (modo === "noche") {
     document.body.classList.add("modo-noche");
   } else {
     document.body.classList.add("modo-dia");
   }
 }
 
-// 📢 Frases motivacionales bajo el logo
+// 💬 Frases animadas bajo el logo
 const frases = [
   "🎉La educación es el pasaporte al futuro. ✨",
   "🎉Cada paso cuenta, sigue avanzando.🌟",
@@ -104,9 +72,9 @@ const frases = [
 function iniciarFrasesMotivacionales() {
   let fraseActual = 0;
   setInterval(() => {
-    fraseActual = (fraseActual + 1) % frases.length;
     const fraseEl = document.getElementById('frase');
     if (fraseEl) {
+      fraseActual = (fraseActual + 1) % frases.length;
       fraseEl.style.opacity = 0;
       setTimeout(() => {
         fraseEl.textContent = frases[fraseActual];
@@ -119,7 +87,7 @@ function iniciarFrasesMotivacionales() {
   }, 7000);
 }
 
-// 🧡 Mensajes motivacionales tipo noticiero
+// 📢 Noticiero motivacional
 const mensajes = [
   "🌞 ¡Hoy es un buen día para aprender algo nuevo!",
   "🎯 Sigue adelante, la meta está cada vez más cerca.",
@@ -131,12 +99,12 @@ const mensajes = [
 ];
 
 function iniciarNoticieroMotivacional() {
-  let mensajeActual = 0;
+  let actual = 0;
   const contenedor = document.getElementById("mensajeTexto");
   setInterval(() => {
     if (contenedor) {
-      mensajeActual = (mensajeActual + 1) % mensajes.length;
-      contenedor.textContent = mensajes[mensajeActual];
+      actual = (actual + 1) % mensajes.length;
+      contenedor.textContent = mensajes[actual];
       contenedor.classList.remove("mensaje-resalte");
       void contenedor.offsetWidth;
       contenedor.classList.add("mensaje-resalte");
@@ -144,70 +112,32 @@ function iniciarNoticieroMotivacional() {
   }, 15000);
 }
 
-// ⬆️ Botón volver arriba
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// 🧠 Inicializar todo desde cada página
-function initFuncionesComunes() {
-  restaurarModo();
-  actualizarReloj();
-  actualizarClima();
-  iniciarFrasesMotivacionales();
-  iniciarNoticieroMotivacional();
-  setInterval(actualizarReloj, 60000);
-  setInterval(actualizarClima, 600000);
-}
+// 🔐 Login VIP
 function mostrarLoginVIP() {
-  const login = document.getElementById("fondoLogin");
-  login.style.display = "flex";
+  document.getElementById("fondoLogin").style.display = "flex";
 }
 
 function cerrarLoginVIP() {
-  const login = document.getElementById("fondoLogin");
-  login.style.display = "none";
+  document.getElementById("fondoLogin").style.display = "none";
 }
 
 function accederVIP() {
-  const usuario = document.getElementById("usuario").value;
-  const clave = document.getElementById("clave").value;
+  const user = document.getElementById("usuario").value;
+  const pass = document.getElementById("clave").value;
 
-  if (usuario === "Inacapino" && clave === "SedePuertoMontt") {
+  if (user === "Inacapino" && pass === "SedePuertoMontt") {
     cerrarLoginVIP();
-    const controles = document.getElementById("panelVIP");
-    const selector = document.getElementById("panelSelector");
-    if (controles) controles.style.display = "block";
-    if (selector) selector.style.display = "block";
+    const panel = document.getElementById("panelVIP");
+    if (panel) panel.style.display = "block";
   } else {
-    alert("Credenciales incorrectas, intenta nuevamente.");
+    alert("Credenciales incorrectas.");
   }
 }
 
-function mostrarTwitch() {
-  console.log("Mostrando transmisión en vivo de Twitch");
-
-  const contenedor = document.getElementById("videoContainer");
-
-  if (contenedor) {
-    contenedor.innerHTML = `
-      <iframe id="twitchStream" src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" 
-              frameborder="0" allowfullscreen style="width:100%; height: 540px; border-radius: 10px;"></iframe>
-    `;
-  }
-
-  const nombre = document.getElementById("nombreVideo");
-  if (nombre) {
-    nombre.innerText = `🔴 Transmisión en vivo desde Twitch`;
-  }
-}
-
-
-
-
-let imagenes = document.querySelectorAll('.imagen-postal');
-let modal = document.getElementById('imgModal');
-let modalImg = document.getElementById('modalImg');
+// 🖼️ Galería de postales
+let imagenes = [];
+let modal = null;
+let modalImg = null;
 let index = 0;
 
 function openModal(i) {
@@ -224,40 +154,50 @@ function changeImage(dir) {
   index = (index + dir + imagenes.length) % imagenes.length;
   modalImg.src = imagenes[index].src;
 }
-document.addEventListener("DOMContentLoaded", () => {
-  initFuncionesComunes();
- // Espera medio segundo para asegurar que todo esté listo
-});
- // Inicializar galería de postales correctamente
-imagenes = document.querySelectorAll('.imagen-postal');
-modal = document.getElementById('imgModal');
-modalImg = document.getElementById('modalImg');
 
-
-// Mostrar flecha al hacer scroll
-window.addEventListener("scroll", () => {
-  const btn = document.getElementById("btnTop");
-  if (window.scrollY > 300) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
+function moverGaleria(direccion) {
+  const galeria = document.querySelector(".gallery-container");
+  if (galeria) {
+    const anchoItem = galeria.querySelector(".gallery-item img").offsetWidth + 12;
+    galeria.scrollLeft += direccion * anchoItem;
   }
-});
+}
 
-// Función para subir arriba
+// ⬆️ Volver arriba
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// 📦 Inicialización global
+function initFuncionesComunes() {
+  restaurarModo();
+  actualizarReloj();
+  actualizarClima();
+  iniciarFrasesMotivacionales();
+  iniciarNoticieroMotivacional();
+  setInterval(actualizarReloj, 60000);
+  setInterval(actualizarClima, 10 * 60 * 1000);
+
+  // Inicializar galería
+  imagenes = document.querySelectorAll('.imagen-postal');
+  modal = document.getElementById('imgModal');
+  modalImg = document.getElementById('modalImg');
+
+  // Mostrar botón scroll top
+  const btn = document.getElementById("btnTop");
+  window.addEventListener("scroll", () => {
+    if (btn) btn.style.display = window.scrollY > 300 ? "block" : "none";
+  });
+}
+
+// 🌐 Exportar al global
 window.scrollToTop = scrollToTop;
-
-
-
-// 🧠 Exponer funciones al HTML
-window.activarAutoDJ = activarAutoDJ;
-window.mostrarTwitch = mostrarTwitch;
-window.accederVIP = accederVIP;
+window.moverGaleria = moverGaleria;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.changeImage = changeImage;
 window.mostrarLoginVIP = mostrarLoginVIP;
 window.cerrarLoginVIP = cerrarLoginVIP;
+window.accederVIP = accederVIP;
 window.toggleModo = toggleModo;
-window.scrollToTop = scrollToTop;
 window.initFuncionesComunes = initFuncionesComunes;
