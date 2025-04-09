@@ -53,8 +53,12 @@ function mostrarTwitch() {
 
 // ========== CAMBIO ENTRE MODOS MANUAL ========== //
 function cambiarModo(modo) {
-  db.ref("radio/modoTransmision").set(modo);
-}
+ db.ref("radio/modoTransmision").once("value").then(snapshot => {
+  if (!snapshot.exists()) {
+    db.ref("radio/modoTransmision").set("zeno"); // o "twitch"
+  }
+});
+
 
 function escucharModoTransmision() {
   db.ref("radio/modoTransmision").on("value", (snapshot) => {
@@ -62,7 +66,8 @@ function escucharModoTransmision() {
     if (modo === "twitch") {
       mostrarTwitch();
     } else {
-      mostrarZenoFM();
+      escucharModoTransmision(); // ✅ Escucha el valor guardado y actualiza para todos
+
     }
   });
 }
@@ -89,11 +94,12 @@ setInterval(() => {
 
 // ========== INICIALIZACIÓN COMPLETA ========== //
 document.addEventListener("DOMContentLoaded", () => {
-  mostrarZenoFM(); // Modo por defecto
+ document.addEventListener("DOMContentLoaded", () => {
   restaurarModo();
   actualizarReloj();
-  setInterval(actualizarReloj, 60000);
   actualizarClima();
+  escucharModoTransmision(); // Esta sincroniza a todos con la señal actual
+  setInterval(actualizarReloj, 60000);
   setInterval(actualizarClima, 10 * 60 * 1000);
 });
 
