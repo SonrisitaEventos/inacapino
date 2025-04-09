@@ -18,13 +18,13 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 const listaVideos = [
-  { nombre: "🎷 JAZZ & BLUES", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FJAZZ%20%26%20BLUES%20(conversar%20%2Ccaf%C3%A9%20%2Cestudiar).mp4?alt=media&token=dee26a91-1bc0-4690-aefa-7137d682acdb" },
-  { nombre: "🎮 Gaming Music 2023", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FGaming%20Music%202023.mp4?alt=media&token=32ebca4e-dfca-47c6-b2ff-a015575953d7" },
-  { nombre: "📚 3 HORAS DE MÚSICA PARA LIVE 2022", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4?alt=media&token=34a6864a-c763-427c-8aa9-d5117fae80a4" },
-  { nombre: "🕺 1 Hora y a bailar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media&token=b3621aff-1fdb-46fa-bd5e-32cecf18717c" },
-  { nombre: "🎧 MixElectronic", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FMixElectronic.mp4?alt=media&token=32c0042a-14f3-4d8c-99ef-cb027ac98883" },
-  { nombre: "⚡ Música Electrónica para Estudiar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FM%C3%BAsica%20Electr%C3%B3nica%20para%20Estudiar%2C%20m%C3%BAsica%20para%20levantar%20el%20animo.mp4?alt=media&token=c2a623df-7a16-4f82-ad72-3e32be1ae92c" },
-  { nombre: "🎮 STREAMING GAMER", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FSTREAMING%20GAMER.mp4?alt=media&token=d892bede-e35e-481d-a09c-280a74ba6aaa" }
+  { nombre: "🎷 JAZZ & BLUES", url: "https://storage.googleapis.com/inacapino-radio-spark.firebasestorage.app/videos/JAZZ%20%26%20BLUES%20(conversar%20%2Ccaf%C3%A9%20%2Cestudiar).mp4" },
+  { nombre: "🎮 Gaming Music 2023", url: "https://storage.googleapis.com/inacapino-radio-spark.firebasestorage.app/videos/Gaming%20Music%202023.mp4" },
+  { nombre: "📚 3 HORAS DE MÚSICA PARA LIVE 2022", url: "https://storage.googleapis.com/inacapino-radio-spark.firebasestorage.app/videos/3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4" },
+  { nombre: "🕺 1 Hora y a bailar", url: "https://storage.googleapis.com/inacapino-radio-spark.firebasestorage.app/videos/1%20HOUR%20MIX%20(2020).mp4" },
+  { nombre: "🎧 MixElectronic", url: "https://storage.googleapis.com/inacapino-radio-spark.firebasestorage.app/videos/MixElectronic.mp4" },
+  { nombre: "⚡ Música Electrónica para Estudiar", url: "https://storage.googleapis.com/inacapino-radio-spark.firebasestorage.app/videos/M%C3%BAsica%20Electr%C3%B3nica%20para%20Estudiar%2C%20m%C3%BAsica%20para%20levantar%20el%20animo.mp4" },
+  { nombre: "🎮 STREAMING GAMER", url: "https://storage.googleapis.com/inacapino-radio-spark.firebasestorage.app/videos/STREAMING%20GAMER.mp4" }
 ];
 
 
