@@ -69,28 +69,18 @@
     <section style="margin: 30px auto; text-align: center;">
       <a href="sobre.html" class="boton-llamativo">📻 Conoce la historia de la radio</a>
     </section>
-
-  <section id="transmision" class="transmision-container">
-  <p id="nombreVideo">🎧 Reproduciendo:</p>
+  
+<section id="transmision" class="transmision-container">
+  <p id="nombreVideo">🎧 Escuchando: Señal AutoDJ en ZenoFM</p>
   <div id="videoContainer">
-    <!-- Aquí se mostrará el video cargado dinámicamente -->
+    <!-- Aquí se cargará Zeno o Twitch dinámicamente -->
   </div>
+</section>
 
   <!-- SELECTOR Y BOTÓN DE CAMBIO -->
   <!-- SELECTOR Y BOTÓN DE CAMBIO -->
 <div class="select-video" id="panelSelector" style="display: none;">
-  <select id="videoSelector">
-    <option value="0">🎷 JAZZ & BLUES</option>
-    <option value="1">🎮 Gaming Music 2023</option>
-    <option value="2">📚 3 HORAS DE MÚSICA PARA LIVE 2022</option>
-    <option value="3">🕺 1 Hora y a bailar</option>
-    <option value="4">🎧 MixElectronic</option>
-    <option value="5">⚡ Música Electrónica para Estudiar</option>
-    <option value="6">🎮 STREAMING GAMER</option>
-  </select>
-  <button class="vip-button" onclick="cambiarVideoManual()">Reproducir Selección</button>
-</div>
-
+  <select>
 </section>
 
 
@@ -119,9 +109,9 @@
 
 
   <div id="panelVIP" style="display:none; margin-top: 20px;">
-    <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
-    <button class="vip-button" onclick="activarAutoDJ()">🔀 AutoDJ Aleatorio</button>
-  </div>
+  <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
+  <button class="vip-button" onclick="activarAutoDJ()">🔀 AutoDJ (ZenoFM)</button>
+</div>
 
   <button class="vip-button" onclick="toggleModo()">🌗 Cambiar Modo</button>
 
