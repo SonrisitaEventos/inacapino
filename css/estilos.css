@@ -680,4 +680,22 @@ iframe::-webkit-scrollbar {
   margin-top: 10px;
 }
 
+/* ==================================================
+🔻 FOOTER ESTILO RED
+================================================== */
+.footer-red {
+  background: linear-gradient(45deg, #ff0000, #b80000);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border-top: 3px solid #ff4d4d;
+  box-shadow: 0 -4px 10px rgba(255, 0, 0, 0.2);
+}
+
+.footer-red p {
+  margin: 0;
+  line-height: 1.5;
+}
 
