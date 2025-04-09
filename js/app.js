@@ -145,10 +145,14 @@ function escucharModoTransmision() {
       db.ref("radio/videoActual").once("value").then((snap) => {
         const video = snap.val();
         mostrarVideo(video);
+      }).catch((error) => {
+        console.error("Error al obtener videoActual:", error);
+        activarAutoDJ(); // Si no hay nada guardado, activa uno aleatorio
       });
     }
   });
 }
+
 
 // función actualizarReloj removida (duplicada con funciones_comunes.js)
 
