@@ -157,6 +157,13 @@ function escucharModoTransmision() {
 // función actualizarClima removida (duplicada con funciones_comunes.js)
 
 // ========== EVENTOS PRINCIPALES ========== //
+function cambiarModo(modo) {
+  if (modo === "twitch") {
+    db.ref("radio/modoTransmision").set("twitch");
+  } else if (modo === "autodj") {
+    activarAutoDJ();
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   restaurarModo();
