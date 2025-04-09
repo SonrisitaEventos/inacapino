@@ -86,7 +86,7 @@
 
     <div style="text-align:center; margin-top: 20px;">
       <button class="vip-button" onclick="mostrarLoginVIP()">🎧 Administrador</button>
-      <div id="fondoLogin" style="display: none;">
+      <div id="fondoLogin" style="display:none;">
         <div id="loginVIP">
           <h3>🔐 Ingreso VIP</h3>
           <input type="text" id="usuario" placeholder="Usuario">
@@ -95,12 +95,10 @@
         </div>
       </div>
 
-
-      <div id="panelVIP" style="display:none; margin-top: 20px;">
-        <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
-        <button class="vip-button" onclick="cambiarModo('autodj')">🔀 Radio Online</button>
+      <div id="panelVIP" style="display:none; margin-top:20px;">
+        <button class="vip-button" onclick="mostrarTwitch()">🎥 Programa En Vivo</button>
+        <button class="vip-button" onclick="mostrarZenoFM()">🔀 Radio Online</button>
       </div>
-
       <button class="vip-button" onclick="toggleModo()">🌗 Cambiar Modo</button>
     </div>
 
