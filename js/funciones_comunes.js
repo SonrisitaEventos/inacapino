@@ -226,9 +226,6 @@ function changeImage(dir) {
 }
 document.addEventListener("DOMContentLoaded", () => {
   initFuncionesComunes();
-  setTimeout(() => {
-  activarAutoDJ(); // ✅ Esta sí existe
-}, 500);
  // Espera medio segundo para asegurar que todo esté listo
 });
  // Inicializar galería de postales correctamente
