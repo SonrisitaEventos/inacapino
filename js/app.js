@@ -2,6 +2,23 @@
 
 console.log("✅ app.js cargado correctamente");
 
+// Inicializar Firebase (REEMPLAZA con tu propia configuración)
+// 🔥 Inicialización de Firebase en modo compat
+const firebaseConfig = {
+  apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
+  authDomain: "inacapino-radio-spark.firebaseapp.com",
+  databaseURL: "https://inacapino-radio-spark-default-rtdb.firebaseio.com",
+  projectId: "inacapino-radio-spark",
+  storageBucket: "inacapino-radio-spark.firebasestorage.app",
+  messagingSenderId: "64588373035",
+  appId: "1:64588373035:web:78b92ca7b5b8b7396d1e6e"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+
+
 // ========== VIDEO Y TRANSMISIÓN ========== //
 function mostrarZenoFM() {
   const contenedor = document.getElementById("videoContainer");
@@ -36,12 +53,24 @@ function mostrarTwitch() {
 
 // ========== CAMBIO ENTRE MODOS MANUAL ========== //
 function cambiarModo(modo) {
-  if (modo === "twitch") {
-    mostrarTwitch();
-  } else if (modo === "autodj") {
-    mostrarZenoFM();
-  }
+  db.ref("radio/modoTransmision").set(modo);
 }
+
+function escucharModoTransmision() {
+  db.ref("radio/modoTransmision").on("value", (snapshot) => {
+    const modo = snapshot.val();
+    if (modo === "twitch") {
+      mostrarTwitch();
+    } else {
+      mostrarZenoFM();
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  escucharModoTransmision(); // 🔄 sincronización en tiempo real
+});
+
 
 // ========== FRASES MOTIVACIONALES ========== //
 let fraseActual = 0;
