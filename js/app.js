@@ -52,31 +52,45 @@ function cambiarVideoManual() {
 function mostrarVideo(videoSeleccionado) {
   console.log("Mostrando video:", videoSeleccionado);
 
-  const twitchFrame = document.getElementById("twitchStream");
   const contenedor = document.getElementById("videoContainer");
 
-  // Solo si el iframe existe, lo ocultamos
-  if (twitchFrame) {
-    twitchFrame.style.display = "none";
-  }
+  // Elimina el iframe de Twitch si existe
+  const twitchFrame = document.getElementById("twitchStream");
+  if (twitchFrame) twitchFrame.remove();
 
-  const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
+  // Vacía el contenedor
+  contenedor.innerHTML = "";
 
+  // Agrega el nuevo video
   contenedor.innerHTML = `
-    <video id="videoPlayer" autoplay controls style="width:100%; max-height:540px; border-radius:10px;" crossorigin="anonymous">
+    <video id="videoPlayer" autoplay controls playsinline style="width:100%; max-height:540px; border-radius:10px;" crossorigin="anonymous">
       <source src="${videoSeleccionado.url}" type="video/mp4">
+      Tu navegador no soporta la etiqueta de video.
     </video>
   `;
 
-  const videoEl = document.getElementById("videoPlayer");
-  videoEl.volume = parseFloat(volumenGuardado);
+  setTimeout(() => {
+    const videoEl = document.getElementById("videoPlayer");
+    if (videoEl) {
+      const volumenGuardado = localStorage.getItem("volumenUsuario") || 0.5;
+      videoEl.volume = parseFloat(volumenGuardado);
+      videoEl.muted = false;
 
-  videoEl.addEventListener("volumechange", () => {
-    localStorage.setItem("volumenUsuario", videoEl.volume);
-  });
+      // Intentar forzar el play (algunos navegadores bloquean sin interacción)
+      videoEl.play().catch(err => {
+        console.warn("🎬 Autoplay bloqueado. Espera un clic del usuario.", err);
+      });
 
+      videoEl.addEventListener("volumechange", () => {
+        localStorage.setItem("volumenUsuario", videoEl.volume);
+      });
+    }
+  }, 200); // Espera un poco para que el DOM inserte bien el video
+
+  // Actualiza el nombre en pantalla
   document.getElementById("nombreVideo").innerText = `🎧 Reproduciendo: ${videoSeleccionado.nombre}`;
 }
+
 
 
 
