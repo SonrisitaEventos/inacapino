@@ -18,12 +18,11 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 const listaVideos = [
-  {
-    nombre: "🕺 1 Hora y a bailar",
-   url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.appspot.com/o/videos%2F1%20HOUR%20MIX%20%282020%29.mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962"
-  },
-  
-];
+      { nombre: "JAZZ & BLUES", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FJAZZ%20%26%20BLUES%20(conversar%20%2Ccaf%C3%A9%20%2Cestudiar).mp4?alt=media&token=dee26a91-1bc0-4690-aefa-7137d682acdb" },
+      { nombre: "Gaming Music", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2FGaming%20Music%202023.mp4?alt=media&token=d3330f02-f47d-4557-9e32-8686bd308e43" },
+      { nombre: "Un Gran momento para estudiar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F3%20HORAS%20DE%20MUSICA%20PARA%20LIVE%202022.mp4?alt=media&token=ff7fccf3-fc80-4188-a47b-b7fcb5466425" },
+      { nombre: "1 Hora y a bailar", url: "https://firebasestorage.googleapis.com/v0/b/inacapino-radio-spark.firebasestorage.app/o/videos%2F1%20HOUR%20MIX%20(2020).mp4?alt=media&token=6a4b4e70-94c1-46f8-b7dc-6c208e855962" },
+    ];
 
 
 // ========== FUNCIONES DE ESTILO Y MODO OSCURO ========== //
