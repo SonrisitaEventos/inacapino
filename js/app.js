@@ -10,14 +10,14 @@ function mostrarZenoFM() {
   if (contenedor) {
     contenedor.innerHTML = `
       <div class="zeno-box">
-        <iframe src="https://zeno.fm/player/inacapino-radio" width="100%" height="160" frameborder="0" scrolling="no" allow="autoplay"></iframe>
+        <iframe src="https://zeno.fm/player/inacapinoptomontt" width="768" height="600" frameborder="0" scrolling="no"></iframe><a href="https://zeno.fm/" target="_blank" style="display: block; font-size: 0.9em; line-height: 10px;">A Zeno.FM Station</a>
       </div>
     `;
   }
 
   const nombre = document.getElementById("nombreVideo");
   if (nombre) {
-    nombre.innerText = `🎧 Escuchando: Señal AutoDJ en ZenoFM`;
+    nombre.innerText = `🎧 Escuchando: Radio Online`;
   }
 }
 
