@@ -1,9 +1,8 @@
-// 🎉 ¡Hola querido Cristián! Este es tu archivo JS limpio, sin Firebase, y 100% funcional 🤗
+// 🎉 ¡Hola querido Cristián! Este es tu archivo JS limpio y sincronizado 🤗
 
 console.log("✅ app.js cargado correctamente");
 
-// Inicializar Firebase (REEMPLAZA con tu propia configuración)
-// 🔥 Inicialización de Firebase en modo compat
+// 🔥 Firebase Configuración
 const firebaseConfig = {
   apiKey: "AIzaSyAu4HVlBwgVeg7kp8RwahEFdOM72JKjhKA",
   authDomain: "inacapino-radio-spark.firebaseapp.com",
@@ -17,9 +16,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-
-
-// ========== VIDEO Y TRANSMISIÓN ========== //
+// 🎥 Mostrar transmisiones
 function mostrarZenoFM() {
   const contenedor = document.getElementById("videoContainer");
   if (contenedor) {
@@ -51,14 +48,10 @@ function mostrarTwitch() {
   }
 }
 
-// ========== CAMBIO ENTRE MODOS MANUAL ========== //
+// 🔄 Cambiar y escuchar el modo de transmisión
 function cambiarModo(modo) {
- db.ref("radio/modoTransmision").once("value").then(snapshot => {
-  if (!snapshot.exists()) {
-    db.ref("radio/modoTransmision").set("zeno"); // o "twitch"
-  }
-});
-
+  db.ref("radio/modoTransmision").set(modo);
+}
 
 function escucharModoTransmision() {
   db.ref("radio/modoTransmision").on("value", (snapshot) => {
@@ -66,44 +59,39 @@ function escucharModoTransmision() {
     if (modo === "twitch") {
       mostrarTwitch();
     } else {
-      escucharModoTransmision(); // ✅ Escucha el valor guardado y actualiza para todos
-
+      mostrarZenoFM();
     }
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  escucharModoTransmision(); // 🔄 sincronización en tiempo real
-});
-
-
-// ========== FRASES MOTIVACIONALES ========== //
+// 💬 Frases motivacionales
 let fraseActual = 0;
 setInterval(() => {
   fraseActual = (fraseActual + 1) % frases.length;
   const fraseEl = document.getElementById('frase');
-  fraseEl.style.opacity = 0;
-  setTimeout(() => {
-    fraseEl.textContent = frases[fraseActual];
-    fraseEl.style.opacity = 1;
-    fraseEl.classList.remove("fraseAnimada");
-    void fraseEl.offsetWidth;
-    fraseEl.classList.add("fraseAnimada");
-  }, 300);
+  if (fraseEl) {
+    fraseEl.style.opacity = 0;
+    setTimeout(() => {
+      fraseEl.textContent = frases[fraseActual];
+      fraseEl.style.opacity = 1;
+      fraseEl.classList.remove("fraseAnimada");
+      void fraseEl.offsetWidth;
+      fraseEl.classList.add("fraseAnimada");
+    }, 300);
+  }
 }, 7000);
 
-// ========== INICIALIZACIÓN COMPLETA ========== //
+// ✅ Inicialización general
 document.addEventListener("DOMContentLoaded", () => {
- document.addEventListener("DOMContentLoaded", () => {
   restaurarModo();
   actualizarReloj();
   actualizarClima();
-  escucharModoTransmision(); // Esta sincroniza a todos con la señal actual
+  escucharModoTransmision(); // Sincronización en tiempo real
   setInterval(actualizarReloj, 60000);
   setInterval(actualizarClima, 10 * 60 * 1000);
 });
 
-// ========== EXPORTAR FUNCIONES GLOBALES ========== //
+// 🌐 Exportar funciones globales
 window.mostrarLoginVIP = mostrarLoginVIP;
 window.accederVIP = accederVIP;
 window.cerrarLoginVIP = cerrarLoginVIP;
