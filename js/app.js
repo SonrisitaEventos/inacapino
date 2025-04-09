@@ -10,7 +10,7 @@ function mostrarZenoFM() {
   if (contenedor) {
     contenedor.innerHTML = `
       <div class="zeno-box">
-        <iframe src="https://zeno.fm/player/inacapinoptomontt" width="768" height="600" frameborder="0" scrolling="no"></iframe><a href="https://zeno.fm/" target="_blank" style="display: block; font-size: 0.9em; line-height: 10px;">A Zeno.FM Station</a>
+        <iframe src="https://zeno.fm/player/inacapinoptomontt" width="100%" height="160" frameborder="0" scrolling="no" allow="autoplay"></iframe>
       </div>
     `;
   }
@@ -21,6 +21,20 @@ function mostrarZenoFM() {
   }
 }
 
+function mostrarTwitch() {
+  const contenedor = document.getElementById("videoContainer");
+  if (contenedor) {
+    contenedor.innerHTML = `
+      <iframe src="https://player.twitch.tv/?channel=xtian_alejandro&parent=sonrisitaeventos.github.io" 
+              frameborder="0" allowfullscreen style="width:100%; height:540px; border-radius:10px;"></iframe>
+    `;
+  }
+
+  const nombre = document.getElementById("nombreVideo");
+  if (nombre) {
+    nombre.innerText = `🔴 Transmisión en vivo desde Twitch`;
+  }
+}
 function activarAutoDJ() {
   db.ref("radio/modoTransmision").set("autodj");
 }
@@ -37,13 +51,18 @@ function escucharModoTransmision() {
   });
 }
 
+// ========== CAMBIO ENTRE MODOS MANUAL (SIN Firebase) ========== //
 function cambiarModo(modo) {
   if (modo === "twitch") {
-    db.ref("radio/modoTransmision").set("twitch");
+    mostrarTwitch();
   } else if (modo === "autodj") {
-    activarAutoDJ();
+    mostrarZenoFM();
   }
 }
+// ========== INICIALIZACIÓN AL CARGAR ========== //
+document.addEventListener("DOMContentLoaded", () => {
+  mostrarZenoFM(); // Cargar Zeno por defecto
+});
 
 // ========== FRASES MOTIVACIONALES ========== //
 let fraseActual = 0;
@@ -77,3 +96,7 @@ window.cerrarLoginVIP = cerrarLoginVIP;
 window.toggleModo = toggleModo;
 window.activarAutoDJ = activarAutoDJ;
 window.cambiarModo = cambiarModo;
+window.cambiarModo = cambiarModo;
+window.mostrarTwitch = mostrarTwitch;
+window.mostrarZenoFM = mostrarZenoFM;
+
