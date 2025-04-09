@@ -84,10 +84,17 @@
       <a href="https://www.youtube.com/@rycsoluciones" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
     </div>
 
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 20px;">
+    <div style="text-align:center; margin-top: 20px;">
       <button class="vip-button" onclick="mostrarLoginVIP()">🎧 Administrador</button>
-      <a href="reproductor.html" class="vip-button">📻 Escucha nuestra Señal Online</a>
-    </div>
+      <div id="fondoLogin" style="display: none;">
+        <div id="loginVIP">
+          <h3>🔐 Ingreso VIP</h3>
+          <input type="text" id="usuario" placeholder="Usuario">
+          <input type="password" id="clave" placeholder="Contraseña">
+          <button onclick="accederVIP()">Entrar</button>
+        </div>
+      </div>
+
 
     <div id="fondoLogin" style="display: none;">
       <div id="loginVIP">
@@ -98,12 +105,14 @@
       </div>
     </div>
 
-    <div id="panelVIP" style="display:none; margin-top: 20px;">
-      <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
-      <button class="vip-button" onclick="activarAutoDJ()">🔀 AutoDJ (ZenoFM)</button>
+     <div id="panelVIP" style="display:none; margin-top: 20px;">
+        <button class="vip-button" onclick="cambiarModo('twitch')">🎥 Programa En Vivo</button>
+        <button class="vip-button" onclick="cambiarModo('autodj')">🔀 AutoDJ (ZenoFM)</button>
+      </div>
+
+      <button class="vip-button" onclick="toggleModo()">🌗 Cambiar Modo</button>
     </div>
 
-    <button class="vip-button" onclick="toggleModo()">🌗 Cambiar Modo</button>
   </main>
 
  !-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
