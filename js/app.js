@@ -1,8 +1,6 @@
-// 🎉 ¡Hola querido Cristián! Este es tu archivo JS limpio, corregido y consolidado con amor 🤗
+// 🎉 ¡Hola querido Cristián! Este es tu archivo JS limpio, sin Firebase, y 100% funcional 🤗
 
-// ========== CONFIGURACIÓN INICIAL ========== //
 console.log("✅ app.js cargado correctamente");
-
 
 // ========== VIDEO Y TRANSMISIÓN ========== //
 function mostrarZenoFM() {
@@ -35,23 +33,8 @@ function mostrarTwitch() {
     nombre.innerText = `🔴 Transmisión en vivo desde Twitch`;
   }
 }
-function activarAutoDJ() {
-  db.ref("radio/modoTransmision").set("autodj");
-}
 
-// ========== CAMBIO ENTRE MODOS ========== //
-function escucharModoTransmision() {
-  db.ref("radio/modoTransmision").on("value", (snapshot) => {
-    const modo = snapshot.val();
-    if (modo === "twitch") {
-      mostrarTwitch();
-    } else if (modo === "autodj") {
-      mostrarZenoFM();
-    }
-  });
-}
-
-// ========== CAMBIO ENTRE MODOS MANUAL (SIN Firebase) ========== //
+// ========== CAMBIO ENTRE MODOS MANUAL ========== //
 function cambiarModo(modo) {
   if (modo === "twitch") {
     mostrarTwitch();
@@ -59,10 +42,6 @@ function cambiarModo(modo) {
     mostrarZenoFM();
   }
 }
-// ========== INICIALIZACIÓN AL CARGAR ========== //
-document.addEventListener("DOMContentLoaded", () => {
-  mostrarZenoFM(); // Cargar Zeno por defecto
-});
 
 // ========== FRASES MOTIVACIONALES ========== //
 let fraseActual = 0;
@@ -79,14 +58,14 @@ setInterval(() => {
   }, 300);
 }, 7000);
 
-// ========== EVENTOS INICIALES ========== //
+// ========== INICIALIZACIÓN COMPLETA ========== //
 document.addEventListener("DOMContentLoaded", () => {
+  mostrarZenoFM(); // Modo por defecto
   restaurarModo();
   actualizarReloj();
   setInterval(actualizarReloj, 60000);
   actualizarClima();
   setInterval(actualizarClima, 10 * 60 * 1000);
-  escucharModoTransmision();
 });
 
 // ========== EXPORTAR FUNCIONES GLOBALES ========== //
@@ -94,9 +73,6 @@ window.mostrarLoginVIP = mostrarLoginVIP;
 window.accederVIP = accederVIP;
 window.cerrarLoginVIP = cerrarLoginVIP;
 window.toggleModo = toggleModo;
-window.activarAutoDJ = activarAutoDJ;
-window.cambiarModo = cambiarModo;
 window.cambiarModo = cambiarModo;
 window.mostrarTwitch = mostrarTwitch;
 window.mostrarZenoFM = mostrarZenoFM;
-
