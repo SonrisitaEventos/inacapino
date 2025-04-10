@@ -2,9 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Noticia 1 - Fondos Concursables Estudiantiles 2025</title>
+  <link rel="stylesheet" href="estilos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <script src="funciones_comunes.js" defer></script>
+</head>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -59,7 +64,20 @@
     }
   </style>
 </head>
-<body>
+<body class="modo-noche">
+  <header class="encabezado">
+    <div class="encabezado-barra">
+      <div id="mensajeTexto" class="mensaje-desplazado">🌞 ¡Hoy es un buen día para aprender algo nuevo!</div>
+      <div class="info-tiempo">
+        <span id="reloj"></span>
+        <span id="clima"></span>
+      </div>
+    </div>
+    <div class="logo-frase">
+      <img src="imagenes/logoradio.png" alt="Logo Radio" class="logo-principal" />
+      <div id="frase" class="fraseAnimada">🎉La educación es el pasaporte al futuro. ✨</div>
+    </div>
+  </header>
   <div class="contenido">
     <h1>Damos inicio a los Fondos Concursables Estudiantiles 2025</h1>
     <img src="imagenes/fondo_concursable_2025.jpg" alt="Fondos Concursables" class="img-portada">
@@ -69,7 +87,7 @@
         <a href="#" target="_blank"><i class="fab fa-facebook-square"></i></a>
         <a href="#" target="_blank"><i class="fab fa-x-twitter"></i></a>
         <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://sonrisitaeventos.github.io/inacapino/#noticias">❌</a>
+        <a href="https://sonrisitaeventos.github.io/inacapino/#noticias">❌cerrar </a>
       </div>
       <div class="fecha">📅 Abril 2025</div>
     </div>
