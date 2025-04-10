@@ -56,6 +56,22 @@ function cambiarModo(modo) {
 function escucharModoTransmision() {
   db.ref("radio/modoTransmision").on("value", (snapshot) => {
     const modo = snapshot.val();
+
+    // Mostrar aviso
+    const aviso = document.getElementById("avisoCambio");
+    if (aviso) {
+      aviso.style.display = "block";
+      aviso.classList.remove("aviso-cambio");
+      void aviso.offsetWidth; // reinicia animación
+      aviso.classList.add("aviso-cambio");
+
+      // Ocultar después de unos segundos
+      setTimeout(() => {
+        aviso.style.display = "none";
+      }, 3000);
+    }
+
+    // Cambiar la transmisión
     if (modo === "twitch") {
       mostrarTwitch();
     } else {
