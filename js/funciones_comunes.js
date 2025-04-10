@@ -1,5 +1,5 @@
 // funciones_comunes.js
-// 🎯 Funciones compartidas para clima, reloj, frases y más
+// 🎯 Funciones compartidas para clima, reloj, frases y má
 
 // ⏰ Actualizar reloj
 function actualizarReloj() {
