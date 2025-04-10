@@ -22,7 +22,7 @@ function mostrarZenoFM() {
   if (contenedor) {
     contenedor.innerHTML = `
       <div class="zeno-box">
-        <iframe src="https://zeno.fm/player/inacapinoptomontt" width="100%" height="160" frameborder="0" scrolling="no" allow="autoplay"></iframe>
+        <iframe src="https://zeno.fm/player/inacapinoptomontt" width="100%" height="280" frameborder="0" scrolling="no" allow="autoplay"></iframe>
       </div>
     `;
   }
