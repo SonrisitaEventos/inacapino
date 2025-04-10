@@ -51,12 +51,17 @@ function toggleModo() {
 
 function restaurarModo() {
   const modo = localStorage.getItem("modoPreferido");
-  if (modo === "noche") {
+
+  if (modo === "noche" || !modo) {
     document.body.classList.add("modo-noche");
+    document.body.classList.remove("modo-dia");
+    localStorage.setItem("modoPreferido", "noche");
   } else {
     document.body.classList.add("modo-dia");
+    document.body.classList.remove("modo-noche");
   }
 }
+
 
 // 💬 Frases animadas bajo el logo
 const frases = [
