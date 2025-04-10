@@ -607,7 +607,7 @@ body.modo-dia .concurso-card {
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0,255,204,0.3);
-  height: 160px; /* Alto base */
+  height: 280px; /* Alto base */
 }
 
 .zeno-box iframe {
