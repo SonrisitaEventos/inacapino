@@ -705,3 +705,24 @@ iframe::-webkit-scrollbar {
   line-height: 1.5;
 }
 
+
+.aviso-cambio {
+  background-color: #d40000;
+  color: white;
+  padding: 12px 25px;
+  margin: 10px auto 20px;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;
+  width: fit-content;
+  animation: aparecerDesaparecer 3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes aparecerDesaparecer {
+  0% { opacity: 0; transform: scale(0.9); }
+  10% { opacity: 1; transform: scale(1); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.05); }
+}
+
