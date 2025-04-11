@@ -287,10 +287,11 @@ nav a:hover {
 .noticia-img {
   width: 100%;
   height: 140px;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 12px 12px 0 0;
+  object-fit: contain;
+  object-position: top; /* o center */
+  background-color: #000; /* para rellenar fondo si queda espacio */
 }
+
 
 
 .noticia-info {
