@@ -288,8 +288,10 @@ nav a:hover {
   width: 100%;
   height: 140px;
   object-fit: cover;
+  object-position: top;
   border-radius: 12px 12px 0 0;
 }
+
 
 .noticia-info {
   background: #000;
