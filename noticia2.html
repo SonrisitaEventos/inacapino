@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Noticia 2 - Coraje, el perro cobarde</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estudiantes de la Región de Los Lagos reciben Becas Les Toques Blanches en INACAP Puerto Montt">
+  <meta name="author" content="Cristián Riffo Araya">
+  <meta name="keywords" content="Radio El Inacapino, INACAP Puerto Montt, estudiantes, noticias, estudiantes INACAP">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Estudiantes de la Región de Los Lagos reciben Becas Les Toques Blanches en INACAP Puerto Montt -🎙️ Radio El Inacapino - INACAP Puerto Montt">
+  <meta property="og:description" content="En una emotiva ceremonia realizada en INACAP, se otorgaron las Becas Les Toques Blanches">
+  <meta property="og:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/fotoportada.jpg">
+  <meta property="og:url" content="https://sonrisitaeventos.github.io/inacapino/noticia2.html">
+  <meta property="og:type" content="article">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Estudiantes de la Región de Los Lagos reciben Becas Les Toques Blanches en INACAP Puerto Montt -🎙️ Radio El Inacapino - INACAP Puerto Montt">
+  <meta name="twitter:description" content="En una emotiva ceremonia realizada en INACAP, se otorgaron las Becas Les Toques Blanches">
+  <meta name="twitter:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/fotoportada.jpg">
+<link rel="icon" type="image/gif" href="imagenes/logoradio.png">
+
+  <title>Noticias</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+
+    <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 20px;
       background-color: #111;
-      color: #333;
+      color: #fff;
     }
     .header {
       display: flex;
@@ -20,10 +41,6 @@
       border-bottom: 2px solid #6e2cf1;
       padding-bottom: 10px;
       margin-bottom: 20px;
-    }
-    .header .fecha {
-      font-size: 0.9em;
-      color: #555;
     }
     .img-portada {
       width: 100%;
@@ -39,15 +56,6 @@
     .contenido strong {
       color: #00d4ff;
     }
-    .compartir {
-      margin-top: 10px;
-    }
-    .compartir a {
-      margin-right: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #6e2cf1;
-    }
     h1 {
       color: #ffffff;
     }
@@ -56,44 +64,224 @@
       line-height: 1.6;
       color: #ffffff;
     }
-    .fecha-redes {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
     .redes a {
       color: white;
       margin-right: 15px;
       font-size: 18px;
     }
+    .footer-red {
+      margin-top: 40px;
+      padding: 15px;
+      text-align: center;
+      background-color: #000000;
+      color: #999;
+      font-size: 14px;
+      border-top: 1px solid #6e2cf1;
+    }
+    .galeria-destacada {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin: 0 auto 40px;
+  max-width: 900px;
+  padding: 0 10px;
+}
+
+.galeria-destacada img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  transition: transform 0.3s ease;
+}
+
+.galeria-destacada img:hover {
+  transform: scale(1.03);
+}
+
+.modal-img {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
+  text-align: center;
+}
+
+.contenido-modal {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+.cerrar {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.cerrar:hover {
+  color: #ff5757;
+}
+
+.galeria-destacada img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.galeria-destacada img:hover {
+  transform: scale(1.03);
+}
+
+
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FY11ZY6ZV3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FY11ZY6ZV3');
+  </script>
 </head>
-<body>
+<body class="modo-noche">
+  <header>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="sobre.html">Sobre la Radio</a>
+      <a href="#rebobinando">Rebobinando</a>
+      <a href="#capsulas">Cápsulas</a>
+      <a href="#encuesta">Encuesta</a>
+      <a href="#concursos">Concursos</a>
+      <a href="#postales">Postales</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#muro-deseos">Muro de los Buenos Deseos</a>
+    </nav>
+    <div class="mensaje-motivacional">
+      <div class="scroll-wrapper">
+        <span id="mensajeTexto">🌟 Sigue adelante, lo mejor está por venir.</span>
+      </div>
+    </div>
+    <div class="top-info">
+      <span id="reloj">00:00</span>
+      <span id="clima">☀️ --°C</span>
+      <span class="live-indicator">EN VIVO</span>
+    </div>
+  </header>
+
+  <img src="imagenes/inacapito3.gif" onclick="scrollToTop()" id="btnTop" title="Subamos" alt="Inacapito te lleva arriba 🕺">
+  <main>
+    <img src="imagenes/logoradio.png" alt="Logo Radio INACAP" class="logo">
+    <h1>El Inacapino Puerto Montt</h1>
+    <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
+
+    <section style="margin: 30px auto; text-align: center;">
+      <a href="sobre.html" class="boton-llamativo">📻 Conoce la historia de la radio</a>
+    </section>
+
   <div class="contenido">
-    <h1>Fallece David Steven Cohen, guionista de “Coraje, el perro cobarde”</h1>
-    <img src="imagenes/noticia_2_0.jpg" alt="David Steven Cohen" class="img-portada">
-    
+    <h1>Estudiantes de la Región de Los Lagos reciben Becas Les Toques Blanches en INACAP Puerto Montt</h1>
+    <img src="imagenes/fotoportada.jpg" alt="Entrega de Becas" class="img-portada">
+
     <div class="header">
       <div class="redes">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/noticia2.html" target="_blank"><i class="fab fa-facebook-square"></i></a>
-        <a href="https://twitter.com/intent/tweet?url=https://sonrisitaeventos.github.io/inacapino/noticia2.html&text=Mira esta noticia sobre Coraje, el perro cobarde!" target="_blank"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://api.whatsapp.com/send?text=Mira esta noticia: https://sonrisitaeventos.github.io/inacapino/noticia2.html" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://sonrisitaeventos.github.io/inacapino/#noticias">❌</a>
+        <a href="#" target="_blank"><i class="fab fa-facebook-square"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://sonrisitaeventos.github.io/inacapino/#noticias" style="background-color:#d40000; color:white; padding:5px 12px; border-radius:6px; text-decoration:none;">❌ Cerrar</a>
       </div>
-      <div class="fecha">📅 22 de Marzo de 2025</div>
+      <div class="fecha">📅 Abril 2025</div>
     </div>
 
-    <p><strong>David Steven Cohen</strong>, el talentoso guionista detrás de la serie animada <strong>“Coraje</strong>, el perro cobarde”, 
-      falleció este sábado a los 67 años. Su legado en el mundo de la animación infantil y 
-      juvenil es recordado con cariño por generaciones de espectadores.</p>
+    <p><strong>Puerto Montt, marzo de 2025.- En una emotiva ceremonia realizada en INACAP, 
+      se otorgaron las Becas Les Toques Blanches a 12 estudiantes de Educación Media Técnico Profesional de la especialidad de Gastronomía, 
+      provenientes de distintas comunas de la Región de Los Lagos, como Ancud, Osorno, Quemchi, Frutillar, Quinchao, 
+      Puerto Montt, Quellón y San Juan de la Costa.</strong></p>
+    <div style="margin-top: 40px;"></div>
 
-    <img src="imagenes/noticia_2_1.jpg" alt="Coraje Animación" class="img-portada">
+    <p>Desde hace 22 años, Les Toques Blanches impulsa esta iniciativa para apoyar a estudiantes de Educación Media Técnico Profesional 
+      en su camino a la Educación Superior. Desde 2024, 
+      el programa se desarrolla en la Región de Los Lagos, con la participación de todos los establecimientos técnicos que imparten la especialidad de Gastronomía.</p>
+<div style="margin-top: 40px;"></div>
+    <p>Encabezada por el chef Eugenio Melo, la ceremonia reunió a docentes, estudiantes, sus familias y representantes de las empresas patrocinadoras. 
+      El programa de becas incluye clases magistrales, formación y capacitación docente, acercando a los beneficiarios a la industria gastronómica. 
+      A lo largo de su historia, ha permitido que más de 400 estudiantes se titulen, generando oportunidades de crecimiento profesional y movilidad social.</p>
+    <p><strong>El Vicerrector INACAP Sede Puerto Montt, Cristián Osorio</strong>, expresó: 
+      “desde Inacap estamos contentos de ser parte de este proyecto que Les Toques Blanches lleva bastantes años realizando y 
+      que por primera vez se realiza en la región de Los Lagos, apoyado por distintas empresas que contribuyen a la beca. 
+      Muy contentos que los estudiantes se incorporen a la educación superior, de los cuales 11 lo hicieron en INACAP.”</p>
+<div style="margin-top: 40px;"></div>
+    <p>El presidente de Les Toques Blanches, el chef Eugenio Melo, quien hizo un recuento de todo lo logrado en estos 22 años del proceso de Becas, 
+    se refirió; “estamos muy contentos, fue un gran paso que dimos el año pasado de llegar con los beneficios a la Región de Los Lagos, 
+    nuestra Asociación seguirá trabajando por la educación de estudiantes de liceos técnicos, nuestro sueño es llegar a todas las regiones de chile, 
+    ya que los talentos están en todas partes y nosotros queremos descubrirlos y ayudarlos”.</p>
+    <div style="margin-top: 40px;"></div>
+    <p>La alumna del <strong>Liceo EL Pilar de Ancud, Adriana Cardenas</strong>, agregó: 
+      “esta beca para mi significa la posibilidad de poder estudiar ya que los uniformes y utensilios de cocina son realmente costosos, 
+      y con la beca tengo la oportunidad, ya que sin ella creo que no habría sido posible estudiar. 
+      Estoy muy agradecida con la asociación y con todas las empresas que hicieron esto posible.”</p>
+     <div style="margin-top: 40px;"></div>
+    <p>Con este tipo de iniciativas, <strong>INACAP Puerto Montt, junto a Les Toques Blanches y las empresas colaboradoras</strong>, 
+      reafirman su compromiso con el desarrollo de talentos en la gastronomía, impulsando oportunidades que transforman vidas y 
+      fortalecen la industria gastronómica en la Región de Los Lagos.</p>
+    <div style="margin-top: 40px;"></div>
 
-    <p>La noticia ha provocado una ola de mensajes de agradecimiento y homenaje 
-      por parte de sus seguidores en redes sociales. Cohen es recordado por su estilo único y por combinar humor, 
-      suspenso y enseñanzas valiosas en cada capítulo de la popular serie.</p>
-  </div>
+   <h2 style="margin-top: 40px;">📸 Momentos Destacados</h2>
+<p style="text-align: center; margin-bottom: 20px;">Una mirada en imágenes a los instantes que marcaron esta jornada inolvidable.</p>
+
+<div class="galeria-destacada">
+  <img src="imagenes/discursosalmonchile.jpg" alt="Discurso SalmonChile" onclick="abrirModal(this)">
+  <img src="imagenes/discursovicerector.jpg" alt="Discurso Vicerrector" onclick="abrirModal(this)">
+  <img src="imagenes/entregapremios.jpg" alt="Entrega de Premios" onclick="abrirModal(this)">
+  <img src="imagenes/reconocimiento.jpg" alt="Reconocimiento Estudiantil" onclick="abrirModal(this)">
+</div>
+
+<!-- Modal para ampliar imagen -->
+<div id="modalImagen" class="modal-img" onclick="cerrarModal()">
+  <span class="cerrar">&times;</span>
+  <img class="contenido-modal" id="imgAmpliada">
+</div>
+
+
+
+   
+ <!-- Footer agregado -->
+    <footer class="footer-red">
+      <p>🎙️ Radio El Inacapino - INACAP Puerto Montt | Hecho con 💚 por Cristián Riffo</p>
+    </footer>
+  </main>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="js/funciones_comunes.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    initFuncionesComunes(); // ⬅️ ¡Activa scrollToTop y más!
+  });
+
+  function abrirModal(img) {
+    const modal = document.getElementById("modalImagen");
+    const ampliada = document.getElementById("imgAmpliada");
+    modal.style.display = "block";
+    ampliada.src = img.src;
+    ampliada.alt = img.alt;
+  }
+
+  function cerrarModal() {
+    document.getElementById("modalImagen").style.display = "none";
+  }
+</script>
 </body>
 </html>
