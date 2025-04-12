@@ -257,6 +257,23 @@
   Esta sinergia impulsa una educación más innovadora, inclusiva y preparada para responder a los desafíos del futuro.</p>
 <div style="margin-top: 40px;"></div>
 
+    <h2 style="margin-top: 40px;">📸 Momentos Destacados</h2>
+<p style="text-align: center; margin-bottom: 20px;">Una mirada en imágenes a los instantes que marcaron esta jornada inolvidable.</p>
+
+<div style="text-align: center;">
+  <img id="imagenActiva" src="imagenes/noticia3/mejoresmomentos1.jpg" alt="Momento destacado" style="width: 90%; max-width: 800px; border-radius: 12px; box-shadow: 0 0 12px rgba(255,255,255,0.2); cursor: pointer;" onclick="abrirModalGaleria()">
+  <div style="margin-top: 15px;">
+    <button onclick="cambiarImagen(-1)" style="font-size: 2em; margin: 0 10px;">⬅️</button>
+    <button onclick="cambiarImagen(1)" style="font-size: 2em; margin: 0 10px;">➡️</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modalGaleria" class="modal-img" onclick="cerrarModalGaleria()">
+  <span class="cerrar">&times;</span>
+  <img class="contenido-modal" id="imagenModal">
+</div>
+
 <!-- Modal para ampliar imagen -->
 <div id="modalImagen" class="modal-img" onclick="cerrarModal()">
   <span class="cerrar">&times;</span>
@@ -269,18 +286,18 @@
   <p style="font-size: 0.9em; color: #aaa;">¡Haz clic en tu red favorita y difunde esta buena nueva! 😊</p>
   
   <div style="margin-top: 15px;">
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/noticia2.html" target="_blank" title="Compartir en Facebook" style="margin: 0 10px;">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/noticia3.html" target="_blank" title="Compartir en Facebook" style="margin: 0 10px;">
       <i class="fab fa-facebook fa-2x" style="color:#3b5998;"></i>
     </a>
-   <a href="https://twitter.com/intent/tweet?url=https://sonrisitaeventos.github.io/inacapino/noticia2.html&text=📢 ¡Ya está disponible la nueva noticia de #ElInacapino! Mira cómo INACAP y SLEP fortalecen las matemáticas en la región." target="_blank">
+   <a href="https://twitter.com/intent/tweet?url=https://sonrisitaeventos.github.io/inacapino/noticia3.html&text=📢 ¡Ya está disponible la nueva noticia de #ElInacapino! Mira cómo INACAP y SLEP fortalecen las matemáticas en la región." target="_blank">
   <i class="fab fa-x-twitter fa-2x" style="color:#1da1f2;"></i>
 </a>
 
-<a href="https://api.whatsapp.com/send?text=📢 ¡Lee esta noticia inspiradora sobre educación matemática en nuestra región! 👉 https://sonrisitaeventos.github.io/inacapino/noticia2.html" target="_blank">
+<a href="https://api.whatsapp.com/send?text=📢 ¡Lee esta noticia inspiradora sobre educación matemática en nuestra región! 👉 https://sonrisitaeventos.github.io/inacapino/noticia3.html" target="_blank">
   <i class="fab fa-whatsapp fa-2x" style="color:#25D366;"></i>
 </a>
 
-    <a href="mailto:?subject=Mira esta noticia de El Inacapino&body=Te comparto esta noticia que encontré genial: https://sonrisitaeventos.github.io/inacapino/noticia2.html" target="_blank" title="Enviar por Email" style="margin: 0 10px;">
+    <a href="mailto:?subject=Mira esta noticia de El Inacapino&body=Te comparto esta noticia que encontré genial: https://sonrisitaeventos.github.io/inacapino/noticia3.html" target="_blank" title="Enviar por Email" style="margin: 0 10px;">
       <i class="fas fa-envelope fa-2x" style="color:#d44638;"></i>
     </a>
 <a href="#" onclick="cerrarPestana();" class="boton-cerrar-tooltip">
