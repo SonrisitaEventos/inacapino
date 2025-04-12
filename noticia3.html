@@ -257,25 +257,6 @@
   Esta sinergia impulsa una educación más innovadora, inclusiva y preparada para responder a los desafíos del futuro.</p>
 <div style="margin-top: 40px;"></div>
 
-
-   <h2 style="margin-top: 40px;">📸 Momentos Destacados</h2>
-<p style="text-align: center; margin-bottom: 20px;">Una mirada en imágenes a los instantes que marcaron esta jornada inolvidable.</p>
-
-<div class="galeria-destacada">
-  <img src="imagenes/noticia3/mejoresmomentos1.jpg" alt="Momento 1" onclick="abrirModal(this)">
-  <img src="imagenes/noticia3/mejoresmomentos2.jpg" alt="Momento 2" onclick="abrirModal(this)">
-  <img src="imagenes/noticia3/mejoresmomentos3.jpg" alt="Momento 3" onclick="abrirModal(this)">
-  <img src="imagenes/noticia3/mejoresmomentos4.jpg" alt="Momento 4" onclick="abrirModal(this)">
-  <img src="imagenes/noticia3/mejoresmomentos5.jpg" alt="Momento 5" onclick="abrirModal(this)">
-  <img src="imagenes/noticia3/mejoresmomentos6.jpg" alt="Momento 6" onclick="abrirModal(this)">
-  <img src="imagenes/noticia3/mejoresmomentos7.jpg" alt="Momento 7" onclick="abrirModal(this)">
-  <img src="imagenes/noticia3/mejoresmomentos8.jpg" alt="Momento 8" onclick="abrirModal(this)">
-  <img src="imagenes/noticia3/mejoresmomentos9.jpg" alt="Momento 9" onclick="abrirModal(this)">
-  <img src="imagenes/noticia3/mejoresmomentos10.jpg" alt="Momento 10" onclick="abrirModal(this)">
-  <img src="imagenes/noticia3/mejoresmomentos11.jpg" alt="Momento 11" onclick="abrirModal(this)">
-</div>
-
-
 <!-- Modal para ampliar imagen -->
 <div id="modalImagen" class="modal-img" onclick="cerrarModal()">
   <span class="cerrar">&times;</span>
@@ -321,6 +302,38 @@
   <script src="js/funciones_comunes.js" defer></script>
   <script src="js/app.js" defer></script>
   <script>
+const imagenes = [
+      "imagenes/noticia3/mejoresmomentos1.jpg",
+      "imagenes/noticia3/mejoresmomentos2.jpg",
+      "imagenes/noticia3/mejoresmomentos3.jpg",
+      "imagenes/noticia3/mejoresmomentos4.jpg",
+      "imagenes/noticia3/mejoresmomentos5.jpg",
+      "imagenes/noticia3/mejoresmomentos6.jpg",
+      "imagenes/noticia3/mejoresmomentos7.jpg",
+      "imagenes/noticia3/mejoresmomentos8.jpg",
+      "imagenes/noticia3/mejoresmomentos9.jpg",
+      "imagenes/noticia3/mejoresmomentos10.jpg",
+      "imagenes/noticia3/mejoresmomentos11.jpg"
+    ];
+
+    let indiceActual = 0;
+
+    function cambiarImagen(direccion) {
+      indiceActual += direccion;
+      if (indiceActual < 0) indiceActual = imagenes.length - 1;
+      if (indiceActual >= imagenes.length) indiceActual = 0;
+      document.getElementById("imagenActiva").src = imagenes[indiceActual];
+      document.getElementById("imagenModal").src = imagenes[indiceActual];
+    }
+
+    function abrirModalGaleria() {
+      document.getElementById("modalGaleria").style.display = "block";
+      document.getElementById("imagenModal").src = imagenes[indiceActual];
+    }
+
+    function cerrarModalGaleria() {
+      document.getElementById("modalGaleria").style.display = "none";
+    }
   document.addEventListener("DOMContentLoaded", () => {
     initFuncionesComunes(); // ⬅️ ¡Activa scrollToTop y más!
   });
