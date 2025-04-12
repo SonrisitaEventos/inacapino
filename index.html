@@ -112,97 +112,127 @@
 <div style="margin-top: 40px;"></div>
 
 <!-- inicio de prueba visual de carrusel -->
-  <!-- Carrusel Moderno de Reels -->
+ <!-- 🌀 Carrusel de Reels -->
 <section id="carrusel-reels" class="rebobinando-section">
   <h2>🎞️ Reels Destacados</h2>
   <p>¡Revive lo mejor de nuestras redes sociales!</p>
 
   <div class="carrusel-contenedor">
-    <button class="carrusel-btn prev" onclick="moverCarrusel(-1)">⬅️</button>
+    <button class="carrusel-btn prev" onclick="moverCarrusel(-1)">❮</button>
 
-    <div class="carrusel">
-      <!-- Reel 1: Instagram -->
+    <div class="carrusel" id="carruselReels">
+      <!-- Reel 1 -->
       <div class="video-card vertical">
         <iframe src="https://www.instagram.com/reel/DIUX68CSDwg/embed" allowfullscreen></iframe>
         <div class="video-title">Taller de Confites</div>
       </div>
 
-      <!-- Reel 2: Facebook -->
+      <!-- Reel 2 -->
       <div class="video-card vertical">
-        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/957726489594708" allowfullscreen style="border:none;"></iframe>
+        <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/957726489594708" allowfullscreen></iframe>
         <div class="video-title">Conoce Nuestra Sede</div>
       </div>
 
-      <!-- Reel 3: Instagram -->
+      <!-- Reel 3 -->
       <div class="video-card vertical">
         <iframe src="https://www.instagram.com/reel/DGyJYOYRCYQ/embed" allowfullscreen></iframe>
         <div class="video-title">Nuestro Vice</div>
       </div>
     </div>
 
-    <button class="carrusel-btn next" onclick="moverCarrusel(1)">➡️</button>
+    <button class="carrusel-btn next" onclick="moverCarrusel(1)">❯</button>
   </div>
-</section>
-<a href="https://www.instagram.com/cristian_riffo_araya/" target="_blank" class="boton-llamativo">📲 Ver más en redes</a>
 
+  <a href="https://www.instagram.com/cristian_riffo_araya/" target="_blank" class="boton-llamativo" style="margin-top: 20px;">📲 Ver más en redes</a>
+</section>
+
+<!-- 🎨 ESTILOS -->
 <style>
-  .rebobinando-section {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #111;
-    color: white;
-  }
   .carrusel-contenedor {
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
     max-width: 100%;
+    margin: auto;
   }
+
   .carrusel {
     display: flex;
     transition: transform 0.4s ease;
     gap: 20px;
+    justify-content: center;
   }
+
   .video-card.vertical {
     flex: 0 0 280px;
     border-radius: 12px;
     overflow: hidden;
     background-color: #000;
   }
+
   .video-card iframe {
     width: 100%;
     height: 480px;
+    border: none;
   }
+
   .video-title {
     background-color: #d50000;
     padding: 10px;
     color: white;
     font-weight: bold;
+    text-align: center;
   }
+
   .carrusel-btn {
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.6);
     border: none;
     color: white;
     font-size: 2rem;
     cursor: pointer;
-    padding: 0 10px;
+    padding: 10px;
     user-select: none;
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  .carrusel-btn.prev {
+    left: 0;
+  }
+
+  .carrusel-btn.next {
+    right: 0;
+  }
+
+  @media (max-width: 768px) {
+    .video-card.vertical {
+      flex: 0 0 90%;
+    }
   }
 </style>
 
+<!-- 🚀 SCRIPT -->
 <script>
-  let posicion = 0;
+  let posicionReel = 0;
+
   function moverCarrusel(direccion) {
-    const carrusel = document.querySelector('.carrusel');
-    const tarjetas = document.querySelectorAll('.video-card');
+    const carrusel = document.getElementById("carruselReels");
+    const tarjetas = document.querySelectorAll("#carruselReels .video-card");
     const anchoTarjeta = tarjetas[0].offsetWidth + 20;
-    posicion += direccion;
-    if (posicion < 0) posicion = 0;
-    if (posicion > tarjetas.length - 1) posicion = tarjetas.length - 1;
-    carrusel.style.transform = `translateX(-${posicion * anchoTarjeta}px)`;
+
+    posicionReel += direccion;
+
+    if (posicionReel < 0) posicionReel = 0;
+    if (posicionReel > tarjetas.length - 1) posicionReel = tarjetas.length - 1;
+
+    carrusel.style.transform = `translateX(-${posicionReel * anchoTarjeta}px)`;
   }
 </script>
+
   <!-- termino de prueba de prueba visual de carrusel -->
     
     <!-- Secciones por agregar: Rebobinando, Cápsulas, Encuesta, Concursos, Postales -->
