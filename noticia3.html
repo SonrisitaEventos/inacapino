@@ -319,7 +319,7 @@
   <script src="js/funciones_comunes.js" defer></script>
   <script src="js/app.js" defer></script>
   <script>
-const imagenes = [
+const imagenesDestacadas = [
       "imagenes/noticia3/mejoresmomentos1.jpg",
       "imagenes/noticia3/mejoresmomentos2.jpg",
       "imagenes/noticia3/mejoresmomentos3.jpg",
@@ -336,23 +336,25 @@ const imagenes = [
     let indiceActual = 0;
 
     function cambiarImagen(direccion) {
-      indiceActual += direccion;
-      if (indiceActual < 0) indiceActual = imagenes.length - 1;
-      if (indiceActual >= imagenes.length) indiceActual = 0;
-      document.getElementById("imagenActiva").src = imagenes[indiceActual];
-      document.getElementById("imagenModal").src = imagenes[indiceActual];
-    }
+  indiceActual += direccion;
+  if (indiceActual < 0) indiceActual = imagenesDestacadas.length - 1;
+  if (indiceActual >= imagenesDestacadas.length) indiceActual = 0;
+  document.getElementById("imagenActiva").src = imagenesDestacadas[indiceActual];
+  document.getElementById("imagenModal").src = imagenesDestacadas[indiceActual];
+}
 
-    function abrirModalGaleria() {
-      document.getElementById("modalGaleria").style.display = "block";
-      document.getElementById("imagenModal").src = imagenes[indiceActual];
-    }
+function abrirModalGaleria() {
+  document.getElementById("modalGaleria").style.display = "block";
+  document.getElementById("imagenModal").src = imagenesDestacadas[indiceActual];
+}
 
     function cerrarModalGaleria() {
       document.getElementById("modalGaleria").style.display = "none";
     }
-  document.addEventListener("DOMContentLoaded", () => {
-    initFuncionesComunes(); // ⬅️ ¡Activa scrollToTop y más!
+ document.addEventListener("DOMContentLoaded", () => {
+    if (typeof initFuncionesComunes === "function") {
+      initFuncionesComunes(); // Evita error si no se carga
+      }
   });
 
   function abrirModal(img) {
