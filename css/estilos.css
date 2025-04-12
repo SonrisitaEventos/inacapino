@@ -729,3 +729,47 @@ iframe::-webkit-scrollbar {
   100% { opacity: 0; transform: scale(1.05); }
 }
 
+
+/* ==================================================
+ Botón cerrar de las Noticias
+================================================== */
+.boton-cerrar-tooltip {
+  position: relative;
+  display: inline-block;
+  margin: 0 10px;
+  color: #ff4d4d;
+  text-decoration: none;
+}
+
+.boton-cerrar-tooltip i {
+  transition: transform 0.2s ease;
+}
+
+.boton-cerrar-tooltip:hover i {
+  transform: scale(1.2);
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 160px;
+  background-color: #444;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* aparece arriba del botón */
+  left: 50%;
+  margin-left: -80px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  font-size: 0.85em;
+  pointer-events: none;
+}
+
+.boton-cerrar-tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
