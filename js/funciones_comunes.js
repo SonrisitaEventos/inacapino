@@ -62,6 +62,13 @@ function restaurarModo() {
   }
 }
 
+// cerrar pestaña de noticias
+function cerrarPestana() {
+  window.close();
+  setTimeout(() => {
+    window.location.href = "https://sonrisitaeventos.github.io/inacapino/#noticias";
+  }, 500);
+}
 
 // 💬 Frases animadas bajo el logo
 const frases = [
