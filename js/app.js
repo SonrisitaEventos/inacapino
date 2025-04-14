@@ -18,6 +18,8 @@ const db = firebase.database();
 
 // 🔊 Mostrar asistente Inacapin con audio
 function mostrarAsistenteInacapin() {
+  if (sessionStorage.getItem("inacapinMostrado")) return;
+
   const asistente = document.getElementById("asistenteInacapin");
   const audio = document.getElementById("audioInacapin");
 
@@ -28,9 +30,9 @@ function mostrarAsistenteInacapin() {
         console.warn("🎧 El navegador bloqueó la reproducción automática:", error);
       });
     }
+    sessionStorage.setItem("inacapinMostrado", "true");
   }
 }
-
 
 function cerrarInacapin() {
   const asistente = document.getElementById("asistenteInacapin");
