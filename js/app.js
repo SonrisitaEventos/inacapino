@@ -130,8 +130,12 @@ document.addEventListener("DOMContentLoaded", () => {
   actualizarReloj();
   actualizarClima();
   escucharModoTransmision();
+  mostrarZenoFM(); 
+ 
   setTimeout(() => {
-  mostrarAsistenteInacapin();
+    mostrarAsistenteInacapin();
+  }, 2500); // ⏱️ Mostramos el asistente luego de 2.5s
+  
   setInterval(actualizarReloj, 60000);
   setInterval(actualizarClima, 10 * 60 * 1000);
 });
