@@ -775,18 +775,28 @@ iframe::-webkit-scrollbar {
 Asistente Virtual Inacapin 
 ====================================*/
 #asistenteInacapin {
+ display: none;
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 20px
   width: 220px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
   z-index: 9999;
-  animation: aparecer 1s ease-in-out;
-}
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 1s ease;
+} 
 
+  
 #asistenteInacapin img {
   width: 100px;
   display: block;
   margin: 0 auto;
+  height: 80px;
 }
 
 .mensajeInacapin {
@@ -794,7 +804,8 @@ Asistente Virtual Inacapin
   color: #000;
   border-radius: 15px;
   padding: 15px;
-  font-size: 14px;
+   max-width: 280px;
+  font-size: 0.9em;
   margin-top: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   text-align: center;
@@ -811,16 +822,9 @@ Asistente Virtual Inacapin
   font-weight: bold;
 }
 
-@keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
-
 
 
