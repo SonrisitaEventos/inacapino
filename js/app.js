@@ -124,8 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
   actualizarClima();
   escucharModoTransmision();
   setTimeout(() => {
-    mostrarAsistenteInacapin();
-  }, 2500);
+  mostrarAsistenteInacapin();
   setInterval(actualizarReloj, 60000);
   setInterval(actualizarClima, 10 * 60 * 1000);
 });
