@@ -18,11 +18,18 @@ const db = firebase.database();
 //asistente virtual
 function cerrarInacapin() {
   const asistente = document.getElementById("asistenteInacapin");
-  if (asistente) {
-    asistente.style.display = "none";
-  }
-}
+   if (asistente) {
+      asistente.style.display = "flex";
 
+      // 🔊 Intentar reproducir el audio
+      if (audio) {
+        audio.play().catch((error) => {
+          console.warn("🎧 El navegador bloqueó la reproducción automática:", error);
+        });
+      }
+    }
+  }, 2500);
+});
 // 🎥 Mostrar transmisiones
 function mostrarZenoFM() {
   const contenedor = document.getElementById("videoContainer");
