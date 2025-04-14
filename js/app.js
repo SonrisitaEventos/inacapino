@@ -35,6 +35,7 @@ function cerrarInacapin() {
   const asistente = document.getElementById("asistenteInacapin");
   if (asistente) asistente.style.display = "none";
 }
+
 // 🎥 Mostrar transmisiones
 function mostrarZenoFM() {
   const contenedor = document.getElementById("videoContainer");
@@ -121,7 +122,10 @@ document.addEventListener("DOMContentLoaded", () => {
   restaurarModo();
   actualizarReloj();
   actualizarClima();
-  escucharModoTransmision(); // Sincronización en tiempo real
+  escucharModoTransmision();
+  setTimeout(() => {
+    mostrarAsistenteInacapin();
+  }, 2500);
   setInterval(actualizarReloj, 60000);
   setInterval(actualizarClima, 10 * 60 * 1000);
 });
@@ -134,3 +138,4 @@ window.toggleModo = toggleModo;
 window.cambiarModo = cambiarModo;
 window.mostrarTwitch = mostrarTwitch;
 window.mostrarZenoFM = mostrarZenoFM;
+window.cerrarInacapin = cerrarInacapin;
