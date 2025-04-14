@@ -22,7 +22,7 @@
   <meta name="twitter:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/portadainacapino.png">
 <link rel="icon" type="image/gif" href="imagenes/logoradio.png">
 
-  <title>Noticias</title>
+ <title>Noticias</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
 
@@ -78,6 +78,74 @@
       font-size: 14px;
       border-top: 1px solid #6e2cf1;
     }
+    .galeria-destacada {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin: 0 auto 40px;
+  max-width: 900px;
+  padding: 0 10px;
+}
+
+.galeria-destacada img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  transition: transform 0.3s ease;
+}
+
+.galeria-destacada img:hover {
+  transform: scale(1.03);
+}
+
+.modal-img {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
+  text-align: center;
+}
+
+.contenido-modal {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+.cerrar {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.cerrar:hover {
+  color: #ff5757;
+}
+
+.galeria-destacada img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.galeria-destacada img:hover {
+  transform: scale(1.03);
+}
+
+
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FY11ZY6ZV3"></script>
@@ -87,6 +155,7 @@
     gtag('js', new Date());
     gtag('config', 'G-FY11ZY6ZV3');
   </script>
+
 </head>
 <body class="modo-noche">
   <header>
@@ -123,17 +192,12 @@
       <a href="sobre.html" class="boton-llamativo">📻 Conoce la historia de la radio</a>
     </section>
 
+
   <div class="contenido">
     <h1>Damos inicio a los Fondos Concursables Estudiantiles 2025</h1>
     <img src="imagenes/fondo_concursable_2025.jpg" alt="Fondos Concursables" class="img-portada">
 
     <div class="header">
-      <div class="redes">
-        <a href="#" target="_blank"><i class="fab fa-facebook-square"></i></a>
-        <a href="#" target="_blank"><i class="fab fa-x-twitter"></i></a>
-        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://sonrisitaeventos.github.io/inacapino/#noticias" style="background-color:#d40000; color:white; padding:5px 12px; border-radius:6px; text-decoration:none;">❌ Cerrar</a>
-      </div>
       <div class="fecha">📅 Abril 2025</div>
     </div>
 
@@ -172,6 +236,34 @@
     
   </div>
 
+ <div class="compartir" style="text-align: center; margin-top: 40px;">
+  <h3>¿Quieres compartir esta noticia en tus redes sociales?</h3>
+  <p style="font-size: 0.9em; color: #aaa;">¡Haz clic en tu red favorita y difunde esta buena nueva! 😊</p>
+  
+  <div style="margin-top: 15px;">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/noticia1.html" target="_blank" title="Compartir en Facebook" style="margin: 0 10px;">
+      <i class="fab fa-facebook fa-2x" style="color:#3b5998;"></i>
+    </a>
+   <a href="https://twitter.com/intent/tweet?url=https://sonrisitaeventos.github.io/inacapino/noticia1.html&text=📢 ¡Ya está disponible la nueva noticia de #ElInacapino! Mira cómo INACAP y SLEP fortalecen las matemáticas en la región." target="_blank">
+  <i class="fab fa-x-twitter fa-2x" style="color:#1da1f2;"></i>
+</a>
+
+<a href="https://api.whatsapp.com/send?text=📢 ¡Lee esta noticia inspiradora sobre educación matemática en nuestra región! 👉 https://sonrisitaeventos.github.io/inacapino/noticia1.html" target="_blank">
+  <i class="fab fa-whatsapp fa-2x" style="color:#25D366;"></i>
+</a>
+
+    <a href="mailto:?subject=Mira esta noticia de El Inacapino&body=Te comparto esta noticia que encontré genial: https://sonrisitaeventos.github.io/inacapino/noticia1.html" target="_blank" title="Enviar por Email" style="margin: 0 10px;">
+      <i class="fas fa-envelope fa-2x" style="color:#d44638;"></i>
+    </a>
+<a href="#" onclick="cerrarPestana();" class="boton-cerrar-tooltip">
+  <i class="fas fa-times-circle fa-2x"></i>
+  <span class="tooltip-text">Regresar a la radio 🎧</span>
+</a>
+
+  </div>
+</div>
+
+   
  <!-- Footer agregado -->
     <footer class="footer-red">
       <p>🎙️ Radio El Inacapino - INACAP Puerto Montt | Hecho con 💚 por Cristián Riffo</p>
@@ -182,9 +274,7 @@
   <script src="js/funciones_comunes.js" defer></script>
   <script src="js/app.js" defer></script>
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    initFuncionesComunes(); // ⬅️ ¡Activa scrollToTop y más!
-  });
 </script>
 </body>
 </html>
+
