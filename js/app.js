@@ -15,21 +15,26 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
-//asistente virtual
+
+// 🔊 Mostrar asistente Inacapin con audio
+function mostrarAsistenteInacapin() {
+  const asistente = document.getElementById("asistenteInacapin");
+  const audio = document.getElementById("audioInacapin");
+
+  if (asistente) {
+    asistente.style.display = "flex";
+    if (audio) {
+      audio.play().catch((error) => {
+        console.warn("🎧 El navegador bloqueó la reproducción automática:", error);
+      });
+    }
+  }
+}
+
 function cerrarInacapin() {
   const asistente = document.getElementById("asistenteInacapin");
-   if (asistente) {
-      asistente.style.display = "flex";
-
-      // 🔊 Intentar reproducir el audio
-      if (audio) {
-        audio.play().catch((error) => {
-          console.warn("🎧 El navegador bloqueó la reproducción automática:", error);
-        });
-      }
-    }
-  }, 2500);
-});
+  if (asistente) asistente.style.display = "none";
+}
 // 🎥 Mostrar transmisiones
 function mostrarZenoFM() {
   const contenedor = document.getElementById("videoContainer");
