@@ -31,6 +31,13 @@ function mostrarAsistenteInacapin() {
   }
 }
 
+document.body.addEventListener("click", () => {
+  const audio = document.getElementById("audioInacapin");
+  if (audio && audio.paused) {
+    audio.play().catch((e) => console.warn("No se pudo reproducir audio:", e));
+  }
+}, { once: true });
+
 function cerrarInacapin() {
   const asistente = document.getElementById("asistenteInacapin");
   if (asistente) asistente.style.display = "none";
