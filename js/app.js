@@ -34,8 +34,18 @@ function mostrarAsistenteInacapin() {
 
 function cerrarInacapin() {
   const asistente = document.getElementById("asistenteInacapin");
-  if (asistente) asistente.style.display = "none";
+  const audio = document.getElementById("audioInacapin");
+
+  if (asistente) {
+    asistente.style.display = "none";
+  }
+
+  if (audio) {
+    audio.pause();         // ⏸️ Pausar el audio
+    audio.currentTime = 0; // 🔄 Volver al inicio del audio
+  }
 }
+
 
 // 🎥 Mostrar transmisiones
 function mostrarZenoFM() {
