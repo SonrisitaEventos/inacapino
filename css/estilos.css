@@ -767,9 +767,60 @@ iframe::-webkit-scrollbar {
   font-size: 0.85em;
   pointer-events: none;
 }
-
 .boton-cerrar-tooltip:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
 }
+/* =================================
+Asistente Virtual Inacapin 
+====================================*/
+#asistenteInacapin {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 220px;
+  z-index: 9999;
+  animation: aparecer 1s ease-in-out;
+}
+
+#asistenteInacapin img {
+  width: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+.mensajeInacapin {
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 15px;
+  padding: 15px;
+  font-size: 14px;
+  margin-top: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.mensajeInacapin button {
+  margin-top: 10px;
+  padding: 5px 12px;
+  background-color: #d40000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 
