@@ -15,6 +15,13 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
+//asistente virtual
+function cerrarInacapin() {
+  const asistente = document.getElementById("asistenteInacapin");
+  if (asistente) {
+    asistente.style.display = "none";
+  }
+}
 
 // 🎥 Mostrar transmisiones
 function mostrarZenoFM() {
