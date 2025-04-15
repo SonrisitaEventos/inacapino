@@ -206,3 +206,7 @@ window.cambiarModo = cambiarModo;
 window.mostrarTwitch = mostrarTwitch;
 window.mostrarZenoFM = mostrarZenoFM;
 window.cerrarInacapin = cerrarInacapin;
+window.abrirInscripcion = abrirInscripcion;
+window.cerrarInscripcion = cerrarInscripcion;
+window.enviarFormulario = enviarFormulario;
+
