@@ -866,4 +866,53 @@ Asistente Virtual Inacapin
     transform: translateY(0);
   }
 }
+/* ============================
+🎨 Pop-Up Formulario de Talleres
+============================ */
+.modal-inscripcion {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+.contenido-inscripcion {
+  background-color: #111;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 20px #ff00ff60;
+}
+
+.contenido-inscripcion input,
+.contenido-inscripcion select {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+  background-color: #222;
+  color: white;
+}
+
+.contenido-inscripcion h2 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.modal-inscripcion .cerrar {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
 
