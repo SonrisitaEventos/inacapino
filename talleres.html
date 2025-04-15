@@ -28,7 +28,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="🎽 Talleres Extracurriculares INACAP Puerto Montt">
-<meta name="twitter:description" content="Participa en actividades deportivas, artísticas y recreativas en tu sede INACAP. ¡Mira el horario y únete a la diversión!>
+<meta name="twitter:description" content="Participa en actividades deportivas, artísticas y recreativas en tu sede INACAP. ¡Mira el horario y únete a la diversión!">
 <meta name="twitter:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/banner_talleres.jpg">
 
 <link rel="icon" type="image/gif" href="imagenes/logoradio.png">
@@ -211,7 +211,11 @@
      <div class="fecha">📅 14 de Abril 2025</div>
     </div>
 
-    <p><strong>Listado de Talleres 2025</strong></p>
+    <h2 style="text-align:center;">¡Vive tus pasiones más allá del aula! 🏀🎭🎵</h2>
+<p style="text-align:center; max-width: 700px; margin: auto;">
+  Te invitamos a descubrir y participar en los talleres extracurriculares 2025 de INACAP Puerto Montt. Una experiencia que enriquece tu formación y fortalece los lazos de compañerismo.
+</p>
+
     <div style="margin-top: 40px;"></div>
 
     <section style="margin: 40px auto; max-width: 900px; padding: 20px;">
@@ -271,6 +275,38 @@
 
 
 <div style="margin-top: 40px;"></div>
+<!-- 🌟 Botón para abrir el box de inscripción -->
+<div style="text-align:center; margin: 40px auto;">
+  <button onclick="abrirInscripcion()" class="vip-button">📝 ¡Inscríbete aquí!</button>
+</div>
+
+<!-- 🧾 Modal Formulario de Inscripción -->
+<div id="popupInscripcion" class="modal-inscripcion">
+  <div class="contenido-inscripcion">
+    <span class="cerrar" onclick="cerrarInscripcion()">&times;</span>
+    <h2>📝 Formulario de Inscripción a Talleres</h2>
+    <form id="formularioTaller" onsubmit="return enviarFormulario()">
+      <input type="text" id="nombre" placeholder="Nombre" required>
+      <input type="text" id="apellido" placeholder="Apellido" required>
+      <input type="text" id="carrera" placeholder="Carrera" required>
+      <input type="text" id="jornada" placeholder="Jornada (Diurna/Vespertina)" required>
+
+      <select id="actividad" required>
+        <option value="">Selecciona un taller</option>
+        <option>Fútbol Masculino</option>
+        <option>Fútbol Femenino</option>
+        <option>Vóleibol</option>
+        <option>Basquetbol</option>
+        <option>Taller de Teatro</option>
+        <option>Taller de Robótica</option>
+        <option>Taller de Música</option>
+      </select>
+
+      <button type="submit" class="vip-button">📨 Enviar</button>
+    </form>
+    <p id="mensajeConfirmacion" style="display:none; color: #00ffcc; margin-top: 15px;"></p>
+  </div>
+</div>
 
     
 
@@ -337,12 +373,12 @@
   <script src="js/app.js" defer></script>
   <script>
 const imagenesDestacadas = [
-      "imagenes/XXXXX1.jpg",
-      "imagenes/XXXXX2.jpg",
-      "imagenes/XXXXX3.jpg",
-      "imagenes/XXXXX4.jpg",
-      "imagenes/XXXXX5.jpg",
-          ];
+  "imagenes/taller_futbol.jpg",
+  "imagenes/taller_teatro.jpg",
+  "imagenes/taller_musica.jpg",
+  ...
+];
+
 
     let indiceActual = 0;
 
