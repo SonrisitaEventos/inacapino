@@ -109,6 +109,41 @@ function escucharModoTransmision() {
   db.ref("radio/modoTransmision").on("value", (snapshot) => {
     const modo = snapshot.val();
 
+/* ============================
+🎨 Pop-Up Formulario Talleres
+============================ */
+<script>
+  function abrirInscripcion() {
+    document.getElementById("popupInscripcion").style.display = "flex";
+  }
+
+  function cerrarInscripcion() {
+    document.getElementById("popupInscripcion").style.display = "none";
+    document.getElementById("formularioTaller").reset();
+    document.getElementById("mensajeConfirmacion").style.display = "none";
+  }
+
+  function enviarFormulario() {
+    const nombre = document.getElementById("nombre").value;
+    const apellido = document.getElementById("apellido").value;
+    const carrera = document.getElementById("carrera").value;
+    const jornada = document.getElementById("jornada").value;
+    const actividad = document.getElementById("actividad").value;
+
+    const asunto = "Inscripción nueva a Talleres";
+    const destinatario = "criffoa@inacap.cl,cmenesesg@inacap.cl";
+    const cuerpo = `Nombre: ${nombre}\nApellido: ${apellido}\nCarrera: ${carrera}\nJornada: ${jornada}\nActividad: ${actividad}`;
+
+    window.location.href = `mailto:${destinatario}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+
+    document.getElementById("mensajeConfirmacion").innerText = "✅ Muchas gracias por tu compromiso, en breve nos comunicaremos contigo. ¡Sigue disfrutando de esta entretenida Jornada! 🎉";
+    document.getElementById("mensajeConfirmacion").style.display = "block";
+
+    return false; // Evita que se recargue la página
+  }
+</script>
+
+    
     // Mostrar aviso
     const aviso = document.getElementById("avisoCambio");
     if (aviso) {
