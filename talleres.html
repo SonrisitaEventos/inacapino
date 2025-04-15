@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="xxxx poner el contenido de la pagina xxx">
+  <meta name="author" content="Cristián Riffo Araya">
+  <meta name="keywords" content="Radio El Inacapino, INACAP Puerto Montt, estudiantes, noticias, estudiantes INACAP">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <!-- Título que aparecerá al compartir -->
+<meta property="og:title" content="xxx poner el titulo del contenido de la pagina xxx">
+
+<!-- Descripción que se muestra debajo del título -->
+<meta property="og:description" content="xxx poner la descripción del contenido de la pagina xxx">
+
+<!-- URL de la noticia -->
+<meta property="og:url" content="https://sonrisitaeventos.github.io/inacapino/XXXX.html">
+
+<!-- Imagen destacada (¡la que tú subiste!) -->
+<meta property="og:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/xxxx.jpg">
+
+<!-- Tipo de contenido -->
+<meta property="og:type" content="article">
+
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="xxx poner el titulo del contenido de la pagina xxx">
+<meta name="twitter:description" content="xxx poner la descripción del contenido de la pagina xxx">
+<meta name="twitter:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/xxxx.jpg">
+
+<link rel="icon" type="image/gif" href="imagenes/logoradio.png">
+
+  <title>Noticias</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #111;
+      color: #fff;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #6e2cf1;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .img-portada {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      display: block;
+      border-radius: 8px;
+    }
+    .contenido {
+      max-width: 800px;
+      margin: auto;
+    }
+    .contenido strong {
+      color: #00d4ff;
+    }
+    h1 {
+      color: #ffffff;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #ffffff;
+    }
+    .redes a {
+      color: white;
+      margin-right: 15px;
+      font-size: 18px;
+    }
+    .footer-red {
+      margin-top: 40px;
+      padding: 15px;
+      text-align: center;
+      background-color: #000000;
+      color: #999;
+      font-size: 14px;
+      border-top: 1px solid #6e2cf1;
+    }
+    .galeria-destacada {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin: 0 auto 40px;
+  max-width: 900px;
+  padding: 0 10px;
+}
+
+.galeria-destacada img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  transition: transform 0.3s ease;
+}
+
+.galeria-destacada img:hover {
+  transform: scale(1.03);
+}
+
+.modal-img {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
+  text-align: center;
+}
+
+.contenido-modal {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+.cerrar {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.cerrar:hover {
+  color: #ff5757;
+}
+
+.galeria-destacada img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.galeria-destacada img:hover {
+  transform: scale(1.03);
+}
+
+
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FY11ZY6ZV3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FY11ZY6ZV3');
+  </script>
+</head>
+<body class="modo-noche">
+  <header>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="sobre.html">Sobre la Radio</a>
+      <a href="#rebobinando">Rebobinando</a>
+      <a href="#capsulas">Cápsulas</a>
+      <a href="#encuesta">Encuesta</a>
+      <a href="#concursos">Concursos</a>
+      <a href="#postales">Postales</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#muro-deseos">Muro de los Buenos Deseos</a>
+    </nav>
+    <div class="mensaje-motivacional">
+      <div class="scroll-wrapper">
+        <span id="mensajeTexto">🌟 Sigue adelante, lo mejor está por venir.</span>
+      </div>
+    </div>
+    <div class="top-info">
+      <span id="reloj">00:00</span>
+      <span id="clima">☀️ --°C</span>
+      <span class="live-indicator">EN VIVO</span>
+    </div>
+  </header>
+
+  <img src="imagenes/inacapito3.gif" onclick="scrollToTop()" id="btnTop" title="Subamos" alt="Inacapito te lleva arriba 🕺">
+  <main>
+    <img src="imagenes/logoradio.png" alt="Logo Radio INACAP" class="logo">
+    <h1>El Inacapino Puerto Montt</h1>
+    <p class="frase-motivacional" id="frase">La educación es el pasaporte al futuro.</p>
+
+    <section style="margin: 30px auto; text-align: center;">
+      <a href="sobre.html" class="boton-llamativo">📻 Conoce la historia de la radio</a>
+    </section>
+
+  <div class="contenido">
+    <h1>xxxxtitulo de la pagina xxx</h1>
+    <img src="imagenes/xxx.jpg" alt="portadaXXXX" class="img-portada">
+
+
+    <div class="header">
+     <div class="fecha">📅 Abril 2025</div>
+    </div>
+
+    <p><strong>Subtitular XXXX</strong></p>
+    <div style="margin-top: 40px;"></div>
+
+    <p>texto o parrafo</p>
+
+<div style="margin-top: 40px;"></div>
+
+    
+
+    <h2 style="margin-top: 40px;">📸 Momentos Destacados</h2>
+<p style="text-align: center; margin-bottom: 20px;">Una mirada en imágenes a los instantes que marcaron esta jornada inolvidable.</p>
+
+<div style="text-align: center;">
+  <img id="imagenActiva" src="imagenes/XXXXjpg" alt="Momento destacado" style="width: 90%; max-width: 800px; border-radius: 12px; box-shadow: 0 0 12px rgba(255,255,255,0.2); cursor: pointer;" onclick="abrirModalGaleria()">
+  <div style="margin-top: 15px;">
+    <button onclick="cambiarImagen(-1)" style="font-size: 2em; margin: 0 10px;">⬅️</button>
+    <button onclick="cambiarImagen(1)" style="font-size: 2em; margin: 0 10px;">➡️</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modalGaleria" class="modal-img" onclick="cerrarModalGaleria()">
+  <span class="cerrar">&times;</span>
+  <img class="contenido-modal" id="imagenModal">
+</div>
+
+<!-- Modal para ampliar imagen -->
+<div id="modalImagen" class="modal-img" onclick="cerrarModal()">
+  <span class="cerrar">&times;</span>
+  <img class="contenido-modal" id="imgAmpliada">
+</div>
+
+
+<div class="compartir" style="text-align: center; margin-top: 40px;">
+  <h3>¿Quieres compartir esta noticia en tus redes sociales?</h3>
+  <p style="font-size: 0.9em; color: #aaa;">¡Haz clic en tu red favorita y difunde esta buena nueva! 😊</p>
+  
+  <div style="margin-top: 15px;">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://sonrisitaeventos.github.io/inacapino/XXXX.html" target="_blank" title="Compartir en Facebook" style="margin: 0 10px;">
+      <i class="fab fa-facebook fa-2x" style="color:#3b5998;"></i>
+    </a>
+   <a href="https://twitter.com/intent/tweet?url=https://sonrisitaeventos.github.io/inacapino/XXXX.html&text=📢 ¡Ya está disponible la nueva noticia de #ElInacapino! Mira cómo INACAP y SLEP fortalecen las matemáticas en la región." target="_blank">
+  <i class="fab fa-x-twitter fa-2x" style="color:#1da1f2;"></i>
+</a>
+
+<a href="https://api.whatsapp.com/send?text=📢 ¡Lee esta noticia inspiradora sobre educación matemática en nuestra región! 👉 https://sonrisitaeventos.github.io/inacapino/XXXX.html" target="_blank">
+  <i class="fab fa-whatsapp fa-2x" style="color:#25D366;"></i>
+</a>
+
+    <a href="mailto:?subject=Mira esta noticia de El Inacapino&body=Te comparto esta noticia que encontré genial: https://sonrisitaeventos.github.io/inacapino/XXXX.html" target="_blank" title="Enviar por Email" style="margin: 0 10px;">
+      <i class="fas fa-envelope fa-2x" style="color:#d44638;"></i>
+    </a>
+<a href="#" onclick="cerrarPestana();" class="boton-cerrar-tooltip">
+  <i class="fas fa-times-circle fa-2x"></i>
+  <span class="tooltip-text">Regresar a la radio 🎧</span>
+</a>
+
+  </div>
+</div>
+
+   
+ <!-- Footer agregado -->
+    <footer class="footer-red">
+      <p>🎙️ Radio El Inacapino - INACAP Puerto Montt | Hecho con 💚 por Cristián Riffo</p>
+    </footer>
+  </main>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <script src="js/funciones_comunes.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script>
+const imagenesDestacadas = [
+      "imagenes/XXXXX1.jpg",
+      "imagenes/XXXXX2.jpg",
+      "imagenes/XXXXX3.jpg",
+      "imagenes/XXXXX4.jpg",
+      "imagenes/XXXXX5.jpg",
+          ];
+
+    let indiceActual = 0;
+
+    function cambiarImagen(direccion) {
+  indiceActual += direccion;
+  if (indiceActual < 0) indiceActual = imagenesDestacadas.length - 1;
+  if (indiceActual >= imagenesDestacadas.length) indiceActual = 0;
+  document.getElementById("imagenActiva").src = imagenesDestacadas[indiceActual];
+  document.getElementById("imagenModal").src = imagenesDestacadas[indiceActual];
+}
+
+function abrirModalGaleria() {
+  document.getElementById("modalGaleria").style.display = "block";
+  document.getElementById("imagenModal").src = imagenesDestacadas[indiceActual];
+}
+
+    function cerrarModalGaleria() {
+      document.getElementById("modalGaleria").style.display = "none";
+    }
+ document.addEventListener("DOMContentLoaded", () => {
+    if (typeof initFuncionesComunes === "function") {
+      initFuncionesComunes(); // Evita error si no se carga
+      }
+  });
+
+  function abrirModal(img) {
+    const modal = document.getElementById("modalImagen");
+    const ampliada = document.getElementById("imgAmpliada");
+    modal.style.display = "block";
+    ampliada.src = img.src;
+    ampliada.alt = img.alt;
+  }
+
+  function cerrarModal() {
+    document.getElementById("modalImagen").style.display = "none";
+  }
+</script>
+</body>
+</html>
