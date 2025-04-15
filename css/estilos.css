@@ -824,4 +824,46 @@ Asistente Virtual Inacapin
   to { opacity: 1; transform: scale(1); }
 }
 
+/* ============================
+🎨 Banner Pop-Up Actividades
+============================ */
+#popupTalleres {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #ff0040;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  animation: aparecerPopup 1s ease-in-out;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#popupTalleres button {
+  margin-left: auto;
+  background: white;
+  color: #ff0040;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@keyframes aparecerPopup {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
