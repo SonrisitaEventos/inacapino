@@ -204,7 +204,7 @@
 
   <div class="contenido">
     <h1>Talleres Extra Curriculares</h1>
-    <img src="imagenes/banner_talleres.jpg" alt="Portada Talleres" class="img-portada">
+    <img src="imagenes/banner_talleres.gif" alt="Portada Talleres" class="img-portada">
 
 
     <div class="header">
@@ -370,9 +370,10 @@
   <script src="js/app.js" defer></script>
   <script>
 const imagenesDestacadas = [
-  "imagenes/taller_futbol.jpg",
-  "imagenes/taller_teatro.jpg",
-  "imagenes/taller_musica.jpg",
+  "imagenes/taller_tenisdemesa.gif",
+  "imagenes/taller_futbol.gif",
+  "imagenes/taller_basquetbol.gif",
+  "imagenes/taller_coro.gif",
   ...
 ];
 
@@ -412,6 +413,39 @@ function abrirModalGaleria() {
   function cerrarModal() {
     document.getElementById("modalImagen").style.display = "none";
   }
+
+  function abrirInscripcion() {
+    document.getElementById("popupInscripcion").style.display = "flex";
+  }
+
+  function cerrarInscripcion() {
+    document.getElementById("popupInscripcion").style.display = "none";
+    document.getElementById("formularioTaller").reset();
+    document.getElementById("mensajeConfirmacion").style.display = "none";
+  }
+
+  function enviarFormulario() {
+    const nombre = document.getElementById("nombre").value;
+    const apellido = document.getElementById("apellido").value;
+    const carrera = document.getElementById("carrera").value;
+    const jornada = document.getElementById("jornada").value;
+    const actividad = document.getElementById("actividad").value;
+
+    const asunto = "Inscripción nueva a Talleres";
+    const destinatario = "criffoa@inacap.cl,cmenesesg@inacap.cl";
+    const cuerpo = `Nombre: ${nombre}\nApellido: ${apellido}\nCarrera: ${carrera}\nJornada: ${jornada}\nActividad: ${actividad}`;
+
+    // Abrir cliente de correo
+    window.location.href = `mailto:${destinatario}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+
+    // Mostrar confirmación
+    document.getElementById("mensajeConfirmacion").innerText =
+      "✅ Muchas gracias por tu compromiso, en breve nos comunicaremos contigo. ¡Sigue disfrutando de esta entretenida Jornada! 🎉";
+    document.getElementById("mensajeConfirmacion").style.display = "block";
+
+    return false; // Previene recarga
+  }
+
 </script>
 </body>
 </html>
