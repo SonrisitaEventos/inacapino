@@ -86,30 +86,6 @@ function cambiarModo(modo) {
   db.ref("radio/modoTransmision").set(modo);
 }
 /* ============================
-🎨 Banner Pop-Up Actividades
-============================ */
-function mostrarPopupTalleres() {
-  const popup = document.createElement("div");
-  popup.id = "popupTalleres";
-  popup.innerHTML = `
-    📣 ¡Inscríbete en los nuevos talleres extracurriculares!
-    <a href="talleres.html" style="color: white; text-decoration: underline;">Ver todos</a>
-    <button onclick="cerrarPopupTalleres()">×</button>
-  `;
-  document.body.appendChild(popup);
-}
-
-function cerrarPopupTalleres() {
-  const popup = document.getElementById("popupTalleres");
-  if (popup) popup.remove();
-}
-
-
-function escucharModoTransmision() {
-  db.ref("radio/modoTransmision").on("value", (snapshot) => {
-    const modo = snapshot.val();
-
-/* ============================
 🎨 Pop-Up Formulario Talleres
 ============================ */
   function abrirInscripcion() {
@@ -140,6 +116,30 @@ function escucharModoTransmision() {
 
     return false; // Evita que se recargue la página
   }
+/* ============================
+🎨 Banner Pop-Up Actividades
+============================ */
+function mostrarPopupTalleres() {
+  const popup = document.createElement("div");
+  popup.id = "popupTalleres";
+  popup.innerHTML = `
+    📣 ¡Inscríbete en los nuevos talleres extracurriculares!
+    <a href="talleres.html" style="color: white; text-decoration: underline;">Ver todos</a>
+    <button onclick="cerrarPopupTalleres()">×</button>
+  `;
+  document.body.appendChild(popup);
+}
+
+function cerrarPopupTalleres() {
+  const popup = document.getElementById("popupTalleres");
+  if (popup) popup.remove();
+}
+
+
+function escucharModoTransmision() {
+  db.ref("radio/modoTransmision").on("value", (snapshot) => {
+    const modo = snapshot.val();
+
     
     // Mostrar aviso
     const aviso = document.getElementById("avisoCambio");
