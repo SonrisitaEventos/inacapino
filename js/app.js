@@ -120,15 +120,24 @@ function cambiarModo(modo) {
 🎨 Banner Pop-Up Actividades
 ============================ */
 function mostrarPopupTalleres() {
+  // Solo ejecutar si estamos en index.html
+  if (!location.pathname.endsWith("index.html") && location.pathname !== "/") return;
+
   const popup = document.createElement("div");
   popup.id = "popupTalleres";
   popup.innerHTML = `
-    📣 ¡Inscríbete en los nuevos talleres extracurriculares!
-    <a href="talleres.html" style="color: white; text-decoration: underline;">Ver todos</a>
+    <img src="imagenes/banner_talleres.jpg" alt="Banner Talleres" style="width: 120px; height: auto; border-radius: 8px; margin-right: 10px;">
+    <div style="flex: 1;">
+      📣 ¡Inscríbete en los nuevos talleres extracurriculares!<br>
+      <a href="talleres.html" style="color: white; text-decoration: underline;">Ver todos</a>
+    </div>
     <button onclick="cerrarPopupTalleres()">×</button>
   `;
+  popup.style.display = "flex"; // Por si acaso
+
   document.body.appendChild(popup);
 }
+
 
 function cerrarPopupTalleres() {
   const popup = document.getElementById("popupTalleres");
