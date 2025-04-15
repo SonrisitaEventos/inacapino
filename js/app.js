@@ -121,7 +121,9 @@ function cambiarModo(modo) {
 ============================ */
 function mostrarPopupTalleres() {
   // Solo ejecutar si estamos en index.html
-  if (!location.pathname.endsWith("index.html") && location.pathname !== "/") return;
+  const path = location.pathname;
+if (!path.includes("index") && path !== "/" && !path.endsWith("/")) return;
+
 
   const popup = document.createElement("div");
   popup.id = "popupTalleres";
