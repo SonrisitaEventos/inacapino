@@ -841,8 +841,10 @@ Asistente Virtual Inacapin
   z-index: 9999;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px; /* separa imagen del texto */
+  max-width: 400px;
 }
+
 
 #popupTalleres button {
   margin-left: auto;
