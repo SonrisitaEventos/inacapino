@@ -112,7 +112,6 @@ function escucharModoTransmision() {
 /* ============================
 🎨 Pop-Up Formulario Talleres
 ============================ */
-<script>
   function abrirInscripcion() {
     document.getElementById("popupInscripcion").style.display = "flex";
   }
@@ -141,8 +140,6 @@ function escucharModoTransmision() {
 
     return false; // Evita que se recargue la página
   }
-</script>
-
     
     // Mostrar aviso
     const aviso = document.getElementById("avisoCambio");
