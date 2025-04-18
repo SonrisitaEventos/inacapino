@@ -93,7 +93,6 @@ function cambiarModo(modo) {
   }
 
   function cerrarInscripcion() {
-    document.getElementById("popupInscripcion").style.display = "none";
     document.getElementById("formularioTaller").reset();
     document.getElementById("mensajeConfirmacion").style.display = "none";
   }
@@ -116,34 +115,6 @@ function cambiarModo(modo) {
 
     return false; // Evita que se recargue la página
   }
-/* ============================
-🎨 Banner Pop-Up Actividades
-============================ */
-function mostrarPopupTalleres() {
-  // Solo ejecutar si estamos en index.html o raíz
-  const path = location.pathname;
-  if (!path.includes("index") && path !== "/" && !path.endsWith("/")) return;
-
-  const popup = document.createElement("div");
-  popup.id = "popupTalleres";
-  popup.innerHTML = `
-    <img src="imagenes/banner_talleres.jpg" alt="Banner Talleres">
-    <div class="texto-popup">
-      📣 ¡Inscríbete en los nuevos talleres extracurriculares!<br>
-      <a href="talleres.html">Ver todos los detalles aquí</a>
-    </div>
-    <button class="cerrar-popup" onclick="cerrarPopupTalleres()">×</button>
-  `;
-  document.body.appendChild(popup);
-}
-
-
-
-function cerrarPopupTalleres() {
-  const popup = document.getElementById("popupTalleres");
-  if (popup) popup.remove();
-}
-
 
 function escucharModoTransmision() {
   db.ref("radio/modoTransmision").on("value", (snapshot) => {
@@ -197,9 +168,8 @@ document.addEventListener("DOMContentLoaded", () => {
   actualizarClima();
   escucharModoTransmision();
   mostrarZenoFM(); 
-  mostrarPopupTalleres();
   setTimeout(() => {
-    mostrarAsistenteInacapin();
+  mostrarAsistenteInacapin();
   }, 2500); // ⏱️ Mostramos el asistente luego de 2.5s
   
   setInterval(actualizarReloj, 60000);
