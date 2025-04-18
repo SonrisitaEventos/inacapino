@@ -107,15 +107,15 @@
 <body class="modo-noche">
   <header>
     <nav>
-      <a href="#">Inicio</a>
+      <a href="https://sonrisitaeventos.github.io/inacapino/">Inicio</a>
       <a href="sobre.html">Sobre la Radio</a>
-      <a href="#rebobinando">Rebobinando</a>
-      <a href="#capsulas">Cápsulas</a>
-      <a href="#encuesta">Encuesta</a>
-      <a href="#concursos">Concursos</a>
-      <a href="#postales">Postales</a>
-      <a href="#noticias">Noticias</a>
-      <a href="#muro-deseos">Muro de los Buenos Deseos</a>
+      <a href="https://sonrisitaeventos.github.io/inacapino/#rebobinando">Rebobinando</a>
+      <a href="https://sonrisitaeventos.github.io/inacapino/#capsulas">Cápsulas</a>
+      <a href="https://sonrisitaeventos.github.io/inacapino/#encuesta">Encuesta</a>
+      <a href="https://sonrisitaeventos.github.io/inacapino/#concursos">Concursos</a>
+      <a href="https://sonrisitaeventos.github.io/inacapino/#postales">Postales</a>
+      <a href="https://sonrisitaeventos.github.io/inacapino/#noticias">Noticias</a>
+      <a href="https://sonrisitaeventos.github.io/inacapino/muro_buenos_deseos.html">Muro de los Buenos Deseos</a>
     </nav>
     <div class="mensaje-motivacional">
       <div class="scroll-wrapper">
@@ -138,13 +138,13 @@
     <section style="margin: 30px auto; text-align: center;">
       <a href="sobre.html" class="boton-llamativo">📻 Conoce la historia de la radio</a>
     </section>
-<div class="contenido">
-   <h1>Clubes Estudiantiles INACAP Puerto Montt</h1>
+ <div class="contenido">
+    <h1>Clubes Estudiantiles INACAP Puerto Montt</h1>
     <img src="imagenes/banner_talleres.jpg" alt="Portada Talleres" class="img-portada">
-
     <div class="header">
      <div class="fecha">📅 14 de Abril 2025</div>
     </div>
+
 
     <h2 style="text-align:center;">¡Vive tus pasiones más allá del aula! 🏀🎭🎵</h2>
 <p style="text-align:center; max-width: 700px; margin: auto;">
@@ -177,8 +177,12 @@
       <input type="text" placeholder="Apellido" required>
       <input type="email" placeholder="Correo Electrónico" required>
       <input type="text" placeholder="Carrera" required>
-      <input type="text" placeholder="Jornada (Diurna/Vespertina)" required>
-      <select required>
+     <select id="jornada" required>
+        <option value="">Jornada</option>
+        <option>Diurna</option>
+        <option>Vespertina</option>
+      </select>
+      <select id="club" required>
         <option value="">Selecciona un club</option>
         <option>Club de Lectura</option>
         <option>Club Magic Commander</option>
@@ -190,7 +194,10 @@
       </select>
       <button type="submit">📨 Enviar</button>
     </form>
-  </section>
+    <p id="mensajeConfirmacion" style="display:none; color: #00ffcc; margin-top: 15px;"></p>
+  </div>
+</div>
+ </section>
 
   <section class="galeria-clubes">
     <img src="imagenes/taller_tenisdemesa.gif" alt="Club 1">
@@ -297,11 +304,11 @@ function abrirModalGaleria() {
     const apellido = document.getElementById("apellido").value;
     const carrera = document.getElementById("carrera").value;
     const jornada = document.getElementById("jornada").value;
-    const actividad = document.getElementById("actividad").value;
+    const actividad = document.getElementById("club").value;
 
     const asunto = "Inscripción nueva a Talleres";
     const destinatario = "criffoa@inacap.cl,cmenesesg@inacap.cl";
-    const cuerpo = `Nombre: ${nombre}\nApellido: ${apellido}\nCarrera: ${carrera}\nJornada: ${jornada}\nActividad: ${actividad}`;
+    const cuerpo = `Nombre: ${nombre}\nApellido: ${apellido}\nCarrera: ${carrera}\nJornada: ${jornada}\nClub: ${club}`;
 
     // Abrir cliente de correo
     window.location.href = `mailto:${destinatario}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
