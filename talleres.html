@@ -155,7 +155,36 @@
 .galeria-destacada img:hover {
   transform: scale(1.03);
 }
-
+  .club-lista, .galeria-clubes {
+      max-width: 900px;
+      margin: 30px auto;
+    }
+    .club-lista table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .club-lista th, .club-lista td {
+      padding: 12px;
+      border: 1px solid #444;
+      text-align: center;
+    }
+    .club-lista th {
+      background-color: #d40000;
+      color: #fff;
+    }
+    .galeria-clubes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    .galeria-clubes img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .galeria-clubes img:hover {
+      transform: scale(1.03);
+    }
 
   </style>
   <!-- Google tag (gtag.js) -->
