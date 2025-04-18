@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descubre los Clubes Estudiantiles de INACAP Puerto Montt. Únete, participa y transforma tu experiencia universitaria.">
+  <meta name="author" content="Cristián Riffo Araya">
+  <meta name="keywords" content="INACAP, clubes estudiantiles, estudiantes INACAP, lectura, linux, videojuegos, ajedrez, cinematografía">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="🤝 Clubes Estudiantiles INACAP Puerto Montt">
+  <meta property="og:description" content="Explora los clubes activos de INACAP Puerto Montt, inscríbete y sé parte de la comunidad estudiantil más activa.">
+  <meta property="og:url" content="https://sonrisitaeventos.github.io/inacapino/clubestudiantil.html">
+  <meta property="og:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/banner_talleres.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🤝 Clubes Estudiantiles INACAP Puerto Montt">
+  <meta name="twitter:description" content="Participa en clubes de lectura, Linux, ajedrez, cine y más. ¡Conéctate con tu pasión!">
+  <meta name="twitter:image" content="https://sonrisitaeventos.github.io/inacapino/imagenes/banner_talleres.jpg">
+  <link rel="icon" type="image/gif" href="imagenes/logoradio.png">
+  <title>Clubes Estudiantiles</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      padding: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #00d4ff;
+    }
+    .club-lista, .galeria-clubes {
+      max-width: 900px;
+      margin: 30px auto;
+    }
+    .club-lista table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .club-lista th, .club-lista td {
+      padding: 12px;
+      border: 1px solid #444;
+      text-align: center;
+    }
+    .club-lista th {
+      background-color: #d40000;
+      color: #fff;
+    }
+    .galeria-clubes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    .galeria-clubes img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .galeria-clubes img:hover {
+      transform: scale(1.03);
+    }
+    .formulario {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #222;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .formulario input, .formulario select, .formulario button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+    }
+    .formulario button {
+      background-color: #6e2cf1;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Clubes Estudiantiles INACAP Puerto Montt</h1>
+    <p style="text-align:center; max-width: 700px; margin: auto;">Forma parte de un espacio donde tus ideas cobran vida. Conéctate con otros estudiantes, desarrolla nuevas habilidades y haz historia junto a tu club favorito.</p>
+  </header>
+
+  <section class="club-lista">
+    <h2>📋 Lista de Clubes 2025</h2>
+    <table>
+      <thead>
+        <tr><th>Club</th><th>Descripción</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Club de Lectura</td><td>Explora mundos literarios y comparte tus libros favoritos.</td></tr>
+        <tr><td>Club Magic Commander</td><td>Juega y comparte estrategias de Magic: The Gathering.</td></tr>
+        <tr><td>Club de Ajedrez</td><td>Desarrolla tu pensamiento estratégico y compite en torneos.</td></tr>
+        <tr><td>Club Linux</td><td>Aprende sobre software libre, terminales y sistemas operativos.</td></tr>
+        <tr><td>Club de Cinematografía</td><td>Analiza y crea cine, participa en debates y grabaciones.</td></tr>
+        <tr><td>Club de Juego de Mesa</td><td>Comparte tardes de diversión con juegos clásicos y modernos.</td></tr>
+        <tr><td>Club de Video Juegos</td><td>Comparte tus títulos favoritos y participa en torneos gamers.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="formulario">
+    <h2>📝 Formulario de Inscripción</h2>
+    <form onsubmit="return enviarFormulario()">
+      <input type="text" placeholder="Nombre" required>
+      <input type="text" placeholder="Apellido" required>
+      <input type="email" placeholder="Correo Electrónico" required>
+      <input type="text" placeholder="Carrera" required>
+      <input type="text" placeholder="Jornada (Diurna/Vespertina)" required>
+      <select required>
+        <option value="">Selecciona un club</option>
+        <option>Club de Lectura</option>
+        <option>Club Magic Commander</option>
+        <option>Club de Ajedrez</option>
+        <option>Club Linux</option>
+        <option>Club de Cinematografía</option>
+        <option>Club de Juego de Mesa</option>
+        <option>Club de Video Juegos</option>
+      </select>
+      <button type="submit">📨 Enviar</button>
+    </form>
+  </section>
+
+  <section class="galeria-clubes">
+    <img src="imagenes/taller_tenisdemesa.gif" alt="Club 1">
+    <img src="imagenes/taller_futbol.gif" alt="Club 2">
+    <img src="imagenes/taller_basquetbol.gif" alt="Club 3">
+    <img src="imagenes/taller_coro.gif" alt="Club 4">
+  </section>
+
+  <footer class="footer-red">
+    <p>🎙️ Radio El Inacapino - INACAP Puerto Montt | Hecho con 💚 por Cristián Riffo</p>
+  </footer>
+</body>
+</html>
