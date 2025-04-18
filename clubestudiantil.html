@@ -205,6 +205,29 @@
     <img src="imagenes/taller_basquetbol.gif" alt="Club 3">
     <img src="imagenes/taller_coro.gif" alt="Club 4">
   </section>
+<!-- Momento destacado -->
+ <h2 style="margin-top: 40px;">📸 Momentos Destacados</h2>
+<p style="text-align: center; margin-bottom: 20px;">Una mirada en imágenes a los instantes que marcaron esta jornada inolvidable.</p>
+
+<div style="text-align: center;">
+  <img id="imagenActiva" src="imagenes/banner_talleres.jpg" alt="Momento destacado" style="width: 90%; max-width: 800px; border-radius: 12px; box-shadow: 0 0 12px rgba(255,255,255,0.2); cursor: pointer;" onclick="abrirModalGaleria()">
+  <div style="margin-top: 15px;">
+    <button onclick="cambiarImagen(-1)" style="font-size: 2em; margin: 0 10px;">⬅️</button>
+    <button onclick="cambiarImagen(1)" style="font-size: 2em; margin: 0 10px;">➡️</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modalGaleria" class="modal-img" onclick="cerrarModalGaleria()">
+  <span class="cerrar">&times;</span>
+  <img class="contenido-modal" id="imagenModal">
+</div>
+
+<!-- Modal para ampliar imagen -->
+<div id="modalImagen" class="modal-img" onclick="cerrarModal()">
+  <span class="cerrar">&times;</span>
+  <img class="contenido-modal" id="imgAmpliada">
+</div>
 
   <div class="compartir" style="text-align: center; margin-top: 40px;">
   <h3>¿Quieres compartir esta noticia en tus redes sociales?</h3>
