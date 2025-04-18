@@ -936,49 +936,56 @@ Asistente Virtual Inacapin
 /* ============================
 Menú desplegable
 ============================ */
-nav ul.menu-principal {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-  background-color: #000;
+nav.menu-principal {
+  background-color: #111;
+  padding: 10px;
+  text-align: center;
 }
 
-nav ul.menu-principal > li {
+nav.menu-principal a, .dropbtn {
+  color: white;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  border: none;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+nav.menu-principal a:hover, .dropbtn:hover {
+  background-color: #6e2cf1;
+  border-radius: 5px;
+}
+
+.dropdown {
+  display: inline-block;
   position: relative;
 }
 
-nav ul.menu-principal > li > a {
-  display: block;
-  padding: 12px 16px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav ul.menu-principal li ul {
+.dropdown-content {
   display: none;
   position: absolute;
   background-color: #222;
-  min-width: 200px;
-  z-index: 100;
-  top: 100%;
-  left: 0;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 999;
+  text-align: left;
+  border-radius: 5px;
 }
 
-nav ul.menu-principal li:hover ul {
-  display: block;
-}
-
-nav ul.menu-principal li ul li a {
-  padding: 10px 15px;
-  display: block;
+.dropdown-content a {
   color: white;
+  padding: 10px 15px;
   text-decoration: none;
+  display: block;
 }
 
-nav ul.menu-principal li ul li a:hover {
+.dropdown-content a:hover {
   background-color: #6e2cf1;
 }
 
+.dropdown:hover .dropdown-content {
+  display: block;
+}
