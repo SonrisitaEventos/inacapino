@@ -989,3 +989,24 @@ nav.menu-principal a:hover, .dropbtn:hover {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+/*modal de los botones de mejor momento */
+.modal-img {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
+  text-align: center;
+  visibility: hidden; /* 👈 esto asegura que no sea visible */
+}
+
+.modal-img.show {
+  display: block;
+  visibility: visible;
+}
+
