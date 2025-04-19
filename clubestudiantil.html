@@ -388,30 +388,27 @@ const imagenesDestacadas = [
 }
 
 function abrirModalGaleria() {
-  document.getElementById("modalGaleria").style.display = "block";
+  const modal = document.getElementById("modalGaleria");
+  modal.classList.add("show");
   document.getElementById("imagenModal").src = imagenesDestacadas[indiceActual];
 }
 
-    function cerrarModalGaleria() {
-      document.getElementById("modalGaleria").style.display = "none";
-    }
- document.addEventListener("DOMContentLoaded", () => {
-    if (typeof initFuncionesComunes === "function") {
-      initFuncionesComunes(); // Evita error si no se carga
-      }
-  });
+function cerrarModalGaleria() {
+  document.getElementById("modalGaleria").classList.remove("show");
+}
 
-  function abrirModal(img) {
-    const modal = document.getElementById("modalImagen");
-    const ampliada = document.getElementById("imgAmpliada");
-    modal.style.display = "block";
-    ampliada.src = img.src;
-    ampliada.alt = img.alt;
-  }
+function abrirModal(img) {
+  const modal = document.getElementById("modalImagen");
+  modal.classList.add("show");
+  const ampliada = document.getElementById("imgAmpliada");
+  ampliada.src = img.src;
+  ampliada.alt = img.alt;
+}
 
-  function cerrarModal() {
-    document.getElementById("modalImagen").style.display = "none";
-  }
+function cerrarModal() {
+  document.getElementById("modalImagen").classList.remove("show");
+}
+
 
   function abrirInscripcion() {
     document.getElementById("popupInscripcion").style.display = "flex";
