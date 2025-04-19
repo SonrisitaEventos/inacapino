@@ -1009,13 +1009,22 @@ nav.menu-principal a:hover, .dropbtn:hover {
 }
 
 .contenido-modal {
-  max-width: 90vw; /* 👈 limita el tamaño en PC */
-  max-height: 80vh; /* 👈 y también en alto */
-  width: auto;
-  height: auto;
-  border-radius: 10px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 80vh;
   margin: auto;
-  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  border-radius: 12px;
   object-fit: contain;
+  height: auto;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
   transition: transform 0.3s ease, opacity 0.3s ease;
+}
+#imagenActiva {
+  width: 100%;
+  max-width: 600px; /* o el valor que quieras como límite visual */
+  max-height: 400px;
+  object-fit: contain; /* ajusta sin deformar */
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(255,255,255,0.2);
+  cursor: pointer;
 }
