@@ -1,5 +1,6 @@
 // funciones_comunes.js
 // 🎯 Funciones compartidas para clima, reloj, frases y má
+document.querySelector('#btnTop')
 
 // ⏰ Actualizar reloj
 function actualizarReloj() {
