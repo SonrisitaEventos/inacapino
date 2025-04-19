@@ -1002,11 +1002,20 @@ nav.menu-principal a:hover, .dropbtn:hover {
   overflow: auto;
   background-color: rgba(0,0,0,0.85);
   text-align: center;
-  visibility: hidden; /* 👈 esto asegura que no sea visible */
 }
 
 .modal-img.show {
   display: block;
-  visibility: visible;
 }
 
+.contenido-modal {
+  max-width: 90vw; /* 👈 limita el tamaño en PC */
+  max-height: 80vh; /* 👈 y también en alto */
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  margin: auto;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  object-fit: contain;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
