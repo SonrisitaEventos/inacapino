@@ -187,25 +187,33 @@ document.addEventListener("DOMContentLoaded", () => {
   restaurarModo();
   actualizarReloj();
   actualizarClima();
-  db.ref("radio/modoTransmision").once("value").then((snapshot) => {
-  const modo = snapshot.val();
-  if (modo === "twitch") {
-    mostrarTwitch();
-  } else {
-    mostrarZenoFM();
-  }
-});
 
-// Luego, sí o sí activa el "escuchador" en tiempo real
-escucharModoTransmision();
+  // ✅ Mostrar lo que diga Firebase o Zeno por defecto
+  db.ref("radio/modoTransmision").once("value")
+    .then((snapshot) => {
+      const modo = snapshot.val();
+      if (modo === "twitch") {
+        mostrarTwitch();
+      } else {
+        mostrarZenoFM(); // incluso si es null o no existe, cae acá
+      }
+    })
+    .catch((error) => {
+      console.warn("⚠️ Error al leer modo desde Firebase:", error);
+      mostrarZenoFM(); // Fallback por si Firebase falla
+    });
+
+  // 🎧 Mantener escucha en tiempo real
+  escucharModoTransmision();
 
   setTimeout(() => {
-  mostrarAsistenteInacapin();
-  }, 2500); // ⏱️ Mostramos el asistente luego de 2.5s
-  
+    mostrarAsistenteInacapin();
+  }, 2500);
+
   setInterval(actualizarReloj, 60000);
   setInterval(actualizarClima, 10 * 60 * 1000);
 });
+
 
 // 🌐 Exportar funciones globales
 window.mostrarLoginVIP = mostrarLoginVIP;
