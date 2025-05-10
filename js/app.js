@@ -84,7 +84,28 @@ function mostrarTwitch() {
 // 🔄 Cambiar y escuchar el modo de transmisión
 function cambiarModo(modo) {
   db.ref("radio/modoTransmision").set(modo);
+
+  // 👇 Mostrar de inmediato la transmisión seleccionada
+  if (modo === "twitch") {
+    mostrarTwitch();
+  } else {
+    mostrarZenoFM();
+  }
+
+  // Mostrar aviso visual de cambio
+  const aviso = document.getElementById("avisoCambio");
+  if (aviso) {
+    aviso.style.display = "block";
+    aviso.classList.remove("aviso-cambio");
+    void aviso.offsetWidth; // reinicia animación
+    aviso.classList.add("aviso-cambio");
+
+    setTimeout(() => {
+      aviso.style.display = "none";
+    }, 3000);
+  }
 }
+
 /* ============================
 🎨 Pop-Up Formulario Talleres
 ============================ */
