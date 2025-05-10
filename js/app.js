@@ -187,8 +187,18 @@ document.addEventListener("DOMContentLoaded", () => {
   restaurarModo();
   actualizarReloj();
   actualizarClima();
-  escucharModoTransmision();
-  mostrarZenoFM(); 
+  db.ref("radio/modoTransmision").once("value").then((snapshot) => {
+  const modo = snapshot.val();
+  if (modo === "twitch") {
+    mostrarTwitch();
+  } else {
+    mostrarZenoFM();
+  }
+});
+
+// Luego, sí o sí activa el "escuchador" en tiempo real
+escucharModoTransmision();
+
   setTimeout(() => {
   mostrarAsistenteInacapin();
   }, 2500); // ⏱️ Mostramos el asistente luego de 2.5s
