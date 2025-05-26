@@ -45,25 +45,36 @@
 </head>
 <body>
   <h1>🎶 Escuchando vista previa de la canción</h1>
-  <audio controls autoplay id="player">
-    Tu navegador no soporta el elemento de audio.
-  </audio>
+  <audio controls autoplay id="player" style="display:none;"></audio>
+<iframe id="driveFrame" width="400" height="90" style="border-radius: 10px;" frameborder="0" allow="autoplay"></iframe>
+
   <button onclick="window.close()">❌ Cerrar ventana</button>
 
-  <script>
-    function getParameterByName(name) {
-      const url = new URL(window.location.href);
-      return url.searchParams.get(name);
-    }
+ <script>
+  function getParameterByName(name) {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(name);
+  }
 
-    const audioId = getParameterByName("audio");
-    if (audioId) {
-      const audioUrl = `https://drive.google.com/uc?export=preview&id=${audioId}`;
-      const audioElement = document.getElementById("player");
-      audioElement.src = audioUrl;
-      audioElement.load();
-      audioElement.play().catch(err => console.warn("Autoplay bloqueado por el navegador"));
-    }
-  </script>
+  const audioId = getParameterByName("audio");
+  const audioUrl = `https://drive.google.com/uc?export=preview&id=${audioId}`;
+  const iframeUrl = `https://drive.google.com/file/d/${audioId}/preview`;
+
+  const audioElement = document.getElementById("player");
+  const driveFrame = document.getElementById("driveFrame");
+
+  // Intenta reproducir por audio
+  audioElement.src = audioUrl;
+  audioElement.load();
+  audioElement.play().then(() => {
+    driveFrame.style.display = "none";
+    audioElement.style.display = "block";
+  }).catch(() => {
+    // Si falla, muestra iframe de vista previa
+    driveFrame.src = iframeUrl;
+    driveFrame.style.display = "block";
+    audioElement.style.display = "none";
+  });
+</script>
 </body>
 </html>
