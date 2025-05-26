@@ -59,7 +59,10 @@
     const audioId = getParameterByName("audio");
     if (audioId) {
       const audioUrl = `https://drive.google.com/uc?export=preview&id=${audioId}`;
-      document.getElementById("player").innerHTML = `<source src="${audioUrl}" type="audio/mp3">`;
+      const audioElement = document.getElementById("player");
+      audioElement.src = audioUrl;
+      audioElement.load();
+      audioElement.play().catch(err => console.warn("Autoplay bloqueado por el navegador"));
     }
   </script>
 </body>
