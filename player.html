@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vista Previa - Karaoke 🎤</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    audio {
+      width: 80%;
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff5252;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #ff1e1e;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎶 Escuchando vista previa de la canción</h1>
+  <audio controls autoplay id="player">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+  <button onclick="window.close()">❌ Cerrar ventana</button>
+
+  <script>
+    function getParameterByName(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    const audioId = getParameterByName("audio");
+    if (audioId) {
+      const audioUrl = `https://drive.google.com/uc?export=preview&id=${audioId}`;
+      document.getElementById("player").innerHTML = `<source src="${audioUrl}" type="audio/mp3">`;
+    }
+  </script>
+</body>
+</html>
